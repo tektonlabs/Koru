@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: refugios_app_development
+
+test:
+  <<: *default
+  database: refugios_app_test
+
+production:
+  <<: *default
+  database: <%= ENV['REFUGIOS_APP_DATABASE'] %>
+  username: <%= ENV['REFUGIOS_APP_DATABASE_USERNAME'] %>
+  password: <%= ENV['REFUGIOS_APP_DATABASE_PASSWORD'] %>
+  host: <%= ENV['REFUGIOS_APP_DATABASE_HOSTNAME'] %>
+  port: <%= ENV['REFUGIOS_APP_DATABASE_PORT'] %>

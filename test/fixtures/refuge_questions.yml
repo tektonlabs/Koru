@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  refuge: one
+  entity: one
+  question: one
+
+two:
+  refuge: two
+  entity: two
+  question: two

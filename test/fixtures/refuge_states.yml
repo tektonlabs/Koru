@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  refuge: one
+  state_date: 2017-04-10 16:12:32
+
+two:
+  refuge: two
+  state_date: 2017-04-10 16:12:32
