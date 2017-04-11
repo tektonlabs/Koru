@@ -46,6 +46,9 @@ gem 'active_model_serializers', '~> 0.10.5'
 # Extends Rails seeds to split out complex seeds into multiple files and lets each environment have it's own seeds.
 gem 'seedbank', '~> 0.4.0'
 
+# Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
+gem 'figaro', '~> 1.1', '>= 1.1.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
