@@ -4,7 +4,6 @@ class QuestionSerializer < ActiveModel::Serializer
   attribute :min_text, key: :min_value
   attribute :max_text, key: :max_value
 
-  
   def sub_questions
     object.sub_questions.map do |sub_question|
       SubQuestionSerializer.new(sub_question, scope: scope, root: false)

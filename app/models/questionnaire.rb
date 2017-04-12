@@ -12,9 +12,6 @@ class Questionnaire < ApplicationRecord
       end
       add_response_by_question_param(question) unless question[:answers].blank?
     end
-    ap '-------------------------------------------------------------------'
-    ap self.responses
-    ap '-------------------------------------------------------------------'
     if self.responses.size > 0
       return self.save
     else
@@ -28,9 +25,6 @@ class Questionnaire < ApplicationRecord
       answers = question_param[:answers]
       case question_param[:question_type].to_sym
       when :one_choice
-        ap '-------------------------------------------------------------------'
-        ap answers[0][:selected_id]
-        ap '-------------------------------------------------------------------'
         self.responses.build(question_id: question_param[:id], answer_selected_id: [answers[0][:selected_id]])
       when :multiple_choice
         self.responses.build(question_id: question_param[:id], answer_selected_id: answers.map{|a| a[:selected_id]})
