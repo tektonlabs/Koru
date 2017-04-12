@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20170410212408) do
     t.index ["question_id"], name: "index_question_answers_on_question_id", using: :btree
   end
 
+  create_table "questionnaires", force: :cascade do |t|
+    t.integer  "refuge_id"
+    t.datetime "state_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["refuge_id"], name: "index_questionnaires_on_refuge_id", using: :btree
+  end
+
   create_table "questions", force: :cascade do |t|
     t.integer  "entity_id"
     t.string   "text",                      null: false
@@ -71,14 +79,6 @@ ActiveRecord::Schema.define(version: 20170410212408) do
     t.index ["refuge_id"], name: "index_refuge_questions_on_refuge_id", using: :btree
   end
 
-  create_table "refuge_states", force: :cascade do |t|
-    t.integer  "refuge_id"
-    t.datetime "state_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["refuge_id"], name: "index_refuge_states_on_refuge_id", using: :btree
-  end
-
   create_table "refuges", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -86,24 +86,25 @@ ActiveRecord::Schema.define(version: 20170410212408) do
   end
 
   create_table "responses", force: :cascade do |t|
-    t.integer  "refuge_state_id"
-    t.integer  "question_answer_id"
-    t.string   "value"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["question_answer_id"], name: "index_responses_on_question_answer_id", using: :btree
-    t.index ["refuge_state_id"], name: "index_responses_on_refuge_state_id", using: :btree
+    t.integer  "questionnaire_id",      null: false
+    t.integer  "question_id",           null: false
+    t.integer  "answer_selected_id",                 array: true
+    t.string   "answer_responsed_text"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["question_id"], name: "index_responses_on_question_id", using: :btree
+    t.index ["questionnaire_id"], name: "index_responses_on_questionnaire_id", using: :btree
   end
 
   add_foreign_key "question_answers", "answers"
   add_foreign_key "question_answers", "questions"
+  add_foreign_key "questionnaires", "refuges"
   add_foreign_key "questions", "entities"
   add_foreign_key "refuge_entities", "entities"
   add_foreign_key "refuge_entities", "refuges"
   add_foreign_key "refuge_questions", "entities"
   add_foreign_key "refuge_questions", "questions"
   add_foreign_key "refuge_questions", "refuges"
-  add_foreign_key "refuge_states", "refuges"
-  add_foreign_key "responses", "question_answers"
-  add_foreign_key "responses", "refuge_states"
+  add_foreign_key "responses", "questionnaires"
+  add_foreign_key "responses", "questions"
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :refuges, only: :index do
         resources :entities, only: :index
+        resources :responses, only: :create
       end
     end
   end

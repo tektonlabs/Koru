@@ -1,6 +1,6 @@
 class Response < ApplicationRecord
 
-  belongs_to :refuge_state
-  belongs_to :question_answer
+  belongs_to :questionnaire
+  belongs_to :question
 
 end

@@ -1,6 +1,6 @@
-class CreateRefugeStates < ActiveRecord::Migration[5.0]
+class CreateQuestionnaires < ActiveRecord::Migration[5.0]
   def change
-    create_table :refuge_states do |t|
+    create_table :questionnaires do |t|
       t.references :refuge, foreign_key: true
       t.datetime :state_date
 

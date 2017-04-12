@@ -1,4 +1,4 @@
-class Api::V1::EntitiesController < Api::ApiV1Controller
+ class Api::V1::EntitiesController < Api::ApiV1Controller
 
   before_action :set_refuge, only: :index
 
