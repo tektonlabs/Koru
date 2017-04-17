@@ -44,8 +44,13 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    autoprefixer-rails (6.7.7.2)
+      execjs
     awesome_print (1.7.0)
     bindex (0.5.0)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
     case_transform (0.2)
@@ -194,6 +199,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.5)
   awesome_print (~> 1.7)
+  bootstrap-sass (~> 3.3, >= 3.3.7)
   byebug
   coffee-rails (~> 4.2)
   figaro (~> 1.1, >= 1.1.1)

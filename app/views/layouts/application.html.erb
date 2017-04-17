@@ -3,12 +3,60 @@
   <head>
     <title>RefugiosApp</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <%= yield %>
+    <div id="wrapper">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="brand">
+          <%= link_to root_path do %>
+            <%= image_tag "logo-dark.png", alt: "Klorofil Logo", class: "img-responsive logo" %>
+          <% end %>
+        </div>
+        <div class="container-fluid">
+          <div class="navbar-btn">
+            <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+          </div>
+          <form class="navbar-form navbar-left">
+            <div class="input-group">
+              <input type="text" value="" class="form-control" placeholder="Search dashboard...">
+              <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
+            </div>
+          </form>
+        </div>
+      </nav>
+      <div id="sidebar-nav" class="sidebar">
+        <div class="sidebar-scroll">
+          <nav>
+            <ul class="nav">
+              <li><a href="#" class="active"><i class="glyphicon glyphicon-home"></i>Refugio 1</a></li>
+              <li><a href="#" class=""><i class="glyphicon glyphicon-home"></i>Refugio 2</a></li>
+              <li><a href="#" class=""><i class="glyphicon glyphicon-home"></i>Refugio 3</a></li>
+              <li><a href="#" class=""><i class="glyphicon glyphicon-home"></i>Refugio 4</a></li>
+              <li><a href="#" class=""><i class="glyphicon glyphicon-home"></i>Refugio 5</a></li>
+              <li><a href="#" class=""><i class="glyphicon glyphicon-home"></i>Refugio 6</a></li>
+              <li><a href="#" class=""><i class="glyphicon glyphicon-home"></i>Refugio 7</a></li>
+              <li><a href="#" class=""><i class="glyphicon glyphicon-home"></i>Refugio 8</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="main">
+        <div class="main-content">
+          <div class="container-fluid">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <footer>
+        <div class="container-fluid">
+          <p class="copyright">&copy; 2017 <a href="http://www.tektonlabs.com" target="_blank">Powered by Tektonlabs</a>. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
