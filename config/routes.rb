@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :refuges, only: :index
+  resources :refuges, only: :index do
+    get :detail, on: :member
+  end
 
 end
