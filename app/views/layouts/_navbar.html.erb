@@ -1,0 +1,18 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="brand">
+    <%= link_to root_path do %>
+      <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", class: "img-responsive logo" %>
+    <% end %>
+  </div>
+  <div class="container-fluid">
+    <div class="navbar-btn">
+      <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+    </div>
+    <form class="navbar-form navbar-left">
+      <div class="input-group">
+        <input type="text" value="" class="form-control" placeholder="Search dashboard...">
+        <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
+      </div>
+    </form>
+  </div>
+</nav>

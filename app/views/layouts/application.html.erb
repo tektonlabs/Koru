@@ -10,41 +10,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
     <div id="wrapper">
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="brand">
-          <%= link_to root_path do %>
-            <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", class: "img-responsive logo" %>
-          <% end %>
-        </div>
-        <div class="container-fluid">
-          <div class="navbar-btn">
-            <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
-          </div>
-          <form class="navbar-form navbar-left">
-            <div class="input-group">
-              <input type="text" value="" class="form-control" placeholder="Search dashboard...">
-              <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
-            </div>
-          </form>
-        </div>
-      </nav>
-      <div id="sidebar-nav" class="sidebar">
-        <div id="list-refuges-bar" class="sidebar-scroll">
-          <nav>
-            <ul class="nav">
-              <li><%= link_to "<i class='glyphicon glyphicon-home'></i>Refugio 1".html_safe, { action: "detail", id: 1 }, method: :get, remote: true %></li>
-              <li><%= link_to "<i class='glyphicon glyphicon-home'></i>Refugio 2".html_safe, { action: "detail", id: 1 }, method: :get, remote: true %></li>
-              <li><%= link_to "<i class='glyphicon glyphicon-home'></i>Refugio 3".html_safe, { action: "detail", id: 1 }, method: :get, remote: true %></li>
-              <li><%= link_to "<i class='glyphicon glyphicon-home'></i>Refugio 4".html_safe, { action: "detail", id: 1 }, method: :get, remote: true %></li>
-              <li><%= link_to "<i class='glyphicon glyphicon-home'></i>Refugio 5".html_safe, { action: "detail", id: 1 }, method: :get, remote: true %></li>
-              <li><%= link_to "<i class='glyphicon glyphicon-home'></i>Refugio 6".html_safe, { action: "detail", id: 1 }, method: :get, remote: true %></li>
-              <li><%= link_to "<i class='glyphicon glyphicon-home'></i>Refugio 7".html_safe, { action: "detail", id: 1 }, method: :get, remote: true %></li>
-              <li><%= link_to "<i class='glyphicon glyphicon-home'></i>Refugio 8".html_safe, { action: "detail", id: 1 }, method: :get, remote: true %></li>
-            </ul>
-          </nav>
-        </div>
-        <%= render 'layouts/detail_bar', refuge: Refuge.first %>
-      </div>
+      <%= render 'layouts/navbar' %>
+      <%= render 'layouts/sidebar' %>
       <div class="main">
         <div class="main-content">
           <div class="container-fluid">
