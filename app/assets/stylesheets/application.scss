@@ -1,0 +1,9 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "semantic-ui/modules/transition";
+@import "main";
