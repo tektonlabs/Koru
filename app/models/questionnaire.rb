@@ -3,7 +3,8 @@ class Questionnaire < ApplicationRecord
   belongs_to :refuge
   has_many :responses
 
-  def save_with_responses questions_params
+  def save_with_responses questions_params, date_param
+    self.state_date = Time.at date_param.to_i
     questions_params.each do |question|
       unless question[:sub_questions].blank?
         question[:sub_questions].each do |sub_question|
