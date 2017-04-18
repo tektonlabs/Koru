@@ -4,4 +4,10 @@
 //= require bootstrap-sprockets
 //= require semantic-ui
 //= require main
+//= require underscore
+//= require gmaps/google
 //= require_tree .
+
+window.onresize = function(event) {
+  initialize_refuges();
+};
