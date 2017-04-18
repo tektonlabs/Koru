@@ -1,0 +1,11 @@
+var delayMillis = 250;
+$('#detail-navbar').transition('fly right');
+setTimeout(function() {
+  $('#sidebar-nav').html('<%= escape_javascript render "layouts/sidebar" %>');
+    if( $('.sidebar-scroll').length > 0 ) {
+    $('.sidebar-scroll').slimScroll({
+      height: '95%',
+      wheelStep: 2,
+    });
+  }
+}, delayMillis);

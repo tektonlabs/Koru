@@ -7,4 +7,5 @@ class ApplicationController < ActionController::Base
   def set_controller
     @controller = params[:controller]
   end
+
 end

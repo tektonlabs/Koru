@@ -11,7 +11,10 @@
   </head>
     <div id="wrapper">
       <%= render 'layouts/navbar' %>
-      <%= render 'layouts/sidebar' %>
+      <div id="sidebar-nav" class="sidebar">
+        <%= render 'layouts/sidebar' %>
+      </div>
+      <%= render 'layouts/detail_bar', refuge: Refuge.first %>
       <div class="main">
         <div class="main-content">
           <div class="container-fluid">

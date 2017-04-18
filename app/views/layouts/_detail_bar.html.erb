@@ -1,15 +1,14 @@
 <div id="detail-navbar" class="sidebar-scroll hide">
   <nav>
     <ul class="nav">
-      <li><a href="#" class="active"><i class="glyphicon glyphicon-home"></i>Refugio <%= refuge.id %></a></li>
-      <p>Detalles del Refugio</p>
-      <p>Detalles del Refugio</p>
-      <p>Detalles del Refugio</p>
-      <p>Detalles del Refugio</p>
-      <p>Detalles del Refugio</p>
-      <p>Detalles del Refugio</p>
-      <p>Detalles del Refugio</p>
-      <p>Detalles del Refugio</p>
+      <li><%= link_to "<i class='glyphicon glyphicon-home'></i>#{refuge.name}".html_safe, root_path, class: "active", remote: true %></li>
+      <ul>
+        <li>Detalle 1</li>
+        <li>Detalle 2</li>
+        <li>Detalle 3</li>
+        <li>Detalle 4</li>
+        <li>Detalle 5</li>
+      </ul>
     </ul>
   </nav>
 </div>

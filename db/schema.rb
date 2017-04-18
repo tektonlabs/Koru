@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 20170410212408) do
 
   create_table "refuges", force: :cascade do |t|
     t.string   "name",       null: false
+    t.string   "lat"
+    t.string   "long"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
