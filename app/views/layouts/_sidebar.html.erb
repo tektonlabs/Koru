@@ -2,7 +2,7 @@
   <nav>
     <ul class="nav">
       <% refuges_all.each do |refuge| %>
-        <li><%= link_to "<i class='glyphicon glyphicon-home'></i>#{refuge.name}".html_safe, { action: "detail", id: refuge.id }, method: :get, remote: true %></li>
+        <li><%= link_to refuge.name, { action: "detail", id: refuge.id }, method: :get, remote: true %></li>
       <% end %>
     </ul>
   </nav>
