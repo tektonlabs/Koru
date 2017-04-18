@@ -71,6 +71,12 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  config.action_controller.relative_url_root = ENV['RELATIVE_URL_ROOT']
+
+  config.action_controller.asset_host = ENV['HOST'] + ENV['RELATIVE_URL_ROOT']
+
+  config.assets.prefix = ENV['RELATIVE_URL_ROOT'] + '/assets'
+
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
