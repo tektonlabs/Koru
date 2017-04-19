@@ -8,7 +8,7 @@
   return
 
 @initialize_refuges = ->
-  $('#refuges-map').css('height', $('#sidebar-nav').height() - 56)
+  $('#refuges-map').css('height', $('#sidebar-nav').height())
 
 $(document).ready ->
   initialize_refuges()
