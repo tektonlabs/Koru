@@ -1,7 +1,19 @@
 <div id="detail-navbar" class="sidebar-scroll hide">
   <nav>
     <ul class="nav">
-      <li><%= link_to refuge.name, root_path, class: "active", remote: true %></li>
+      <li>
+        <%= link_to root_path, class: "active", remote: true do %>
+          <table>
+            <tr>
+              <td rowspan="2"><i class="glyphicon glyphicon-certificate <%= refuge_class_status(refuge) %>"></i></td>
+              <td><%= refuge.name %></td>
+            </tr>
+            <tr>
+              <td><h6><%= "#{refuge.city}, #{refuge.country.name}" %></h6></td>
+            </tr>
+          </table>
+        <% end %>
+      </li>
       <ul>
         <li>Detalle 1</li>
         <li>Detalle 2</li>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410212408) do
+ActiveRecord::Schema.define(version: 20170419151831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20170410212408) do
     t.boolean  "with_value", default: false, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "iso",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "entities", force: :cascade do |t|
@@ -80,11 +87,16 @@ ActiveRecord::Schema.define(version: 20170410212408) do
   end
 
   create_table "refuges", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name",                   null: false
     t.string   "latitude"
     t.string   "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "address"
+    t.string   "city"
+    t.integer  "status",     default: 0, null: false
+    t.integer  "country_id"
+    t.index ["country_id"], name: "index_refuges_on_country_id", using: :btree
   end
 
   create_table "responses", force: :cascade do |t|
@@ -107,6 +119,7 @@ ActiveRecord::Schema.define(version: 20170410212408) do
   add_foreign_key "refuge_questions", "entities"
   add_foreign_key "refuge_questions", "questions"
   add_foreign_key "refuge_questions", "refuges"
+  add_foreign_key "refuges", "countries"
   add_foreign_key "responses", "questionnaires"
   add_foreign_key "responses", "questions"
 end

@@ -17,17 +17,10 @@
       <%= render 'layouts/detail_bar', refuge: Refuge.first %>
       <div class="main">
         <div class="main-content">
-          <div class="container-fluid">
-            <%= yield %>
-          </div>
+          <%= yield %>
         </div>
       </div>
       <div class="clearfix"></div>
-      <footer>
-        <div class="container-fluid">
-          <p class="copyright">&copy; 2017 <a href="http://www.tektonlabs.com" target="_blank">Powered by Tektonlabs</a>. All Rights Reserved.</p>
-        </div>
-      </footer>
     </div>
     <%= yield :javascript_tags  %>
   </body>

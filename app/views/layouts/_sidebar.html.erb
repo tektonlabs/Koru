@@ -2,7 +2,19 @@
   <nav>
     <ul class="nav">
       <% refuges_all.each do |refuge| %>
-        <li><%= link_to refuge.name, { action: "detail", id: refuge.id }, method: :get, remote: true %></li>
+        <li>
+          <%= link_to detail_refuge_path(refuge), method: :get, remote: true do %>
+            <table>
+              <tr>
+                <td rowspan="2"><i class="glyphicon glyphicon-certificate <%= refuge_class_status(refuge) %>"></i></td>
+                <td><%= refuge.name %></td>
+              </tr>
+              <tr>
+                <td><h6><%= "#{refuge.city}, #{refuge.country.name}" %></h6></td>
+              </tr>
+            </table>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </nav>

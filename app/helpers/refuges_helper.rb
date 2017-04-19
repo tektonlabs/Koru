@@ -11,4 +11,15 @@ module RefugesHelper
     end
   end
 
+  def refuge_class_status refuge
+    case refuge.status
+    when 'good'
+      'refuge-good'
+    when 'regular'
+      'refuge-regular'
+    else
+      'refuge-bad'
+    end
+  end
+
 end
