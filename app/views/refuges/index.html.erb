@@ -3,97 +3,10 @@
 </div>
 
 <% content_for :javascript_tags do %>
-  <script>
-    function initMap() {
-      var uluru = {lat: -25.363, lng: 131.044};
-      var map = new google.maps.Map(document.getElementById('refuges-map'), {
-        zoom: 4,
-        center: uluru
-      });
-      var locations = [
-        ['Bondi Beach', -33.890542, 151.274856, 4],
-        ['Coogee Beach', -33.923036, 151.259052, 5],
-        ['Cronulla Beach', -34.028249, 151.157507, 3],
-        ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-        ['Maroubra Beach', -33.950198, 151.259302, 1]
-      ];
-      var infowindow = new google.maps.InfoWindow();
-
-      var marker, i;
-
-      for (i = 0; i < locations.length; i++) {  
-        marker = new google.maps.Marker({
-          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-          map: map
-        });
-        google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-          return function() {
-            infowindow.setContent(locations[i][0]);
-            infowindow.open(map, marker);
-          }
-        })(marker, i));
-        google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
-          return function() {
-            infowindow.close();
-          }
-        })());
-
-      }
-
-
-
-    
-
-
-
-      // Search for google maps
-      var input = document.getElementById('input-search');
-      var searchBox = new google.maps.places.SearchBox(input);
-      map.addListener('bounds_changed', function() {
-        searchBox.setBounds(map.getBounds());
-      });
-      var markers = [];
-      searchBox.addListener('places_changed', function() {
-        var places = searchBox.getPlaces();
-        if (places.length == 0) {
-          return;
-        }
-        markers.forEach(function(marker) {
-          marker.setMap(null);
-        });
-        markers = [];
-        var bounds = new google.maps.LatLngBounds();
-        places.forEach(function(place) {
-          if (!place.geometry) {
-            console.log("Returned place contains no geometry");
-            return;
-          }
-          var icon = {
-            url: place.icon,
-            size: new google.maps.Size(71, 71),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(25, 25)
-          };
-          markers.push(new google.maps.Marker({
-            map: map,
-            icon: icon,
-            title: place.name,
-            position: place.geometry.location
-          }));
-          if (place.geometry.viewport) {
-            bounds.union(place.geometry.viewport);
-          } else {
-            bounds.extend(place.geometry.location);
-          }
-        });
-        map.fitBounds(bounds);
-      });
-    }
-
-
-
-
-  </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYZQCwE8B-r7ORDi49Hzum8vXKyoLl4k&callback=initMap&libraries=places" async defer></script>
+  <script type="text/javascript">
+    function initMap(){
+      loadMapWithLocations(<%= raw Refuge.all.map{ |x| [x.name, x.latitude, x.longitude] } %>);
+    }
+  </script>
 <% end %>
