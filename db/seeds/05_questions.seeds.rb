@@ -207,25 +207,35 @@ question = Question.create text: "¿Algún comentario extra sobre el agua del re
 
 # Gestión de residuos sólidos
 
-question = Question.create text: "Sobre el recojo de la basura de todo el albergue", entity: Entity.find_by(name: "Gestión de residuos sólidos")
+question = Question.create text: "¿Cuentan con basureros y puntos de acopio de basura?", entity: Entity.find_by(name: "Basureros y puntos de acopio de basura"), parent_id: question.id
   Refuge.all.each do |refuge|
     RefugeQuestion.create refuge: refuge, question: question
   end
 
-  sub_question = Question.create text: "¿Cuentan con basureros y puntos de acopio de basura?", entity: Entity.find_by(name: "Basureros y puntos de acopio de basura"), parent_id: question.id
-    QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "Si")
-    QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "No")
+  QuestionAnswer.create question: question, answer: Answer.find_by(name: "Si")
+  QuestionAnswer.create question: question, answer: Answer.find_by(name: "No")
 
-  sub_question = Question.create text: "¿Se está recogiendo la basura que el albergue acumula?", entity: Entity.find_by(name: "Recogo de basura"), parent_id: question.id
-    QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "Si")
-    QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "No")
+question = Question.create text: "¿Se está recogiendo la basura que el albergue acumula?", entity: Entity.find_by(name: "Recogo de basura"), parent_id: question.id
+  Refuge.all.each do |refuge|
+    RefugeQuestion.create refuge: refuge, question: question
+  end
 
-  sub_question = Question.create text: "¿Quién es el encargado del recojo de basura?", entity: Entity.find_by(name: "Gestión de residuos sólidos"), parent_id: question.id
-    QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "Municipalidad")
-    QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "No hay nadie encargado del recojo de basura")
-    QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "Otros")
+  QuestionAnswer.create question: question, answer: Answer.find_by(name: "Si")
+  QuestionAnswer.create question: question, answer: Answer.find_by(name: "No")
 
-  sub_question = Question.create text: "¿Algún comentario extra sobre la gestión de residuos sólidos del refugio?", entity: Entity.find_by(name: "Gestión de residuos sólidos"), question_type: :input_value
+question = Question.create text: "¿Quién es el encargado del recojo de basura?", entity: Entity.find_by(name: "Gestión de residuos sólidos"), parent_id: question.id
+  Refuge.all.each do |refuge|
+    RefugeQuestion.create refuge: refuge, question: question
+  end
+
+  QuestionAnswer.create question: question, answer: Answer.find_by(name: "Municipalidad")
+  QuestionAnswer.create question: question, answer: Answer.find_by(name: "No hay nadie encargado del recojo de basura")
+  QuestionAnswer.create question: question, answer: Answer.find_by(name: "Otros")
+
+question = Question.create text: "¿Algún comentario extra sobre la gestión de residuos sólidos del refugio?", entity: Entity.find_by(name: "Gestión de residuos sólidos"), question_type: :input_value
+  Refuge.all.each do |refuge|
+    RefugeQuestion.create refuge: refuge, question: question
+  end
 
 
 # Seguridad
