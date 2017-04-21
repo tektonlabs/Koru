@@ -72,8 +72,15 @@
     return
   return
 
+
+
 @initialize_refuges = ->
   $('#refuges-map').css('height', $('#sidebar-nav').height())
 
 $(document).ready ->
   initialize_refuges()
+  $("#search-button").on 'click', ->
+    input = document.getElementById('input-search')
+    google.maps.event.trigger input, 'focus'
+    google.maps.event.trigger input, 'keydown', keyCode: 13
+    return
