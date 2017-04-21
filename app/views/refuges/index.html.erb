@@ -13,23 +13,22 @@
       var marker = new google.maps.Marker({
         position: uluru,
         map: map
-      });
-      var infowindow =  new google.maps.InfoWindow({
-        content: 'Hola me llamo Jorgito!',
-        map: map
+        var infowindow =  new google.maps.InfoWindow({
+          content: 'Hola me llamo Jorgito!',
+          map: map
+        });
       });
       marker.addListener('mouseover', function() {
-          infowindow.open(map, this);
+        infowindow.open(map, this);
       });
       marker.addListener('mouseout', function() {
-          infowindow.close();
+        infowindow.close();
       });
 
 
-          // Create the search box and link it to the UI element.
+      // Create the search box and link it to the UI element.
       var input = document.getElementById('input-search');
       var searchBox = new google.maps.places.SearchBox(input);
-      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
       // Bias the SearchBox results towards current map's viewport.
       map.addListener('bounds_changed', function() {
