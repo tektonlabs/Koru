@@ -155,7 +155,7 @@ question = Question.create text: "¿Tienen electricidad?", entity: Entity.find_b
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No")
 
-question = Question.create text: "¿Se están usando alguno de estos mecanismos de iluminación o alguna fuente de energía? (marca todos los que se estén usando)", entity: Entity.find_by(name: "Limpieza"), question_type: :multiple_choice
+question = Question.create text: "¿Se están usando alguno de estos mecanismos de iluminación o alguna fuente de energía? (marca todos los que se estén usando)", entity: Entity.find_by(name: "Electricidad"), question_type: :multiple_choice
   Refuge.all.each do |refuge|
     RefugeQuestion.create refuge: refuge, question: question
   end
@@ -166,7 +166,7 @@ question = Question.create text: "¿Se están usando alguno de estos mecanismos 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Generador eléctrico")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Otros")
 
-question = Question.create text: "¿Algún comentario extra sobre la electricidad del refugio?", entity: Entity.find_by(name: "Limpieza"), question_type: :input_value
+question = Question.create text: "¿Algún comentario extra sobre la electricidad del refugio?", entity: Entity.find_by(name: "Electricidad"), question_type: :input_value
   Refuge.all.each do |refuge|
     RefugeQuestion.create refuge: refuge, question: question
   end
@@ -207,7 +207,7 @@ question = Question.create text: "¿Algún comentario extra sobre el agua del re
 
 # Gestión de residuos sólidos
 
-question = Question.create text: "¿Cuentan con basureros y puntos de acopio de basura?", entity: Entity.find_by(name: "Basureros y puntos de acopio de basura"), parent_id: question.id
+question = Question.create text: "¿Cuentan con basureros y puntos de acopio de basura?", entity: Entity.find_by(name: "Basureros y puntos de acopio de basura")
   Refuge.all.each do |refuge|
     RefugeQuestion.create refuge: refuge, question: question
   end
@@ -215,7 +215,7 @@ question = Question.create text: "¿Cuentan con basureros y puntos de acopio de 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No")
 
-question = Question.create text: "¿Se está recogiendo la basura que el albergue acumula?", entity: Entity.find_by(name: "Recogo de basura"), parent_id: question.id
+question = Question.create text: "¿Se está recogiendo la basura que el albergue acumula?", entity: Entity.find_by(name: "Recogo de basura")
   Refuge.all.each do |refuge|
     RefugeQuestion.create refuge: refuge, question: question
   end
@@ -223,7 +223,7 @@ question = Question.create text: "¿Se está recogiendo la basura que el albergu
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No")
 
-question = Question.create text: "¿Quién es el encargado del recojo de basura?", entity: Entity.find_by(name: "Gestión de residuos sólidos"), parent_id: question.id
+question = Question.create text: "¿Quién es el encargado del recojo de basura?", entity: Entity.find_by(name: "Gestión de residuos sólidos")
   Refuge.all.each do |refuge|
     RefugeQuestion.create refuge: refuge, question: question
   end
@@ -288,7 +288,7 @@ question = Question.create text: "Hubo presencia de:", entity: Entity.find_by(na
     QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "Poca")
     QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "No hubo")
 
-question = Question.create text: "¿Se han reportado algunas de las siguientes situaciones de riesgo?", entity: Entity.find_by(name: "Seguridad"), question_type: :multiple_choice
+question = Question.create text: "¿Se han observado alguna de las siguientes situaciones de riesgo?", entity: Entity.find_by(name: "Seguridad"), question_type: :multiple_choice
   Refuge.all.each do |refuge|
     RefugeQuestion.create refuge: refuge, question: question
   end
