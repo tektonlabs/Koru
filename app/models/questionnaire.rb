@@ -26,11 +26,17 @@ class Questionnaire < ApplicationRecord
       answers = question_param[:answers]
       case question_param[:question_type].to_sym
       when :one_choice
-        self.responses.build(question_id: question_param[:id], answer_selected_id: [answers[0][:selected_id]])
+        unless answers[0][:selected_id].blank?
+          self.responses.build(question_id: question_param[:id], answer_selected_id: [answers[0][:selected_id]])
+        end
       when :multiple_choice
-        self.responses.build(question_id: question_param[:id], answer_selected_id: answers.map{|a| a[:selected_id]})
-      when :input_value          
-        self.responses.build(question_id: question_param[:id], answer_responsed_text: answers[0][:answer_value])
+        if answers.map{|a| a[:selected_id]}
+          self.responses.build(question_id: question_param[:id], answer_selected_id: answers.map{|a| a[:selected_id]})
+        end
+      when :input_value
+        unless answers[0][:answer_value].blank?
+          self.responses.build(question_id: question_param[:id], answer_responsed_text: answers[0][:answer_value])
+        end
       end
     end
   end
