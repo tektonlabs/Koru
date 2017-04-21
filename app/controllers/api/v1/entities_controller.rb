@@ -4,7 +4,7 @@ class Api::V1::EntitiesController < Api::ApiV1Controller
 
   def index
     if @refuge
-      entities = @refuge.entities.includes(questions: [:sub_questions])
+      entities = @refuge.entities.order(:created_at).includes(questions: [:sub_questions])
       render json: entities, each_serializer: EntitySerializer
     else
       render json: { message: "Refuge is not registered" }

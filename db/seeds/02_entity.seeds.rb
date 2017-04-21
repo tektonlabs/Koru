@@ -1,19 +1,18 @@
-Entity.create name: "Limpieza"
-Entity.create name: "Luz"
+Entity.create name: "Alimentos y agua bebible"
 Entity.create name: "Salud"
 Entity.create name: "Higiene personal"
-Entity.create name: "Alimentos y agua bebible"
+Entity.create name: "Limpieza"
 Entity.create name: "Electricidad"
 Entity.create name: "Agua"
 Entity.create name: "Gestión de residuos sólidos"
 Entity.create name: "Seguridad"
 
-Entity.create name: "Baño", level: :second_level
+Entity.create name: "Baños", level: :second_level
 Entity.create name: "Carpas", level: :second_level
 Entity.create name: "Áreas comunes", level: :second_level
-Entity.create name: "Cocina", level: :second_level
+Entity.create name: "Cocinas", level: :second_level
 
-Entity.create name: "Médico", level: :second_level
+Entity.create name: "Médicos", level: :second_level
 Entity.create name: "Enfermeras", level: :second_level
 Entity.create name: "Técnicos en salud", level: :second_level
 Entity.create name: "Voluntarios en salud", level: :second_level
