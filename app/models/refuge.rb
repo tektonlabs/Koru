@@ -11,9 +11,9 @@ class Refuge < ApplicationRecord
 
   enum status: [:good, :regular, :bad]
 
-  def self.search_with search_value
-    if search_value.present?
-      joins(:country).where("refuges.name||refuges.city||refuges.address||countries.name ILIKE ?", "%#{search_value}%")
+  def self.search_with query
+    if query.present?
+      joins(:country).where("refuges.name||refuges.city||refuges.address||countries.name ILIKE ?", "%#{query}%")
     else
       all
     end
