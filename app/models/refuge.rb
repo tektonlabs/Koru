@@ -11,4 +11,12 @@ class Refuge < ApplicationRecord
 
   enum status: [:good, :regular, :bad]
 
+  def self.search_with search_value
+    if search_value.present?
+      joins(:country).where("refuges.name||refuges.city||refuges.address||countries.name ILIKE ?", "%#{search_value}%")
+    else
+      all
+    end
+  end
+
 end
