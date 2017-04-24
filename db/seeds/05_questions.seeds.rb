@@ -207,7 +207,7 @@ question = Question.create text: "¿Algún comentario extra sobre el agua del re
 
 # Gestión de residuos sólidos
 
-question = Question.create text: "¿Cuentan con basureros y puntos de acopio de basura?", entity: Entity.find_by(name: "Basureros y puntos de acopio de basura")
+question = Question.create text: "¿Cuentan con basureros y puntos de acopio de basura?", entity: Entity.find_by(name: "Gestión de residuos sólidos")
   Refuge.all.each do |refuge|
     RefugeQuestion.create refuge: refuge, question: question
   end
@@ -215,7 +215,7 @@ question = Question.create text: "¿Cuentan con basureros y puntos de acopio de 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No")
 
-question = Question.create text: "¿Se está recogiendo la basura que el albergue acumula?", entity: Entity.find_by(name: "Recogo de basura")
+question = Question.create text: "¿Se está recogiendo la basura que el albergue acumula?", entity: Entity.find_by(name: "Gestión de residuos sólidos")
   Refuge.all.each do |refuge|
     RefugeQuestion.create refuge: refuge, question: question
   end

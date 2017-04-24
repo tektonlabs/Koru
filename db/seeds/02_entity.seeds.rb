@@ -6,8 +6,6 @@ Entity.create name: "Electricidad"
 Entity.create name: "Agua"
 Entity.create name: "Gestión de residuos sólidos"
 Entity.create name: "Seguridad"
-Entity.create name: "Basureros y puntos de acopio de basura"
-Entity.create name: "Recogo de basura"
 
 Entity.create name: "Baños", level: :second_level
 Entity.create name: "Carpas", level: :second_level
