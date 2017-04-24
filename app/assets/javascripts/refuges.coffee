@@ -40,7 +40,6 @@
   new_markers = []
   searchBox.addListener 'places_changed', ->
     places = searchBox.getPlaces()
-    console.log places
     if places.length == 0
       return
     new_markers.forEach (marker) ->
@@ -71,8 +70,6 @@
     map.fitBounds new_bounds
     return
   return
-
-
 
 @initialize_refuges = ->
   $('#refuges-map').css('height', $('#sidebar-nav').height())
