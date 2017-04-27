@@ -1,0 +1,15 @@
+$color: (
+  red: #EB3349,
+  orange: #FF6E20,
+  yellow: #FFBB29,
+  blue: #00AEEF,
+  purple: #B96CF5,
+  green-line: #64E67D,
+  green-status: #4CC981,
+  amber-status: #FFC44D,
+  red-status: #FF8080
+);
+
+@function color($prop) {
+  @return map-get($color, $prop);
+}

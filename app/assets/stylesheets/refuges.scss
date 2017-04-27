@@ -6,3 +6,26 @@
 .pac-container {
   z-index: 10000 !important;
 }
+
+.chart-doughnut {
+  display: inline-block !important;
+  vertical-align: middle;
+  &.chart-doughnut-legend {
+    ul{
+      list-style-type: none;
+    }
+    li {
+      span {
+        display: inline-block;
+        margin-right: 5px;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.selector-styles {
+  top: 20% !important;
+}

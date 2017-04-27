@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :refuges, only: :index do
+  resources :refuges, only: [:index, :show] do
     get :detail, on: :member
   end
 

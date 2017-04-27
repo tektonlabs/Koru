@@ -6,6 +6,7 @@
 //= require main
 //= require underscore
 //= require gmaps/google
+//= require Chart
 //= require_tree .
 
 window.onresize = function(event) {

@@ -55,6 +55,8 @@ GEM
     byebug (9.0.6)
     case_transform (0.2)
       activesupport
+    chart-js-rails (0.1.2)
+      railties (> 3.1)
     city-state (0.0.13)
       rubyzip (~> 1.1)
     coffee-rails (4.2.1)
@@ -234,6 +236,7 @@ DEPENDENCIES
   awesome_print (~> 1.7)
   bootstrap-sass (~> 3.3, >= 3.3.7)
   byebug
+  chart-js-rails (~> 0.1.2)
   city-state (~> 0.0.13)
   coffee-rails (~> 4.2)
   figaro (~> 1.1, >= 1.1.1)
