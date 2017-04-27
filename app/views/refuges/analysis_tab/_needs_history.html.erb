@@ -1,0 +1,21 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title">History of Needs</h3>
+    <div class="right selector-styles">
+      <select name="year-selector" class="form-control">
+        <option value="2017">2017</option>
+        <option value="2016">2016</option>
+        <option value="2015">2015</option>
+        <option value="2014">2014</option>
+      </select>
+    </div>
+    <hr>
+  </div>
+  <div class="panel-body">
+    <div style="width: 100%; height: 100%;">
+      <div style="width: 100%; height: 100%;">
+        <%= line_chart :line, @line_size, @line_data %>
+      </div>
+    </div>
+  </div>
+</div>

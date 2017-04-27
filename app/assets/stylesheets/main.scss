@@ -1,3 +1,5 @@
+@import "colors";
+
 html {
   position: relative;
   min-height: 100%; }
@@ -87,6 +89,10 @@ th {
   width: 100%;
   position: relative;
   left: 260px; }
+
+.content-container {
+  margin: 26px;
+}
 
 @media screen and (max-width: 1024px) {
   #wrapper .sidebar {
@@ -398,20 +404,63 @@ ul.notifications > li {
         .sidebar .nav .nav > li > a.active a {
           color: #fff; }
 
-  .refuge-good{
-    color: limegreen;
+  .refuge-good {
+    color: color(green-status);
   }
 
-  .refuge-regular{
-    color: orange;
+  .refuge-regular {
+    color: color(amber-status);
   }
 
-  .refuge-bad{
-    color: crimson;
+  .refuge-bad {
+    color: color(red-status);
   }
 
-  .sub-description-margin{
+  .sub-description-margin {
     margin-left: 32px;
+  }
+
+  .refuge-status {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+  .sub-title-refuge {
+    font-size: 15px;
+    margin-top: 2px;
+    margin-left: 4px;
+  }
+
+  .item-status {
+    margin-right: 15px;
+    font-size: 20px;
+    margin-top: 5px;
+  }
+  .item-status.good {
+    color: color(green-status);
+  }
+  .item-status.danger {
+    color: color(red-status);
+  }
+  .item-status.warning {
+    color: color(amber-status);
+  }
+
+  .item-status.observation-food {
+    color: color(yellow);
+  }
+
+  .item-status.observation-cleaning {
+    color: color(green-line);
+  }
+
+  .item-description {
+    margin-top: -5px;
+  }
+
+  hr {
+    margin-top: 10px;
+    margin-bottom: 2px;
   }
 
 /********************
@@ -626,7 +675,8 @@ fieldset[disabled] .btn {
     padding-right: 25px; }
   .panel .panel-heading {
     padding-top: 20px;
-    padding-bottom: 20px;
+    // padding-bottom: 20px;
+    padding-bottom: 0px;
     position: relative; }
     .panel .panel-heading .panel-title {
       margin: 0;

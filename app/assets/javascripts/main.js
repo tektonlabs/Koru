@@ -92,7 +92,7 @@ $(document).ready(function() {
       }
 
       $(this).parents('.panel').find(affectedElement).slideUp(300);
-      $(this).find('i.lnr-chevron-up').toggleClass('lnr-chevron-down');
+      $(this).find('i.glyphicon-chevron-up').toggleClass('glyphicon-chevron-down');
     },
     function(e) {
       e.preventDefault();
@@ -103,7 +103,7 @@ $(document).ready(function() {
       }
 
       $(this).parents('.panel').find(affectedElement).slideDown(300);
-      $(this).find('i.lnr-chevron-up').toggleClass('lnr-chevron-down');
+      $(this).find('i.glyphicon-chevron-up').toggleClass('glyphicon-chevron-down');
     }
   );
 

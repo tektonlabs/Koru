@@ -62,6 +62,9 @@ gem 'city-state', '~> 0.0.13'
 # RailsAdmin is a Rails engine that provides an easy-to-use interface for managing your data.
 gem 'rails_admin', '~> 1.1', '>= 1.1.1'
 
+# Chart.js for use in Rails asset pipeline
+gem 'chart-js-rails', '~> 0.1.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
