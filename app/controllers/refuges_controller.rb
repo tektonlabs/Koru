@@ -26,26 +26,29 @@ class RefugesController < ApplicationController
     }
 
     @pie_data = {
-      labels: [
-        "Salud",
-        "Seguridad",
-        "Alimentos y Bebidas",
-        "Limpieza"
-      ],
+      labels: Entity.first_level.pluck(:name),
       datasets: [
         {
-          data: [300, 50, 100, 150],
+          data: [300, 50, 100, 150, 50, 50, 50, 100],
           backgroundColor: [
             "#EB3349",
-            "#FF6E20",
+            "#64E67D",
             "#FFBB29",
-            "#4CC981"
+            "#00AEEF",
+            "#B96CF5",
+            "#BD0FE1",
+            "#4990E2",
+            "#F8E81C"
           ],
           hoverBackgroundColor: [
             "#EB3349",
-            "#FF6E20",
+            "#64E67D",
             "#FFBB29",
-            "#4CC981"
+            "#00AEEF",
+            "#B96CF5",
+            "#BD0FE1",
+            "#4990E2",
+            "#F8E81C"
           ]
       }]
     }.to_json

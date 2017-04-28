@@ -5,24 +5,22 @@
   </div>
   <div class="panel-body">
     <div style="width: 100%; height: 100%;">
-      <table>
-        <tr>
-          <td><i class="glyphicon glyphicon-record item-status observation-food"></i></td>
-          <td><b>Alimentos y bebidas</b></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><p class="item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></td>
-        </tr>
-        <tr>
-          <td><i class="glyphicon glyphicon-record item-status observation-cleaning"></i></td>
-          <td><b>Limpieza</b></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><p class="item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></td>
-        </tr>
-      </table>
+      <% if refuge.get_observation_responses.nil? %>
+        No observations has been registered
+      <% else %>
+        <table>
+          <% refuge.get_observation_responses.includes(question: :entity).each do |response| %>
+            <tr>
+              <td><i class="glyphicon glyphicon-record item-status <%= refuge_color(response.question.entity) %>"></i></td>
+              <td><b><%= response.question.entity.name %></b></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><p class="item-description"><%= response.answer_responsed_text %></p></td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>
     </div>
   </div>
 </div>
