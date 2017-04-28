@@ -223,7 +223,7 @@ question = Question.create text: "¿Se está recogiendo la basura que el albergu
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No")
 
-question = Question.create text: "¿Quién es el encargado del recojo de basura?", entity: Entity.find_by(name: "Gestión de residuos sólidos"), question_type: :input_value
+question = Question.create text: "¿Quién es el encargado del recojo de basura?", entity: Entity.find_by(name: "Gestión de residuos sólidos")
   Refuge.all.each do |refuge|
     RefugeQuestion.create refuge: refuge, question: question
   end
