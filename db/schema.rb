@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419151831) do
+ActiveRecord::Schema.define(version: 20170428203115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,8 +69,9 @@ ActiveRecord::Schema.define(version: 20170419151831) do
   create_table "refuge_entities", force: :cascade do |t|
     t.integer  "entity_id"
     t.integer  "refuge_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "issues_number", default: 0, null: false
     t.index ["entity_id"], name: "index_refuge_entities_on_entity_id", using: :btree
     t.index ["refuge_id"], name: "index_refuge_entities_on_refuge_id", using: :btree
   end

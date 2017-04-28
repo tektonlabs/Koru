@@ -1,6 +1,6 @@
 class RefugesController < ApplicationController
 
-  before_action :set_refuge, only: [:show, :detail]
+  before_action :set_refuge, only: [:show, :detail, :doughnut_graph_settings, :line_graph_settings]
 
   def index
   end
@@ -26,10 +26,10 @@ class RefugesController < ApplicationController
     }
 
     @pie_data = {
-      labels: Entity.first_level.pluck(:name),
+      labels: Entity.first_level.order(:created_at).pluck(:name),
       datasets: [
         {
-          data: [50, 50, 50, 50, 50, 50, 50, 50],
+          data: @refuge.refuge_entities.pluck(:issues_number),
           backgroundColor: [
             "#EB3349",
             "#64E67D",

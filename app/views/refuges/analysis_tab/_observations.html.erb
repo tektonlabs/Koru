@@ -5,8 +5,8 @@
   </div>
   <div class="panel-body">
     <div style="width: 100%; height: 100%;">
-      <% if refuge.observation_responses.nil? %>
-        No observations has been registered
+      <% if refuge.observation_responses.blank? %>
+        No observations have been registered
       <% else %>
         <table>
           <% refuge.observation_responses.includes(question: :entity).each do |response| %>
