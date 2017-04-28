@@ -29,7 +29,7 @@ class RefugesController < ApplicationController
       labels: Entity.first_level.pluck(:name),
       datasets: [
         {
-          data: [300, 50, 100, 150, 50, 50, 50, 100],
+          data: [50, 50, 50, 50, 50, 50, 50, 50],
           backgroundColor: [
             "#EB3349",
             "#64E67D",
