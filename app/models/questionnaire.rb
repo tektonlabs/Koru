@@ -29,21 +29,13 @@ class Questionnaire < ApplicationRecord
       when :one_choice
         unless answers[0][:selected_id].blank?
           if answers[0][:selected_id] != Answer.find_by(name: "Sí").id
-            refuge_entity = RefugeEntity.find_by(refuge_id: self.refuge_id, entity: Question.find(question_param[:id]).entity)
-            if refuge_entity
-              refuge_entity.issues_number += 1
-              refuge_entity.save
-            end
+            set_issues self.refuge, question_param[:id]
           end
           self.responses.build(question_id: question_param[:id], answer_selected_id: [answers[0][:selected_id]])
         end
       when :multiple_choice
         if answers.map{|a| a[:selected_id]}
-          refuge_entity = RefugeEntity.find_by(refuge_id: self.refuge_id, entity: Question.find(question_param[:id]).entity)
-          if refuge_entity
-            refuge_entity.issues_number += 1
-            refuge_entity.save
-          end
+          set_issues self.refuge, question_param[:id]
           self.responses.build(question_id: question_param[:id], answer_selected_id: answers.map{|a| a[:selected_id]})
         end
       when :input_value
@@ -51,6 +43,16 @@ class Questionnaire < ApplicationRecord
           self.responses.build(question_id: question_param[:id], answer_responsed_text: answers[0][:answer_value])
         end
       end
+    end
+  end
+
+  private
+
+  def set_issues refuge, question_id
+    refuge_entity = refuge.refuge_entities.find_by(entity: Question.find(question_id).entity)
+    if refuge_entity
+      refuge_entity.issues_number += 1
+      refuge_entity.save
     end
   end
 
