@@ -4,13 +4,6 @@ module RefugesHelper
     @refuges_all ||= Refuge.all
   end
 
-  def refuge_locations
-    @refuge_locations ||= Gmaps4rails.build_markers(refuges_all) do |refuge, marker|
-      marker.lat refuge.latitude
-      marker.lng refuge.longitude
-    end
-  end
-
   def refuge_class_status refuge
     case refuge.status
     when 'good'
@@ -19,6 +12,31 @@ module RefugesHelper
       'refuge-regular'
     else
       'refuge-bad'
+    end
+  end
+
+  def last_updated_date refuge
+    refuge.last_questionnaire.nil? ? 'No questionnaire has been registered' : refuge.last_questionnaire.created_at.strftime("%d/%m/%Y")
+  end
+
+  def refuge_color refuge
+    case refuge.name
+    when 'Alimentos y agua bebible'
+      'refuge-food'
+    when 'Salud'
+      'refuge-health'
+    when 'Higiene Personal'
+      'refuge-personal-hygiene'
+    when 'Limpieza'
+      'refuge-cleaning'
+    when 'Electricidad'
+      'refuge-electricity'
+    when 'Agua'
+      'refuge-water'
+    when 'Gestión de residuos sólidos'
+      'refuge-solid-waste'
+    when 'Seguridad'
+      'refuge-security'
     end
   end
 

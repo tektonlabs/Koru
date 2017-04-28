@@ -446,14 +446,6 @@ ul.notifications > li {
     color: color(amber-status);
   }
 
-  .item-status.observation-food {
-    color: color(yellow);
-  }
-
-  .item-status.observation-cleaning {
-    color: color(green-line);
-  }
-
   .item-description {
     margin-top: -5px;
   }
@@ -462,6 +454,39 @@ ul.notifications > li {
     margin-top: 10px;
     margin-bottom: 2px;
   }
+
+  .refuge-food {
+    color: color(food);
+  }
+
+  .refuge-health {
+    color: color(health);
+  }
+
+  .refuge-personal-hygiene {
+    color: color(personal-hygiene);
+  }
+
+  .refuge-cleaning {
+    color: color(cleaning);
+  }
+
+  .refuge-electricity {
+    color: color(electricity);
+  }
+
+  .refuge-water {
+    color: color(water);
+  }
+
+  .refuge-solid-waste {
+    color: color(solid-waste);
+  }
+
+  .refuge-security {
+    color: color(security);
+  }
+
 
 /********************
  * TYPOGRAPHY

@@ -1,7 +1,7 @@
 <div id="list-refuges-bar" class="sidebar-scroll">
   <nav>
     <ul class="nav">
-      <% refuges_all.each do |refuge| %>
+      <% refuges_all.includes(:country).each do |refuge| %>
         <li>
           <%= link_to detail_refuge_path(refuge), method: :get, remote: true do %>
             <table>
