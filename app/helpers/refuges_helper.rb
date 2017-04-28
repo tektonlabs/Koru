@@ -15,6 +15,10 @@ module RefugesHelper
     end
   end
 
+  def last_updated_date refuge
+    refuge.last_questionnaire.nil? ? 'No questionnaire has been registered' : refuge.last_questionnaire.created_at.strftime("%d/%m/%Y")
+  end
+
   def refuge_color refuge
     case refuge.name
     when 'Alimentos y agua bebible'

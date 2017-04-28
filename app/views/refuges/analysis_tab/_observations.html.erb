@@ -5,11 +5,11 @@
   </div>
   <div class="panel-body">
     <div style="width: 100%; height: 100%;">
-      <% if refuge.get_observation_responses.nil? %>
+      <% if refuge.observation_responses.nil? %>
         No observations has been registered
       <% else %>
         <table>
-          <% refuge.get_observation_responses.includes(question: :entity).each do |response| %>
+          <% refuge.observation_responses.includes(question: :entity).each do |response| %>
             <tr>
               <td><i class="glyphicon glyphicon-record item-status <%= refuge_color(response.question.entity) %>"></i></td>
               <td><b><%= response.question.entity.name %></b></td>
