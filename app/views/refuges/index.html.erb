@@ -6,7 +6,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYZQCwE8B-r7ORDi49Hzum8vXKyoLl4k&callback=initMap&libraries=places" async defer></script>
   <script type="text/javascript">
     function initMap(){
-      loadMapWithLocations(<%= raw Refuge.all.map{ |x| [x.name, x.latitude, x.longitude] } %>);
+      loadMapWithLocations(<%= raw refuges_map_data %>);
     }
   </script>
 <% end %>
