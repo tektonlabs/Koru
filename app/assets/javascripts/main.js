@@ -1,6 +1,6 @@
 //= require jquery.slimscroll.min
 
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", function() {
 
   /*-----------------------------------/
   /*  TOP NAVIGATION AND LAYOUT

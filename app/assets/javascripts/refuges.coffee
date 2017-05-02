@@ -74,7 +74,7 @@
 @initialize_refuges = ->
   $('#refuges-map').css('height', $('#sidebar-nav').height())
 
-$(document).ready ->
+document.addEventListener "turbolinks:load", ->
   initialize_refuges()
   $("#search-button").on 'click', ->
     input = document.getElementById('input-search')

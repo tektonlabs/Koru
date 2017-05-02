@@ -4,6 +4,10 @@ module RefugesHelper
     @refuges_all ||= Refuge.all
   end
 
+  def refuges_map_data
+    refuges_all.map{ |x| [x.name, x.latitude, x.longitude] }
+  end
+
   def refuge_class_status refuge
     case refuge.status
     when 'good'

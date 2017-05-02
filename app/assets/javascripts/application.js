@@ -1,13 +1,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require main
 //= require bootstrap-sprockets
 //= require semantic-ui
-//= require main
 //= require underscore
 //= require gmaps/google
 //= require Chart
-//= require_tree .
+//= require refuges
 
 window.onresize = function(event) {
   initialize_refuges();
