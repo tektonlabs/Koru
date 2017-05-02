@@ -13,7 +13,6 @@ class Refuge < ApplicationRecord
 
   def self.search_with query
     if query.present?
-      # joins(:country).where("refuges.name||refuges.city||refuges.address||countries.name ILIKE ?", "%#{query}%")
       joins(:country).where("refuges.name ILIKE ? OR refuges.city ILIKE ? OR refuges.address ILIKE ? OR countries.name ILIKE ?", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
     else
       all
