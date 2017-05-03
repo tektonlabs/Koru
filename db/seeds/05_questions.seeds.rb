@@ -299,7 +299,6 @@ question = Question.create text: "¿Se han observado alguna de las siguientes si
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Pandillaje")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Prostitución")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Ataques de animales")
-  QuestionAnswer.create question: question, answer: Answer.find_by(name: "No se han detectado")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Otros")
 
 question = Question.create text: "¿Algún comentario extra sobre la seguridad en el refugio?", entity: Entity.find_by(name: "Seguridad"), question_type: :input_value
