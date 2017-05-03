@@ -4,28 +4,21 @@
     <hr>
   </div>
   <div class="panel-body">
-    <table>
-      <% 3.times do %>
-        <tr>
-          <td><i class="glyphicon glyphicon-remove-sign item-status danger"></i></td>
-          <td><b>No hubo suficiente agua para beber</b></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><p class="item-description">Faltaron 200 litros</p></td>
-        </tr>
+      <% if refuge.last_questionnaire.needs.blank? %>
+        No needs have been registered
+      <% else %>
+        <table>
+          <% refuge.last_questionnaire.needs.each do |need| %>
+            <tr>
+              <td><i class="glyphicon glyphicon-remove-sign item-status danger"></i></td>
+              <td><b><%= need.title %></b></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><p class="item-description"><%= need.description %></p></td>
+            </tr>
+          <% end %>
+        </table>
       <% end %>
-      <% 3.times do %>
-        <tr>
-          <td><i class="glyphicon glyphicon-minus-sign item-status warning"></i></td>
-          <td><b>Faltaron raciones de comida</b></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><p class="item-description">Por falta de ollas, gas e ingredientes</p></td>
-        </tr>
-      <% end %>
-      
-    </table>
   </div>
 </div>
