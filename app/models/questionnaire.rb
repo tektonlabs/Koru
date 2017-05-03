@@ -93,7 +93,7 @@ class Questionnaire < ApplicationRecord
         when "No hubo"
           self.needs.build title: "No hubo presencia de técnicos en salud"
         end
-      when "Voluntarios en salud"
+      when "Voluntarios de salud"
         answer = Answer.find_by id: answer_id
         case answer.name
         when "Poca"
