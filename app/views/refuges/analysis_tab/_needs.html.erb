@@ -4,6 +4,9 @@
     <hr>
   </div>
   <div class="panel-body">
+    <% if refuge.last_questionnaire.nil? %>
+      No questionnaire has been registered
+    <% else %>
       <% if refuge.last_questionnaire.needs.blank? %>
         No needs have been registered
       <% else %>
@@ -20,5 +23,6 @@
           <% end %>
         </table>
       <% end %>
+    <% end %>
   </div>
 </div>
