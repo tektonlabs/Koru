@@ -2,7 +2,7 @@ class Entity < ApplicationRecord
 
   validates :name, presence: true
 
-  belongs_to :parent, class_name: "Entity"
+  belongs_to :parent, class_name: "Entity", optional: true
   has_many :children, foreign_key: :parent_id, class_name: "Entity"
   has_many :refuge_entities
   has_many :questions
