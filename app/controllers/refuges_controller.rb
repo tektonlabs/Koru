@@ -29,7 +29,7 @@ class RefugesController < ApplicationController
       labels: Entity.first_level.order(:created_at).pluck(:name),
       datasets: [
         {
-          data: @refuge.refuge_entities.pluck(:issues_number),
+          data: @refuge.refuge_entities.order(:created_at).pluck(:issues_number),
           backgroundColor: [
             "#EB3349",
             "#64E67D",

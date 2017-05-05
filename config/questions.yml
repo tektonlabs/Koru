@@ -1,0 +1,22 @@
+food:
+  enough_food: "¿Hubo suficiente agua para beber y cocinar para todo el refugio?"
+  missing_food: "¿Faltaron raciones de comida?"
+  any_comment: "¿Algún comentario extra sobre la alimentación y el agua bebible en el refugio?"
+health:
+  people_to_evacuate: "¿Se considera que algunas de estas personas deba ser evacuada por motivos de salud?"
+  why: "¿Por qué?"
+  presence_of: "Hubo presencia de:"
+  sub_presence:  
+    physicians: "Médicos"
+    nurses: "Enfermeras"
+    technicians: "Técnicos en salud"
+    volunteers: "Voluntarios de salud"
+  medicines_required: "¿Se necesita alguna de estas medicinas? (marca todas las que sean necesarias)"
+  sub_medicines:
+    wounds: "Para las heridas"
+    diarrhea: "Para la diarrea"
+    fever: "Para la fiebre"
+    cold: "Para la tos y resfrío"
+    infection: "Para la infección (antibióticos)"
+    vaccines: "Vacunas"
+    other: "Otros"
