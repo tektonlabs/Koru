@@ -49,8 +49,9 @@ ActiveRecord::Schema.define(version: 20170503144924) do
   create_table "question_answers", force: :cascade do |t|
     t.integer  "question_id"
     t.integer  "answer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "class_type",  default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.index ["answer_id"], name: "index_question_answers_on_answer_id", using: :btree
     t.index ["question_id"], name: "index_question_answers_on_question_id", using: :btree
   end

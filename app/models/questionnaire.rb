@@ -4,6 +4,8 @@ class Questionnaire < ApplicationRecord
   has_many :responses
   has_many :needs
 
+  QUESTIONS = YAML::load(File.open(File.join(Rails.root, 'config', "questions.yml")))
+
   def save_with_responses questions_params, date_param
     self.refuge.refuge_entities.update_all issues_number: 0
     self.state_date = Time.at date_param.to_i
@@ -29,7 +31,8 @@ class Questionnaire < ApplicationRecord
       case question_param[:question_type].to_sym
       when :one_choice
         unless answers[0][:selected_id].blank?
-          if answers[0][:selected_id] != Answer.find_by(name: "Sí").id and answers[0][:selected_id] != Answer.find_by(name: "Suficiente").id and answers[0][:selected_id] != Answer.find_by(name: "Municipalidad").id
+          question_answer = QuestionAnswer.find_by question_id: question_param[:id], answer_id: answers[0][:selected_id]
+          unless question_answer.positive?
             set_issues self.refuge, question_param[:id]
             one_choice_register_needs question_param[:id], answers[0][:selected_id]
           end
@@ -37,8 +40,11 @@ class Questionnaire < ApplicationRecord
         end
       when :multiple_choice
         if answers.map{|a| a[:selected_id]}
-          set_issues self.refuge, question_param[:id]
-          multiple_choice_register_needs question_param[:id], answers.map{|a| a[:selected_id]}
+          question_answer = QuestionAnswer.where question_id: question_param[:id], answer_id: answers.map{|a| a[:selected_id]}
+          unless question_answer.map(&:class_type).all? {|i| i == "negative" }
+            set_issues self.refuge, question_param[:id]
+            multiple_choice_register_needs question_param[:id], answers.map{|a| a[:selected_id]}
+          end
           self.responses.build(question_id: question_param[:id], answer_selected_id: answers.map{|a| a[:selected_id]})
         end
       when :input_value
@@ -51,8 +57,9 @@ class Questionnaire < ApplicationRecord
 
   private
 
-  def set_issues refuge, question_id
-    refuge_entity = refuge.refuge_entities.find_by(entity: Question.find(question_id).entity)
+  def set_issues refuge, question_id, answer_id = nil
+    entity = Question.find(question_id).entity
+    refuge_entity = refuge.refuge_entities.find_by entity: (entity.second_level? ? entity.parent : entity)
     if refuge_entity
       refuge_entity.issues_number += 1
       refuge_entity.save
@@ -62,126 +69,130 @@ class Questionnaire < ApplicationRecord
   def one_choice_register_needs question_id, answer_id
     question = Question.find_by id: question_id
     if question
+      question_answer = QuestionAnswer.find_by question_id: question_id, answer_id: answer_id
       case question.text
       # Alimentos y agua bebible
       when "¿Hubo suficiente agua para beber y cocinar para todo el refugio?"
-        self.needs.build title: "No hubo suficiente agua para beber y cocinar"
+        if question_answer.negative?
+          self.needs.build title: "No hubo suficiente agua para beber y cocinar"
+        end
       when "¿Faltaron raciones de comida?"
-        self.needs.build title: "Faltaron raciones de comida"
+        if question_answer.negative?
+          self.needs.build title: "Faltaron raciones de comida"
+        end
       # Salud
       when "Médicos"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "Poca"
+        case question_answer.class_type
+        when "middle"
           self.needs.build title: "Hubo poca presencia de médicos"
-        when "No hubo"
+        when "negative"
           self.needs.build title: "No hubo presencia de médicos"
         end
       when "Enfermeras"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "Poca"
+        case question_answer.class_type
+        when "middle"
           self.needs.build title: "Hubo poca presencia de enfermeras"
-        when "No hubo"
+        when "negative"
           self.needs.build title: "No hubo presencia de enfermeras"
         end
       when "Técnicos en salud"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "Poca"
+        case question_answer.class_type
+        when "middle"
           self.needs.build title: "Hubo poca presencia de técnicos en salud"
-        when "No hubo"
+        when "negative"
           self.needs.build title: "No hubo presencia de técnicos en salud"
         end
       when "Voluntarios de salud"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "Poca"
+        case question_answer.class_type
+        when "middle"
           self.needs.build title: "Hubo poca presencia de voluntarios en salud"
-        when "No hubo"
+        when "negative"
           self.needs.build title: "No hubo presencia de voluntarios en salud"
         end
       # Higiene Personal
         # No one choice questions
       # Limpieza
       when "Baños"
-        self.needs.build title: "Los baños están sucios"
+        if question_answer.negative?
+          self.needs.build title: "Los baños están sucios"
+        end
       when "Carpas"
-        self.needs.build title: "Las carpas están sucias"
+        if question_answer.negative?
+          self.needs.build title: "Las carpas están sucias"
+        end
       when "Áreas comunes"
-        self.needs.build title: "Las áreas comunes están sucias"
+        if question_answer.negative?
+          self.needs.build title: "Las áreas comunes están sucias"
+        end
       when "Cocina"
-        self.needs.build title: "La cocina está sucia"
+        if question_answer.negative?
+          self.needs.build title: "La cocina está sucia"
+        end
       # Electricidad
       when "¿Tienen electricidad?"
-        self.needs.build title: "No hay electricidad"
+        if question_answer.negative?
+          self.needs.build title: "No hay electricidad"
+        end
       # Agua
       when "¿Tienen agua para los baños, duchas y lavanderías?"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "No"
-          self.needs.build title: "No hay agua para los baños, duchas y lavandería"
-        when "Queda poca"
+        case question_answer.class_type
+        when "middle"
           self.needs.build title: "Queda poca agua para los baños, duchas y lavandería"
+        when "negative"
+          self.needs.build title: "No hay agua para los baños, duchas y lavandería"
         end
       when "¿Tienen como almacenar el agua?"
-        self.needs.build title: "No hay como almacenar el agua"
+        if question_answer.negative?
+          self.needs.build title: "No hay como almacenar el agua"
+        end
       when "¿Está yendo el camión cisterna a dejar agua?"
-        self.needs.build title: "No está yendo el camión cisterna a dejar agua"
+        if question_answer.negative?
+          self.needs.build title: "No está yendo el camión cisterna a dejar agua"
+        end
       # Gestion de residuos solidos
       when "¿Cuentan con basureros y puntos de acopio de basura?"
-        self.needs.build title: "No hay basureros o puntos de acopio de basura"
+        if question_answer.negative?
+          self.needs.build title: "No hay basureros o puntos de acopio de basura"
+        end
       when "¿Se está recogiendo la basura que el albergue acumula?"
-        self.needs.build title: "No se está recogiendo la basura que se acumula"
+        if question_answer.negative?
+          self.needs.build title: "No se está recogiendo la basura que se acumula"
+        end
       when "¿Quién es el encargado del recojo de basura?"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "Municipalidad"
-          self.needs.build title: "La municipalidad"
-        when "No hay nadie encargado del recojo de basura"
+        if question_answer.negative?
           self.needs.build title: "No hay nadie encargado del recojo de basura"
         end
       # Seguridad
       when "¿Cómo se resolvió el incidente?"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "No se resolvió"
-          self.needs.build title: "No se resolvió"
-        when "Se expulsó al agresor"
-          self.needs.build title: "Se expulsó al agresor"
-        when "La policía intervino"
-          self.needs.build title: "La policía intervino"
+        if question_answer.negative?
+          self.needs.build title: "No se han resuelto las incidencias de seguridad"
         end
       when "Policías"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "Poca"
+        case question_answer.class_type
+        when "middle"
           self.needs.build title: "Hubo poca presencia de policías"
-        when "No hubo"
+        when "negative"
           self.needs.build title: "No hubo presencia de policías"
         end
       when "Serenazgos"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "Poca"
+        case question_answer.class_type
+        when "middle"
           self.needs.build title: "Hubo poca presencia de serenazgos"
-        when "No hubo"
+        when "negative"
           self.needs.build title: "No hubo presencia de serenazgos"
         end
       when "Fuerzas armadas"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "Poca"
+        case question_answer.class_type
+        when "middle"
           self.needs.build title: "Hubo poca presencia de fuerzas armadas"
-        when "No hubo"
+        when "negative"
           self.needs.build title: "No hubo presencia de fuerzas armadas"
         end
       when "Comité de seguridad"
-        answer = Answer.find_by id: answer_id
-        case answer.name
-        when "Poca"
+        case question_answer.class_type
+        when "middle"
           self.needs.build title: "Hubo poca presencia del comité de seguridad"
-        when "No hubo"
+        when "negative"
           self.needs.build title: "No hubo presencia del comité de seguridad"
         end
       end
