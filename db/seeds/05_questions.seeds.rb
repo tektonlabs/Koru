@@ -250,7 +250,6 @@ question = Question.create text: "¿Se han reportado algunas de las siguientes i
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Agresiones físicas")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Tocamientos indebidos")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Violaciones")
-  QuestionAnswer.create question: question, answer: Answer.find_by(name: "No se han reportado incidencias")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Otros")
 
 question = Question.create text: "¿Cómo se resolvió el incidente?", entity: Entity.find_by(name: "Seguridad")
