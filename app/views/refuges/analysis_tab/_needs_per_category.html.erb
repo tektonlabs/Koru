@@ -5,10 +5,14 @@
   </div>
   <div class="panel-body">
     <div style="width: 100%; height: 100%;">
-      <% if refuge.refuge_entities.pluck(:issues_number).all? {|i| i == 0 } %>
-        No needs of categories have been registered
+      <% if refuge.last_questionnaire.nil? %>
+        No questionnaire has been registered
       <% else %>
-        <%= doughnut :doughnut, @pie_size, @pie_data, true %>
+        <% if refuge.refuge_entities.pluck(:issues_number).all? {|i| i == 0 } %>
+          No needs of categories have been registered
+        <% else %>
+          <%= doughnut :doughnut, @pie_size, @pie_data, true %>
+        <% end %>
       <% end %>
     </div>
   </div>
