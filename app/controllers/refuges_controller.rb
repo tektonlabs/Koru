@@ -31,24 +31,24 @@ class RefugesController < ApplicationController
         {
           data: @refuge.refuge_entities.order(:created_at).pluck(:issues_number),
           backgroundColor: [
-            "#EB3349",
-            "#64E67D",
-            "#FFBB29",
-            "#00AEEF",
-            "#B96CF5",
-            "#BD0FE1",
-            "#4990E2",
-            "#F8E81C"
+            "#8E2BFA",
+            "#BB26DD",
+            "#FD7A8B",
+            "#F2A43B",
+            "#F7E43B",
+            "#5AE1C2",
+            "#4DD0E8",
+            "#10509E"
           ],
           hoverBackgroundColor: [
-            "#EB3349",
-            "#64E67D",
-            "#FFBB29",
-            "#00AEEF",
-            "#B96CF5",
-            "#BD0FE1",
-            "#4990E2",
-            "#F8E81C"
+            "#8E2BFA",
+            "#BB26DD",
+            "#FD7A8B",
+            "#F2A43B",
+            "#F7E43B",
+            "#5AE1C2",
+            "#4DD0E8",
+            "#10509E"
           ]
       }]
     }.to_json
