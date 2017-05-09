@@ -44,9 +44,6 @@ gem 'active_model_serializers', '~> 0.10.5'
 # Extends Rails seeds to split out complex seeds into multiple files and lets each environment have it's own seeds.
 gem 'seedbank', '~> 0.4.0'
 
-# Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
-gem 'figaro', '~> 1.1', '>= 1.1.1'
-
 # bootstrap-sass is a Sass-powered version of Bootstrap 3, ready to drop right into your Sass powered applications.
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
@@ -77,6 +74,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production  do
+  # Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
+  gem 'figaro', '~> 1.1', '>= 1.1.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
