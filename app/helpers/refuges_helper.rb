@@ -1,7 +1,7 @@
 module RefugesHelper
 
   def refuges_all
-    @refuges_all ||= Refuge.all
+    @refuges_all ||= Refuge.all.order(:name)
   end
 
   def refuges_map_data
@@ -9,14 +9,7 @@ module RefugesHelper
   end
 
   def refuge_class_status refuge
-    case refuge.status
-    when 'good'
-      'refuge-good'
-    when 'regular'
-      'refuge-regular'
-    else
-      'refuge-bad'
-    end
+    refuge.good? ? 'refuge-good' : 'refuge-bad'
   end
 
   def last_updated_date refuge
