@@ -112,9 +112,3 @@ refuge = Refuge.create name: "Rio 3", latitude: "-12.009028", longitude: "-76.88
   Entity.first_level.each do |entity|
     RefugeEntity.create refuge: refuge, entity: entity
   end
-
-refuges = Refuge.all
-refuges.each do |refuge|
-  refuge.status = rand(0..2)
-  refuge.save
-end
