@@ -8,10 +8,10 @@
       <% if refuge.last_questionnaire.nil? %>
         No questionnaire has been registered
       <% else %>
-        <% if refuge.refuge_entities.pluck(:issues_number).all? {|i| i == 0 } %>
-          No needs of categories have been registered
-        <% else %>
+        <% if refuge.has_issues? %>
           <%= doughnut :doughnut, @pie_size, @pie_data, true %>
+        <% else %>
+          No needs of categories have been registered
         <% end %>
       <% end %>
     </div>
