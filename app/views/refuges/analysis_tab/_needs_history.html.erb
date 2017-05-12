@@ -2,20 +2,19 @@
   <div class="panel-heading">
     <h3 class="panel-title">History of Needs</h3>
     <div class="right selector-styles">
-      <select name="year-selector" class="form-control">
-        <option value="2017">2017</option>
-        <option value="2016">2016</option>
-        <option value="2015">2015</option>
-        <option value="2014">2014</option>
-      </select>
+      <%= form_tag historical_issues_by_entity_refuge_path, id: "historical-issues-#{refuge.id}", method: :get, remote: true do %>
+        <%= select_tag :entity_id, options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "-- All --", id: "entity-selected-#{refuge.id}", class: 'form-control' %>
+      <% end %>
     </div>
     <hr>
   </div>
-  <div class="panel-body">
-    <div style="width: 100%; height: 100%;">
-      <div style="width: 100%; height: 100%;">
-        <%= line_chart :line, @line_size, @line_data %>
-      </div>
-    </div>
+  <div id="chart-content-<%= refuge.id %>" class="panel-body">
+    <%= render 'refuges/analysis_tab/line_chart_content', line_size: @line_size, line_data: @line_data %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#entity-selected-<%= refuge.id %>").on('change', function() {
+    $("#historical-issues-<%= refuge.id %>").submit();
+  })
+</script>
