@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   end
 
   resources :refuges, only: [:index, :show] do
-    get :detail, on: :member
+    member do
+      get :detail
+      get :historical_issues_by_entity
+    end
   end
 
 end

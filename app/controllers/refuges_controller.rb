@@ -1,16 +1,22 @@
 class RefugesController < ApplicationController
 
-  before_action :set_refuge, only: [:show, :detail, :doughnut_graph_settings, :line_graph_settings]
+  include RefugesHelper
+
+  before_action :set_refuge, only: [:show, :detail, :doughnut_graph_settings, :line_graph_settings, :historical_issues_by_entity]
 
   def index
   end
 
   def show
     doughnut_graph_settings()
-    line_graph_settings()
+    line_graph_settings @refuge.set_last_six_statuses
   end
 
   def detail
+  end
+
+  def historical_issues_by_entity
+    params[:entity_id].blank? ? line_graph_settings(@refuge.set_last_six_statuses) : line_graph_settings(@refuge.set_last_six_statuses_by_entity(params[:entity_id]))
   end
 
   private
@@ -54,17 +60,16 @@ class RefugesController < ApplicationController
     }.to_json
   end
 
-  def line_graph_settings
+  def line_graph_settings array_values
     @line_size = {
       height: 250,
       width: 400
     }
-
     @line_data = {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: names_last_six_months,
       datasets: [
         {
-          label: "My First dataset",
+          label: "Historical needs",
           fill: false,
           lineTension: 0.1,
           backgroundColor: "#64E67D",
@@ -82,7 +87,7 @@ class RefugesController < ApplicationController
           pointHoverBorderWidth: 2,
           pointRadius: 2,
           pointHitRadius: 10,
-          data: [65, 59, 80, 81, 56, 55, 40],
+          data: array_values,
           spanGaps: false,
         }
       ]

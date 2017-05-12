@@ -63,4 +63,48 @@ class Refuge < ApplicationRecord
     radio_meters * c
   end
 
+  def set_last_six_statuses
+    results = []
+    current_month = Date.today.month
+    month_names = 6.downto(1).map { |n| DateTime::MONTHNAMES.drop(1)[(current_month - n) % 12] }
+    month_names.each do |month|
+      results << self.monthly_issues(month)
+    end
+    results
+  end
+
+  def monthly_issues month
+    start_date = month.to_datetime
+    end_date = month.to_datetime.end_of_month
+    questionnaires = self.questionnaires
+    monthly_questionnaires = questionnaires.where("state_date >= ? and state_date <= ?", start_date, end_date)
+    total_issues = 0
+    monthly_questionnaires.each do |questionnaire|
+      total_issues += questionnaire.needs.count
+    end
+    monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f)
+  end
+
+  def monthly_issues_by_entity month, entity_id
+    start_date = month.to_datetime
+    end_date = month.to_datetime.end_of_month
+    questionnaires = self.questionnaires
+    monthly_questionnaires = questionnaires.where("state_date >= ? and state_date <= ?", start_date, end_date)
+    total_issues = 1
+    monthly_questionnaires.each do |questionnaire|
+      total_issues += questionnaire.needs.where(entity_id: entity_id).count
+    end
+    monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f)
+  end
+
+  def set_last_six_statuses_by_entity entity_id
+    results = []
+    current_month = Date.today.month
+    month_names = 6.downto(1).map { |n| DateTime::MONTHNAMES.drop(1)[(current_month - n) % 12] }
+    month_names.each do |month|
+      results << self.monthly_issues_by_entity(month, entity_id)
+    end
+    results
+  end
+
 end
