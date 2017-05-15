@@ -33,7 +33,7 @@ class Refuge < ApplicationRecord
   end
 
   def has_issues?
-    self.refuge_entities.pluck(:issues_number).all? {|i| i != 0 }
+    self.last_questionnaire.needs.count != 0 ? true : false
   end
 
   def last_questionnaire

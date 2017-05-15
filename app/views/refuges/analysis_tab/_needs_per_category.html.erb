@@ -8,7 +8,7 @@
       <% if refuge.last_questionnaire.nil? %>
         No questionnaire has been registered
       <% else %>
-        <% unless refuge.has_issues? %>
+        <% if refuge.has_issues? %>
           <%= doughnut :doughnut, @pie_size, @pie_data, true %>
         <% else %>
           No needs of categories have been registered
