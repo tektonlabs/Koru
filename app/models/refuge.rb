@@ -85,18 +85,6 @@ class Refuge < ApplicationRecord
     monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f)
   end
 
-  def monthly_issues_by_entity month, entity_id
-    start_date = month.to_datetime
-    end_date = month.to_datetime.end_of_month
-    questionnaires = self.questionnaires
-    monthly_questionnaires = questionnaires.where("state_date >= ? and state_date <= ?", start_date, end_date)
-    total_issues = 1
-    monthly_questionnaires.each do |questionnaire|
-      total_issues += questionnaire.needs.where(entity_id: entity_id).count
-    end
-    monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f)
-  end
-
   def set_last_six_statuses_by_entity entity_id
     results = []
     current_month = Date.today.month
@@ -105,6 +93,18 @@ class Refuge < ApplicationRecord
       results << self.monthly_issues_by_entity(month, entity_id)
     end
     results
+  end
+
+  def monthly_issues_by_entity month, entity_id
+    start_date = month.to_datetime
+    end_date = month.to_datetime.end_of_month
+    questionnaires = self.questionnaires
+    monthly_questionnaires = questionnaires.where("state_date >= ? and state_date <= ?", start_date, end_date)
+    total_issues = 0
+    monthly_questionnaires.each do |questionnaire|
+      total_issues += questionnaire.needs.where(entity_id: entity_id).count
+    end
+    monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f)
   end
 
 end
