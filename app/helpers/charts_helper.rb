@@ -1,16 +1,17 @@
 module ChartsHelper
 
   def doughnut id=nil, size=nil, data=nil, legend=false
-    html = "<canvas id=\"pie_#{id}\" height=\"#{size[:height]}\" width=\"#{size[:width]}\" class=\"chart-doughnut\"></canvas>"
-    html += "<div id=\"legend_#{id}\" class=\"chart-doughnut chart-doughnut-legend\"></div>" if legend
+    html = "<div class=\"chart-element col-sm-7\"><canvas id=\"pie_#{id}\" height=\"#{size[:height]}\" width=\"#{size[:width]}\" class=\"chart-doughnut\"></canvas></div>"
+    html += "<div id=\"legend_#{id}\" class=\"chart-element col-sm-5 chart-doughnut chart-doughnut-legend\"></div>" if legend
     script = javascript_tag do
       <<-END.html_safe
-      var ctx_#{id} = document.getElementById("pie_#{id}");
+      var ctx_#{id} = document.getElementById("pie_#{id}")
       var legend_box = document.getElementById("legend_#{id}")
       var doughnut_#{id} = new Chart(ctx_#{id}, {
       type: 'doughnut',
         data: #{data},
       options: {
+        responsive: true,
         legend: {
           display: 'false',
           position: 'none',
@@ -21,8 +22,6 @@ module ChartsHelper
       }
       });
       legend_box.innerHTML = doughnut_#{id}.generateLegend();
-      ctx_#{id}.style.height = "#{size[:height]}px";
-      ctx_#{id}.style.width = "#{size[:width]}px";
       END
     end
     return html.html_safe + script
@@ -37,6 +36,7 @@ module ChartsHelper
       type: 'line',
         data: #{data},
       options: {
+        responsive: true,
         legend: {
           display: 'false',
           position: 'none',
@@ -46,8 +46,6 @@ module ChartsHelper
         }
       }
       });
-      ctx_#{id}.style.height = "#{size[:height]}px";
-      ctx_#{id}.style.width = "#{size[:width]}px";
       END
     end
     return html.html_safe + script

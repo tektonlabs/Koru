@@ -13,6 +13,7 @@
   &.chart-doughnut-legend {
     ul{
       list-style-type: none;
+      padding: 0;
     }
     li {
       span {
@@ -28,4 +29,21 @@
 
 .selector-styles {
   top: 20% !important;
+}
+
+.chart-container {
+  width: 100%;
+  height: 100%;
+}
+
+.chart-element {
+  display: block;
+  margin-top: 15px;
+}
+
+@media (min-width: 648px) {
+  .chart-container {
+    display: flex;
+    align-items: center;
+  }
 }
