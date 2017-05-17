@@ -41,11 +41,13 @@ class Questionnaire < ApplicationRecord
       when :multiple_choice
         if answers.map{|a| a[:selected_id]}
           question_answer = QuestionAnswer.where question_id: question_param[:id], answer_id: answers.map{|a| a[:selected_id]}
+          other_value = answers.map{|a| a[:answer_value]}.compact.first
           unless question_answer.map(&:class_type).all? {|i| i == "negative" }
             set_issues self.refuge, question_param[:id]
-            multiple_choice_register_needs question_param[:id], answers.map{|a| a[:selected_id]}
+            other_value = other_value.blank? ? nil : other_value
+            multiple_choice_register_needs question_param[:id], answers.map{|a| a[:selected_id]}, other_value
           end
-          self.responses.build(question_id: question_param[:id], answer_selected_id: answers.map{|a| a[:selected_id]})
+          self.responses.build(question_id: question_param[:id], answer_selected_id: answers.map{|a| a[:selected_id]}, answer_responsed_text: other_value)
         end
       when :input_value
         unless answers[0][:answer_value].blank?
@@ -200,7 +202,7 @@ class Questionnaire < ApplicationRecord
     end
   end
 
-  def multiple_choice_register_needs question_id, answers_selected
+  def multiple_choice_register_needs question_id, answers_selected, other_value
     question = Question.find_by id: question_id
     if question
       entity = question.entity.parent.nil? ? question.entity : question.entity.parent
@@ -209,15 +211,15 @@ class Questionnaire < ApplicationRecord
         # No multiple choice registered
       # Salud
       when "¿Se considera que algunas de estas personas deba ser evacuada por motivos de salud?"
-        self.needs.build title: "Hay personas que necesitan ser evacuadas por motivos de salud", description: Answer.text_answers_selected(answers_selected), entity: entity
-      when "¿Se necesita alguna de estas medicinas? (marca todas las que sean necesarias)" 
-        self.needs.build title: "Se necesitan medicinas", description: Answer.text_answers_selected(answers_selected), entity: entity
+        self.needs.build title: "Hay personas que necesitan ser evacuadas por motivos de salud", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
+      when "¿Se necesita alguna de estas medicinas? (marca todas las que sean necesarias)"
+        self.needs.build title: "Se necesitan medicinas", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
       # Higiene Personal
       when "¿Se necesita alguno de estos artículos? (marca todas las que sean necesarias)"
-        self.needs.build title: "Se necesitan artículos de higiene personal", description: Answer.text_answers_selected(answers_selected), entity: entity
+        self.needs.build title: "Se necesitan artículos de higiene personal", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
       # Limpieza
       when "¿Qué productos de limpieza se necesita con urgencia? (marca todos los que falten)"
-        self.needs.build title: "Se necesitan productos de limpieza", description: Answer.text_answers_selected(answers_selected), entity: entity
+        self.needs.build title: "Se necesitan productos de limpieza", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
       # Electricidad
         # No multiple choice registered
       # Agua
@@ -226,9 +228,9 @@ class Questionnaire < ApplicationRecord
         # No multiple choice registered
       # Seguridad
       when "¿Se han reportado algunas de las siguientes incidencias?"
-        self.needs.build title: "Se han reportado incidencias de seguridad", description: Answer.text_answers_selected(answers_selected), entity: entity
+        self.needs.build title: "Se han reportado incidencias de seguridad", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
       when "¿Se han observado alguna de las siguientes situaciones de riesgo?"
-        self.needs.build title: "Se han observado situaciones de riesgo", description: Answer.text_answers_selected(answers_selected), entity: entity
+        self.needs.build title: "Se han observado situaciones de riesgo", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
       end
     end
 
