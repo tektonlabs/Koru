@@ -82,7 +82,7 @@ class Refuge < ApplicationRecord
     monthly_questionnaires.each do |questionnaire|
       total_issues += questionnaire.needs.count
     end
-    monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f)
+    monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f).round(2)
   end
 
   def set_last_six_statuses_by_entity entity_id
@@ -104,7 +104,7 @@ class Refuge < ApplicationRecord
     monthly_questionnaires.each do |questionnaire|
       total_issues += questionnaire.needs.where(entity_id: entity_id).count
     end
-    monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f)
+    monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f).round(2)
   end
 
 end
