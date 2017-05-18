@@ -37,7 +37,7 @@ class Refuge < ApplicationRecord
   end
 
   def last_questionnaire
-    self.questionnaires.empty? ? nil : self.questionnaires.order(:created_at).last
+    self.questionnaires.empty? ? nil : self.questionnaires.order(:state_date).last
   end
 
   def observation_responses
