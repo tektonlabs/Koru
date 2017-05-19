@@ -5,7 +5,7 @@ module RefugesHelper
   end
 
   def refuges_map_data
-    refuges_all.map{ |x| [x.name, x.latitude, x.longitude] }
+    refuges_all.map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
   end
 
   def refuge_class_status refuge

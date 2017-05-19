@@ -1,21 +1,10 @@
 <div id="list-refuges-bar" class="sidebar-scroll">
   <nav>
-    <ul class="nav">
-      <% refuges_all.includes(:country).each do |refuge| %>
-        <li>
-          <%= link_to detail_refuge_path(refuge), method: :get, remote: true do %>
-            <table>
-              <tr>
-                <td rowspan="2"><i class="glyphicon glyphicon-certificate <%= refuge_class_status(refuge) %>"></i></td>
-                <td><%= refuge.name %></td>
-              </tr>
-              <tr>
-                <td><h6><%= "#{refuge.city}, #{refuge.country.name}" %></h6></td>
-              </tr>
-            </table>
-          <% end %>
-        </li>
-      <% end %>
+    <ul id="list-refuges" class="nav">
     </ul>
   </nav>
 </div>
+
+<script type="text/javascript">
+  $("#list-refuges").append(sessionStorage["refuges_list"]);
+</script>
