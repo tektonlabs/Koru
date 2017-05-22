@@ -95,7 +95,7 @@
         tr_address.appendChild(td_address)
         table.appendChild(tr_name)
         table.appendChild(tr_address)
-        link_to.append(table)
+        link_to.appendChild(table)
         link_to.setAttribute("href", "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + "/refuges/" + result.id + "/detail")
         link_to.setAttribute("data-method", "get")
         link_to.setAttribute("data-remote", "true")
