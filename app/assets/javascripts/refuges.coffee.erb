@@ -106,7 +106,7 @@
     return
 
   # Search for google maps
-  input = document.getElementById('input-search')
+  input = document.getElementById('input-search-by-location')
   searchBox = new (google.maps.places.SearchBox)(input)
   map.addListener 'bounds_changed', ->
     searchBox.setBounds map.getBounds()
@@ -150,7 +150,7 @@
 document.addEventListener "turbolinks:load", ->
   initialize_refuges()
   $("#search-button").on 'click', ->
-    input = document.getElementById('input-search')
+    input = document.getElementById('input-search-by-location')
     google.maps.event.trigger input, 'focus'
     google.maps.event.trigger input, 'keydown', keyCode: 13
     return
