@@ -62,6 +62,9 @@ gem 'rails_admin', '~> 1.1', '>= 1.1.1'
 # Chart.js for use in Rails asset pipeline
 gem 'chart-js-rails', '~> 0.1.2'
 
+# Twitter typeahead packages the typeahead.js jquery plugin for rails
+gem 'twitter-typeahead-rails', '~> 0.11.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

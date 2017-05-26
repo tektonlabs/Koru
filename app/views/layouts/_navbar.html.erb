@@ -16,8 +16,10 @@
             <option value="refuges">Refuges</option>
           </select>
         </div>
-        <input type="text" id="input-search-by-location" class="form-control" placeholder="Search location ...">
-        <input type="text" id="input-search-by-refuge" class="form-control hide" placeholder="Search refuge ...">
+        <input type="text" id="input-search-by-location" class="form-control" placeholder="Search by locations">
+        <div id="input-search-by-refuge" class="hide">
+          <input class="typeahead form-control" type="text" placeholder="Search by refuges">
+        </div>
         <span class="input-group-btn"><button type="button" id="search-button" class="btn btn-primary">Go</button></span>
       </div>
     </div>
@@ -31,8 +33,32 @@
       $("#input-search-by-refuge").addClass("hide");
     }
     else{
+      $(".results").addClass("hide");
       $("#input-search-by-location").addClass("hide");
       $("#input-search-by-refuge").removeClass("hide");
     }
+  });
+  var refugesSource = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+      url: "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + "/api/v1/refuges?query=%QUERY&limit=30&type=typeahead",
+      wildcard: '%QUERY'
+    }
+  });
+  $('#input-search-by-refuge .typeahead').typeahead(null, {
+    limit: 1000,
+    name: 'refuges',
+    display: 'name',
+    source: refugesSource,
+    templates: {
+      empty: ['<h4 style="padding: 0 15px 0 15px;">', 'No refuges found.', '</h4>'].join('\n'),
+      suggestion: function(data) {
+        return ['<div>', '<h4>' + data.name + '</h4>', '<h5>' + data.full_address + '</h5>', '</div>'].join('\n');
+      },
+    }
+  });
+  $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+    show_on_map(suggestion);
   });
 </script>

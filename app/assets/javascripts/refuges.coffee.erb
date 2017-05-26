@@ -1,3 +1,4 @@
+map = null
 @loadMapWithLocations = (locations) ->
   lima =
     lat: -12.0431800
@@ -146,6 +147,37 @@
 
 @initialize_refuges = ->
   $('#refuges-map').css('height', $('#sidebar-nav').height())
+
+@show_on_map = (location) ->
+  geocoder = new google.maps.Geocoder
+  infowindow = new google.maps.InfoWindow
+  latlng = {lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)}
+  geocoder.geocode { 'location': latlng }, (results, status) ->
+    if status == 'OK'
+      if results[1]
+        map.setZoom 15
+        map.panTo latlng
+        marker = new (google.maps.Marker)(
+          position: latlng
+          content: String(location.name)
+          map: map)
+        infowindow.setContent marker.content
+        infowindow.open map, marker
+        google.maps.event.addListener marker, 'mouseover', do (marker) ->
+          ->
+            infowindow.setContent marker.content
+            infowindow.open map, marker
+            return
+        google.maps.event.addListener marker, 'mouseout', ((marker) ->
+          ->
+            infowindow.close()
+            return
+        )()
+      else
+        window.alert 'No results found'
+    else
+      window.alert 'Geocoder failed due to: ' + status
+    return
 
 document.addEventListener "turbolinks:load", ->
   initialize_refuges()
