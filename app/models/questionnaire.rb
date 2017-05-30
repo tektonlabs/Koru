@@ -1,14 +1,16 @@
 class Questionnaire < ApplicationRecord
 
+  belongs_to :user
   belongs_to :refuge
   has_many :responses
   has_many :needs
 
   QUESTIONS = YAML::load(File.open(File.join(Rails.root, 'config', "questions.yml")))
 
-  def save_with_responses questions_params, date_param
+  def save_with_responses questions_params, date_param, dni_param
     self.refuge.refuge_entities.update_all issues_number: 0
     self.state_date = Time.at date_param.to_i
+    self.user = User.instance_to_save dni_param
     questions_params.each do |question|
       unless question[:sub_questions].blank?
         question[:sub_questions].each do |sub_question|
