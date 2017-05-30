@@ -5,9 +5,7 @@ class User < ApplicationRecord
   has_many :questionnaires
 
   def self.instance_to_save dni
-    user = User.find_or_initialize_by dni: dni
-    user.save if user.new_record?
-    user
+    User.find_or_initialize_by dni: dni
   end
 
 end
