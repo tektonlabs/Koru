@@ -4,7 +4,7 @@ class Api::V1::ResponsesController < Api::ApiV1Controller
 
   def create
     questionnaire = @refuge.questionnaires.new
-    if questionnaire.save_with_responses params[:questions], params[:current_date]
+    if questionnaire.save_with_responses params[:questions], params[:current_date], params[:dni]
       questionnaire.refuge.set_status
       render json: { success: true }
     else
