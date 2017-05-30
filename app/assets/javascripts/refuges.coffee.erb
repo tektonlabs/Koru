@@ -19,16 +19,7 @@ map = null
       status: location[6]
       map: map)
     markers.push marker
-    google.maps.event.addListener marker, 'mouseover', do (marker) ->
-      ->
-        infowindow.setContent marker.content
-        infowindow.open map, marker
-        return
-    google.maps.event.addListener marker, 'mouseout', ((marker) ->
-      ->
-        infowindow.close()
-        return
-    )()
+    info_marker_event marker
   bounds = new (google.maps.LatLngBounds)
   j = 0
 
@@ -163,21 +154,42 @@ map = null
           map: map)
         infowindow.setContent marker.content
         infowindow.open map, marker
-        google.maps.event.addListener marker, 'mouseover', do (marker) ->
-          ->
-            infowindow.setContent marker.content
-            infowindow.open map, marker
-            return
-        google.maps.event.addListener marker, 'mouseout', ((marker) ->
-          ->
-            infowindow.close()
-            return
-        )()
+        info_marker_event marker
       else
         window.alert 'No results found'
     else
       window.alert 'Geocoder failed due to: ' + status
     return
+
+@filter_map = (new_locations) ->
+  markers = []
+  bounds = new (google.maps.LatLngBounds)
+  for location in new_locations
+    marker = new (google.maps.Marker)(
+      position: new (google.maps.LatLng)(location[1], location[2])
+      content: location[0]
+      id: location[3]
+      city: location[4]
+      country: location[5]
+      status: location[6]
+      map: map)
+    info_marker_event marker
+    markers.push marker
+    bounds.extend marker.getPosition()
+  map.fitBounds bounds
+
+info_marker_event = (marker) ->
+  infowindow = new (google.maps.InfoWindow)
+  google.maps.event.addListener marker, 'mouseover', do (marker) ->
+    ->
+      infowindow.setContent marker.content
+      infowindow.open map, marker
+      return
+  google.maps.event.addListener marker, 'mouseout', ((marker) ->
+    ->
+      infowindow.close()
+      return
+  )()
 
 document.addEventListener "turbolinks:load", ->
   initialize_refuges()

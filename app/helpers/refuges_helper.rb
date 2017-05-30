@@ -1,11 +1,11 @@
 module RefugesHelper
 
-  def refuges_all
-    @refuges_all ||= Refuge.all.order(:name)
+  def refuges_map_data
+    @refuges_all ||= Refuge.all.order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
   end
 
-  def refuges_map_data
-    refuges_all.map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
+  def filtered_refuges_map_data refuges
+    @filtered_refuges_all ||= refuges.order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
   end
 
   def refuge_class_status refuge

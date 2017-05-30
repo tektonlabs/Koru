@@ -26,16 +26,23 @@
     <div class="navbar-form navbar-left">
       <div class="filter-styles">
         Filter by need:
-        <select id="select-filter-mode" class="form-control">
-          <option value="locations" selected="">-- All --</option>
-          <option value="refuges">Alimentos y agua bebible</option>
-        </select>
+        <%= form_tag filter_by_refuges_path, id: "form-filter-refuges", method: :get, remote: true do %>
+          <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "-- All --", id: "filter-select", class: 'form-control ui selection dropdown', multiple: "" %>
+        <% end %>
       </div>
     </div>
   </div>
 </nav>
 
 <script type="text/javascript">
+
+  $('#filter-select').dropdown({
+    useLabels: false,
+    onChange: function() {
+      $("#form-filter-refuges").submit();
+    }
+  });
+
   $("#select-search-mode").on("change", function(){
     if ($('#select-search-mode option:selected').val() == "locations"){
       $("#input-search-by-location").removeClass("hide");

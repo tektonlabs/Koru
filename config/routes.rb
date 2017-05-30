@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       get :detail
       get :historical_issues_by_entity
     end
+    collection do
+      get :filter_by
+    end
   end
 
 end
