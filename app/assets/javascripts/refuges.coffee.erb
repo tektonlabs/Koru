@@ -1,3 +1,4 @@
+map = null
 @loadMapWithLocations = (locations) ->
   lima =
     lat: -12.0431800
@@ -18,16 +19,7 @@
       status: location[6]
       map: map)
     markers.push marker
-    google.maps.event.addListener marker, 'mouseover', do (marker) ->
-      ->
-        infowindow.setContent marker.content
-        infowindow.open map, marker
-        return
-    google.maps.event.addListener marker, 'mouseout', ((marker) ->
-      ->
-        infowindow.close()
-        return
-    )()
+    info_marker_event marker
   bounds = new (google.maps.LatLngBounds)
   j = 0
 
@@ -106,7 +98,7 @@
     return
 
   # Search for google maps
-  input = document.getElementById('input-search')
+  input = document.getElementById('input-search-by-location')
   searchBox = new (google.maps.places.SearchBox)(input)
   map.addListener 'bounds_changed', ->
     searchBox.setBounds map.getBounds()
@@ -147,10 +139,77 @@
 @initialize_refuges = ->
   $('#refuges-map').css('height', $('#sidebar-nav').height())
 
+@show_on_map = (location) ->
+  geocoder = new google.maps.Geocoder
+  infowindow = new google.maps.InfoWindow
+  latlng = {lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)}
+  geocoder.geocode { 'location': latlng }, (results, status) ->
+    if status == 'OK'
+      if results[1]
+        map.setZoom 15
+        map.panTo latlng
+        marker = new (google.maps.Marker)(
+          position: latlng
+          content: String(location.name)
+          map: map)
+        infowindow.setContent marker.content
+        infowindow.open map, marker
+        info_marker_event marker
+      else
+        window.alert 'No results found'
+    else
+      window.alert 'Geocoder failed due to: ' + status
+    return
+
+@filter_map = (new_locations) ->
+  markers = []
+  bounds = new (google.maps.LatLngBounds)
+  for location in new_locations
+    marker = new (google.maps.Marker)(
+      position: new (google.maps.LatLng)(location[1], location[2])
+      content: location[0]
+      id: location[3]
+      city: location[4]
+      country: location[5]
+      status: location[6]
+      map: map)
+    info_marker_event marker
+    markers.push marker
+    bounds.extend marker.getPosition()
+  map.fitBounds bounds
+
+info_marker_event = (marker) ->
+  infowindow = new (google.maps.InfoWindow)
+  google.maps.event.addListener marker, 'mouseover', do (marker) ->
+    ->
+      infowindow.setContent marker.content
+      infowindow.open map, marker
+      return
+  google.maps.event.addListener marker, 'mouseout', ((marker) ->
+    ->
+      infowindow.close()
+      return
+  )()
+
 document.addEventListener "turbolinks:load", ->
   initialize_refuges()
   $("#search-button").on 'click', ->
-    input = document.getElementById('input-search')
+    input = document.getElementById('input-search-by-location')
     google.maps.event.trigger input, 'focus'
     google.maps.event.trigger input, 'keydown', keyCode: 13
     return
+
+ready = ->
+  $('#select-search-mode').on 'change', ->
+    if $('#select-search-mode option:selected').val() == 'locations'
+      $('#input-search-by-location').removeClass 'hide'
+      $('#input-search-by-refuge').addClass 'hide'
+    else
+      $('.results').addClass 'hide'
+      $('#input-search-by-location').addClass 'hide'
+      $('#input-search-by-refuge').removeClass 'hide'
+    return
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
+

@@ -19,6 +19,10 @@ class RefugesController < ApplicationController
     params[:entity_id].blank? ? line_graph_settings(@refuge.set_last_six_statuses) : line_graph_settings(@refuge.set_last_six_statuses_by_entity(params[:entity_id]))
   end
 
+  def filter_by
+    @refuges = Refuge.filter_by_entity params[:filters]
+  end
+
   private
 
   def set_refuge

@@ -7,6 +7,7 @@
 //= require underscore
 //= require gmaps/google
 //= require Chart
+//= require twitter/typeahead.min
 //= require refuges
 
 window.onresize = function(event) {

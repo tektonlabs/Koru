@@ -107,4 +107,13 @@ class Refuge < ApplicationRecord
     monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f).round(2)
   end
 
+  def self.filter_by_entity entity_id = nil
+    unless entity_id.nil?
+      refuge_entities = RefugeEntity.where("entity_id IN (?) AND issues_number != 0", entity_id)
+      Refuge.where id: refuge_entities.map(&:refuge_id)
+    else
+      Refuge.all
+    end
+  end
+
 end

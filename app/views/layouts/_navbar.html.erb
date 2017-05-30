@@ -10,9 +10,59 @@
     </div>
     <div class="navbar-form navbar-left">
       <div class="input-group">
-        <input type="text" value="" id="input-search" class="form-control" placeholder="Search dashboard...">
+        <div class="input-group-btn">
+          <select id="select-search-mode" class="form-control">
+            <option value="locations" selected="">Locations</option>
+            <option value="refuges">Refuges</option>
+          </select>
+        </div>
+        <input type="text" id="input-search-by-location" class="form-control" placeholder="Search by locations">
+        <div id="input-search-by-refuge" class="hide">
+          <input class="typeahead form-control" type="text" placeholder="Search by refuges">
+        </div>
         <span class="input-group-btn"><button type="button" id="search-button" class="btn btn-primary">Go</button></span>
+      </div>
+    </div>
+    <div class="navbar-form navbar-left">
+      <div class="filter-styles">
+        Filter by need:
+        <%= form_tag filter_by_refuges_path, id: "form-filter-refuges", method: :get, remote: true do %>
+          <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "-- All --", id: "filter-select", class: 'form-control ui selection dropdown', multiple: "" %>
+        <% end %>
       </div>
     </div>
   </div>
 </nav>
+
+<script type="text/javascript">
+
+  $('#filter-select').dropdown({
+    useLabels: false,
+    onChange: function() {
+      $("#form-filter-refuges").submit();
+    }
+  });
+  var refugesSource = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+      url: "<%= api_v1_refuges_url %>" + "?query=%QUERY&limit=30&type=typeahead",
+      wildcard: '%QUERY'
+    }
+  });
+  $('#input-search-by-refuge .typeahead').typeahead(null, {
+    limit: 1000,
+    name: 'refuges',
+    display: 'name',
+    source: refugesSource,
+    templates: {
+      empty: ['<h4 style="padding: 0 15px 0 15px;">', 'No refuges found.', '</h4>'].join('\n'),
+      suggestion: function(data) {
+        return ['<div>', '<h4>' + data.name + '</h4>', '<h5>' + data.full_address + '</h5>', '</div>'].join('\n');
+      },
+    }
+  });
+  $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+    show_on_map(suggestion);
+  });
+</script>

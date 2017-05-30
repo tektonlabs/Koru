@@ -4,7 +4,7 @@ class Api::V1::RefugesController < Api::ApiV1Controller
 
   def index
     refuges = Refuge.search_with(search_params, @limit.to_i, @offset.to_i)
-    render json: refuges
+    (search_params[:type].present? and search_params[:type] == "typeahead") ? render(json: refuges, each_serializer: SearchRefugeSerializer) : render(json: refuges)
   end
 
   private
@@ -17,7 +17,7 @@ class Api::V1::RefugesController < Api::ApiV1Controller
   private
 
   def search_params
-    params.permit(:query, :lat, :long)
+    params.permit(:query, :lat, :long, :type)
   end
 
 end
