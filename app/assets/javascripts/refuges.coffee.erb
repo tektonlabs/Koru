@@ -1,4 +1,5 @@
 map = null
+markers = []
 @loadMapWithLocations = (locations) ->
   lima =
     lat: -12.0431800
@@ -8,7 +9,6 @@ map = null
     center: lima)
   locations = locations
   infowindow = new (google.maps.InfoWindow)
-  markers = []
   for location in locations
     marker = new (google.maps.Marker)(
       position: new (google.maps.LatLng)(location[1], location[2])
@@ -148,13 +148,13 @@ map = null
       if results[1]
         map.setZoom 15
         map.panTo latlng
-        marker = new (google.maps.Marker)(
+        show_marker = new (google.maps.Marker)(
           position: latlng
           content: String(location.name)
           map: map)
-        infowindow.setContent marker.content
-        infowindow.open map, marker
-        info_marker_event marker
+        infowindow.setContent show_marker.content
+        infowindow.open map, show_marker
+        info_marker_event show_marker
       else
         window.alert 'No results found'
     else
@@ -162,6 +162,7 @@ map = null
     return
 
 @filter_map = (new_locations) ->
+  clear_overlays()
   markers = []
   bounds = new (google.maps.LatLngBounds)
   for location in new_locations
@@ -177,6 +178,14 @@ map = null
     markers.push marker
     bounds.extend marker.getPosition()
   map.fitBounds bounds
+
+clear_overlays = ->
+  i = 0
+  while i < markers.length
+    markers[i].setMap null
+    i++
+  markers.length = 0
+  return
 
 info_marker_event = (marker) ->
   infowindow = new (google.maps.InfoWindow)
