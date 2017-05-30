@@ -10,7 +10,7 @@ class Questionnaire < ApplicationRecord
   def save_with_responses questions_params, date_param, dni_param
     self.refuge.refuge_entities.update_all issues_number: 0
     self.state_date = Time.at date_param.to_i
-    self.user = User.instance_to_save dni_param
+    self.user = User.find_or_initialize_by dni: dni_param
     questions_params.each do |question|
       unless question[:sub_questions].blank?
         question[:sub_questions].each do |sub_question|

@@ -4,8 +4,4 @@ class User < ApplicationRecord
 
   has_many :questionnaires
 
-  def self.instance_to_save dni
-    User.find_or_initialize_by dni: dni
-  end
-
 end
