@@ -1,5 +1,3 @@
-<% if @refuges.empty? %>
-  console.log("elseeeee");
-<% else %>
+<% if !@refuges.empty? %>
   filter_map(<%= raw filtered_refuges_map_data(@refuges) %>);
 <% end %>

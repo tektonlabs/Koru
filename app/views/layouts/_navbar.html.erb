@@ -35,23 +35,10 @@
 </nav>
 
 <script type="text/javascript">
-
   $('#filter-select').dropdown({
     useLabels: false,
     onChange: function() {
       $("#form-filter-refuges").submit();
-    }
-  });
-
-  $("#select-search-mode").on("change", function(){
-    if ($('#select-search-mode option:selected').val() == "locations"){
-      $("#input-search-by-location").removeClass("hide");
-      $("#input-search-by-refuge").addClass("hide");
-    }
-    else{
-      $(".results").addClass("hide");
-      $("#input-search-by-location").addClass("hide");
-      $("#input-search-by-refuge").removeClass("hide");
     }
   });
   var refugesSource = new Bloodhound({
