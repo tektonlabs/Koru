@@ -35,6 +35,7 @@
 </nav>
 
 <script type="text/javascript">
+
   $('#filter-select').dropdown({
     useLabels: false,
     onChange: function() {
@@ -45,7 +46,7 @@
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
-      url: "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + "/api/v1/refuges?query=%QUERY&limit=30&type=typeahead",
+      url: "<%= api_v1_refuges_url %>" + "?query=%QUERY&limit=30&type=typeahead",
       wildcard: '%QUERY'
     }
   });
