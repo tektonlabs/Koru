@@ -20,7 +20,11 @@ class RefugesController < ApplicationController
   end
 
   def filter_by
-    @refuges = Refuge.filter_by_entity params[:filters]
+    @refuges = Refuge.filter_by_entity params[:filters], params[:query]
+    respond_to do |format|
+      format.js
+      format.json { render json: @refuges, each_serializer: SearchRefugeSerializer }
+    end
   end
 
   private

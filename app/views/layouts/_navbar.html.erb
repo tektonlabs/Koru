@@ -35,18 +35,11 @@
 </nav>
 
 <script type="text/javascript">
-
-  $('#filter-select').dropdown({
-    useLabels: false,
-    onChange: function() {
-      $("#form-filter-refuges").submit();
-    }
-  });
   var refugesSource = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
-      url: "<%= api_v1_refuges_url %>" + "?query=%QUERY&limit=30&type=typeahead",
+      url: "<%= filter_by_refuges_url %>.json?query=%QUERY",
       wildcard: '%QUERY'
     }
   });
@@ -60,6 +53,20 @@
       suggestion: function(data) {
         return ['<div>', '<h4>' + data.name + '</h4>', '<h5>' + data.full_address + '</h5>', '</div>'].join('\n');
       },
+    }
+  });
+  get_filters_selected = function(){
+    var selectedValues = '';
+    $("#filter-select :selected").each(function(){
+      selectedValues += "&filters[]=" + $(this).val();
+    });
+    return selectedValues;
+  }
+  $('#filter-select').dropdown({
+    useLabels: false,
+    onChange: function() {
+      refugesSource.remote.url = "<%= filter_by_refuges_url %>.json?query=%QUERY" + get_filters_selected();
+      $("#form-filter-refuges").submit();
     }
   });
   $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
