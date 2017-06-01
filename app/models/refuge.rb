@@ -41,9 +41,8 @@ class Refuge < ApplicationRecord
   end
 
   def observation_responses
-    self.last_questionnaire.nil? ? nil : self.last_questionnaire.responses.joins(:question).where('questions.question_type = 2 AND questions.text != ? AND questions.text != ?', '¿Por qué?', '¿Quién es el encargado del recojo de basura?')
+    self.last_questionnaire.nil? ? nil : self.last_questionnaire.responses.joins(:question).where('questions.question_type = 2 AND questions.text != ? AND questions.text != ?', 'Â¿Por quÃ©?', 'Â¿QuiÃ©n es el encargado del recojo de basura?')
   end
-
   def set_status
     self.refuge_entities.sum(:issues_number) == 0 ? self.good! : self.bad!
   end
