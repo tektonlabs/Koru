@@ -41,7 +41,7 @@ class Refuge < ApplicationRecord
   end
 
   def observation_responses
-    self.last_questionnaire.nil? ? nil : self.last_questionnaire.responses.joins(:question).where('questions.question_type = 2 AND questions.text != ? AND questions.text != ?', 'Â¿Por quÃ©?', 'Â¿QuiÃ©n es el encargado del recojo de basura?')
+    self.last_questionnaire.nil? ? nil : self.last_questionnaire.responses.joins(:question).where('questions.question_type = 2 AND questions.text != ? AND questions.text != ?', '¿Por qué?', '¿Quién es el encargado del recojo de basura?')
   end
 
   def set_status
@@ -107,13 +107,17 @@ class Refuge < ApplicationRecord
     monthly_questionnaires.count == 0 ? total_issues : (total_issues / monthly_questionnaires.count.to_f).round(2)
   end
 
-  def self.filter_by_entity entity_id = nil
-    unless entity_id.nil?
+  def self.filter_by_entity entity_id = nil, query = nil
+    return Refuge.all if (entity_id.blank? and query.blank?)
+    refuges = []
+    if !entity_id.blank?
       refuge_entities = RefugeEntity.where("entity_id IN (?) AND issues_number != 0", entity_id)
-      Refuge.where id: refuge_entities.map(&:refuge_id)
-    else
-      Refuge.all
+      refuges = Refuge.where(id: refuge_entities.map(&:refuge_id))
     end
+    if !query.blank?
+      refuges.joins(:country).where("refuges.name ILIKE ? OR refuges.city ILIKE ? OR refuges.address ILIKE ? OR countries.name ILIKE ?", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
+    end
+    return refuges
   end
 
 end
