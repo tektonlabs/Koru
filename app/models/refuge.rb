@@ -107,16 +107,19 @@ class Refuge < ApplicationRecord
   end
 
   def self.filter_by_entity entity_id = nil, query = nil
-    return Refuge.all if (entity_id.blank? and query.blank?)
-    refuges = []
-    if !entity_id.blank?
+    refuges = Refuge.all
+    unless entity_id.nil?
       refuge_entities = RefugeEntity.where("entity_id IN (?) AND issues_number != 0", entity_id)
       refuges = Refuge.where(id: refuge_entities.map(&:refuge_id))
+      refuges
+    else
+      refuges
     end
-    if !query.blank?
+    unless query.nil?
       refuges.joins(:country).where("refuges.name ILIKE ? OR refuges.city ILIKE ? OR refuges.address ILIKE ? OR countries.name ILIKE ?", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
+    else
+      refuges
     end
-    return refuges
   end
 
 end

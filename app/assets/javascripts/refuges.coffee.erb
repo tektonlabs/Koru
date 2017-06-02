@@ -1,6 +1,7 @@
 map = null
 markers = []
 @loadMapWithLocations = (locations) ->
+  markers = []
   lima =
     lat: -12.0431800
     lng: -77.0282400
@@ -8,10 +9,10 @@ markers = []
     zoom: 12
     center: lima)
   locations = locations
-  infowindow = new (google.maps.InfoWindow)
+  infowindow = new google.maps.InfoWindow
   for location in locations
     marker = new (google.maps.Marker)(
-      position: new (google.maps.LatLng)(location[1], location[2])
+      position: new (google.maps.LatLng)(parseFloat(location[1]), parseFloat(location[2]))
       content: location[0]
       id: location[3]
       city: location[4]
@@ -42,10 +43,9 @@ markers = []
     for location in locations
       lat = location[1]
       lng = location[2]
-      marker = new google.maps.LatLng(lat, lng)
+      marker = new google.maps.LatLng(parseFloat(lat), parseFloat(lng))
       bounds.extend marker
     map.fitBounds bounds
-
   sidebar = document.getElementById("list-refuges")
   google.maps.event.addListener map, 'bounds_changed', ->
     sidebar.innerHTML = ""
@@ -165,10 +165,10 @@ markers = []
   clear_overlays()
   markers = []
   bounds = new (google.maps.LatLngBounds)
-  infowindow = new (google.maps.InfoWindow)
+  infowindow = new google.maps.InfoWindow
   for location in new_locations
     marker = new (google.maps.Marker)(
-      position: new (google.maps.LatLng)(location[1], location[2])
+      position: new (google.maps.LatLng)(parseFloat(location[1]), parseFloat(location[2]))
       content: location[0]
       id: location[3]
       city: location[4]
@@ -207,8 +207,6 @@ document.addEventListener "turbolinks:load", ->
     google.maps.event.trigger input, 'focus'
     google.maps.event.trigger input, 'keydown', keyCode: 13
     return
-
-ready = ->
   $('#select-search-mode').on 'change', ->
     if $('#select-search-mode option:selected').val() == 'locations'
       $('#input-search-by-location').removeClass 'hide'
@@ -218,6 +216,3 @@ ready = ->
       $('#input-search-by-location').addClass 'hide'
       $('#input-search-by-refuge').removeClass 'hide'
     return
-
-$(document).ready(ready)
-$(document).on('page:load', ready)
