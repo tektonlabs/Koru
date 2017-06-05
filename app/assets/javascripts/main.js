@@ -62,7 +62,7 @@ document.addEventListener("turbolinks:load", function() {
   if( $('.sidebar-scroll').length > 0 ) {
     $('.sidebar-scroll').slimScroll({
       height: '95%',
-      wheelStep: 2,
+      wheelStep: 10,
     });
   }
 
