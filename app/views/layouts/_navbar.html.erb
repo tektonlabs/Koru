@@ -8,29 +8,31 @@
     <div class="navbar-btn">
       <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
     </div>
-    <div class="navbar-form navbar-left">
-      <div class="input-group">
-        <div class="input-group-btn">
-          <select id="select-search-mode" class="form-control">
-            <option value="locations" selected="">Locations</option>
-            <option value="refuges">Refuges</option>
-          </select>
+    <% unless @controller == "refuges" and @action == "show" %>
+      <div class="navbar-form navbar-left">
+        <div class="input-group">
+          <div class="input-group-btn">
+            <select id="select-search-mode" class="form-control">
+              <option value="locations" selected="">Locations</option>
+              <option value="refuges">Refuges</option>
+            </select>
+          </div>
+          <input type="text" id="input-search-by-location" class="form-control" placeholder="Search by locations">
+          <div id="input-search-by-refuge" class="hide">
+            <input class="typeahead form-control" type="text" placeholder="Search by refuges">
+          </div>
+          <span class="input-group-btn"><button type="button" id="search-button" class="btn btn-primary">Go</button></span>
         </div>
-        <input type="text" id="input-search-by-location" class="form-control" placeholder="Search by locations">
-        <div id="input-search-by-refuge" class="hide">
-          <input class="typeahead form-control" type="text" placeholder="Search by refuges">
+      </div>
+      <div class="navbar-form navbar-left">
+        <div class="filter-styles">
+          Filter by need:
+          <%= form_tag filter_by_refuges_path, id: "form-filter-refuges", method: :get, remote: true do %>
+            <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "-- All --", id: "filter-select", class: 'form-control ui selection dropdown', multiple: "" %>
+          <% end %>
         </div>
-        <span class="input-group-btn"><button type="button" id="search-button" class="btn btn-primary">Go</button></span>
       </div>
-    </div>
-    <div class="navbar-form navbar-left">
-      <div class="filter-styles">
-        Filter by need:
-        <%= form_tag filter_by_refuges_path, id: "form-filter-refuges", method: :get, remote: true do %>
-          <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "-- All --", id: "filter-select", class: 'form-control ui selection dropdown', multiple: "" %>
-        <% end %>
-      </div>
-    </div>
+    <% end %>
   </div>
 </nav>
 

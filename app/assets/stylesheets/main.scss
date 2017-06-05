@@ -22,6 +22,8 @@ th {
 .page-title {
   margin-top: 0;
   margin-bottom: 30px;
+  margin-left: 26px;
+  margin-right: 30px;
   font-weight: 300; }
 
 .copyright {
@@ -160,7 +162,7 @@ html.fullscreen-bg #wrapper {
       padding-right: 15px; } }
   @media screen and (max-width: 992px) {
     .navbar-default .brand {
-      display: none; } }
+      display: block; } }
   @media screen and (max-width: 640px) {
     .navbar-default #navbar-menu {
       float: right; } }
@@ -990,6 +992,10 @@ ul.activity-list > li {
 
 .custom-tabs-line.right-aligned {
   text-align: right; }
+
+.custom-tabs-line {
+  margin-left: 29px;
+  margin-right: 30px; }
 
 @media screen and (max-width: 768px) {
   .custom-tabs-line ul li.active > a {
