@@ -1,0 +1,5 @@
+WaterManagement.create name: "Red pública"
+WaterManagement.create name: "Pozo cisterna"
+WaterManagement.create name: "Camión cisterna"
+WaterManagement.create name: "Tanques de agua"
+WaterManagement.create name: "Agua embotellada/bidones"
