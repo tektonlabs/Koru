@@ -3,13 +3,56 @@ class Refuge < ApplicationRecord
   validates :name, presence: true
 
   belongs_to :country
+  has_one :primary_refuge_contact, -> { where contact_type: :primary }, class_name: "RefugeContact"
+  has_one :primary_contact, through: :primary_refuge_contact, source: :contact
+  has_many :secondary_refuge_contacts, -> { where contact_type: :secondary }, class_name: "RefugeContact"
+  has_many :secondary_contacts, through: :secondary_refuge_contacts, source: :contact
   has_many :questionnaires
   has_many :refuge_entities
   has_many :entities, through: :refuge_entities
   has_many :refuge_questions
   has_many :questions, through: :refuge_questions
+  has_many :refuge_areas
+  has_many :areas, through: :refuge_areas
+  has_many :refuge_committees
+  has_many :committees, through: :refuge_committees
+  has_many :refuge_food_managements
+  has_many :food_managements, through: :refuge_food_managements
+  has_many :refuge_housing_statuses
+  has_many :housing_statuses, through: :refuge_housing_statuses
+  has_many :refuge_light_managements
+  has_many :light_managements, through: :refuge_light_managements
+  has_many :refuge_services
+  has_many :services, through: :refuge_services
+  has_many :refuge_stool_managements
+  has_many :stool_managements, through: :refuge_stool_managements
+  has_many :refuge_waste_managements
+  has_many :waste_managements, through: :refuge_waste_managements
+  has_many :refuge_water_managements
+  has_many :water_managements, through: :refuge_water_managements
+
+  accepts_nested_attributes_for :refuge_areas
+  accepts_nested_attributes_for :refuge_committees
+  accepts_nested_attributes_for :refuge_food_managements
+  accepts_nested_attributes_for :refuge_housing_statuses
+  accepts_nested_attributes_for :refuge_light_managements
+  accepts_nested_attributes_for :refuge_services
+  accepts_nested_attributes_for :refuge_stool_managements
+  accepts_nested_attributes_for :refuge_waste_managements
+  accepts_nested_attributes_for :refuge_water_managements
+  accepts_nested_attributes_for :primary_contact
+  accepts_nested_attributes_for :secondary_contacts
+
 
   enum status: [:good, :bad]
+  enum refuge_type: [:open_tents, :school, :church, :other]
+  enum emergency_type: [:earthquake, :cold_frosty, :landslide_overflow_river, :health_emergency, :fire]
+  enum institution_in_charge: [:central_government, :regional_government, :church_institution, :municipality, :community_organization, :non_governmental_organization, :other_institution]
+  enum property_type: [:private_property, :public_property, :highways]
+  enum accessibility: [:on_foot, :only_4x4, :vehicular]
+  enum victims_provenance: [:same_community, :different_communities]
+  enum floor_type: [:asphalted, :unpaved]
+  enum roof_type: [:outdoors, :roofing]
 
   def self.search_with search_params, limit, offset
     results = search_by_query(search_params[:query])
@@ -43,6 +86,7 @@ class Refuge < ApplicationRecord
   def observation_responses
     self.last_questionnaire.nil? ? nil : self.last_questionnaire.responses.joins(:question).where('questions.question_type = 2 AND questions.text != ? AND questions.text != ?', '¿Por qué?', '¿Quién es el encargado del recojo de basura?')
   end
+
   def set_status
     self.refuge_entities.sum(:issues_number) == 0 ? self.good! : self.bad!
   end

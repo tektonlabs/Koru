@@ -5,9 +5,12 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :refuges, only: :index do
+      resources :refuges, only: [:index, :create] do
         resources :entities, only: :index
         resources :responses, only: :create
+        collection do
+          get :multiple_choice_ids
+        end
       end
     end
   end

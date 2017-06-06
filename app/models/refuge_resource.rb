@@ -1,0 +1,2 @@
+class RefugeResource < ApplicationRecord
+end

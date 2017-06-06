@@ -1,0 +1,5 @@
+Service.create name: "Carpintería"
+Service.create name: "Soldadura"
+Service.create name: "Limpieza del hogar"
+Service.create name: "Gasfitería"
+Service.create name: "Albañilería"
