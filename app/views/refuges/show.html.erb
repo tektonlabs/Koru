@@ -2,19 +2,19 @@
 
   <h1 class="page-title">
     <b><%= @refuge.name %></b>
-    <%= link_to 'Descargar', "#", class: "btn btn-primary pull-right" %>
+    <%= link_to "#{t 'refuges.download_button'}", "#", class: "btn btn-primary pull-right" %>
     <i class="glyphicon refuge-status glyphicon-certificate <%= refuge_class_status(@refuge) %>"></i>
     <div class="sub-title-refuge">
-      <div>Coordinador(a): Larry Tekton / Teléfono: 987654321</div>
-      <div>Last Update: <%= last_updated_date(@refuge) %></div>
+      <div><%= t "refuges.coordinator" %>: Larry Tekton / Teléfono: 987654321</div>
+      <div><%= "#{t 'refuges.last_update'}: #{last_updated_date(@refuge)}" %></div>
     </div>
   </h1>
 
   <div class="custom-tabs-line tabs-line-bottom left-aligned">
     <ul class="nav" role="tablist">
-      <li class="active"><a href="#analysis-tab" role="tab" data-toggle="tab"><b>ANALYSIS</b></a></li>
-      <li><a href="#information-tab" role="tab" data-toggle="tab"><b>INFORMATION</b></a></li>
-      <li><a href="#contact-tab" role="tab" data-toggle="tab"><b>CONTACT</b></a></li>
+      <li class="active"><a href="#analysis-tab" role="tab" data-toggle="tab"><b><%= t "refuges.analysis_tab" %></b></a></li>
+      <li><a href="#information-tab" role="tab" data-toggle="tab"><b><%= t "refuges.information_tab" %></b></a></li>
+      <li><a href="#contact-tab" role="tab" data-toggle="tab"><b><%= t "refuges.contact_tab" %></b></a></li>
     </ul>
   </div>
   <div class="tab-content">

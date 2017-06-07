@@ -3,7 +3,8 @@
 </div>
 
 <% content_for :javascript_tags do %>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYZQCwE8B-r7ORDi49Hzum8vXKyoLl4k&callback=initMap&libraries=places" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYZQCwE8B-r7ORDi49Hzum8vXKyoLl4k&callback=initMap&libraries=places" async defer>
+  </script>
   <script type="text/javascript">
     function initMap(){
       loadMapWithLocations(<%= raw refuges_map_data %>);

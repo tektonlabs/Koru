@@ -1,14 +1,14 @@
 <div class="panel">
   <div class="panel-heading">
-    <h3 class="panel-title">Needs</h3>
+    <h3 class="panel-title"><%= t "refuges.needs" %></h3>
     <hr>
   </div>
   <div class="panel-body">
     <% if refuge.last_questionnaire.nil? %>
-      No questionnaire has been registered
+      <%= t "refuges.no_questionnaire_registered" %>
     <% else %>
       <% if refuge.last_questionnaire.needs.blank? %>
-        No needs have been registered
+        <%= t "refuges.no_needs_registered" %>
       <% else %>
         <table>
           <% refuge.last_questionnaire.needs.each do |need| %>
