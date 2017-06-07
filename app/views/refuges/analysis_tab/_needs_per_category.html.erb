@@ -1,17 +1,17 @@
 <div class="panel">
   <div class="panel-heading">
-    <h3 class="panel-title">% of Needs per Category</h3>
+    <h3 class="panel-title"><%= t "refuges.needs_per_category" %></h3>
     <hr>
   </div>
   <div class="panel-body">
     <div class="chart-container">
       <% if refuge.last_questionnaire.nil? %>
-        No questionnaire has been registered
+        <%= t "refuges.no_questionnaire_registered" %>
       <% else %>
         <% if refuge.has_issues? %>
           <%= doughnut :doughnut, @pie_size, @pie_data, true %>
         <% else %>
-          No needs of categories have been registered
+          <%= t "refuges.no_needs_of_categories" %>
         <% end %>
       <% end %>
     </div>

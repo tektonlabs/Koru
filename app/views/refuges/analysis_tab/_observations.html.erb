@@ -1,15 +1,15 @@
 <div class="panel">
   <div class="panel-heading">
-    <h3 class="panel-title">Observations</h3>
+    <h3 class="panel-title"><%= t "refuges.observations" %></h3>
     <hr>
   </div>
   <div class="panel-body">
     <div style="width: 100%; height: 100%;">
       <% if refuge.last_questionnaire.nil? %>
-        No questionnaire has been registered
+        <%= t "refuges.no_questionnaire_registered" %>
       <% else %>
         <% if refuge.observation_responses.blank? %>
-          No observations have been registered
+          <%= t "refuges.no_observations_registered" %>
         <% else %>
           <table>
             <% refuge.observation_responses.includes(question: :entity).each do |response| %>

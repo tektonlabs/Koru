@@ -13,26 +13,31 @@
         <div class="input-group">
           <div class="input-group-btn">
             <select id="select-search-mode" class="form-control">
-              <option value="locations" selected="">Locations</option>
-              <option value="refuges">Refuges</option>
+              <option value="locations" selected=""><%= t "nav.search_mode_location" %></option>
+              <option value="refuges"><%= t "nav.search_mode_refuges" %></option>
             </select>
           </div>
-          <input type="text" id="input-search-by-location" class="form-control" placeholder="Search by locations">
+          <input type="text" id="input-search-by-location" class="form-control" placeholder="<%= t 'nav.search_box_placeholder_locations' %>">
           <div id="input-search-by-refuge" class="hide">
-            <input class="typeahead form-control" type="text" placeholder="Search by refuges">
+            <input class="typeahead form-control" type="text" placeholder="<%= t 'nav.search_box_placeholder_refuges' %>">
           </div>
-          <span class="input-group-btn"><button type="button" id="search-button" class="btn btn-primary">Go</button></span>
+          <span class="input-group-btn"><button type="button" id="search-button" class="btn btn-primary"><%= t "nav.button_go" %></button></span>
         </div>
       </div>
       <div class="navbar-form navbar-left">
         <div class="filter-styles">
-          Filter by need:
+          <%= t "nav.filter_by_needs" %>
           <%= form_tag filter_by_refuges_path, id: "form-filter-refuges", method: :get, remote: true do %>
-            <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "-- All --", id: "filter-select", class: 'form-control ui selection dropdown', multiple: "" %>
+            <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "#{t 'filter_select_all'}", id: "filter-select", class: 'form-control ui selection dropdown', multiple: "" %>
           <% end %>
         </div>
       </div>
     <% end %>
+    <div class="navbar-btn navbar-btn-right">
+      <%= t "nav.language_translate" %>:
+      <%= link_to_unless_current "#{t 'nav.spanish_language'}", locale: "es" %> |
+      <%= link_to_unless_current "#{t 'nav.english_language'}", locale: "en" %>
+    </div>
   </div>
 </nav>
 

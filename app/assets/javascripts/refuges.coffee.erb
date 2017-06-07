@@ -22,7 +22,6 @@ markers = []
     markers.push marker
     info_marker_event infowindow, marker
   bounds = new (google.maps.LatLngBounds)
-  j = 0
 
   if sessionStorage["new_locations"] != undefined && sessionStorage["new_locations"] != ""
     new_markers = sessionStorage["new_locations"].split("),(")
@@ -31,6 +30,7 @@ markers = []
     first = new_markers.shift().substring(1);
     new_markers.unshift(first)
     if new_markers != undefined
+      j = 0
       while j < new_markers.length
         new_marker = new_markers[j]
         lat = parseFloat(new_marker.split(", ")[0])
@@ -41,11 +41,12 @@ markers = []
       map.fitBounds bounds
   else
     for location in locations
-      lat = location[1]
-      lng = location[2]
-      marker = new google.maps.LatLng(parseFloat(lat), parseFloat(lng))
+      lat = parseFloat(location[1])
+      lng = parseFloat(location[2])
+      marker = new google.maps.LatLng(lat, lng)
       bounds.extend marker
     map.fitBounds bounds
+
   sidebar = document.getElementById("list-refuges")
   google.maps.event.addListener map, 'bounds_changed', ->
     sidebar.innerHTML = ""

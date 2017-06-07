@@ -1,11 +1,11 @@
 module RefugesHelper
 
   def refuges_map_data
-    @refuges_all ||= Refuge.all.order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
+    @refuges_all ||= Refuge.all.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
   end
 
   def filtered_refuges_map_data refuges
-    @filtered_refuges_all ||= refuges.order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
+    @filtered_refuges_all ||= refuges.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
   end
 
   def refuge_class_status refuge
@@ -13,7 +13,7 @@ module RefugesHelper
   end
 
   def last_updated_date refuge
-    refuge.last_questionnaire.nil? ? 'No questionnaire has been registered' : refuge.last_questionnaire.created_at.strftime("%d/%m/%Y")
+    refuge.last_questionnaire.nil? ? t("refuges.no_questionnaire_registered") : refuge.last_questionnaire.created_at.strftime("%d/%m/%Y")
   end
 
   def names_last_six_months
