@@ -18,7 +18,7 @@ module RefugesHelper
 
   def names_last_six_months
     current_month = Date.today.month
-    month_names = 6.downto(1).map { |n| DateTime::MONTHNAMES.drop(1)[(current_month - n) % 12] }
+    month_names = 6.downto(1).map { |n| I18n.t DateTime::MONTHNAMES.drop(1)[(current_month - n) % 12] }
   end
 
   def entities_all

@@ -1,4 +1,16 @@
 en:
+  January: "January"
+  February: "February"
+  March: "March"
+  April: "April"
+  May: "May"
+  June: "June"
+  July: "July"
+  August: "August"
+  September: "September"
+  October: "October"
+  November: "November"
+  December: "December"
   filter_select_all: "-- All --"
   nav:
     filter_by_needs: "Filter by needs"
@@ -10,6 +22,7 @@ en:
     spanish_language: "Spanish"
     search_box_placeholder_locations: "Search by locations"
     search_box_placeholder_refuges: "Search by refuges"
+    refuge_detail_button: "Open Details"
   refuges:
     coordinator: "Coordinator"
     download_button: "Download"

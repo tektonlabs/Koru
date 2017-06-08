@@ -7,7 +7,7 @@
   </script>
   <script type="text/javascript">
     function initMap(){
-      loadMapWithLocations(<%= raw refuges_map_data %>);
+      loadMapWithLocations(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
     }
   </script>
 <% end %>
