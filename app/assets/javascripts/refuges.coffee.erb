@@ -87,7 +87,11 @@ markers = []
         tr_address = document.createElement('tr')
         td_address = document.createElement('td')
         h6_address = document.createElement('h6')
-        h6_address.appendChild(document.createTextNode(result.city + ", " + result.country))
+        if result.city == ''
+          refuge_description = result.country
+        else
+          refuge_description = result.city + ", " + result.country
+        h6_address.appendChild(document.createTextNode(refuge_description))
         td_address.appendChild(h6_address)
         tr_address.appendChild(td_address)
         table.appendChild(tr_name)

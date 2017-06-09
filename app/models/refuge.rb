@@ -1,34 +1,35 @@
 class Refuge < ApplicationRecord
 
-  validates :name, presence: true
+  validates :name, :latitude, :longitude, :address, :country_id, presence: true
+  # validates :number_of_families, :number_of_people, :number_of_pregnant_women, :number_of_children_under_3, :number_of_older_adults, :number_of_people_with_disabilities, :number_of_pets, :number_of_farm_animals, :number_of_carp, :number_of_toilets, :number_of_washbasins, :number_of_showers, :number_of_tanks, :number_of_landfills, :number_of_garbage_collection_points, numericality: { only_integer: true }
 
   belongs_to :country
-  has_one :primary_refuge_contact, -> { where contact_type: :primary }, class_name: "RefugeContact"
+  has_one :primary_refuge_contact, -> { where contact_type: :primary }, class_name: "RefugeContact", dependent: :destroy
   has_one :primary_contact, through: :primary_refuge_contact, source: :contact
-  has_many :secondary_refuge_contacts, -> { where contact_type: :secondary }, class_name: "RefugeContact"
+  has_many :secondary_refuge_contacts, -> { where contact_type: :secondary }, class_name: "RefugeContact", dependent: :destroy
   has_many :secondary_contacts, through: :secondary_refuge_contacts, source: :contact
-  has_many :questionnaires
-  has_many :refuge_entities
+  has_many :questionnaires, dependent: :destroy
+  has_many :refuge_entities, dependent: :destroy
   has_many :entities, through: :refuge_entities
-  has_many :refuge_questions
+  has_many :refuge_questions, dependent: :destroy
   has_many :questions, through: :refuge_questions
-  has_many :refuge_areas
+  has_many :refuge_areas, dependent: :destroy
   has_many :areas, through: :refuge_areas
-  has_many :refuge_committees
+  has_many :refuge_committees, dependent: :destroy
   has_many :committees, through: :refuge_committees
-  has_many :refuge_food_managements
+  has_many :refuge_food_managements, dependent: :destroy
   has_many :food_managements, through: :refuge_food_managements
-  has_many :refuge_housing_statuses
+  has_many :refuge_housing_statuses, dependent: :destroy
   has_many :housing_statuses, through: :refuge_housing_statuses
-  has_many :refuge_light_managements
+  has_many :refuge_light_managements, dependent: :destroy
   has_many :light_managements, through: :refuge_light_managements
-  has_many :refuge_services
+  has_many :refuge_services, dependent: :destroy
   has_many :services, through: :refuge_services
-  has_many :refuge_stool_managements
+  has_many :refuge_stool_managements, dependent: :destroy
   has_many :stool_managements, through: :refuge_stool_managements
-  has_many :refuge_waste_managements
+  has_many :refuge_waste_managements, dependent: :destroy
   has_many :waste_managements, through: :refuge_waste_managements
-  has_many :refuge_water_managements
+  has_many :refuge_water_managements, dependent: :destroy
   has_many :water_managements, through: :refuge_water_managements
 
   accepts_nested_attributes_for :refuge_areas
@@ -52,6 +53,8 @@ class Refuge < ApplicationRecord
   enum victims_provenance: [:same_community, :different_communities]
   enum floor_type: [:asphalted, :unpaved]
   enum roof_type: [:outdoors, :roofing]
+
+  after_create :adding_questions_and_entities
 
   def self.search_with search_params, limit, offset
     results = search_by_query(search_params[:query])
@@ -167,6 +170,15 @@ class Refuge < ApplicationRecord
 
   def send_summary_email
     RefugeMailer.send_summary(self).deliver_later unless self.primary_contact.nil?
+  end
+
+  def adding_questions_and_entities
+    Entity.first_level.each do |entity|
+      RefugeEntity.create refuge: self, entity: entity
+    end
+    Question.all.each do |question|
+      RefugeQuestion.create refuge: self, question: question
+    end
   end
 
 end
