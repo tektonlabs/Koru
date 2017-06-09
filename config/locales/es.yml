@@ -1,4 +1,19 @@
 es:
+  activerecord:
+    errors:
+      models:
+        refuge:
+          attributes:
+            name:
+              blank: "cant be blank"
+            latitude:
+              blank: "cant be blank"
+            longitude:
+              blank: "cant be blank"
+            address:
+              blank: "cant be blank"
+            country_id:
+              blank: "cant be blank"
   January: "Enero"
   February: "Febrero"
   March: "Marzo"

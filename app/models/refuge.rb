@@ -1,6 +1,6 @@
 class Refuge < ApplicationRecord
 
-  # validates :name, :latitude, :longitude, :address, :country_id, presence: true
+  validates :name, :latitude, :longitude, :address, :country_id, presence: true
   # validates :number_of_families, :number_of_people, :number_of_pregnant_women, :number_of_children_under_3, :number_of_older_adults, :number_of_people_with_disabilities, :number_of_pets, :number_of_farm_animals, :number_of_carp, :number_of_toilets, :number_of_washbasins, :number_of_showers, :number_of_tanks, :number_of_landfills, :number_of_garbage_collection_points, numericality: { only_integer: true }
 
   belongs_to :country
