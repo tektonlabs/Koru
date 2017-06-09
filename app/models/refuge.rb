@@ -43,7 +43,6 @@ class Refuge < ApplicationRecord
   accepts_nested_attributes_for :primary_contact
   accepts_nested_attributes_for :secondary_contacts
 
-
   enum status: [:good, :bad]
   enum refuge_type: [:open_tents, :school, :church, :other]
   enum emergency_type: [:earthquake, :cold_frosty, :landslide_overflow_river, :health_emergency, :fire]
@@ -164,6 +163,10 @@ class Refuge < ApplicationRecord
     else
       refuges
     end
+  end
+
+  def send_summary_email
+    RefugeMailer.send_summary(self).deliver_later unless self.primary_contact.nil?
   end
 
 end
