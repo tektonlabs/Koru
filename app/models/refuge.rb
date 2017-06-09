@@ -54,6 +54,8 @@ class Refuge < ApplicationRecord
   enum floor_type: [:asphalted, :unpaved]
   enum roof_type: [:outdoors, :roofing]
 
+  after_create :adding_questions_and_entities
+
   def self.search_with search_params, limit, offset
     results = search_by_query(search_params[:query])
     if search_params[:lat].present? and search_params[:long].present?
@@ -163,6 +165,15 @@ class Refuge < ApplicationRecord
       refuges.joins(:country).where("refuges.name ILIKE ? OR refuges.city ILIKE ? OR refuges.address ILIKE ? OR countries.name ILIKE ?", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
     else
       refuges
+    end
+  end
+
+  def adding_questions_and_entities
+    Entity.first_level.each do |entity|
+      RefugeEntity.create refuge: self, entity: entity
+    end
+    Question.all.each do |question|
+      RefugeQuestion.create refuge: self, question: question
     end
   end
 
