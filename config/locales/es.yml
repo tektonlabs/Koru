@@ -14,6 +14,8 @@ es:
               blank: "cant be blank"
             country_id:
               blank: "cant be blank"
+            city:
+              blank: "cant be blank"
   January: "Enero"
   February: "Febrero"
   March: "Marzo"
