@@ -77,6 +77,9 @@ Rails.application.configure do
 
   config.assets.prefix = ENV['RELATIVE_URL_ROOT'] + '/assets'
 
+  config.action_mailer.default_url_options = { host: ENV['HOST'] + ENV['RELATIVE_URL_ROOT'], protocol: 'https' }
+  config.action_mailer.asset_host = "#{ENV['HOST']}#{ENV['RELATIVE_URL_ROOT']}"
+
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')

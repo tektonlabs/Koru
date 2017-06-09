@@ -168,6 +168,10 @@ class Refuge < ApplicationRecord
     end
   end
 
+  def send_summary_email
+    RefugeMailer.send_summary(self).deliver_later unless self.primary_contact.nil?
+  end
+
   def adding_questions_and_entities
     Entity.first_level.each do |entity|
       RefugeEntity.create refuge: self, entity: entity

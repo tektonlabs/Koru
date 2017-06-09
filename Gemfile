@@ -65,6 +65,12 @@ gem 'chart-js-rails', '~> 0.1.2'
 # Twitter typeahead packages the typeahead.js jquery plugin for rails
 gem 'twitter-typeahead-rails', '~> 0.11.1'
 
+# Mailgun's Official Ruby SDK for interacting with the Mailgun API.
+gem 'mailgun-ruby', '~> 1.1', '>= 1.1.6'
+
+# Clean ruby syntax for writing and deploying cron jobs.
+gem 'whenever', '~> 0.9.7'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
