@@ -2,8 +2,8 @@ class Questionnaire < ApplicationRecord
 
   belongs_to :user
   belongs_to :refuge
-  has_many :responses
-  has_many :needs
+  has_many :responses, dependent: :destroy
+  has_many :needs, dependent: :destroy
 
   QUESTIONS = YAML::load(File.open(File.join(Rails.root, 'config', "questions.yml")))
 
