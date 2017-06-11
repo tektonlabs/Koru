@@ -8,3 +8,8 @@
 //= require gmaps/google
 //= require Chart
 //= require twitter/typeahead.min
+//= require_tree ./front
+
+window.onresize = function(event) {
+  initialize_refuges();
+};

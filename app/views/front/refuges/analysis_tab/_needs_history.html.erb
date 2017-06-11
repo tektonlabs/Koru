@@ -2,14 +2,14 @@
   <div class="panel-heading">
     <h3 class="panel-title"><%= t "refuges.history_of_needs" %></h3>
     <div class="right selector-styles">
-      <%= form_tag historical_issues_by_entity_refuge_path, id: "historical-issues-#{refuge.id}", method: :get, remote: true do %>
+      <%= form_tag historical_issues_by_entity_front_refuge_path, id: "historical-issues-#{refuge.id}", method: :get, remote: true do %>
         <%= select_tag :entity_id, options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "#{t 'filter_select_all'}", id: "entity-selected-#{refuge.id}", class: 'form-control' %>
       <% end %>
     </div>
     <hr>
   </div>
   <div id="chart-content-<%= refuge.id %>" class="panel-body">
-    <%= render 'refuges/analysis_tab/line_chart_content', line_size: @line_size, line_data: @line_data %>
+    <%= render 'front/refuges/analysis_tab/line_chart_content', line_size: @line_size, line_data: @line_data %>
   </div>
 </div>
 

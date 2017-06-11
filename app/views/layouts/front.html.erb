@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RefugiosApp</title>
+    <%= csrf_meta_tags %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <%= stylesheet_link_tag 'front', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'front', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <div id="wrapper">
+      <%= render 'layouts/front_components/navbar' %>
+      <div id="sidebar-nav" class="sidebar">
+        <%= render 'layouts/front_components/sidebar' %>
+      </div>
+      <div class="main">
+        <div class="main-content">
+          <%= yield %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <%= yield :javascript_tags  %>
+  </body>
+</html>

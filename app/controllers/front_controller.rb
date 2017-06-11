@@ -1,10 +1,10 @@
-class AdminController < ApplicationController
+class FrontController < ApplicationController
   
-  layout 'admin'
+  layout 'front'
 
   protect_from_forgery with: :exception
 
-  before_action :set_controller, :set_action, :authenticate_admin!
+  before_action :set_controller, :set_action
 
   def set_controller
     @controller = params[:controller]

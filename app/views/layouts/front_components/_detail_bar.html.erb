@@ -2,7 +2,7 @@
   <nav>
     <ul class="nav">
       <li>
-        <%= link_to root_path, class: "active", remote: true do %>
+        <%= link_to front_root_path, class: "active", remote: true do %>
           <table>
             <tr>
               <td rowspan="2"><i class="glyphicon glyphicon-certificate <%= refuge_class_status(refuge) %>"></i></td>
@@ -16,7 +16,7 @@
       </li>
       <ul>
         <br>
-        <%= link_to "#{t 'nav.refuge_detail_button'}", refuge, class: "btn btn-primary", data: { turbolinks: "false" } %>
+        <%= link_to "#{t 'nav.refuge_detail_button'}", front_refuge_path(refuge), class: "btn btn-primary", data: { turbolinks: "false" } %>
       </ul>
     </ul>
   </nav>

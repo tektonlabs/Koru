@@ -1,4 +1,4 @@
-class RefugesController < ApplicationController
+class Front::RefugesController < FrontController
 
   include FrontRefugesHelper
 
