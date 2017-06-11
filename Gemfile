@@ -71,6 +71,9 @@ gem 'mailgun-ruby', '~> 1.1', '>= 1.1.6'
 # Clean ruby syntax for writing and deploying cron jobs.
 gem 'whenever', '~> 0.9.7'
 
+# Flexible authentication solution for Rails with Warden
+gem 'devise', '~> 4.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

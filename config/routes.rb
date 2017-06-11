@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :admins
+  mount RailsAdmin::Engine => '/tracker', as: 'rails_admin'
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
@@ -14,6 +15,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    root 'refuges#index'
+    resources :refuges, only: :index
+  end
+
+
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
     root 'refuges#index'
     resources :refuges, only: [:index, :show] do
@@ -26,7 +33,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
   match '*path', to: redirect("#{ENV['RELATIVE_URL_ROOT']}/#{I18n.default_locale}/%{path}"), via: :all
   match '', to: redirect("#{ENV['RELATIVE_URL_ROOT']}/#{I18n.default_locale}"), via: :all
 

@@ -1,6 +1,6 @@
 class RefugesController < ApplicationController
 
-  include RefugesHelper
+  include FrontRefugesHelper
 
   before_action :set_refuge, only: [:show, :detail, :doughnut_graph_settings, :line_graph_settings, :historical_issues_by_entity]
 
