@@ -8,7 +8,7 @@
     <div class="navbar-btn">
       <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
     </div>
-    <% unless @controller == "refuges" and @action == "show" %>
+    <% unless @controller == "front/refuges" and @action == "show" %>
       <div class="navbar-form navbar-left">
         <div class="input-group">
           <div class="input-group-btn">
@@ -32,12 +32,12 @@
           <% end %>
         </div>
       </div>
+      <div class="navbar-btn navbar-btn-right">
+        <%= t "nav.language_translate" %>:
+        <%= link_to_unless_current "#{t 'nav.spanish_language'}", locale: "es" %> |
+        <%= link_to_unless_current "#{t 'nav.english_language'}", locale: "en" %>
+      </div>
     <% end %>
-    <div class="navbar-btn navbar-btn-right">
-      <%= t "nav.language_translate" %>:
-      <%= link_to_unless_current "#{t 'nav.spanish_language'}", locale: "es" %> |
-      <%= link_to_unless_current "#{t 'nav.english_language'}", locale: "en" %>
-    </div>
   </div>
 </nav>
 

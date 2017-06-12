@@ -5,4 +5,5 @@
 //= require bootstrap-sprockets
 //= require semantic-ui
 //= require twitter/typeahead.min
+//= require bootstrap-datepicker
 //= require_tree ./admin

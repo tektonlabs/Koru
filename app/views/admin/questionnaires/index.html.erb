@@ -1,0 +1,26 @@
+<h1>
+  Formularios
+  <div class="pull-right">
+    <%= link_to "Nuevo", "#", class: "btn btn-primary" %>
+  </div>
+</h1>
+<%= form_tag admin_questionnaires_path, method: :get, class: "form-inline", remote: true do %>
+  <%= select_tag :refuge, options_from_collection_for_select(refuges_all, 'id', 'name'), include_blank: "-- Todos --", id: "refuge-selector", class: 'form-control ui search dropdown' %>
+  <%= text_field_tag :date, params[:date], value: "", placeholder: "Ingrese fecha", class: "form-control datepicker" %>
+  <%= text_field_tag :dni, params[:dni], value: "", placeholder: "Ingrese dni", class: "form-control" %>
+  <%= submit_tag "Filtrar", name: nil, class: "btn btn-primary margin-button-filter" %>
+<% end %>
+<div class="panel info-panel-margin">
+  <div id="questionnaires-list" class="panel-body">
+    <%= render 'questionnaires_table', questionnaires: @questionnaires %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#refuge-selector").dropdown();
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      format: 'dd/mm/yyyy',
+    });
+  });
+</script>

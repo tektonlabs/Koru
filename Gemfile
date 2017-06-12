@@ -74,6 +74,12 @@ gem 'whenever', '~> 0.9.7'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.3'
 
+# WillPaginate provides a simple API for performing paginated queries with Active Record, DataMapper and Sequel, and includes helpers for rendering pagination links in Rails, Sinatra and Merb web apps.
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+
+# A date picker for Twitter Bootstrap
+gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.4.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

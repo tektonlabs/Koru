@@ -1,6 +1,4 @@
 default: &default
-  username: postgres
-  password: nuttertools
   adapter: postgresql
   encoding: unicode
   pool: 5

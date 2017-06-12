@@ -9,6 +9,16 @@
               <p class="lead">Panel de Administración</p>
             </div>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-auth-small") do |f| %>
+              <% unless notice.blank? %>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                  <i class="fa fa-check-circle"></i> <%= notice %>
+                </div>
+              <% end %>
+              <% unless alert.blank? or alert == "Necesita iniciar sesión para continuar." %>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <i class="fa fa-times-circle"></i> <%= alert %>
+                </div>
+              <% end %>
               <div class="form-group">
                 <%= f.label :email, class: "control-label sr-only", for: "signin-email" %>
                 <%= f.email_field :email, class: "form-control", id: "signin-email", placeholder: "Email", autofocus: true %>

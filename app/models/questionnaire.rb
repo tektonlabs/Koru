@@ -7,6 +7,37 @@ class Questionnaire < ApplicationRecord
 
   QUESTIONS = YAML::load(File.open(File.join(Rails.root, 'config', "questions.yml")))
 
+  def self.search search_params
+    self.search_by_query(search_params[:refuge]).
+      search_by_date(search_params[:date]).
+      search_by_dni(search_params[:dni])
+  end
+
+  def self.search_by_query refuge
+    if refuge.present?
+      where("refuge_id = ?", refuge)
+    else
+      all
+    end
+  end
+
+  def self.search_by_date date
+    if date.present?
+      datetime = date.to_datetime
+      where("state_date BETWEEN  ? and ?", datetime.beginning_of_day, datetime.end_of_day)
+    else
+      all
+    end
+  end
+
+  def self.search_by_dni dni
+    if dni.present?
+      joins(:user).where("users.dni ILIKE ?", "%#{dni}%")
+    else
+      all
+    end
+  end
+
   def save_with_responses questions_params, date_param, dni_param
     self.refuge.refuge_entities.update_all issues_number: 0
     self.state_date = Time.at date_param.to_i
@@ -85,7 +116,7 @@ class Questionnaire < ApplicationRecord
         if question_answer.negative?
           self.needs.build title: "Faltaron raciones de comida", entity: entity
         end
-      # Salud
+        # Salud
       when "Médicos"
         case question_answer.class_type
         when "middle"
@@ -114,9 +145,9 @@ class Questionnaire < ApplicationRecord
         when "negative"
           self.needs.build title: "No hubo presencia de voluntarios en salud", entity: entity
         end
-      # Higiene Personal
+        # Higiene Personal
         # No one choice questions
-      # Limpieza
+        # Limpieza
       when "Baños"
         if question_answer.negative?
           self.needs.build title: "Los baños están sucios", entity: entity
@@ -133,12 +164,12 @@ class Questionnaire < ApplicationRecord
         if question_answer.negative?
           self.needs.build title: "La cocina está sucia", entity: entity
         end
-      # Electricidad
+        # Electricidad
       when "¿Tienen electricidad?"
         if question_answer.negative?
           self.needs.build title: "No hay electricidad", entity: entity
         end
-      # Agua
+        # Agua
       when "¿Tienen agua para los baños, duchas y lavanderías?"
         case question_answer.class_type
         when "middle"
@@ -154,7 +185,7 @@ class Questionnaire < ApplicationRecord
         if question_answer.negative?
           self.needs.build title: "No está yendo el camión cisterna a dejar agua", entity: entity
         end
-      # Gestion de residuos solidos
+        # Gestion de residuos solidos
       when "¿Cuentan con basureros y puntos de acopio de basura?"
         if question_answer.negative?
           self.needs.build title: "No hay basureros o puntos de acopio de basura", entity: entity
@@ -167,7 +198,7 @@ class Questionnaire < ApplicationRecord
         if question_answer.negative?
           self.needs.build title: "No hay nadie encargado del recojo de basura", entity: entity
         end
-      # Seguridad
+        # Seguridad
       when "¿Cómo se resolvió el incidente?"
         if question_answer.negative?
           self.needs.build title: "No se han resuelto las incidencias de seguridad", entity: entity
@@ -210,25 +241,25 @@ class Questionnaire < ApplicationRecord
       entity = question.entity.parent.nil? ? question.entity : question.entity.parent
       case question.text
       # Alimentos y agua bebible
-        # No multiple choice registered
+      # No multiple choice registered
       # Salud
       when "¿Se considera que algunas de estas personas deba ser evacuada por motivos de salud?"
         self.needs.build title: "Hay personas que necesitan ser evacuadas por motivos de salud", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
       when "¿Se necesita alguna de estas medicinas? (marca todas las que sean necesarias)"
         self.needs.build title: "Se necesitan medicinas", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
-      # Higiene Personal
+        # Higiene Personal
       when "¿Se necesita alguno de estos artículos? (marca todas las que sean necesarias)"
         self.needs.build title: "Se necesitan artículos de higiene personal", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
-      # Limpieza
+        # Limpieza
       when "¿Qué productos de limpieza se necesita con urgencia? (marca todos los que falten)"
         self.needs.build title: "Se necesitan productos de limpieza", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
-      # Electricidad
+        # Electricidad
         # No multiple choice registered
-      # Agua
+        # Agua
         # No multiple choice registered
-      # Gestion de residuos solidos
+        # Gestion de residuos solidos
         # No multiple choice registered
-      # Seguridad
+        # Seguridad
       when "¿Se han reportado algunas de las siguientes incidencias?"
         self.needs.build title: "Se han reportado incidencias de seguridad", description: Answer.text_answers_selected(answers_selected, other_value), entity: entity
       when "¿Se han observado alguna de las siguientes situaciones de riesgo?"

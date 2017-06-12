@@ -56,6 +56,11 @@ class Refuge < ApplicationRecord
 
   after_create :adding_questions_and_entities
 
+  def self.search search_params
+    self.search_by_query(search_params[:query]).
+      search_by_dni(search_params[:dni])
+  end
+
   def self.search_with search_params, limit, offset
     results = search_by_query(search_params[:query])
     if search_params[:lat].present? and search_params[:long].present?
@@ -68,6 +73,14 @@ class Refuge < ApplicationRecord
   def self.search_by_query query
     if query.present?
       joins(:country).where("refuges.name ILIKE ? OR refuges.city ILIKE ? OR refuges.address ILIKE ? OR countries.name ILIKE ?", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
+    else
+      all
+    end
+  end
+
+  def self.search_by_dni dni
+    if dni.present?
+      all
     else
       all
     end
