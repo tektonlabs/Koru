@@ -81,7 +81,7 @@ class Refuge < ApplicationRecord
 
   def self.search_by_dni dni
     if dni.present?
-      all
+      joins(:census_taker).where("census_takers.dni = ?", dni)
     else
       all
     end

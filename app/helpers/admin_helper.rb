@@ -4,6 +4,10 @@ module AdminHelper
     primary_contact.nil? ? "No se ha registrado" : primary_contact.first_name
   end
 
+  def set_census_taker census_taker
+    census_taker.nil? ? "No se ha registrado ningín empadronador" : census_taker.dni
+  end
+
   def set_city_country refuge
     refuge.city.blank? ? "#{refuge.country.name}" : "#{refuge.city}, #{refuge.country.name}"
   end

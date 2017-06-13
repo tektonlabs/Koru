@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :refuges, only: :index
     resources :questionnaires, only: :index
     resources :users, only: :index
+    resources :census_takers, only: :index
   end
 
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do

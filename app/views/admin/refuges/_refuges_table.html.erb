@@ -1,30 +1,34 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Ubicación</th>
-      <th>Formularios</th>
-      <th>Coordinador</th>
-      <th>DNI</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @refuges.each do |refuge| %>
+<% if @refuges.blank? %>
+  No se encontraron resultados.
+<% else %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= refuge.name %></td>
-        <td><%= set_city_country refuge %></td>
-        <td><%= refuge.questionnaires.count %></td>
-        <td><%= set_primary_contact refuge.primary_contact %></td>
-        <td>987654321</td>
-        <td>
-          <%= link_to "<i class='plus icon'></i>".html_safe, "#" %>
-          <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
-          <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
-          <%= link_to "<i class='remove icon'></i>".html_safe, "#" %>
-        </td>
+        <th>Nombre</th>
+        <th>Ubicación</th>
+        <th>Formularios</th>
+        <th>Coordinador</th>
+        <th>DNI</th>
+        <th>Acciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @refuges, class: "refuge-pagination" %>
+    </thead>
+    <tbody>
+      <% @refuges.each do |refuge| %>
+        <tr>
+          <td><%= refuge.name %></td>
+          <td><%= set_city_country refuge %></td>
+          <td><%= link_to refuge.questionnaires.count, admin_questionnaires_path(refuge_id: refuge.id) %></td>
+          <td><%= set_primary_contact refuge.primary_contact %></td>
+          <td><%= set_census_taker refuge.census_taker %></td>
+          <td>
+            <%= link_to "<i class='plus icon'></i>".html_safe, "#" %>
+            <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
+            <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
+            <%= link_to "<i class='remove icon'></i>".html_safe, "#" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @refuges, class: "custom-pagination" %>
+<% end %>

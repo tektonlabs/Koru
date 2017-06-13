@@ -5,7 +5,7 @@
     <%= link_to "#{t 'refuges.download_button'}", "#", class: "btn btn-primary pull-right" %>
     <i class="glyphicon refuge-status glyphicon-certificate <%= refuge_class_status(@refuge) %>"></i>
     <div class="sub-title-refuge">
-      <div><%= t "refuges.coordinator" %>: Larry Tekton / Teléfono: 987654321</div>
+      <div><%= t 'refuges.coordinator' %>: <%= set_primary_contact @refuge.primary_contact %></div>
       <div><%= "#{t 'refuges.last_update'}: #{last_updated_date(@refuge)}" %></div>
     </div>
   </h1>
