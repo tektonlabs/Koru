@@ -53,7 +53,7 @@ class Api::V1::RefugesController < Api::ApiV1Controller
   end
 
   def census_taker_params
-    params.permit(census_taker: [:dni, :phone, :intitution])
+    params.permit(census_taker: [:dni, :phone, :institution])
   end
 
 end

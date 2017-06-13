@@ -1,6 +1,6 @@
 class CensusTaker < ApplicationRecord
 
-  validates :dni, :phone, :intitution, presence: true
+  validates :dni, :phone, :institution, presence: true
   validates :dni, length: { is: 8 }
   validates :phone, length: { is: 9 }
 
