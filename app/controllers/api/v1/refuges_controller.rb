@@ -9,7 +9,9 @@ class Api::V1::RefugesController < Api::ApiV1Controller
 
   def create
     new_refuge = Refuge.new refuges_params
+    new_census_taker = CensusTaker.get_or_initialize census_taker_params[:census_taker]
     new_primary_contact = Contact.get_or_initialize primary_contact_params[:primary_contact]
+    new_refuge.census_taker = new_census_taker
     new_refuge.primary_contact = new_primary_contact
     new_refuge.secondary_contacts = secondary_contacts_params[:secondary_contacts].map{ |x| Contact.get_or_initialize(x) }
     if new_refuge.save
@@ -48,6 +50,10 @@ class Api::V1::RefugesController < Api::ApiV1Controller
 
   def secondary_contacts_params
     params.permit(secondary_contacts: [:first_name, :last_name, :phone, :email])
+  end
+
+  def census_taker_params
+    params.permit(census_taker: [:dni, :phone, :intitution])
   end
 
 end
