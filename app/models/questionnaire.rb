@@ -8,7 +8,7 @@ class Questionnaire < ApplicationRecord
   QUESTIONS = YAML::load(File.open(File.join(Rails.root, 'config', "questions.yml")))
 
   def self.search search_params
-    self.search_by_query(search_params[:refuge]).
+    self.search_by_query(search_params[:refuge_id]).
       search_by_date(search_params[:date]).
       search_by_dni(search_params[:dni])
   end

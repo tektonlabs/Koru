@@ -1,29 +1,33 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Refugio</th>
-      <th>Fecha</th>
-      <th>Hora</th>
-      <th>DNI</th>
-      <th>Necesidades</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @questionnaires.each do |questionnaire| %>
+<% if @questionnaires.blank? %>
+  No se encontraron resultados.
+<% else %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= questionnaire.refuge.name %></td>
-        <td><%= only_date questionnaire.state_date %></td>
-        <td><%= only_hours questionnaire.state_date %></td>
-        <td><%= questionnaire.user.dni %></td>
-        <td><%= questionnaire.needs.count %></td>
-        <td>
-          <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
-          <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
-          <%= link_to "<i class='remove icon'></i>".html_safe, "#" %>
-        </td>
+        <th>Refugio</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>DNI</th>
+        <th>Necesidades</th>
+        <th>Acciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @questionnaires, class: "custom-pagination" %>
+    </thead>
+    <tbody>
+      <% @questionnaires.each do |questionnaire| %>
+        <tr>
+          <td><%= questionnaire.refuge.name %></td>
+          <td><%= only_date questionnaire.state_date %></td>
+          <td><%= only_hours questionnaire.state_date %></td>
+          <td><%= questionnaire.user.dni %></td>
+          <td><%= questionnaire.needs.count %></td>
+          <td>
+            <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
+            <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
+            <%= link_to "<i class='remove icon'></i>".html_safe, "#" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @questionnaires, class: "custom-pagination" %>
+<% end %>

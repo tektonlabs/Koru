@@ -1,19 +1,21 @@
-<% if @users.blank? %>
+<% if @census_takers.blank? %>
   No se encontraron resultados.
 <% else %>
   <table class="table table-hover">
     <thead>
       <tr>
         <th>DNI</th>
-        <th>Formularios</th>
+        <th>Celular</th>
+        <th>Refugios</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @census_takers.each do |census_taker| %>
         <tr>
-          <td><%= user.dni %></td>
-          <td><%= link_to user.questionnaires.count, admin_questionnaires_path(dni: user.dni) %></td>
+          <td><%= census_taker.dni %></td>
+          <td><%= census_taker.phone %></td>
+          <td><%= link_to census_taker.refuges.count, admin_refuges_path(dni: census_taker.dni) %></td>
           <td>
             <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
@@ -23,5 +25,5 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @users, class: "custom-pagination" %>
+  <%= will_paginate @census_takers, class: "custom-pagination" %>
 <% end %>

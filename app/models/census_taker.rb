@@ -13,4 +13,25 @@ class CensusTaker < ApplicationRecord
     census_taker
   end
 
+  def self.search search_params
+    self.search_by_dni(search_params[:dni]).
+      search_by_phone(search_params[:phone])
+  end
+
+  def self.search_by_dni dni
+    if dni.present?
+      where("dni = ?", dni)
+    else
+      all
+    end
+  end
+
+  def self.search_by_phone phone
+    if phone.present?
+      where("phone = ?", phone)
+    else
+      all
+    end
+  end
+
 end
