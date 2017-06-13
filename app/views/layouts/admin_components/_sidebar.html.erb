@@ -5,7 +5,7 @@
         <li><%= link_to "<i class='university icon'></i>Refugios".html_safe, admin_root_path, class: "#{'active' if @controller == "admin/refuges"}" %></li>
         <li><%= link_to "<i class='file text outline icon'></i>Formularios".html_safe, admin_questionnaires_path, class: "#{'active' if @controller == "admin/questionnaires"}" %></li>
         <li><%= link_to "<i class='users icon'></i>Empadronadores".html_safe, "#" %></li>
-        <li><%= link_to "<i class='user icon'></i>Usuarios".html_safe, "#" %></li>
+        <li><%= link_to "<i class='user icon'></i>Usuarios".html_safe, admin_users_path, class: "#{'active' if @controller == "admin/users"}" %></li>
         <li><%= link_to "<i class='spy icon'></i>Administradores".html_safe, "#" %></li>
       </ul>
     </nav>
