@@ -1,7 +1,7 @@
 class Admin::RefugesController < AdminController
 
   def index
-    @refuges = Refuge.search(search_params).includes(:country, :primary_contact, :questionnaires).order(:name).paginate(per_page: 25, page: params[:page])
+    @refuges = Refuge.search(search_params).includes(:country, :primary_contact, :questionnaires, :census_taker).order(:name).paginate(per_page: 25, page: params[:page])
   end
 
   private

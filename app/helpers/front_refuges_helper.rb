@@ -25,6 +25,10 @@ module FrontRefugesHelper
     Entity.first_level
   end
 
+  def set_primary_contact primary_contact
+    primary_contact.nil? ? t("refuges.no_primary_contact") : "#{primary_contact.first_name} / Telef: #{primary_contact.phone}"
+  end
+
   def refuge_color refuge
     case refuge.name
     when 'Alimentos y agua bebible'
