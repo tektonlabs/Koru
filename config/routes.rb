@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     root 'refuges#index'
     resources :refuges, only: :index
     resources :questionnaires, only: :index
+    resources :users, only: :index
   end
 
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
