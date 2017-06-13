@@ -8,7 +8,7 @@
     <div class="navbar-btn">
       <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
     </div>
-    <% unless @controller == "refuges" and @action == "show" %>
+    <% unless @controller == "front/refuges" and @action == "show" %>
       <div class="navbar-form navbar-left">
         <div class="input-group">
           <div class="input-group-btn">
@@ -27,17 +27,17 @@
       <div class="navbar-form navbar-left">
         <div class="filter-styles">
           <%= t "nav.filter_by_needs" %>
-          <%= form_tag filter_by_refuges_path, id: "form-filter-refuges", method: :get, remote: true do %>
+          <%= form_tag filter_by_front_refuges_path, id: "form-filter-refuges", method: :get, remote: true do %>
             <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "#{t 'filter_select_all'}", id: "filter-select", class: 'form-control ui selection dropdown', multiple: "" %>
           <% end %>
         </div>
       </div>
+      <div class="navbar-btn navbar-btn-right">
+        <%= t "nav.language_translate" %>:
+        <%= link_to_unless_current "#{t 'nav.spanish_language'}", locale: "es" %> |
+        <%= link_to_unless_current "#{t 'nav.english_language'}", locale: "en" %>
+      </div>
     <% end %>
-    <div class="navbar-btn navbar-btn-right">
-      <%= t "nav.language_translate" %>:
-      <%= link_to_unless_current "#{t 'nav.spanish_language'}", locale: "es" %> |
-      <%= link_to_unless_current "#{t 'nav.english_language'}", locale: "en" %>
-    </div>
   </div>
 </nav>
 
@@ -46,7 +46,7 @@
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
-      url: "<%= filter_by_refuges_url %>.json?query=%QUERY",
+      url: "<%= filter_by_front_refuges_url %>.json?query=%QUERY",
       wildcard: '%QUERY'
     }
   });
@@ -72,7 +72,7 @@
   $('#filter-select').dropdown({
     useLabels: false,
     onChange: function() {
-      refugesSource.remote.url = "<%= filter_by_refuges_url %>.json?query=%QUERY" + get_filters_selected();
+      refugesSource.remote.url = "<%= filter_by_front_refuges_url %>.json?query=%QUERY" + get_filters_selected();
       $("#form-filter-refuges").submit();
     }
   });

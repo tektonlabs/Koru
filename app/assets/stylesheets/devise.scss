@@ -1,0 +1,13 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "main";
+
+#title-login{
+  font-size: x-large;
+  font-weight: bold;
+}

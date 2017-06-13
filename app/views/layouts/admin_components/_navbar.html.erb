@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="brand">
+    <%= link_to admin_root_path do %>
+      <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", class: "img-responsive logo" %>
+    <% end %>
+  </div>
+  <div class="container-fluid">
+    <div class="navbar-btn">
+      <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+    </div>
+    <div id="navbar-menu">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" id="button-profile" class="dropdown-toggle" data-toggle="dropdown"><span><%= current_admin.full_name %></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="user icon"></i> <span>My Profile</span></a></li>
+            <li><%= link_to "<i class='sign out icon'></i> <span>Logout</span>".html_safe, destroy_admin_session_path, method: :delete %></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

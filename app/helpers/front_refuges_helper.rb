@@ -1,4 +1,4 @@
-module RefugesHelper
+module FrontRefugesHelper
 
   def refuges_map_data
     @refuges_all ||= Refuge.all.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }

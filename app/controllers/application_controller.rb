@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_action :set_controller, :set_action, :set_locale
+  before_action :set_controller, :set_action
 
   def set_controller
     @controller = params[:controller]
@@ -12,14 +12,12 @@ class ApplicationController < ActionController::Base
     @action = action_name
   end
 
-  private
-
-  def set_locale
-    I18n.locale = params[:locale] if params[:locale].present?
+  def after_sign_out_path_for(resource)
+    new_admin_session_path
   end
 
-  def default_url_options options = {}
-    { locale: I18n.locale }
+  def after_sign_in_path_for(resource)
+    admin_root_path
   end
 
 end

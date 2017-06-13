@@ -4,7 +4,6 @@
 //= require main
 //= require bootstrap-sprockets
 //= require semantic-ui
-//= require underscore
-//= require gmaps/google
-//= require Chart
 //= require twitter/typeahead.min
+//= require bootstrap-datepicker
+//= require_tree ./admin

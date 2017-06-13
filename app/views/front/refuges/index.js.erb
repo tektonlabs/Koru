@@ -1,7 +1,7 @@
 var delayMillis = 250;
 $('#detail-navbar').transition('fly right');
 setTimeout(function() {
-  $('#sidebar-nav').html('<%= escape_javascript render "layouts/sidebar" %>');
+  $('#sidebar-nav').html('<%= escape_javascript render "layouts/front_components/sidebar" %>');
   if( $('.sidebar-scroll').length > 0 ) {
     $('.sidebar-scroll').slimScroll({
       height: '95%',
