@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <% @refuges.each do |refuge| %>
-        <tr>
+        <tr id="row-refuge-<%= refuge.id %>">
           <td><%= refuge.name %></td>
           <td><%= set_city_country refuge %></td>
           <td><%= link_to refuge.questionnaires.count, admin_questionnaires_path(refuge_id: refuge.id) %></td>
@@ -24,7 +24,7 @@
             <%= link_to "<i class='plus icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
-            <%= link_to "<i class='remove icon'></i>".html_safe, "#" %>
+            <%= link_to "<i class='remove icon'></i>".html_safe, "#", class: "delete-refuge", data: {toggle: "modal", target: "#modal-delete", id: "#{refuge.id}"} %>
           </td>
         </tr>
       <% end %>
@@ -32,3 +32,11 @@
   </table>
   <%= will_paginate @refuges, class: "custom-pagination" %>
 <% end %>
+<%= render 'helpers/modal_delete', entity: "Refugio" %>
+
+<script type="text/javascript">
+  $(".delete-refuge").on("click", function(){
+    var id = $(this).data("id");
+    $("#modal-delete").attr("data-refuge", id);
+  })
+</script>
