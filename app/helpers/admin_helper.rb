@@ -28,4 +28,8 @@ module AdminHelper
     primary_contact.nil? ? "No se ha registrado" : "#{primary_contact.first_name}"
   end
 
+  def set_user_questionnaire user
+    user.nil? ? 'No se ha registrado' : user.dni
+  end
+
 end

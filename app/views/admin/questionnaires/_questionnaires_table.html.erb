@@ -18,7 +18,7 @@
           <td><%= questionnaire.refuge.name %></td>
           <td><%= only_date questionnaire.state_date %></td>
           <td><%= only_hours questionnaire.state_date %></td>
-          <td><%= questionnaire.user.dni %></td>
+          <td><%= set_user_questionnaire questionnaire.user %></td>
           <td><%= questionnaire.needs.count %></td>
           <td>
             <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
