@@ -1,9 +1,5 @@
 module AdminHelper
 
-  def set_primary_contact primary_contact
-    primary_contact.nil? ? "No se ha registrado" : primary_contact.first_name
-  end
-
   def set_census_taker census_taker
     census_taker.nil? ? "No se ha registrado" : census_taker.dni
   end
