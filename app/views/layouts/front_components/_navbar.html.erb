@@ -32,6 +32,9 @@
           <% end %>
         </div>
       </div>
+      <div class="navbar-form navbar-left">
+        <%= link_to "Admin Portal", admin_root_path %>
+      </div>
       <div class="navbar-btn navbar-btn-right">
         <%= t "nav.language_translate" %>:
         <%= link_to_unless_current "#{t 'nav.spanish_language'}", locale: "es" %> |

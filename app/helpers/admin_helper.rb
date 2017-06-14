@@ -5,7 +5,7 @@ module AdminHelper
   end
 
   def set_census_taker census_taker
-    census_taker.nil? ? "No se ha registrado ningín empadronador" : census_taker.dni
+    census_taker.nil? ? "No se ha registrado" : census_taker.dni
   end
 
   def set_city_country refuge
@@ -22,6 +22,10 @@ module AdminHelper
 
   def refuges_all
     @refuges ||= Refuge.all
+  end
+
+  def set_contact primary_contact
+    primary_contact.nil? ? "No se ha registrado" : "#{primary_contact.first_name}"
   end
 
 end

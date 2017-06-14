@@ -18,7 +18,7 @@
           <td><%= refuge.name %></td>
           <td><%= set_city_country refuge %></td>
           <td><%= link_to refuge.questionnaires.count, admin_questionnaires_path(refuge_id: refuge.id) %></td>
-          <td><%= set_primary_contact refuge.primary_contact %></td>
+          <td><%= set_contact refuge.primary_contact %></td>
           <td><%= set_census_taker refuge.census_taker %></td>
           <td>
             <%= link_to "<i class='plus icon'></i>".html_safe, "#" %>
