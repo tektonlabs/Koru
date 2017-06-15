@@ -56,3 +56,7 @@ es:
     observations: "Observaciones"
     no_observations_registered: "No se han registrado observaciones"
     no_primary_contact: "No se ha registrado contacto primario"
+    general: "General"
+    contact: "Contacto"
+    directions: "Direcciones"
+    photos: "Fotos"
