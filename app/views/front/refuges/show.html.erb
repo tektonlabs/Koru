@@ -2,7 +2,6 @@
 
   <h1 class="page-title">
     <b><%= @refuge.name %></b>
-    <%= link_to "#{t 'refuges.download_button'}", "#", class: "btn btn-primary pull-right" %>
     <i class="glyphicon refuge-status glyphicon-certificate <%= refuge_class_status(@refuge) %>"></i>
     <div class="sub-title-refuge">
       <div><%= t 'refuges.coordinator' %>: <%= set_primary_contact @refuge.primary_contact %></div>
@@ -17,6 +16,7 @@
       <li><a href="#contact-tab" role="tab" data-toggle="tab"><b><%= t "refuges.contact_tab" %></b></a></li>
     </ul>
   </div>
+
   <div class="tab-content">
     <div class="tab-pane fade in active" id="analysis-tab">
       <%= render 'analysis_tab', refuge: @refuge %>

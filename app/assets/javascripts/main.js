@@ -114,14 +114,14 @@ document.addEventListener("turbolinks:load", function() {
   if( $('.panel-scrolling').length > 0) {
     $('.panel-scrolling .panel-body').slimScroll({
       height: '430px',
-      wheelStep: 2,
+      wheelStep: 10,
     });
   }
 
   if( $('#panel-scrolling-demo').length > 0) {
     $('#panel-scrolling-demo .panel-body').slimScroll({
       height: '175px',
-      wheelStep: 2,
+      wheelStep: 10,
     });
   }
 

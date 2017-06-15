@@ -14,7 +14,7 @@
           <table>
             <% refuge.observation_responses.includes(question: :entity).each do |response| %>
               <tr>
-                <td><i class="glyphicon glyphicon-record item-status <%= refuge_color(response.question.entity) %>"></i></td>
+                <td><i class="glyphicon glyphicon-record item-status <%= entity_color(response.question.entity) %>"></i></td>
                 <td><b><%= response.question.entity.name %></b></td>
               </tr>
               <tr>

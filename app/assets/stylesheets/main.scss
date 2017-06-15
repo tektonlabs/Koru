@@ -70,7 +70,7 @@ th {
 @media screen and (max-width: 767px) {
   #wrapper #sidebar-nav,
   #wrapper .main {
-    padding-top: 130px; } }
+    padding-top: 80px; } }
 
 .layout-fullwidth #wrapper .sidebar {
   left: -260px; }
@@ -154,18 +154,32 @@ html.fullscreen-bg #wrapper {
     background-color: #f8f8f8; }
   .navbar-default .brand {
     float: left;
-    padding: 30px 39px;
+    padding: 30px 25px;
     background-color: #fff; }
   @media screen and (max-width: 1024px) {
     .navbar-default .brand {
-      padding-left: 30px;
-      padding-right: 15px; } }
+      padding-left: 15px;
+      padding-right: 15px; }
+    .navbar-btn-right {
+      margin: 0 0 10px 0 !important;
+      padding: 0 !important; }
+    #wrapper .main {
+      padding-top: 115px; } }
   @media screen and (max-width: 992px) {
     .navbar-default .brand {
-      display: block; } }
+      display: block; }
+    #list-refuges {
+      margin-top: 80px; }
+    #list-refuges-bar {
+      margin-top: -60px; }
+    .navbar-btn-right {
+      margin: 0 !important;
+      padding: 0 !important; } }
   @media screen and (max-width: 640px) {
     .navbar-default #navbar-menu {
-      float: right; } }
+      float: right; }
+    #wrapper .main {
+      padding-top: 80px; } }
 
 .navbar-btn {
   float: left;
@@ -202,7 +216,7 @@ html.fullscreen-bg #wrapper {
       .navbar-form input[type="text"] {
         min-width: 150px; } }
   @media screen and (max-width: 640px) {
-    .navbar-form {
+    .navbar-form, .navbar-btn-right {
       display: none; } }
 
 .navbar-nav .icon-menu {
