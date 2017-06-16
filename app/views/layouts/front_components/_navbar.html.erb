@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="brand">
-    <%= link_to root_path do %>
-      <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", class: "img-responsive logo" %>
-    <% end %>
-  </div>
   <div class="container-fluid">
     <div class="navbar-btn">
-      <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+      <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+    </div>
+    <div class="brand">
+      <%= link_to root_path do %>
+        <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", class: "img-responsive logo" %>
+      <% end %>
     </div>
     <% unless @controller == "front/refuges" and @action == "show" %>
       <div class="navbar-form navbar-left">
@@ -32,14 +32,14 @@
           <% end %>
         </div>
       </div>
-      <div class="navbar-form navbar-left">
-        <%= link_to "Admin Portal", admin_root_path %>
-      </div>
-      <div class="navbar-btn navbar-btn-right">
-        <%= t "nav.language_translate" %>:
+      <div class="navbar-btn navbar-btn-right translate-buttons-styles">
+        <%#= t "nav.language_translate" %>
         <%= link_to_unless_current "#{t 'nav.spanish_language'}", locale: "es" %> |
         <%= link_to_unless_current "#{t 'nav.english_language'}", locale: "en" %>
       </div>
+      <!-- <div class="navbar-btn navbar-btn-right admin-button-margin"> -->
+        <%#= link_to "Admin Portal", admin_root_path %>
+      <!-- </div> -->
     <% end %>
   </div>
 </nav>
