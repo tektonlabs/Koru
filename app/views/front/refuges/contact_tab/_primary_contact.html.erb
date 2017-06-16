@@ -1,0 +1,25 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t "refuges.contact" %></h3>
+    <hr>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-5">
+      <%= image_tag "no-profile-photo.jpg", class: "img-responsive" %>
+    </div>
+    <form class="form-horizontal col-md-7">
+      <div class="form-group">
+        <p class="col-md-4">Distrito:</p> 
+        <p class="col-md-8"><%= refuge.address %></p>
+      </div>
+      <div class="form-group">
+        <p class="col-md-4">Distrito:</p> 
+        <p class="col-md-8"><%= refuge.address %></p>
+      </div>
+      <div class="form-group">
+        <p class="col-md-4">Provincia:</p>
+        <p class="col-md-8"><%= refuge.city %></p>
+      </div>
+    </form>
+  </div>
+</div>
