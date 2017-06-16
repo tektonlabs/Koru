@@ -55,7 +55,7 @@ es:
     no_needs_of_categories: "No se han registrado necesidades"
     observations: "Observaciones"
     no_observations_registered: "No se han registrado observaciones"
-    no_primary_contact: "No se ha registrado contacto primario"
+    no_primary_contact: "No se ha registrado"
     general: "General"
     contact: "Contacto"
     directions: "Direcciones"

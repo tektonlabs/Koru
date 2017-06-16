@@ -8,6 +8,7 @@ class Admin::RefugesController < AdminController
 
   def destroy
     @refuge.destroy
+    redirect_to admin_root_path
   end
 
   private

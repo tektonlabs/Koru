@@ -13,7 +13,7 @@
         <table>
           <% refuge.last_questionnaire.needs.each do |need| %>
             <tr>
-              <td><i class="glyphicon glyphicon-remove-sign item-status danger"></i></td>
+              <td><i class="glyphicon glyphicon-remove-sign item-status <%= entity_color(need.entity) %>"></i></td>
               <td><b><%= need.title %></b></td>
             </tr>
             <tr>

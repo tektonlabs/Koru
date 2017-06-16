@@ -24,7 +24,7 @@
             <%= link_to "<i class='plus icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
-            <%= link_to "<i class='remove icon'></i>".html_safe, "#", class: "delete-refuge", data: {toggle: "modal", target: "#modal-delete", id: "#{refuge.id}"} %>
+            <%= link_to "<i class='remove icon'></i>".html_safe, admin_refuge_path(refuge), method: :delete, class: "delete-refuge", data: { confirm: "¿Está seguro que desea eliminar el refugio #{refuge.name}?" } %>
           </td>
         </tr>
       <% end %>
@@ -32,11 +32,3 @@
   </table>
   <%= will_paginate @refuges, class: "custom-pagination" %>
 <% end %>
-<%= render 'helpers/modal_delete', entity: "Refugio" %>
-
-<script type="text/javascript">
-  $(".delete-refuge").on("click", function(){
-    var id = $(this).data("id");
-    $("#modal-delete").attr("data-refuge", id);
-  })
-</script>

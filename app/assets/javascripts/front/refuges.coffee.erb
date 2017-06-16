@@ -21,6 +21,7 @@ markers = []
       map: map)
     markers.push marker
     info_marker_event infowindow, marker
+    marker_click_listener marker, locale
   bounds = new (google.maps.LatLngBounds)
 
   if sessionStorage["new_locations"] != undefined && sessionStorage["new_locations"] != ""
@@ -49,6 +50,7 @@ markers = []
 
   sidebar = document.getElementById("list-refuges")
   google.maps.event.addListener map, 'bounds_changed', ->
+    google.maps.event.trigger(map, "resize")
     sidebar.innerHTML = ""
     results = new Array
     new_locations = new Array
@@ -97,9 +99,9 @@ markers = []
         table.appendChild(tr_name)
         table.appendChild(tr_address)
         link_to.appendChild(table)
-        link_to.setAttribute("href", "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>/" + locale + "/refuges/" + result.id + "/detail")
+        link_to.setAttribute("href", "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>/" + locale + "/refuges/" + result.id)# + "/detail")
         link_to.setAttribute("data-method", "get")
-        link_to.setAttribute("data-remote", "true")
+        # link_to.setAttribute("data-remote", "true")
         li.appendChild(link_to)
         sidebar.appendChild(li)
       sessionStorage["refuges_list"] = sidebar.innerHTML
@@ -197,6 +199,12 @@ clear_overlays = ->
   markers.length = 0
   return
 
+marker_click_listener = (marker, locale) ->
+  google.maps.event.addListener marker, 'click', do (marker) ->
+    ->
+      window.open "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>/" + locale + "/refuges/" + marker.id, "_self"
+      return
+
 info_marker_event = (infowindow, marker) ->
   google.maps.event.addListener marker, 'mouseover', do (marker) ->
     ->
@@ -225,3 +233,12 @@ document.addEventListener "turbolinks:load", ->
       $('#input-search-by-location').addClass 'hide'
       $('#input-search-by-refuge').removeClass 'hide'
     return
+
+  jQuery ($) ->
+  $('#list-refuges-bar').on 'scroll', ->
+    if $(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight
+      $("#sidebar-arrow-down").hide()
+    else
+      $("#sidebar-arrow-down").show()
+    return
+  return

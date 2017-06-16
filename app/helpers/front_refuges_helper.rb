@@ -29,13 +29,14 @@ module FrontRefugesHelper
     primary_contact.nil? ? t("refuges.no_primary_contact") : "#{primary_contact.first_name} / Telef: #{primary_contact.phone}"
   end
 
-  def refuge_color refuge
-    case refuge.name
+  def entity_color entity
+    entity = entity.parent.nil? ? entity : entity.parent
+    case entity.name
     when 'Alimentos y agua bebible'
       'refuge-food'
     when 'Salud'
       'refuge-health'
-    when 'Higiene Personal'
+    when 'Higiene personal'
       'refuge-personal-hygiene'
     when 'Limpieza'
       'refuge-cleaning'

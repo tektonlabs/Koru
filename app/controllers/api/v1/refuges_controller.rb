@@ -27,6 +27,11 @@ class Api::V1::RefugesController < Api::ApiV1Controller
     render json: results.as_json.group_by{ |x| x["table_name"] }
   end
 
+  def search_committees
+    committees = Committee.where("name ILIKE ?", "%#{params[:filter]}%")
+    render json: committees
+  end
+
   private
 
   def pagination
@@ -41,6 +46,10 @@ class Api::V1::RefugesController < Api::ApiV1Controller
   end
 
   def refuges_params
+    params['refuge_committees_attributes'].each do |refuge_committee|
+      refuge_committee['committee_id'] = Committee.find_or_create_by(name: refuge_committee['committee_name']).id
+      refuge_committee.delete('committee_name')
+    end
     params.permit(:name, :latitude, :longitude, :address, :city, :country_id, :refuge_type, :institution_in_charge, :emergency_type, :property_type, :accessibility, :victims_provenance, :floor_type, :roof_type, :number_of_families, :number_of_people, :number_of_pregnant_women, :number_of_children_under_3, :number_of_older_adults, :number_of_people_with_disabilities, :number_of_pets, :number_of_farm_animals, :number_of_carp, :number_of_toilets, :number_of_washbasins, :number_of_showers, :number_of_tanks, :number_of_landfills, :number_of_garbage_collection_points, :committees, refuge_areas_attributes: [:area_id], refuge_committees_attributes: [:committee_id], refuge_food_managements_attributes: [:food_management_id], refuge_housing_statuses_attributes: [:housing_status_id], refuge_light_managements_attributes: [:light_management_id], refuge_services_attributes: [:service_id], refuge_stool_managements_attributes: [:stool_management_id], refuge_waste_managements_attributes: [:waste_management_id], refuge_water_managements_attributes: [:water_management_id])
   end
 
