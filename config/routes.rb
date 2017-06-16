@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         resources :responses, only: :create
         collection do
           get :multiple_choice_ids
+          get :search_committees
         end
       end
     end
