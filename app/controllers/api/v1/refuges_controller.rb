@@ -27,6 +27,11 @@ class Api::V1::RefugesController < Api::ApiV1Controller
     render json: results.as_json.group_by{ |x| x["table_name"] }
   end
 
+  def search_committees
+    committees = Committee.where("name ILIKE ?", "%#{params[:filter]}%")
+    render json: committees
+  end
+
   private
 
   def pagination
