@@ -243,6 +243,11 @@ html.fullscreen-bg #wrapper {
   #wrapper .main {
     padding-top: 80px;
   }
+  .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 5px;
+  }
 }
 
 .navbar-btn {
@@ -259,9 +264,17 @@ html.fullscreen-bg #wrapper {
   outline: none;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 670px) {
   .navbar-btn {
     padding-left: 0;
+  }
+  .content-container {
+    margin: 26px 5px 26px 5px;
+  }
+  .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 12px;
   }
 }
 
@@ -293,12 +306,43 @@ html.fullscreen-bg #wrapper {
   .navbar-form input[type="text"] {
     min-width: 150px;
   }
+  .content-container {
+    margin: 26px 5px 26px 5px;
+  }
+  .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 10px;
+  }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 570px) {
   .navbar-form,
   .navbar-btn-right {
     display: none;
+  }
+  .content-container {
+    margin: 26px 5px 26px 5px;
+  }
+  .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 10px;
+  }
+}
+
+@media screen and (max-width: 569px) {
+  .navbar-form,
+  .navbar-btn-right {
+    display: none;
+  }
+  .content-container {
+    margin: 26px 5px 26px 5px;
+  }
+  .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 4px;
   }
 }
 
