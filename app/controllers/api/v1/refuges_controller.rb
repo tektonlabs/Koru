@@ -28,7 +28,7 @@ class Api::V1::RefugesController < Api::ApiV1Controller
   end
 
   def search_committees
-    committees = Committee.where("lower(name) LIKE ?", "%#{params[:filter].downcase}%")
+    committees = Committee.where("name ILIKE ?", "%#{params[:filter]}%")
     render json: committees
   end
 
