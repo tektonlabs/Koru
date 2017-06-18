@@ -1,3 +1,22 @@
+<style>
+  .wrap {
+    height:auto;
+    margin: auto;
+    text-align:center;
+    position:relative;
+  }
+  .text_over_image {
+      position: absolute;
+      margin: auto;
+      top: 0;
+      left:0;
+      right:0;
+      bottom:0;
+      color:#fff;
+      height:10px;
+      font-size: 250%;
+  }
+</style>
 <div class="panel">
   <div class="panel-heading">
     <h3 class="panel-title"><%= t "refuges.photos" %></h3>
@@ -13,7 +32,8 @@
       <div class="col-md-6">
         <%= link_to image_tag("refugios/refugio2.jpg", style: "max-width: 100%; max-height: 95%;"), image_path("refugios/refugio2.jpg"), {'data-fancybox': "gallery"} %>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 wrap">
+        <%= link_to "37", image_path("refugios/refugio3.jpg"), {'data-fancybox': "gallery", class: "text_over_image" } %>
         <%= link_to image_tag("refugios/refugio3.jpg", style: "max-width: 100%; max-height: 95%;"), image_path("refugios/refugio3.jpg"), {'data-fancybox': "gallery"} %>
       </div>
       <div class="row" style="display:none;">
