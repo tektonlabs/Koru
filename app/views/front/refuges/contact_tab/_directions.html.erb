@@ -1,8 +1,21 @@
+<style>
+   #refuge-map {
+    height: 520px;
+    width: 100%;
+   }
+</style>
 <div class="panel">
   <div class="panel-heading">
     <h3 class="panel-title"><%= t "refuges.directions" %></h3>
     <hr>
   </div>
   <div class="panel-body">
+    <div id='refuge-map'>
+    </div>
   </div>
 </div>
+
+<% content_for :javascript_tags do %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYZQCwE8B-r7ORDi49Hzum8vXKyoLl4k&callback=initMap" async defer>
+  </script>
+<% end %>
