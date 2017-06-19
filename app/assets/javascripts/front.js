@@ -15,5 +15,7 @@ window.onresize = function(event) {
 };
 
 function initMap(refuge, locale){
-  loadMapWithRefuge(refuge, locale);
+  if (refuge !== undefined) {
+    loadMapWithRefuge(refuge, locale);
+  }
 };
