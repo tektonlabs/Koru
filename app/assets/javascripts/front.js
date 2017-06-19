@@ -13,3 +13,7 @@
 window.onresize = function(event) {
   initialize_refuges();
 };
+
+function initMap(refuge, locale){
+  loadMapWithRefuge(refuge, locale);
+};
