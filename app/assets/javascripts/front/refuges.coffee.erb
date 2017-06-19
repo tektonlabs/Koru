@@ -246,8 +246,8 @@ document.addEventListener "turbolinks:load", ->
 @loadMapWithRefuge = (refuge, locale) ->
   markers = []
   lima =
-    lat: -12.0431800
-    lng: -77.0282400
+    lat: parseFloat(refuge[1])
+    lng: parseFloat(refuge[2])
   map = new (google.maps.Map)(document.getElementById('refuge-map'),
     zoom: 12
     center: lima)
