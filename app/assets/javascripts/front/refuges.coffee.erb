@@ -245,12 +245,12 @@ document.addEventListener "turbolinks:load", ->
 
 @loadMapWithRefuge = (refuge, locale) ->
   markers = []
-  lima =
+  refuge_marker =
     lat: parseFloat(refuge[1])
     lng: parseFloat(refuge[2])
   map = new (google.maps.Map)(document.getElementById('refuge-map'),
     zoom: 12
-    center: lima)
+    center: refuge_marker)
   infowindow = new google.maps.InfoWindow
   marker = new (google.maps.Marker)(
     position: new (google.maps.LatLng)(parseFloat(refuge[1]), parseFloat(refuge[2]))
@@ -266,4 +266,5 @@ document.addEventListener "turbolinks:load", ->
   bounds = new (google.maps.LatLngBounds)
   google.maps.event.addListenerOnce map, 'idle', ->
     google.maps.event.trigger map, 'resize'
+    map.setCenter(refuge_marker);
     return
