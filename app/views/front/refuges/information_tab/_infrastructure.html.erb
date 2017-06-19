@@ -4,5 +4,57 @@
     <hr>
   </div>
   <div class="panel-body">
+    <table>
+      <tr>
+        <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+        <td><b><%= t "refuges.infrastructure" %>Abastecimiento de agua</b></td>
+      </tr>
+      <% refuge.water_managements.each do |water_management| %>
+        <tr>
+          <td></td>
+          <td><p class="item-description"><%= water_management.name %></p></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+        <td><b><%= t "refuges.infrastructure" %>Abastecimiento de Luz</b></td>
+      </tr>
+      <% refuge.light_managements.each do |light_management| %>
+        <tr>
+          <td></td>
+          <td><p class="item-description"><%= light_management.name %></p></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+        <td><b><%= t "refuges.infrastructure" %>Manejo de heces</b></td>
+      </tr>
+      <% refuge.stool_managements.each do |stool_management| %>
+        <tr>
+          <td></td>
+          <td><p class="item-description"><%= stool_management.name %></p></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+        <td><b><%= t "refuges.infrastructure" %>Gestion de Residuos</b></td>
+      </tr>
+      <% refuge.waste_managements.each do |waste_management| %>
+        <tr>
+          <td></td>
+          <td><p class="item-description"><%= waste_management.name %></p></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+        <td><b><%= t "refuges.infrastructure" %>Gestion de Alimentos y Bebidad</b></td>
+      </tr>
+      <% refuge.food_managements.each do |food_management| %>
+        <tr>
+          <td></td>
+          <td><p class="item-description"><%= food_management.name %></p></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
 </div>
