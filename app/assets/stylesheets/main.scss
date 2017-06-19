@@ -202,8 +202,12 @@ html.fullscreen-bg #wrapper {
 
 .navbar-default .brand {
   float: left;
-  padding: 30px 25px;
+  padding: 15px 20px;
   background-color: #fff;
+}
+
+.hamburger-icon {
+  display: none;
 }
 
 @media screen and (max-width: 1024px) {
@@ -217,6 +221,9 @@ html.fullscreen-bg #wrapper {
   }
   #wrapper .main {
     padding-top: 115px;
+  }
+  .hamburger-icon {
+    display: block;
   }
 }
 
@@ -234,6 +241,9 @@ html.fullscreen-bg #wrapper {
     margin: 0 !important;
     padding: 0 !important;
   }
+  .hamburger-icon {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 640px) {
@@ -247,6 +257,9 @@ html.fullscreen-bg #wrapper {
     position: relative;
     display: block;
     padding: 10px 5px;
+  }
+  .hamburger-icon {
+    display: block;
   }
 }
 
@@ -275,6 +288,9 @@ html.fullscreen-bg #wrapper {
     position: relative;
     display: block;
     padding: 10px 12px;
+  }
+  .hamburger-icon {
+    display: block;
   }
 }
 
@@ -314,6 +330,9 @@ html.fullscreen-bg #wrapper {
     display: block;
     padding: 10px 10px;
   }
+  .hamburger-icon {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 570px) {
@@ -329,6 +348,9 @@ html.fullscreen-bg #wrapper {
     display: block;
     padding: 10px 10px;
   }
+  .hamburger-icon {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 569px) {
@@ -343,6 +365,9 @@ html.fullscreen-bg #wrapper {
     position: relative;
     display: block;
     padding: 10px 4px;
+  }
+  .hamburger-icon {
+    display: block;
   }
 }
 
@@ -457,6 +482,9 @@ html.fullscreen-bg #wrapper {
   .navbar-nav .icon-menu .badge {
     top: 10px;
     right: 15px;
+  }
+  .hamburger-icon {
+    display: block;
   }
 }
 

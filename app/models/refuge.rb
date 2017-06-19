@@ -195,4 +195,8 @@ class Refuge < ApplicationRecord
     end
   end
 
+  def status_by_entity
+    self.refuge_entities.includes(:entity).group_by{|x| x.entity.name}.map{|entity_name, refuge_entities| [entity_name, refuge_entities.inject(0){|total, refuge_entity| total + refuge_entity.issues_number}]}
+  end
+
 end

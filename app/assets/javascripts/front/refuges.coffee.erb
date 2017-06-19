@@ -18,10 +18,12 @@ markers = []
       city: location[4]
       country: location[5]
       status: location[6]
+      issues_by_entities: location[7]
+      contact_name: location[8]
+      contact_phone: location[9]
       map: map)
     markers.push marker
-    info_marker_event infowindow, marker
-    marker_click_listener marker, locale
+    info_marker_event infowindow, marker, locale
   bounds = new (google.maps.LatLngBounds)
 
   if sessionStorage["new_locations"] != undefined && sessionStorage["new_locations"] != ""
@@ -150,7 +152,7 @@ markers = []
 @initialize_refuges = ->
   $('#refuges-map').css('height', $('#sidebar-nav').height())
 
-@show_on_map = (location) ->
+@show_on_map = (location, locale) ->
   geocoder = new google.maps.Geocoder
   infowindow = new google.maps.InfoWindow
   latlng = {lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)}
@@ -160,19 +162,57 @@ markers = []
         map.setZoom 15
         map.panTo latlng
         show_marker = new (google.maps.Marker)(
+          id: location.id
+          city: location.city
+          country: location.country_name
           position: latlng
           content: String(location.name)
+          issues_by_entities: location.issues_by_entities
+          contact_name: location.contact_name
+          contact_phone: location.contact_phone
           map: map)
-        infowindow.setContent show_marker.content
+        contact_phone = initialize_values show_marker.contact_phone
+        contact_name = initialize_values show_marker.contact_name
+        entities_1 = []
+        entities_2 = []
+        i = 0
+        for entity in show_marker.issues_by_entities
+          if i % 2 == 0
+            if entity[1] == 0
+              entities_1 += tr_content entity[0], 'green'
+            else
+              entities_1 += tr_content entity[0], 'red'
+          else
+            if entity[1] == 0
+              entities_2 += tr_content entity[0], 'green'
+            else
+              entities_2 += tr_content entity[0], 'red'
+          i++
+        link_to = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>/" + locale + "/refuges/" + show_marker.id
+        contentString = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h3 id="firstHeading" class="firstHeading" style="padding: 0 15px;">' + show_marker.content + '</h3>' +
+          '<div id="bodyContent">' +
+          '<p style="padding: 0 30px;">Coordinador: ' + contact_name + '</p>' +
+          '<p style="padding: 0 30px;">Teléfono: ' + contact_phone + '</p>' +
+          '<div class="col-md-12">' +
+          '<div class="col-md-6"><table>' + entities_1 + '</table></div>' +
+          '<div class="col-md-6"><table>' + entities_2 + '</table></div>' +
+          '</div>' +
+          "<a href=" + link_to + ' class="pull-right">' + 'Más detalles >></a>' +
+          '</div>' +
+          '</div>'
+        infowindow.setContent contentString
         infowindow.open map, show_marker
-        info_marker_event infowindow, show_marker
+        info_marker_event infowindow, show_marker, locale
       else
         window.alert 'No results found'
     else
       window.alert 'Geocoder failed due to: ' + status
     return
 
-@filter_map = (new_locations) ->
+@filter_map = (new_locations, locale) ->
   clear_overlays()
   markers = []
   bounds = new (google.maps.LatLngBounds)
@@ -185,8 +225,11 @@ markers = []
       city: location[4]
       country: location[5]
       status: location[6]
+      issues_by_entities: location[7]
+      contact_name: location[8]
+      contact_phone: location[9]
       map: map)
-    info_marker_event infowindow, marker
+    info_marker_event infowindow, marker, locale
     markers.push marker
     bounds.extend marker.getPosition()
   map.fitBounds bounds
@@ -199,23 +242,65 @@ clear_overlays = ->
   markers.length = 0
   return
 
-marker_click_listener = (marker, locale) ->
-  google.maps.event.addListener marker, 'click', do (marker) ->
-    ->
-      window.open "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>/" + locale + "/refuges/" + marker.id, "_self"
-      return
-
-info_marker_event = (infowindow, marker) ->
+info_marker_event = (infowindow, marker, locale) ->
+  contact_phone = initialize_values marker.contact_phone, locale
+  contact_name = initialize_values marker.contact_name, locale
+  if locale == 'es'
+    t_coordinator = "Coordinador"
+    t_phone = "Teléfono"
+    t_more_details = "Más detalles "
+  else
+    t_coordinator = "Coordinator"
+    t_phone = "Phone"
+    t_more_details = "More details "
+  issues_by_entities_1 = []
+  issues_by_entities_2 = []
+  i = 0
+  for entity in marker.issues_by_entities
+    if i % 2 == 0
+      if entity[1] == 0
+        issues_by_entities_1 += tr_content entity[0], 'green'
+      else
+        issues_by_entities_1 += tr_content entity[0], 'red'
+    else
+      if entity[1] == 0
+        issues_by_entities_2 += tr_content entity[0], 'green'
+      else
+        issues_by_entities_2 += tr_content entity[0], 'red'
+    i++
+  link_to = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>/" + locale + "/refuges/" + marker.id
+  contentString = '<div id="content">' +
+    '<div id="siteNotice">' +
+    '</div>' +
+    '<h3 id="firstHeading" class="firstHeading" style="padding: 0 15px;">' + marker.content + '</h3>' +
+    '<div id="bodyContent">' +
+    '<p style="padding: 0 30px;">' + t_coordinator + ': ' + contact_name + '</p>' +
+    '<p style="padding: 0 30px;">' + t_phone + ': ' + contact_phone + '</p>' +
+    '<div class="col-md-12">' +
+    '<div class="col-md-6"><table>' + issues_by_entities_1 + '</table></div>' +
+    '<div class="col-md-6"><table>' + issues_by_entities_2 + '</table></div>' +
+    '</div>' +
+    "<a href=" + link_to + ' class="pull-right">' + t_more_details + '>></a>' +
+    '</div>' +
+    '</div>'
   google.maps.event.addListener marker, 'mouseover', do (marker) ->
     ->
-      infowindow.setContent marker.content
+      infowindow.setContent contentString
       infowindow.open map, marker
       return
-  google.maps.event.addListener marker, 'mouseout', ((marker) ->
-    ->
-      infowindow.close()
-      return
-  )()
+
+tr_content = (entity, status)->
+  '<tr><td style="padding-right: 10px;"><span class="circle-' + status + '"></span></td><td>' + entity + '</td></tr>'
+
+initialize_values = (new_value, locale) ->
+  if new_value == ''
+    if locale == "es"
+      result = "No registrado"
+    else
+      result = "Not registered"
+  else
+    result = new_value
+  return result
 
 document.addEventListener "turbolinks:load", ->
   initialize_refuges()

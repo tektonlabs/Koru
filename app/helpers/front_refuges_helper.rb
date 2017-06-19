@@ -1,11 +1,11 @@
 module FrontRefugesHelper
 
   def refuges_map_data
-    @refuges_all ||= Refuge.all.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
+    @refuges_all ||= Refuge.all.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status, x.status_by_entity, (x.primary_contact.nil? ? '' : x.primary_contact.first_name), (x.primary_contact.nil? ? '' : x.primary_contact.phone)] }
   end
 
   def filtered_refuges_map_data refuges
-    @filtered_refuges_all ||= refuges.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
+    @filtered_refuges_all ||= refuges.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status, x.status_by_entity, (x.primary_contact.nil? ? '' : x.primary_contact.first_name), (x.primary_contact.nil? ? '' : x.primary_contact.phone)] }
   end
 
   def refuge_class_status refuge
