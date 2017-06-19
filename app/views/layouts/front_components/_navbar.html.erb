@@ -1,11 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
-    <div class="navbar-btn">
+    <div class="hamburger-icon navbar-btn">
       <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
     </div>
     <div class="brand">
       <%= link_to root_path do %>
-        <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", class: "img-responsive logo" %>
+        <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", width: "220", class: "img-responsive logo" %>
       <% end %>
     </div>
     <% unless @controller == "front/refuges" and @action == "show" %>
@@ -80,6 +80,6 @@
     }
   });
   $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
-    show_on_map(suggestion);
+    show_on_map(suggestion, "<%= params[:locale] %>");
   });
 </script>
