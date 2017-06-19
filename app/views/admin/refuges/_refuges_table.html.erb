@@ -21,7 +21,7 @@
           <td><%= set_contact refuge.primary_contact %></td>
           <td><%= set_census_taker refuge.census_taker %></td>
           <td>
-            <%= link_to "<i class='plus icon'></i>".html_safe, new_questionnaire_admin_refuge_path(refuge) %>
+            <%= link_to "<i class='plus icon'></i>".html_safe, new_admin_refuge_questionnaire_path(refuge) %>
             <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='remove icon'></i>".html_safe, admin_refuge_path(refuge), method: :delete, class: "delete-refuge", data: { confirm: "¿Está seguro que desea eliminar el refugio #{refuge.name}?" } %>

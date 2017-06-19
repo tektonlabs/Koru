@@ -18,12 +18,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'refuges#index'
-    resources :refuges, only: [:index, :destroy] do
-      member do
-        get :new_questionnaire
-      end
-    end
     resources :questionnaires, only: :index
+    resources :refuges, only: [:index, :destroy] do
+      resources :questionnaires, only: [:new, :create], controller: "refuges/questionnaires"
+    end
     resources :users, only: :index
     resources :census_takers, only: :index
   end
