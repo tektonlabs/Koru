@@ -3,23 +3,23 @@
     <h3 class="panel-title"><%= t "refuges.contact" %></h3>
     <hr>
   </div>
-  <div class="panel-body">
-    <div class="col-md-5">
-      <%= image_tag "no-profile-photo.jpg", class: "img-responsive" %>
-    </div>
-    <form class="form-horizontal col-md-7">
-      <div class="form-group">
-        <p class="col-md-4">Coordinador:</p> 
-        <p class="col-md-8"><%= refuge.address %></p>
+  <div class="panel-body" id="contact-primary_contact">
+    <% if refuge.primary_contact.nil? %>
+      <%= t "refuges.no_primary_contact" %>
+    <% else %>
+      <div class="col-md-5">
+        <%= image_tag "no-profile-photo.jpg", class: "img-responsive" %>
       </div>
-      <div class="form-group">
-        <p class="col-md-4">Telefono:</p> 
-        <p class="col-md-8"><%= refuge.address %></p>
-      </div>
-      <div class="form-group">
-        <p class="col-md-4">DNI:</p>
-        <p class="col-md-8"><%= refuge.city %></p>
-      </div>
-    </form>
+      <form class="form-horizontal col-md-7">
+        <div class="form-group">
+          <p class="col-md-5"><%= t "refuges.coordinator" %>:</p> 
+          <p class="col-md-7"><%= refuge.primary_contact.first_name + ' ' + refuge.primary_contact.last_name %></p>
+        </div>
+        <div class="form-group">
+          <p class="col-md-5"><%= t "refuges.phone" %>:</p> 
+          <p class="col-md-7"><%= refuge.primary_contact.phone %></p>
+        </div>
+      </form>
+    <% end %>
   </div>
 </div>

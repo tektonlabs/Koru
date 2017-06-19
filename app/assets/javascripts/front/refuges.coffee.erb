@@ -327,3 +327,29 @@ document.addEventListener "turbolinks:load", ->
       $("#sidebar-arrow-down").show()
     return
   return
+
+@loadMapWithRefuge = (refuge, locale) ->
+  markers = []
+  refuge_marker =
+    lat: parseFloat(refuge[1])
+    lng: parseFloat(refuge[2])
+  map = new (google.maps.Map)(document.getElementById('refuge-map'),
+    zoom: 12
+    center: refuge_marker)
+  infowindow = new google.maps.InfoWindow
+  marker = new (google.maps.Marker)(
+    position: new (google.maps.LatLng)(parseFloat(refuge[1]), parseFloat(refuge[2]))
+    content: refuge[0]
+    id: refuge[3]
+    city: refuge[4]
+    country: refuge[5]
+    status: refuge[6]
+    map: map)
+  markers.push marker
+  info_marker_event infowindow, marker
+  marker_click_listener marker, locale
+  bounds = new (google.maps.LatLngBounds)
+  google.maps.event.addListenerOnce map, 'idle', ->
+    google.maps.event.trigger map, 'resize'
+    map.setCenter(refuge_marker);
+    return
