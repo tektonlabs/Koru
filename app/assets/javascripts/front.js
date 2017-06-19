@@ -20,6 +20,6 @@ function initMap(refuge, locale){
 
     setTimeout(function (){
       $('#contact-primary_contact').height($('#contact-general').height());
-    }, 150);
+    }, 450);
   }
 };
