@@ -4,5 +4,17 @@
     <hr>
   </div>
   <div class="panel-body">
+    <% if refuge.committees.count < 1 %>
+      <%= t "refuges.no_questionnaire_registered" %>
+    <% else %>
+      <table>
+        <% refuge.committees.each do |committee| %>
+          <tr>
+            <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+            <td><b><%= committee.name %></b></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
   </div>
 </div>
