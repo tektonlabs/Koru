@@ -67,3 +67,7 @@ es:
     institution_in_charge: "Tipo de gestión"
     phone: "Telefono"
     dni: "DNI"
+    capacity: "Capacidad"
+    abilities: "Habilidades"
+    services: "Servicios"
+    infrastructure: "Infraestructura"

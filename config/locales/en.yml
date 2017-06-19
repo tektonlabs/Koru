@@ -67,3 +67,7 @@ en:
     institution_in_charge: "Management Type"
     phone: "Phone"
     dni: "DNI"
+    capacity: "Capacity"
+    abilities: "Abilities"
+    services: "Services"
+    infrastructure: "Infrastructure"
