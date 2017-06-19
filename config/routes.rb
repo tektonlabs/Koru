@@ -18,7 +18,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'refuges#index'
-    resources :refuges, only: [:index, :destroy]
+    resources :refuges, only: [:index, :destroy] do
+      member do
+        get :new_questionnaire
+      end
+    end
     resources :questionnaires, only: :index
     resources :users, only: :index
     resources :census_takers, only: :index
