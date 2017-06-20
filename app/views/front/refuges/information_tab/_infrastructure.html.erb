@@ -6,7 +6,7 @@
   <div class="panel-body">
     <table>
       <% infrastructure_count = 0 %>
-      <% if refuge.water_managements.count > 0 %>
+      <% if !refuge.water_managements.empty? %>
         <% infrastructure_count+=1 %>
         <tr>
           <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
@@ -19,7 +19,7 @@
           </tr>
         <% end %>
       <% end %>
-      <% if refuge.light_managements.count > 0 %>
+      <% if !refuge.light_managements.empty? %>
         <% infrastructure_count+=1 %>
         <tr>
           <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
@@ -32,7 +32,7 @@
           </tr>
         <% end %>
       <% end %>
-      <% if refuge.stool_managements.count > 0 %>
+      <% if !refuge.stool_managements.empty? %>
         <% infrastructure_count+=1 %>
         <tr>
           <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
@@ -45,7 +45,7 @@
           </tr>
         <% end %>
       <% end %>
-      <% if refuge.waste_managements.count > 0 %>
+      <% if !refuge.waste_managements.empty? %>
         <% infrastructure_count+=1 %>
         <tr>
           <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
@@ -58,7 +58,7 @@
           </tr>
         <% end %>
       <% end %>
-      <% if refuge.food_managements.count > 0 %>
+      <% if !refuge.food_managements.empty? %>
         <% infrastructure_count+=1 %>
         <tr>
           <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
