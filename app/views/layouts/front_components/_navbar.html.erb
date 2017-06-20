@@ -4,7 +4,7 @@
       <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
     </div>
     <div class="brand">
-      <%= link_to root_path do %>
+      <%= link_to front_root_path do %>
         <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", width: "220", class: "img-responsive logo" %>
       <% end %>
     </div>
@@ -45,6 +45,14 @@
 </nav>
 
 <script type="text/javascript">
+  var locale = "<%= params[:locale] %>";
+  var no_refuges_found = "";
+  if (locale == "es") {
+    no_refuges_found = "Ningún refugio encontrado."
+  }
+  else {
+    no_refuges_found = "No refuges found."
+  }
   var refugesSource = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -59,7 +67,7 @@
     display: 'name',
     source: refugesSource,
     templates: {
-      empty: ['<h4 style="padding: 0 15px 0 15px;">', 'No refuges found.', '</h4>'].join('\n'),
+      empty: ['<h4 style="padding: 0 15px 0 15px;">', no_refuges_found, '</h4>'].join('\n'),
       suggestion: function(data) {
         return ['<div>', '<h4>' + data.name + '</h4>', '<h5>' + data.full_address + '</h5>', '</div>'].join('\n');
       },

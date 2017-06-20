@@ -19,11 +19,11 @@
       </div>
       <div class="form-group">
         <p class="col-md-4"><b><%= t "refuges.refuge_type" %>:</b></p>
-        <p class="col-md-8"><%= t "refuges.types.refuge_type.#{refuge.refuge_type}" %></p>
+        <p class="col-md-8"><%= set_refuge_type refuge, params[:locale] %></p>
       </div>
       <div class="form-group">
         <p class="col-md-4"><b><%= t "refuges.institution_in_charge" %>:</b></p>
-        <p class="col-md-8"><%= t "refuges.types.institution_in_charge.#{refuge.institution_in_charge}" %></p>
+        <p class="col-md-8"><%= set_institution_in_charge refuge, params[:locale] %></p>
       </div>
     </form>
   </div>
