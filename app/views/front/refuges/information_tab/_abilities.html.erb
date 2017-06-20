@@ -1,0 +1,20 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t "refuges.abilities" %></h3>
+    <hr>
+  </div>
+  <div class="panel-body">
+    <% if refuge.committees.empty? %>
+      <%= t "refuges.no_committees" %>
+    <% else %>
+      <table>
+        <% refuge.committees.each do |committee| %>
+          <tr>
+            <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+            <td><b><%= committee.name %></b></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>
