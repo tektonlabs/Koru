@@ -64,7 +64,7 @@ en:
     address: "Address"
     state: "State"
     refuge_type: "Shelder Type"
-    institution_in_charge: "Management Type"
+    institution_in_charge: "Institition in charge"
     phone: "Phone"
     dni: "DNI"
     capacity: "Capacity"
@@ -87,3 +87,17 @@ en:
     no_committees: "No abilities have been registered"
     no_services: "No services have been registered"
     no_infrastructure: "No hay detalles de infraestructura"
+    types:
+      institution_in_charge:
+        central_government: "Central goverment"
+        regional_government: "Regional goverment"
+        church_institution: "Church institution"
+        municipality: "Municipality"
+        community_organization: "Community organization"
+        non_governmental_organization: "Non governmental organization"
+        other_institution: "Other institution"
+      refuge_type:
+        open_tents: "Open tents"
+        school: "School"
+        church: "Church"
+        other: "Other"

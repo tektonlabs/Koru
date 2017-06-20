@@ -248,11 +248,11 @@ info_marker_event = (infowindow, marker, locale) ->
   if locale == 'es'
     t_coordinator = "Coordinador"
     t_phone = "Teléfono"
-    t_more_details = "Más detalles "
+    t_more_details = "Ver más "
   else
     t_coordinator = "Coordinator"
     t_phone = "Phone"
-    t_more_details = "More details "
+    t_more_details = "Show more "
   issues_by_entities_1 = []
   issues_by_entities_2 = []
   i = 0
@@ -272,7 +272,7 @@ info_marker_event = (infowindow, marker, locale) ->
   contentString = '<div id="content">' +
     '<div id="siteNotice">' +
     '</div>' +
-    '<h3 id="firstHeading" class="firstHeading" style="padding: 0 15px;">' + marker.content + '</h3>' +
+    '<h3 id="firstHeading" class="firstHeading" style="padding: 0 28px;">' + marker.content + '</h3>' +
     '<div id="bodyContent">' +
     '<p style="padding: 0 30px;">' + t_coordinator + ': ' + contact_name + '</p>' +
     '<p style="padding: 0 30px;">' + t_phone + ': ' + contact_phone + '</p>' +
@@ -280,7 +280,9 @@ info_marker_event = (infowindow, marker, locale) ->
     '<div class="col-md-6"><table>' + issues_by_entities_1 + '</table></div>' +
     '<div class="col-md-6"><table>' + issues_by_entities_2 + '</table></div>' +
     '</div>' +
-    "<a href=" + link_to + ' class="pull-right">' + t_more_details + '>></a>' +
+    '<div class="col-md-12">' +
+    "<a href=" + link_to + ' class="pull-right" style="padding: 11px 0;">' + t_more_details + '></a>' +
+    '</div>' +
     '</div>' +
     '</div>'
   google.maps.event.addListener marker, 'mouseover', do (marker) ->

@@ -6,24 +6,24 @@
   <div class="panel-body" id="contact-general">
     <form class="form-horizontal">
       <div class="form-group">
-        <p class="col-md-4"><%= t "refuges.location" %>:</p>
+        <p class="col-md-4"><b><%= t "refuges.location" %>:</b></p>
         <p class="col-md-8"><%= refuge.latitude + ' , ' + refuge.longitude %></p>
       </div>
       <div class="form-group">
-        <p class="col-md-4"><%= t "refuges.address" %>:</p> 
+        <p class="col-md-4"><b><%= t "refuges.address" %>:</b></p>
         <p class="col-md-8"><%= refuge.address %></p>
       </div>
       <div class="form-group">
-        <p class="col-md-4"><%= t "refuges.state" %>:</p>
+        <p class="col-md-4"><b><%= t "refuges.state" %>:</b></p>
         <p class="col-md-8"><%= refuge.city %></p>
       </div>
       <div class="form-group">
-        <p class="col-md-4"><%= t "refuges.refuge_type" %>:</p>
-        <p class="col-md-8"><%= refuge.refuge_type %></p>
+        <p class="col-md-4"><b><%= t "refuges.refuge_type" %>:</b></p>
+        <p class="col-md-8"><%= t "refuges.types.refuge_type.#{refuge.refuge_type}" %></p>
       </div>
       <div class="form-group">
-        <p class="col-md-4"><%= t "refuges.institution_in_charge" %>:</p>
-        <p class="col-md-8"><%= refuge.institution_in_charge %></p>
+        <p class="col-md-4"><b><%= t "refuges.institution_in_charge" %>:</b></p>
+        <p class="col-md-8"><%= t "refuges.types.institution_in_charge.#{refuge.institution_in_charge}" %></p>
       </div>
     </form>
   </div>

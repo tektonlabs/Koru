@@ -64,7 +64,7 @@ es:
     address: "Dirección"
     state: "Provincia"
     refuge_type: "Tipo de albergue"
-    institution_in_charge: "Tipo de gestión"
+    institution_in_charge: "Institución a cargo"
     phone: "Telefono"
     dni: "DNI"
     capacity: "Capacidad"
@@ -87,3 +87,17 @@ es:
     no_committees: "No se han registrado habilidades"
     no_services: "No se han registrado servicios"
     no_infrastructure: "No hay detalles de infraestructura"
+    types:
+      institution_in_charge:
+        central_government: "Gobierno central"
+        regional_government: "Gobierno regional"
+        church_institution: "Iglesia"
+        municipality: "Municipalidad"
+        community_organization: "Organización comunal"
+        non_governmental_organization: "Organización no gubernamental"
+        other_institution: "Otro"
+      refuge_type:
+        open_tents: "Carpas en campo abierto"
+        school: "Colegio"
+        church: "Iglesia"
+        other: "Otro"

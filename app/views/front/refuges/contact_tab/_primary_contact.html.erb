@@ -12,12 +12,12 @@
       </div>
       <form class="form-horizontal col-md-7">
         <div class="form-group">
-          <p class="col-md-5"><%= t "refuges.coordinator" %>:</p> 
-          <p class="col-md-7"><%= refuge.primary_contact.first_name %></p>
+          <p class="col-md-6"><b><%= t "refuges.coordinator" %>:</b></p> 
+          <p class="col-md-6"><%= refuge.primary_contact.first_name %></p>
         </div>
         <div class="form-group">
-          <p class="col-md-5"><%= t "refuges.phone" %>:</p> 
-          <p class="col-md-7"><%= refuge.primary_contact.phone %></p>
+          <p class="col-md-6"><b><%= t "refuges.phone" %>:</b></p> 
+          <p class="col-md-6"><%= refuge.primary_contact.phone %></p>
         </div>
       </form>
     <% end %>
