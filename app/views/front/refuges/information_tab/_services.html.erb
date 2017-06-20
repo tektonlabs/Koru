@@ -4,7 +4,7 @@
     <hr>
   </div>
   <div class="panel-body">
-    <% if refuge.services.count < 1 %>
+    <% if refuge.services.empty? %>
       <%= t "refuges.no_services" %>
     <% else %>
       <table>
