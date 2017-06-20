@@ -84,4 +84,6 @@ en:
     stool_management: "Manejo de heces"
     waste_management: "Gestion de Residuos"
     food_management: "Gestion de Alimentos y Bebidad"
+    no_committees: "No abilities have been registered"
+    no_services: "No services have been registered"
     no_infrastructure: "No hay detalles de infraestructura"

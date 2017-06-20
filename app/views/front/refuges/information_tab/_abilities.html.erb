@@ -5,7 +5,7 @@
   </div>
   <div class="panel-body">
     <% if refuge.committees.count < 1 %>
-      <%= t "refuges.no_questionnaire_registered" %>
+      <%= t "refuges.no_committees" %>
     <% else %>
       <table>
         <% refuge.committees.each do |committee| %>
