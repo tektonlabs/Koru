@@ -13,7 +13,7 @@
     <ul class="nav" role="tablist">
       <li class="active"><a href="#analysis-tab" role="tab" data-toggle="tab"><b><%= t "refuges.analysis_tab" %></b></a></li>
       <li><a href="#information-tab" role="tab" data-toggle="tab"><b><%= t "refuges.information_tab" %></b></a></li>
-      <li><a href="#contact-tab" role="tab" data-toggle="tab" onclick='initMap(<%= [@refuge.name, @refuge.latitude, @refuge.longitude, @refuge.id, @refuge.city, @refuge.country.name, @refuge.status] %>, "<%= params[:locale] %>")'><b><%= t "refuges.contact_tab" %></b></a></li>
+      <li><a href="#contact-tab" role="tab" data-toggle="tab" onclick='initMap(<%= [@refuge.name, @refuge.latitude, @refuge.longitude, @refuge.id, @refuge.city, @refuge.country.name, @refuge.status, @refuge.status_by_entity, (@refuge.primary_contact.nil? ? '' : @refuge.primary_contact.first_name), (@refuge.primary_contact.nil? ? '' : @refuge.primary_contact.phone)] %>, "<%= params[:locale] %>")'><b><%= t "refuges.contact_tab" %></b></a></li>
     </ul>
   </div>
 
