@@ -1,11 +1,11 @@
 module FrontRefugesHelper
 
   def refuges_map_data
-    @refuges_all ||= Refuge.all.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
+    @refuges_all ||= Refuge.all.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status, x.status_by_entity, (x.primary_contact.nil? ? '' : x.primary_contact.first_name), (x.primary_contact.nil? ? '' : x.primary_contact.phone)] }
   end
 
   def filtered_refuges_map_data refuges
-    @filtered_refuges_all ||= refuges.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status] }
+    @filtered_refuges_all ||= refuges.includes(:country).order(:name).map{ |x| [x.name, x.latitude, x.longitude, x.id, x.city, x.country.name, x.status, x.status_by_entity, (x.primary_contact.nil? ? '' : x.primary_contact.first_name), (x.primary_contact.nil? ? '' : x.primary_contact.phone)] }
   end
 
   def refuge_class_status refuge
@@ -27,6 +27,22 @@ module FrontRefugesHelper
 
   def set_primary_contact primary_contact
     primary_contact.nil? ? t("refuges.no_primary_contact") : "#{primary_contact.first_name} / Telef: #{primary_contact.phone}"
+  end
+
+  def set_refuge_type refuge, locale
+    if locale == 'es'
+      refuge.refuge_type.nil? ? "No registrado." :  t("refuges.types.refuge_type.#{refuge.refuge_type}")
+    else
+      refuge.refuge_type.nil? ? "Not registered." :  t("refuges.types.refuge_type.#{refuge.refuge_type}")
+    end
+  end
+
+  def set_institution_in_charge refuge, locale
+    if locale == 'es'
+      refuge.institution_in_charge.nil? ? "No registrado." :  t("refuges.types.institution_in_charge.#{refuge.institution_in_charge}")
+    else
+      refuge.institution_in_charge.nil? ? "Not registered." :  t("refuges.types.institution_in_charge.#{refuge.institution_in_charge}")
+    end
   end
 
   def entity_color entity

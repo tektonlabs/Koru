@@ -13,3 +13,12 @@
 window.onresize = function(event) {
   initialize_refuges();
 };
+
+function initializeMap(refuge, locale){
+  if (refuge !== undefined) {
+    loadMapWithRefuge(refuge, locale);
+    setTimeout(function (){
+      $('#contact-primary_contact').height($('#contact-general').height());
+    }, 450);
+  }
+};

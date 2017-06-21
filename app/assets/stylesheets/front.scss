@@ -10,6 +10,13 @@
 @import "main";
 
 .footer {
-  margin-top: -25px !important;
+  height: 10%;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slimScrollDiv {
+  height: 90% !important;
 }

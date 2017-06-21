@@ -1,0 +1,79 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t "refuges.infrastructure" %></h3>
+    <hr>
+  </div>
+  <div class="panel-body">
+    <table>
+      <% infrastructure_count = 0 %>
+      <% if !refuge.water_managements.empty? %>
+        <% infrastructure_count+=1 %>
+        <tr>
+          <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+          <td><b><%= t "refuges.water_management" %></b></td>
+        </tr>
+        <% refuge.water_managements.each do |water_management| %>
+          <tr>
+            <td></td>
+            <td><p class="item-description"><%= water_management.name %></p></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <% if !refuge.light_managements.empty? %>
+        <% infrastructure_count+=1 %>
+        <tr>
+          <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+          <td><b><%= t "refuges.light_management" %></b></td>
+        </tr>
+        <% refuge.light_managements.each do |light_management| %>
+          <tr>
+            <td></td>
+            <td><p class="item-description"><%= light_management.name %></p></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <% if !refuge.stool_managements.empty? %>
+        <% infrastructure_count+=1 %>
+        <tr>
+          <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+          <td><b><%= t "refuges.stool_management" %></b></td>
+        </tr>
+        <% refuge.stool_managements.each do |stool_management| %>
+          <tr>
+            <td></td>
+            <td><p class="item-description"><%= stool_management.name %></p></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <% if !refuge.waste_managements.empty? %>
+        <% infrastructure_count+=1 %>
+        <tr>
+          <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+          <td><b><%= t "refuges.waste_management" %></b></td>
+        </tr>
+        <% refuge.waste_managements.each do |waste_management| %>
+          <tr>
+            <td></td>
+            <td><p class="item-description"><%= waste_management.name %></p></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <% if !refuge.food_managements.empty? %>
+        <% infrastructure_count+=1 %>
+        <tr>
+          <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+          <td><b><%= t "refuges.food_management" %></b></td>
+        </tr>
+        <% refuge.food_managements.each do |food_management| %>
+          <tr>
+            <td></td>
+            <td><p class="item-description"><%= food_management.name %></p></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <% if infrastructure_count < 1 %>
+        <%= t "refuges.no_infrastructure" %>
+      <% end %>
+    </table>
+  </div>
+</div>

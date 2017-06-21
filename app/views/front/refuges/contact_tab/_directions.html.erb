@@ -4,5 +4,12 @@
     <hr>
   </div>
   <div class="panel-body">
+    <div id='refuge-map'>
+    </div>
   </div>
 </div>
+
+<% content_for :javascript_tags do %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYZQCwE8B-r7ORDi49Hzum8vXKyoLl4k&callback=initializeMap" async defer>
+  </script>
+<% end %>

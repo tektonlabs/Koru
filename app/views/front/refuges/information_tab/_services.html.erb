@@ -1,0 +1,20 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t "refuges.services" %></h3>
+    <hr>
+  </div>
+  <div class="panel-body">
+    <% if refuge.services.empty? %>
+      <%= t "refuges.no_services" %>
+    <% else %>
+      <table>
+        <% refuge.services.each do |rservice| %>
+          <tr>
+            <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
+            <td><b><%= rservice.name %></b></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>
