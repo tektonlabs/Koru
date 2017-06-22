@@ -31,7 +31,6 @@ es:
   filter_select_all: "-- Todos --"
   nav:
     filter_by_needs: "Filtro por necesidades"
-    button_go: "Ir"
     search_mode_location: "Ubicación"
     search_mode_refuges: "Refugios"
     language_translate: "Lenguaje"
