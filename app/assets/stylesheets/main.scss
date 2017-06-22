@@ -102,7 +102,7 @@ th {
 }
 
 .layout-fullwidth #wrapper .btn-toggle-fullwidth {
-  color: #00AAFF;
+  color: color(principal-client);
 }
 
 .offcanvas-active #wrapper .sidebar {
@@ -130,7 +130,7 @@ th {
     left: 0 !important;
   }
   #wrapper .btn-toggle-fullwidth {
-    color: #00AAFF;
+    color: color(principal-client);
   }
   .btn-toggle-minified {
     display: none;
@@ -551,7 +551,7 @@ ul.notifications > li > .more:focus {
 .dropdown-menu .active > a,
 .dropdown-menu .active > a:focus,
 .dropdown-menu .active > a:hover {
-  background-color: #00AAFF;
+  background-color: color(principal-client);
 }
 
 .dropdown-menu > .disabled > a,
@@ -591,7 +591,7 @@ ul.notifications > li > .more:focus {
 .sidebar .nav > li > a:focus,
 .sidebar .nav > li > a.active {
   background-color: #252c35;
-  border-left-color: #00AAFF;
+  border-left-color: color(principal-client);
 }
 
 .sidebar .nav > li > a[data-toggle="collapse"] .icon-submenu {
@@ -669,11 +669,17 @@ ul.notifications > li > .more:focus {
 }
 
 .refuge-good {
-  color: color(green-status);
+  background: asset_url("good-status.png") no-repeat center center/25px 25px;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
 }
 
 .refuge-bad {
-  color: color(red-status);
+  background: asset_url("bad-status.png") no-repeat center center/25px 25px;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
 }
 
 .sub-description-margin {
@@ -971,7 +977,7 @@ ul.list-justify > li span {
 }
 
 .btn-primary {
-  background-color: #00AAFF;
+  background-color: color(principal-client);
   border-color: #00a0f0;
 }
 
@@ -1396,7 +1402,7 @@ ul.activity-list > li .timestamp {
 }
 
 .toast-info {
-  background-color: #00AAFF;
+  background-color: color(principal-client);
 }
 
 .toast-success {
@@ -1443,7 +1449,7 @@ ul.activity-list > li .timestamp {
 .custom-tabs-line ul.nav-pills a:hover,
 .custom-tabs-line ul.nav-pills a:focus {
   color: #fff;
-  background-color: #00AAFF;
+  background-color: color(principal-client);
 }
 
 .custom-tabs-line.tabs-line-bottom {
@@ -1459,7 +1465,7 @@ ul.activity-list > li .timestamp {
 }
 
 .custom-tabs-line.tabs-line-bottom .active a {
-  border-bottom: 2px solid #00AAFF;
+  border-bottom: 2px solid color(principal-client);
 }
 
 .custom-tabs-line.left-aligned {
@@ -1861,7 +1867,7 @@ ul.activity-list > li .timestamp {
 
 .profile-header .profile-stat {
   position: relative;
-  background-color: #00AAFF;
+  background-color: color(principal-client);
 }
 
 .profile-header .profile-stat .stat-item {
@@ -2742,7 +2748,7 @@ ul.activity-timeline > li .activity-icon {
   float: left;
   width: 34px;
   height: 34px;
-  background-color: #00AAFF;
+  background-color: color(principal-client);
   font-size: 16px;
   color: #fff;
   line-height: 34px;
