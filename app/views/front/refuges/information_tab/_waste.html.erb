@@ -1,0 +1,16 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t "refuges.waste" %></h3>
+    <hr>
+  </div>
+  <div class="panel-body">
+    <table>
+      <% waste_management_all.each do |waste| %>
+        <tr>
+          <td class="td-padding-right"><span class="<%= refuge.assign_style_class waste %>"></span></td>
+          <td><%= waste.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

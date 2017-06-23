@@ -91,6 +91,20 @@ es:
     no_committees: "No se han registrado habilidades"
     no_services: "No se han registrado servicios"
     no_infrastructure: "No hay detalles de infraestructura"
+    number_of_carp: "Número de carpas"
+    number_of_toilets: "Número de inodoros"
+    number_of_washbasins: "Número de lavatorios"
+    number_of_showers: "Número de duchas"
+    number_of_tanks: "Número de tanques"
+    number_of_landfills: "Número de basureros"
+    number_of_garbage_collection_points: "Número de puntos de acopio de basura"
+    floor_type: "Tipo de piso"
+    roof_type: "Tipo de techo"
+    food_and_drinks: "Alimentos y bebidas"
+    water: "Agua"
+    light: "Luz"
+    stool: "Residuos sólidos"
+    waste: "Gestión de residuos"
     types:
       institution_in_charge:
         central_government: "Gobierno central"
@@ -105,3 +119,9 @@ es:
         school: "Colegio"
         church: "Iglesia"
         other: "Otro"
+      floor_type:
+        asphalted: "Asfaltado"
+        unpaved: "No asfaltado"
+      roof_type:
+        outdoors: "Al aire libre"
+        roofing: "Techado"

@@ -1,0 +1,16 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t "refuges.food_and_drinks" %></h3>
+    <hr>
+  </div>
+  <div id="food-management-partial" class="panel-body">
+    <table>
+      <% food_management_all.each do |food| %>
+        <tr>
+          <td class="td-padding-right"><span class="<%= refuge.assign_style_class food %>"></span></td>
+          <td><%= food.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

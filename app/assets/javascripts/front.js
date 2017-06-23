@@ -22,3 +22,11 @@ function initializeMap(refuge, locale){
     }, 450);
   }
 };
+
+function resize_panels(){
+  setTimeout(function (){
+    $('#infrastructure-partial').height($('#capacity-partial').height());
+    $('#food-management-partial').height($('#water-management-partial').height());
+    $('#light-management-partial').height($('#water-management-partial').height());
+  }, 450);
+};

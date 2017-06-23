@@ -1,0 +1,16 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t "refuges.water" %></h3>
+    <hr>
+  </div>
+  <div id="water-management-partial" class="panel-body">
+    <table>
+      <% water_management_all.each do |water| %>
+        <tr>
+          <td class="td-padding-right"><span class="<%= refuge.assign_style_class water %>"></span></td>
+          <td><%= water.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

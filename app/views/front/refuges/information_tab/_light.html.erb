@@ -1,0 +1,16 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t "refuges.light" %></h3>
+    <hr>
+  </div>
+  <div id="light-management-partial" class="panel-body">
+    <table>
+      <% light_management_all.each do |light| %>
+        <tr>
+          <td class="td-padding-right"><span class="<%= refuge.assign_style_class light %>"></span></td>
+          <td><%= light.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
