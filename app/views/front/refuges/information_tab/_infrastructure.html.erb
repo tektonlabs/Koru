@@ -3,77 +3,28 @@
     <h3 class="panel-title"><%= t "refuges.infrastructure" %></h3>
     <hr>
   </div>
-  <div class="panel-body">
-    <table>
-      <% infrastructure_count = 0 %>
-      <% if !refuge.water_managements.empty? %>
-        <% infrastructure_count+=1 %>
-        <tr>
-          <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
-          <td><b><%= t "refuges.water_management" %></b></td>
-        </tr>
-        <% refuge.water_managements.each do |water_management| %>
-          <tr>
-            <td></td>
-            <td><p class="item-description"><%= water_management.name %></p></td>
-          </tr>
-        <% end %>
-      <% end %>
-      <% if !refuge.light_managements.empty? %>
-        <% infrastructure_count+=1 %>
-        <tr>
-          <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
-          <td><b><%= t "refuges.light_management" %></b></td>
-        </tr>
-        <% refuge.light_managements.each do |light_management| %>
-          <tr>
-            <td></td>
-            <td><p class="item-description"><%= light_management.name %></p></td>
-          </tr>
-        <% end %>
-      <% end %>
-      <% if !refuge.stool_managements.empty? %>
-        <% infrastructure_count+=1 %>
-        <tr>
-          <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
-          <td><b><%= t "refuges.stool_management" %></b></td>
-        </tr>
-        <% refuge.stool_managements.each do |stool_management| %>
-          <tr>
-            <td></td>
-            <td><p class="item-description"><%= stool_management.name %></p></td>
-          </tr>
-        <% end %>
-      <% end %>
-      <% if !refuge.waste_managements.empty? %>
-        <% infrastructure_count+=1 %>
-        <tr>
-          <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
-          <td><b><%= t "refuges.waste_management" %></b></td>
-        </tr>
-        <% refuge.waste_managements.each do |waste_management| %>
-          <tr>
-            <td></td>
-            <td><p class="item-description"><%= waste_management.name %></p></td>
-          </tr>
-        <% end %>
-      <% end %>
-      <% if !refuge.food_managements.empty? %>
-        <% infrastructure_count+=1 %>
-        <tr>
-          <td><i class="glyphicon glyphicon-record item-status refuge-abilities"></i></td>
-          <td><b><%= t "refuges.food_management" %></b></td>
-        </tr>
-        <% refuge.food_managements.each do |food_management| %>
-          <tr>
-            <td></td>
-            <td><p class="item-description"><%= food_management.name %></p></td>
-          </tr>
-        <% end %>
-      <% end %>
-      <% if infrastructure_count < 1 %>
-        <%= t "refuges.no_infrastructure" %>
-      <% end %>
-    </table>
+  <div id="infrastructure-partial" class="panel-body">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <p class="col-md-8"><b><%= t "refuges.number_of_carp" %>:</b></p>
+        <p class="col-md-4"><%= refuge.number_of_carp %></p>
+        <p class="col-md-8"><b><%= t "refuges.number_of_toilets" %>:</b></p>
+        <p class="col-md-4"><%= refuge.number_of_toilets %></p>
+        <p class="col-md-8"><b><%= t "refuges.number_of_washbasins" %>:</b></p>
+        <p class="col-md-4"><%= refuge.number_of_washbasins %></p>
+        <p class="col-md-8"><b><%= t "refuges.number_of_showers" %>:</b></p>
+        <p class="col-md-4"><%= refuge.number_of_showers %></p>
+        <p class="col-md-8"><b><%= t "refuges.number_of_tanks" %>:</b></p>
+        <p class="col-md-4"><%= refuge.number_of_tanks %></p>
+        <p class="col-md-8"><b><%= t "refuges.number_of_landfills" %>:</b></p>
+        <p class="col-md-4"><%= refuge.number_of_landfills %></p>
+        <p class="col-md-8"><b><%= t "refuges.number_of_garbage_collection_points" %>:</b></p>
+        <p class="col-md-4"><%= refuge.number_of_garbage_collection_points %></p>
+        <p class="col-md-8"><b><%= t "refuges.floor_type" %>:</b></p>
+        <p class="col-md-4"><%= t "refuges.types.floor_type.#{refuge.floor_type}" %></p>
+        <p class="col-md-8"><b><%= t "refuges.roof_type" %>:</b></p>
+        <p class="col-md-4"><%= t "refuges.types.roof_type.#{refuge.roof_type}" %></p>
+      </div>
+    </form>
   </div>
 </div>
