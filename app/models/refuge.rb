@@ -199,4 +199,8 @@ class Refuge < ApplicationRecord
     self.refuge_entities.includes(:entity).group_by{|x| x.entity.name}.map{|entity_name, refuge_entities| [entity_name, refuge_entities.inject(0){|total, refuge_entity| total + refuge_entity.issues_number}]}
   end
 
+  def assign_style_class entity
+    self.send("#{entity.class.name.underscore.pluralize}").include?(entity) ? "circle-green" : "circle-red"
+  end
+
 end

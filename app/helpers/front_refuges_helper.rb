@@ -67,4 +67,24 @@ module FrontRefugesHelper
     end
   end
 
+  def food_management_all
+    @food_management ||= FoodManagement.all
+  end
+
+  def water_management_all
+    @water_management ||= WaterManagement.all
+  end
+
+  def light_management_all
+    @light_management ||= LightManagement.all
+  end
+
+  def stool_management_all
+    @stool_management ||= StoolManagement.all
+  end
+
+  def waste_management_all
+    @waste_management ||= WasteManagement.all
+  end
+
 end

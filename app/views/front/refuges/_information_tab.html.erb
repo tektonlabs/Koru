@@ -1,5 +1,13 @@
 <div class="col-md-12">
   <div class="col-md-6">
+    <%= render 'front/refuges/information_tab/capacity', refuge: refuge %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'front/refuges/information_tab/infrastructure', refuge: refuge %>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="col-md-6">
     <%= render 'front/refuges/information_tab/abilities', refuge: refuge %>
   </div>
   <div class="col-md-6">
@@ -7,10 +15,22 @@
   </div>
 </div>
 <div class="col-md-12">
-  <div class="col-md-6">
-    <%= render 'front/refuges/information_tab/capacity', refuge: refuge %>
+  <div class="col-md-4">
+    <%= render 'front/refuges/information_tab/food', refuge: refuge %>
   </div>
-  <div class="col-md-6">
-    <%= render 'front/refuges/information_tab/infrastructure', refuge: refuge %>
+  <div class="col-md-4">
+    <%= render 'front/refuges/information_tab/water', refuge: refuge %>
   </div>
+  <div class="col-md-4">
+    <%= render 'front/refuges/information_tab/light', refuge: refuge %>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="col-md-4">
+    <%= render 'front/refuges/information_tab/stool', refuge: refuge %>
+  </div>
+  <div class="col-md-4">
+    <%= render 'front/refuges/information_tab/waste', refuge: refuge %>
+  </div>
+  <div class="col-md-4"></div>
 </div>
