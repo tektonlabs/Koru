@@ -21,9 +21,9 @@
         <p class="col-md-8"><b><%= t "refuges.number_of_garbage_collection_points" %>:</b></p>
         <p class="col-md-4"><%= refuge.number_of_garbage_collection_points %></p>
         <p class="col-md-8"><b><%= t "refuges.floor_type" %>:</b></p>
-        <p class="col-md-4"><%= t "refuges.types.floor_type.#{refuge.floor_type}" %></p>
+        <p class="col-md-4"><%= set_floor_type refuge, params[:locale] %></p>
         <p class="col-md-8"><b><%= t "refuges.roof_type" %>:</b></p>
-        <p class="col-md-4"><%= t "refuges.types.roof_type.#{refuge.roof_type}" %></p>
+        <p class="col-md-4"><%= set_roof_type refuge, params[:locale] %></p>
       </div>
     </form>
   </div>

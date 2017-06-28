@@ -32,4 +32,8 @@ module AdminHelper
     @first_level_entities ||= Entity.first_level
   end
 
+  def set_entity entity
+    entity = entity.parent.nil? ? entity : entity.parent
+  end
+
 end

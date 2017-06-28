@@ -101,7 +101,8 @@ markers = []
         table.appendChild(tr_name)
         table.appendChild(tr_address)
         link_to.appendChild(table)
-        link_to.setAttribute("href", "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>/" + locale + "/refuges/" + result.id)# + "/detail")
+        console.log "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + result.id
+        link_to.setAttribute("href", "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + result.id)# + "/detail")
         link_to.setAttribute("data-method", "get")
         # link_to.setAttribute("data-remote", "true")
         li.appendChild(link_to)
@@ -188,7 +189,7 @@ markers = []
             else
               entities_2 += tr_content entity[0], 'red'
           i++
-        link_to = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>/" + locale + "/refuges/" + show_marker.id
+        link_to = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + show_marker.id
         contentString = '<div id="content">' +
           '<div id="siteNotice">' +
           '</div>' +
@@ -268,7 +269,7 @@ info_marker_event = (infowindow, marker, locale) ->
       else
         issues_by_entities_2 += tr_content entity[0], 'red'
     i++
-  link_to = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>/" + locale + "/refuges/" + marker.id
+  link_to = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + marker.id
   contentString = '<div id="content">' +
     '<div id="siteNotice">' +
     '</div>' +

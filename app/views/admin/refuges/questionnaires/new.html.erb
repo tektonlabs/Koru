@@ -1,64 +1,40 @@
-<%= form_for [:admin, :refuge, @questionnaire] do |f| %>
-	<h1>
-		<%= @refuge.name %>
-		<div class="pull-right">
-			<%= f.submit "Guardar", class: "btn btn-primary" %>
-		</div>
-	</h1>
-	<div class="col-md-2"></div>
-	<div class="col-md-8">
-		<% entities_all.each do |entity| %>
-			<div class="panel">
-			  <div class="panel-heading">
-			    <h3 class="panel-title"><b><%= entity.name %></b></h3>
-			    <hr>
-			  </div>
-			  <div class="panel-body">
-			  	<% entity.questions.includes(:answers, :children).each do |question| %>
-		      	<p><b><%= question.text %></b></p>
-		      	<% if question.input_value? %>
-		      		<p>
-		      			<%= text_field_tag "answer_#{question.id}", "", class: "form-control" %>
-	      			</p>
-		      	<% else %>
-			      	<% question.answers.each do |answer| %>
-			      		<% if question.one_choice? %>
-									<label class="fancy-radio">
-				      			<%= radio_button_tag "answer_#{question.id}", answer.id %>
-										<span><i></i><%= answer.name %></span>
-									</label>
-			      		<% end %>
-				      	<% if question.multiple_choice? %>
-									<label class="fancy-checkbox">
-						        <%= check_box_tag "multiple_choice_question_#{question.id}[]", answer.id %>
-										<span><%= h answer.name %></span>
-									</label>
-			      		<% end %>
-			      	<% end %>
-			      	<% unless question.children.nil? %>
-				      	<% question.children.each do |sub_question| %>
-				      		<p><b><%= sub_question.text %></b></p>
-			      			<% sub_question.answers.each do |answer| %>
-				      			<% if question.one_choice? %>
-											<label class="fancy-radio">
-			      						<%= radio_button_tag "answer_#{sub_question.id}", answer.id %>
-												<span><i></i><%= answer.name %></span>
-											</label>
-					      		<% end %>
-						      	<% if question.multiple_choice? %>
-						      		<p>
-								        <%= check_box_tag "multiple_choice_question_#{sub_question.id}[]", answer.id %>
-								        <%= h answer.name %>
-					      			</p>
-					      		<% end %>
-			      			<% end %>
-					  		<% end %>
-				  		<% end %>
-		      	<% end %>
-			  	<% end %>
-			  </div>
-			</div>
-		<% end %>
-	</div>
-	<div class="col-md-2"></div>
+<%= form_tag admin_refuge_questionnaires_path do %>
+  <h1>
+    <%= @refuge.name %>
+    <div class="pull-right">
+      <%= submit_tag "Guardar", class: "btn btn-primary" %>
+    </div>
+  </h1>
+  <% @questionnaire.responses.each do |response| %>
+    <% question = response.question %>
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title"><b><%= question.entity.name %></b></h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <p><%= question.text %></p>
+        <% case question.question_type %>
+        <% when "one_choice" %>
+          <% question.answers.each do |answer| %>
+            <label class="fancy-radio">
+              <%= radio_button_tag "questions[answers][][selected_id]", answer.id  %>
+              <span><i></i><%= answer.name %></span>
+            </label>
+          <% end %>
+        <% when "multiple_choice" %>
+          <% question.answers.each do |answer| %>
+            <label class="fancy-checkbox">
+              <%= check_box_tag "questions[answers][][selected_id]", answer.id %>
+              <span><%= answer.name %></span>
+            </label>
+          <% end %>
+        <% else %>
+          <%#= text_field_tag "questions[answer[answer_value]]", "", class: "form-control" %>
+        <% end %>
+        <%= hidden_field_tag "questions[id]", question.id %>
+        <%= hidden_field_tag "questions[question_type]", question.question_type %>
+      </div>
+    </div>
+  <% end %>
 <% end %>

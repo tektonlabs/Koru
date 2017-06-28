@@ -41,8 +41,8 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: redirect("#{ENV['RELATIVE_URL_ROOT']}/#{I18n.default_locale}")
-  match '*locale/*path', to: redirect("#{ENV['RELATIVE_URL_ROOT']}/#{I18n.default_locale}/%{path}"), via: :all
-  match '*path', to: redirect("#{ENV['RELATIVE_URL_ROOT']}/#{I18n.default_locale}/%{path}"), via: :all
+  root to: redirect("#{ENV['HOST']}#{ENV['RELATIVE_URL_ROOT']}#{I18n.default_locale}")
+  match '*path', to: redirect("#{ENV['HOST']}#{ENV['RELATIVE_URL_ROOT']}#{I18n.default_locale}/%{path}"), via: :all
+  match '', to: redirect("#{ENV['HOST']}#{ENV['RELATIVE_URL_ROOT']}#{I18n.default_locale}"), via: :all
 
 end
