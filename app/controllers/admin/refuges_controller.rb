@@ -1,6 +1,6 @@
 class Admin::RefugesController < AdminController
 
-  before_action :set_refuge, only: :destroy
+  before_action :set_refuge, only: [:destroy, :new_questionnaire, :create_questionnaire]
 
   def index
     @refuges = Refuge.search(search_params).includes(:country, :primary_contact, :questionnaires, :census_taker).order(:name).paginate(per_page: 25, page: params[:page])

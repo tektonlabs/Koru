@@ -5,6 +5,8 @@ class Questionnaire < ApplicationRecord
   has_many :responses, dependent: :destroy
   has_many :needs, dependent: :destroy
 
+  accepts_nested_attributes_for :responses, reject_if: proc { |attributes| (attributes['answer_selected_id'].to_a.reject(&:empty?)).blank? and attributes['answer_responsed_text'].blank? }
+
   QUESTIONS = YAML::load(File.open(File.join(Rails.root, 'config', "questions.yml")))
 
   def self.search search_params

@@ -1,0 +1,40 @@
+<%= form_tag admin_refuge_questionnaires_path do %>
+  <h1>
+    <%= @refuge.name %>
+    <div class="pull-right">
+      <%= submit_tag "Guardar", class: "btn btn-primary" %>
+    </div>
+  </h1>
+  <% @questionnaire.responses.each do |response| %>
+    <% question = response.question %>
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title"><b><%= question.entity.name %></b></h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <p><%= question.text %></p>
+        <% case question.question_type %>
+        <% when "one_choice" %>
+          <% question.answers.each do |answer| %>
+            <label class="fancy-radio">
+              <%= radio_button_tag "questions[answers][][selected_id]", answer.id  %>
+              <span><i></i><%= answer.name %></span>
+            </label>
+          <% end %>
+        <% when "multiple_choice" %>
+          <% question.answers.each do |answer| %>
+            <label class="fancy-checkbox">
+              <%= check_box_tag "questions[answers][][selected_id]", answer.id %>
+              <span><%= answer.name %></span>
+            </label>
+          <% end %>
+        <% else %>
+          <%#= text_field_tag "questions[answer[answer_value]]", "", class: "form-control" %>
+        <% end %>
+        <%= hidden_field_tag "questions[id]", question.id %>
+        <%= hidden_field_tag "questions[question_type]", question.question_type %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -45,6 +45,22 @@ module FrontRefugesHelper
     end
   end
 
+  def set_floor_type refuge, locale
+    if locale == 'es'
+      refuge.floor_type.nil? ? "No registrado." :  t("refuges.types.floor_type.#{refuge.floor_type}")
+    else
+      refuge.floor_type.nil? ? "Not registered." :  t("refuges.types.floor_type.#{refuge.floor_type}")
+    end
+  end
+
+  def set_roof_type refuge, locale
+    if locale == 'es'
+      refuge.roof_type.nil? ? "No registrado." :  t("refuges.types.roof_type.#{refuge.roof_type}")
+    else
+      refuge.roof_type.nil? ? "Not registered." :  t("refuges.types.roof_type.#{refuge.roof_type}")
+    end
+  end
+
   def entity_color entity
     entity = entity.parent.nil? ? entity : entity.parent
     case entity.name

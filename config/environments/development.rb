@@ -61,4 +61,7 @@ Rails.application.configure do
     domain: ENV['MAILGUN_DOMAIN'],
   }
 
+  ENV['HOST'] = 'http://localhost:3000'
+  ENV['RELATIVE_URL_ROOT'] = '/'
+
 end

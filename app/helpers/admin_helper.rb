@@ -28,4 +28,12 @@ module AdminHelper
     user.nil? ? 'No se ha registrado' : user.dni
   end
 
+  def entities_all
+    @first_level_entities ||= Entity.first_level
+  end
+
+  def set_entity entity
+    entity = entity.parent.nil? ? entity : entity.parent
+  end
+
 end
