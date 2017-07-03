@@ -40,9 +40,9 @@ class Questionnaire < ApplicationRecord
     end
   end
 
-  def save_with_responses questions_params, date_param, dni_param
-    self.refuge.refuge_entities.update_all issues_number: 0
-    self.state_date = Time.at date_param.to_i
+  def save_with_responses questions_params, date_param = nil, dni_param = nil
+    self.refuge.refuge_entities.update_all(issues_number: 0) unless questions_params.map{|x| x["answers"] }.compact.flatten.map{|w| w["answer_value"]}.all?(&:blank?)
+    self.state_date = date_param.nil? ? Time.now : Time.at(date_param.to_i)
     self.user = User.find_or_initialize_by dni: dni_param
     questions_params.each do |question|
       unless question[:sub_questions].blank?

@@ -5,35 +5,38 @@
       <%= submit_tag "Guardar", class: "btn btn-primary" %>
     </div>
   </h1>
-  <% @questionnaire.responses.each do |response| %>
-    <% question = response.question %>
+  <% @questionnaire.responses.group_by{|x| (x.question.entity.parent.nil? ? x.question.entity : x.question.entity.parent) }.each do |response| %>
     <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title"><b><%= question.entity.name %></b></h3>
+        <h3 class="panel-title"><b><%= response.first.name %></b></h3>
         <hr>
       </div>
       <div class="panel-body">
-        <p><%= question.text %></p>
-        <% case question.question_type %>
-        <% when "one_choice" %>
-          <% question.answers.each do |answer| %>
-            <label class="fancy-radio">
-              <%= radio_button_tag "questions[answers][][selected_id]", answer.id  %>
-              <span><i></i><%= answer.name %></span>
-            </label>
+        <% response.second.each do |sub_response| %>
+          <% question = sub_response.question %>
+          <%= hidden_field_tag "questions[#{question.id}][id]", question.id %>
+          <%= hidden_field_tag "questions[#{question.id}][question_type]", question.question_type %>
+          <p><%= question.text %></p>
+          <% case question.question_type %>
+          <% when "one_choice" %>
+            <% question.answers.each do |answer| %>
+              <label class="fancy-radio">
+                <%= radio_button_tag "questions[#{question.id}][answers][][selected_id]", answer.id %>
+                <span><i></i><%= answer.name %></span>
+              </label>
+            <% end %>
+          <% when "multiple_choice" %>
+            <% question.answers.each do |answer| %>
+              <label class="fancy-checkbox">
+                <%= check_box_tag "questions[#{question.id}][answers][][selected_id]", answer.id %>
+                <span><%= answer.name %></span>
+              </label>
+            <% end %>
+          <% else %>
+            <%= text_field_tag "questions[#{question.id}][answers][][answer_value]", nil, class: "form-control" %>
           <% end %>
-        <% when "multiple_choice" %>
-          <% question.answers.each do |answer| %>
-            <label class="fancy-checkbox">
-              <%= check_box_tag "questions[answers][][selected_id]", answer.id %>
-              <span><%= answer.name %></span>
-            </label>
-          <% end %>
-        <% else %>
-          <%#= text_field_tag "questions[answer[answer_value]]", "", class: "form-control" %>
+          <br>
         <% end %>
-        <%= hidden_field_tag "questions[id]", question.id %>
-        <%= hidden_field_tag "questions[question_type]", question.question_type %>
       </div>
     </div>
   <% end %>

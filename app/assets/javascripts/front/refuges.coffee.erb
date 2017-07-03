@@ -63,7 +63,7 @@ markers = []
       i++
     if results.length == 0
       if locale == "es"
-        no_refuges_found = "Ningun refugio ha sido encontrado."
+        no_refuges_found = "Ningún refugio ha sido encontrado."
       else
         no_refuges_found = "No refuges found in the location in the map."
       sidebar.innerHTML = '<li><a href="#"><div><h4>' + no_refuges_found + '</h4></div><a></li>'
@@ -101,7 +101,6 @@ markers = []
         table.appendChild(tr_name)
         table.appendChild(tr_address)
         link_to.appendChild(table)
-        console.log "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + result.id
         link_to.setAttribute("href", "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + result.id)# + "/detail")
         link_to.setAttribute("data-method", "get")
         # link_to.setAttribute("data-remote", "true")
