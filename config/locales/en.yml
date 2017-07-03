@@ -34,8 +34,6 @@ en:
     search_mode_location: "Locations"
     search_mode_refuges: "Refuges"
     language_translate: "Language"
-    english_language: "English"
-    spanish_language: "Spanish"
     search_box_placeholder_locations: "Search by locations"
     search_box_placeholder_refuges: "Search by refuges"
     refuge_detail_button: "Open Details"
@@ -101,10 +99,10 @@ en:
     floor_type: "Floor type"
     roof_type: "Roof type"
     food_and_drinks: "Food and drinks"
-    water: "Water Management"
-    light: "Light Management"
-    stool: "Stool Management"
-    waste: "Waste Management"
+    water: "Water management"
+    light: "Light management"
+    stool: "Stool management"
+    waste: "Waste management"
     types:
       institution_in_charge:
         central_government: "Central government"

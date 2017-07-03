@@ -34,8 +34,6 @@ es:
     search_mode_location: "Ubicación"
     search_mode_refuges: "Refugios"
     language_translate: "Lenguaje"
-    english_language: "Inglés"
-    spanish_language: "Español"
     search_box_placeholder_locations: "Buscar por ubicación"
     search_box_placeholder_refuges: "Buscar por refugios"
     refuge_detail_button: "Ver Detalles"
@@ -103,7 +101,7 @@ es:
     food_and_drinks: "Alimentos y bebidas"
     water: "Agua"
     light: "Luz"
-    stool: "Residuos sólidos"
+    stool: "Manejo de heces"
     waste: "Gestión de residuos"
     types:
       institution_in_charge:
