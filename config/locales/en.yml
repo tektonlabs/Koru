@@ -110,7 +110,7 @@ en:
         church_institution: "Church"
         municipality: "Municipality"
         community_organization: "Community organization"
-        non_governmental_organization: "Non governmental organization"
+        non_governmental_organization: "Non-governmental organization"
         other_institution: "Other"
       refuge_type:
         open_tents: "Open tents"

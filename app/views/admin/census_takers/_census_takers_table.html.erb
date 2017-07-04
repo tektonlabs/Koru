@@ -6,6 +6,7 @@
       <tr>
         <th>DNI</th>
         <th>Celular</th>
+        <th>Institución</th>
         <th>Refugios</th>
         <th>Acciones</th>
       </tr>
@@ -15,6 +16,7 @@
         <tr>
           <td><%= census_taker.dni %></td>
           <td><%= census_taker.phone %></td>
+          <td><%= census_taker.institution.humanize %></td>
           <td><%= link_to census_taker.refuges.count, admin_refuges_path(dni: census_taker.dni) %></td>
           <td>
             <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
