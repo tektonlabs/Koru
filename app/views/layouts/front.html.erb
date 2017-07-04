@@ -10,6 +10,7 @@
     <%= javascript_include_tag 'front', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
+    <%= analytics_init if GoogleAnalytics.valid_tracker? %>
   </head>
   <body>
     <div id="wrapper">

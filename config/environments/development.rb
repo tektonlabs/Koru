@@ -61,6 +61,8 @@ Rails.application.configure do
     domain: ENV['MAILGUN_DOMAIN'],
   }
 
+  GA.tracker = 'UA-45898592-3'
+
   ENV['HOST'] = 'http://localhost:3000'
   ENV['RELATIVE_URL_ROOT'] = '/'
 

@@ -4,7 +4,7 @@
       <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
     </div>
     <div class="brand">
-      <%= link_to front_root_path do %>
+      <%= link_to front_root_path, onclick: "#{analytics_track_event 'logo', '-', '-'}" do %>
         <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", width: "220", class: "img-responsive logo" %>
       <% end %>
     </div>
@@ -12,7 +12,7 @@
       <div class="navbar-form navbar-left">
         <div class="input-group">
           <div class="input-group-btn">
-            <select id="select-search-mode" class="form-control">
+            <select id="select-search-mode" class="form-control" onclick="<%= analytics_track_event 'search', 'mode_selector', '-' %>">
               <option value="locations" selected=""><%= t "nav.search_mode_location" %></option>
               <option value="refuges"><%= t "nav.search_mode_refuges" %></option>
             </select>
@@ -21,21 +21,21 @@
           <div id="input-search-by-refuge" class="hide">
             <input class="typeahead form-control" type="text" placeholder="<%= t 'nav.search_box_placeholder_refuges' %>">
           </div>
-          <span class="input-group-btn"><button type="button" id="search-button" class="btn btn-primary"><%= image_tag "search-icon.png", width: "15" %></button></span>
+          <span class="input-group-btn" onclick="<%= analytics_track_event 'search', 'search_button', '-' %>"><button type="button" id="search-button" class="btn btn-primary"><%= image_tag "search-icon.png", width: "15" %></button></span>
         </div>
       </div>
       <div class="navbar-form navbar-left">
         <div class="filter-styles">
           <%= t "nav.filter_by_needs" %>
-          <%= form_tag filter_by_front_refuges_path, id: "form-filter-refuges", method: :get, remote: true do %>
+          <%= form_tag filter_by_front_refuges_path, id: "form-filter-refuges", onclick: "#{analytics_track_event 'filter_selector', 'filter_by_needs', '-'}", method: :get, remote: true do %>
             <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "#{t 'filter_select_all'}", id: "filter-select", class: 'form-control ui selection dropdown', multiple: "" %>
           <% end %>
         </div>
       </div>
       <div class="navbar-btn navbar-btn-right translate-buttons-styles">
         <%#= t "nav.language_translate" %>
-        <%= link_to_unless_current "Español", locale: "es" %> |
-        <%= link_to_unless_current "English", locale: "en" %>
+        <%= link_to_unless_current "Español", { locale: "es" }, { onclick: "#{analytics_track_event 'traductor_button', 'spanish', '-'}" } %> |
+        <%= link_to_unless_current "English", { locale: "en" }, { onclick: "#{analytics_track_event 'traductor_button', 'english', '-'}" } %>
       </div>
       <!-- <div class="navbar-btn navbar-btn-right admin-button-margin"> -->
         <%#= link_to "Admin Portal", admin_root_path %>

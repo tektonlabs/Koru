@@ -76,6 +76,7 @@ markers = []
         else
           refuge_status = "refuge-bad"
         li = document.createElement('li')
+        li.setAttribute("onclick", "ga('send','event','refuges','" + result.content + "','-',null);")
         link_to = document.createElement('a')
         table = document.createElement('table')
         tr_name = document.createElement('tr')
@@ -188,23 +189,6 @@ markers = []
             else
               entities_2 += tr_content entity[0], 'red'
           i++
-        link_to = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + show_marker.id
-        contentString = '<div id="content">' +
-          '<div id="siteNotice">' +
-          '</div>' +
-          '<h3 id="firstHeading" class="firstHeading" style="padding: 0 15px;">' + show_marker.content + '</h3>' +
-          '<div id="bodyContent">' +
-          '<p style="padding: 0 30px;">Coordinador: ' + contact_name + '</p>' +
-          '<p style="padding: 0 30px;">Teléfono: ' + contact_phone + '</p>' +
-          '<div class="col-md-12">' +
-          '<div class="col-md-6"><table>' + entities_1 + '</table></div>' +
-          '<div class="col-md-6"><table>' + entities_2 + '</table></div>' +
-          '</div>' +
-          "<a href=" + link_to + ' class="pull-right">' + 'Más detalles >></a>' +
-          '</div>' +
-          '</div>'
-        infowindow.setContent contentString
-        infowindow.open map, show_marker
         info_marker_event infowindow, show_marker, locale
       else
         window.alert 'No results found'
@@ -269,6 +253,7 @@ info_marker_event = (infowindow, marker, locale) ->
         issues_by_entities_2 += tr_content entity[0], 'red'
     i++
   link_to = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + marker.id
+  analytics_track_event = "ga('send','event','refuges','" + marker.content + "','-',null);"
   contentString = '<div id="content">' +
     '<div id="siteNotice">' +
     '</div>' +
@@ -281,7 +266,7 @@ info_marker_event = (infowindow, marker, locale) ->
     '<div class="col-md-6"><table>' + issues_by_entities_2 + '</table></div>' +
     '</div>' +
     '<div class="col-md-12">' +
-    "<a href=" + link_to + ' class="pull-right" style="padding: 11px 0;">' + t_more_details + '></a>' +
+    "<a href=" + link_to + ' class="pull-right" onclick="' + analytics_track_event + '" style="padding: 11px 0;">' + t_more_details + '></a>' +
     '</div>' +
     '</div>' +
     '</div>'
