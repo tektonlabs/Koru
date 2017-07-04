@@ -80,6 +80,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV['HOST'] + ENV['RELATIVE_URL_ROOT'], protocol: 'https' }
   config.action_mailer.asset_host = "#{ENV['HOST']}#{ENV['RELATIVE_URL_ROOT']}"
 
+  GA.tracker = ENV['GA_TRACKER']
+
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')

@@ -83,6 +83,9 @@ gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.4.1'
 # I like font-awesome. I like the asset pipeline. I like semantic versioning. If you do too, you're welcome.
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
 
+# Fast Universal Google Analytics setup for Rails.
+gem 'google-analytics-rails', '1.1.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
