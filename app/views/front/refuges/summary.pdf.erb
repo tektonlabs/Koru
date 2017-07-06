@@ -10,44 +10,57 @@
           </tr>
           <tr>
             <td><b>Fecha:</b></td>
-            <td class="td-left-margin"><%= @refuge.last_questionnaire.state_date.strftime("%d/%m/%Y") %></td>
+            <% if @refuge.last_questionnaire.nil? %>
+              <td class="td-left-margin">Ningún cuestionario ha sido registrado</td>
+            <% else %>
+              <td class="td-left-margin"><%= @refuge.last_questionnaire.state_date.strftime("%d/%m/%Y") %></td>
+            <% end %>
           </tr>
           <tr>
             <td><b>Coordinador:</b></td>
-            <td class="td-left-margin"><%= @refuge.primary_contact.first_name %></td>
+            <% if @refuge.primary_contact.nil? %>
+              <td class="td-left-margin">Ningún coordinador ha sido registrado</td>
+            <% else %>
+              <td class="td-left-margin"><%= @refuge.primary_contact.first_name %></td>
+            <% end %>
           </tr>
         </table>
       </td>
     </tr>
   </table>
 </div>
-<div class="content">
-  <% @refuge.last_questionnaire.responses.includes(question: :entity).group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}.each do |entity| %>
-    <br>
-    <div class="entity-header">
-      <h3><%= entity.first.name %></h3>
-    </div>
-    <% entity.second.each do |r| %>
-      <% question = r.question %>
-      <p><b><%= question.text %></b></p>
-      <% case question.question_type %>
-      <% when "one_choice" %>
-        <% question.answers.each do |answer| %>
-          <p>
-            <%= radio_button_tag "answer_#{answer.id}", answer.id, r.answer_selected_id.include?(answer.id) %>
-            <label><%= answer.name %></label>
-          </p>
+<% if @refuge.primary_contact.nil? %>
+  <br>
+  <p>Ningún cuestionario ha sido registrado</p>
+<% else %>
+  <div class="content">
+    <% @refuge.last_questionnaire.responses.includes(question: :entity).group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}.each do |entity| %>
+      <br>
+      <div class="entity-header">
+        <h3><%= entity.first.name %></h3>
+      </div>
+      <% entity.second.each do |r| %>
+        <% question = r.question %>
+        <p><b><%= question.text %></b></p>
+        <% case question.question_type %>
+        <% when "one_choice" %>
+          <% question.answers.each do |answer| %>
+            <p>
+              <%= radio_button_tag "answer_#{answer.id}", answer.id, r.answer_selected_id.include?(answer.id) %>
+              <label><%= answer.name %></label>
+            </p>
+          <% end %>
+        <% when "multiple_choice" %>
+          <% question.answers.each do |answer| %>
+            <p>
+              <%= check_box_tag :answer, answer.id, r.answer_selected_id.include?(answer.id) %>
+              <label for="answer"><%= answer.name %></label>
+            </p>
+          <% end %>
+        <% else %>
+          <p><%= Answer.text_answers_selected(r.answer_selected_id, r.answer_responsed_text) %></p>
         <% end %>
-      <% when "multiple_choice" %>
-        <% question.answers.each do |answer| %>
-          <p>
-            <%= check_box_tag :answer, answer.id, r.answer_selected_id.include?(answer.id) %>
-            <label for="answer"><%= answer.name %></label>
-          </p>
-        <% end %>
-      <% else %>
-        <p><%= Answer.text_answers_selected(r.answer_selected_id, r.answer_responsed_text) %></p>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
