@@ -1,0 +1,29 @@
+@import "colors";
+@import "bootstrap";
+@import "main";
+
+.container {
+  background-color: #fff;
+}
+
+.header {
+  background-color: #f3f5f8;
+}
+
+.content {
+  background-color: #fff;
+
+  .td-left-margin {
+    padding-left: 10px;
+  }
+
+  .entity-header {
+    background-color: #f3f5f8;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+
+}
+
+
