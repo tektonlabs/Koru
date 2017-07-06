@@ -1,7 +1,11 @@
 <div class="content-container">
 
+
   <h1 class="page-title">
     <b><%= @refuge.name %></b>
+    <div class="pull-right">
+      <%= link_to "Descargar PDF", front_refuge_path(@refuge, format: :pdf), class: "btn btn-primary" %>
+    </div>
     <i class="refuge-status <%= refuge_class_status(@refuge) %>"></i>
     <div class="sub-title-refuge">
       <div><%= t 'refuges.coordinator' %>: <%= set_primary_contact @refuge.primary_contact %></div>

@@ -8,8 +8,15 @@ class Front::RefugesController < FrontController
   end
 
   def show
-    doughnut_graph_settings()
-    line_graph_settings @refuge.set_last_six_statuses
+    respond_to do |format|
+      format.html do
+        doughnut_graph_settings()
+        line_graph_settings @refuge.set_last_six_statuses
+      end
+      format.pdf do
+        render pdf: 'summary', layout: 'pdf.html.erb', template: 'front/refuges/summary.pdf.erb'
+      end
+    end
   end
 
   def detail

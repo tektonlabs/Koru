@@ -86,6 +86,12 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
 # Fast Universal Google Analytics setup for Rails.
 gem 'google-analytics-rails', '1.1.0'
 
+# Wicked PDF uses the shell utility wkhtmltopdf to serve a PDF file to a user from HTML.
+gem 'wicked_pdf', '~> 1.1'
+
+# A necessary gem for wicked_pdf good perform
+gem 'wkhtmltopdf-binary'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
