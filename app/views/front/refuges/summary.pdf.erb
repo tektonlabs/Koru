@@ -46,7 +46,7 @@
         <% when "one_choice" %>
           <% question.answers.each do |answer| %>
             <p>
-              <%= radio_button_tag "answer_#{answer.id}", answer.id, r.answer_selected_id.include?(answer.id) %>
+              <%= radio_button_tag "question_#{question.id}", answer.id, r.answer_selected_id.include?(answer.id) %>
               <label><%= answer.name %></label>
             </p>
           <% end %>
