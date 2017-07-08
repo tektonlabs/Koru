@@ -5,3 +5,16 @@
 .container {
   background-color: #fff;
 }
+
+.entity-header {
+  background-color: #f3f5f8;
+  text-align: center;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.page-break { 
+  display:block;
+  clear:both;
+  page-break-after:always;
+}

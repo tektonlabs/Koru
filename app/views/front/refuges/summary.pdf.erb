@@ -1,76 +1,30 @@
 <div>
-  <div style="position:relative;">
-    <div style="width: 25%; display:inline-block; vertical-align:top;">
-      <%= wicked_pdf_image_tag 'logo-mailer.png' %>
-    </div>
-    <div style="width: 74%; display:inline-block; vertical-align:top; padding: 3.5% 0;">
-      <div style="background-color: #f3f5f8; padding: 5% 0px;">
-        <div style="width: 35%; float:left;">
-          <b style="margin-left: 15%">Nombre del refugio:</b>
-        </div>
-        <div>
-          <%= @refuge.name %>
-        </div>
-        <div style="width: 35%; float:left;">
-          <b style="margin-left: 15%">Fecha:</b>
-        </div>
-        <div>
-          <% if @refuge.last_questionnaire.nil? %>
-            Ningún cuestionario ha sido registrado
-          <% else %>
-            <%= @refuge.last_questionnaire.state_date.strftime("%d/%m/%Y") %>
-          <% end %>
-        </div>
-        <div style="width: 35%; float:left;">
-          <b style="margin-left: 15%">Coordinador:</b>
-        </div>
-        <div>
-          <% if @refuge.primary_contact.nil? %>
-            Ningún coordinador ha sido registrado
-          <% else %>
-            <%= @refuge.primary_contact.first_name %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="position:relative;">
-    <div style="width: 49.5%; height: 50%; display:inline-block; background-color: green;">-</div>
-    <div style="width: 49.5%; height: 50%; display:inline-block; background-color: blue;">-</div>
-  </div>
+  <%= render 'pdf_header'%>
   <% if @refuge.primary_contact.nil? %>
     <br>
     <p>Ningún cuestionario ha sido registrado</p>
   <% else %>
-    <div class="content">
-      <% @refuge.last_questionnaire.responses.includes(question: :entity).group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}.each do |entity| %>
-        <br>
-        <div class="entity-header">
-          <h3><%= entity.first.name %></h3>
-        </div>
-        <% entity.second.each do |r| %>
-          <% question = r.question %>
-          <p><b><%= question.text %></b></p>
-          <% case question.question_type %>
-          <% when "one_choice" %>
-            <% question.answers.each do |answer| %>
-              <p>
-                <%= radio_button_tag "question_#{question.id}", answer.id, r.answer_selected_id.include?(answer.id) %>
-                <label><%= answer.name %></label>
-              </p>
-            <% end %>
-          <% when "multiple_choice" %>
-            <% question.answers.each do |answer| %>
-              <p>
-                <%= check_box_tag :answer, answer.id, r.answer_selected_id.include?(answer.id) %>
-                <label for="answer"><%= answer.name %></label>
-              </p>
-            <% end %>
-          <% else %>
-            <p><%= Answer.text_answers_selected(r.answer_selected_id, r.answer_responsed_text) %></p>
-          <% end %>
-        <% end %>
-      <% end %>
+    <div style="position:relative;">
+      <div style="width: 49.5%; display:inline-block; vertical-align:top;">
+        <%= render 'entity_questions', entity_id: 1 %>
+        <%= render 'entity_questions', entity_id: 2 %>
+      </div>
+      <div style="width: 49.5%; display:inline-block; vertical-align:top;">
+        <%= render 'entity_questions', entity_id: 3 %>
+        <%= render 'entity_questions', entity_id: 4 %>
+      </div>
+    </div>
+    <div class="page-break"></div>
+    <%= render 'pdf_header'%>
+    <div style="position:relative;">
+      <div style="width: 49.5%; display:inline-block; vertical-align:top;">
+        <%= render 'entity_questions', entity_id: 5 %>
+        <%= render 'entity_questions', entity_id: 6 %>
+        <%= render 'entity_questions', entity_id: 7 %>
+      </div>
+      <div style="width: 49.5%; display:inline-block; vertical-align:top;">
+        <%= render 'entity_questions', entity_id: 8 %>
+      </div>
     </div>
   <% end %>
 </div>

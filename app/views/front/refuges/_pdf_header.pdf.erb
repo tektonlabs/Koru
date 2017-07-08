@@ -1,0 +1,35 @@
+<div style="position:relative;">
+  <div style="width: 25%; display:inline-block; vertical-align:top;">
+    <%= wicked_pdf_image_tag 'logo-mailer.png' %>
+  </div>
+  <div style="width: 74%; display:inline-block; vertical-align:top; padding: 3.5% 0;">
+    <div style="background-color: #f3f5f8; padding: 5% 0px;">
+      <div style="width: 35%; float:left;">
+        <b style="margin-left: 15%">Nombre del refugio:</b>
+      </div>
+      <div>
+        <%= @refuge.name %>
+      </div>
+      <div style="width: 35%; float:left;">
+        <b style="margin-left: 15%">Fecha:</b>
+      </div>
+      <div>
+        <% if @refuge.last_questionnaire.nil? %>
+          Ningún cuestionario ha sido registrado
+        <% else %>
+          <%= @refuge.last_questionnaire.state_date.strftime("%d/%m/%Y") %>
+        <% end %>
+      </div>
+      <div style="width: 35%; float:left;">
+        <b style="margin-left: 15%">Coordinador:</b>
+      </div>
+      <div>
+        <% if @refuge.primary_contact.nil? %>
+          Ningún coordinador ha sido registrado
+        <% else %>
+          <%= @refuge.primary_contact.first_name %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
