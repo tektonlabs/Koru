@@ -1,0 +1,35 @@
+<div class="pdf-block-position">
+  <div class="pdf-header-image ">
+    <%= wicked_pdf_image_tag 'logo-mailer.png' %>
+  </div>
+  <div class="pdf-header-data-container">
+    <div class="pdf-header-data">
+      <div class="pdf-header-block-style">
+        <b>Nombre del refugio:</b>
+      </div>
+      <div>
+        <%= @refuge.name %>
+      </div>
+      <div class="pdf-header-block-style">
+        <b>Fecha:</b>
+      </div>
+      <div>
+        <% if @refuge.last_questionnaire.nil? %>
+          Ningún cuestionario ha sido registrado
+        <% else %>
+          <%= @refuge.last_questionnaire.state_date.strftime("%d/%m/%Y") %>
+        <% end %>
+      </div>
+      <div class="pdf-header-block-style">
+        <b>Coordinador:</b>
+      </div>
+      <div>
+        <% if @refuge.primary_contact.nil? %>
+          Ningún coordinador ha sido registrado
+        <% else %>
+          <%= @refuge.primary_contact.first_name %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

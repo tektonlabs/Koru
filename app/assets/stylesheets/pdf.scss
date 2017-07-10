@@ -6,24 +6,76 @@
   background-color: #fff;
 }
 
-.header {
-  background-color: #f3f5f8;
+.pdf-text-size {
+  font-size: 12px;
 }
 
-.content {
-  background-color: #fff;
+.pdf-block-style {
+  width: 49.5%;
+  display:inline-block;
+  vertical-align:top;
+}
 
-  .td-left-margin {
-    padding-left: 10px;
+.pdf-block-position {
+  position:relative;
+}
+
+.pdf-header-block-style {
+  width: 35%; float:left;
+  & b {
+    margin-left: 15%;
   }
+}
 
-  .entity-header {
+.pdf-header-image {
+  width: 25%;
+  display:inline-block;
+  vertical-align:top;
+}
+
+.pdf-header-data-container {
+  width: 74%;
+  display:inline-block;
+  vertical-align:top;
+  padding: 3.5% 0;
+  .pdf-header-data {
     background-color: #f3f5f8;
-    text-align: center;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    padding: 5% 0px;
   }
-
 }
 
+.entity-header {
+  background-color: #f3f5f8;
+  text-align: center;
+  vertical-align:top;
+  padding: 1px 0px;
+  height: 25px;
+  & p {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
 
+.page-break { 
+  display: block;
+  clear: both;
+  page-break-after: always;
+}
+
+.question {
+  margin: 3px 0px 3px 0px;
+}
+
+.answer {
+  margin: 2px 0px;
+}
+
+.radiobutton-options {
+  width: 32.5%;
+  display:inline-block;
+}
+
+.checkbox-options {
+  margin: 0px 0px 12px 0px;
+  height: 8px;
+}
