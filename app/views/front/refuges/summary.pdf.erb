@@ -4,25 +4,25 @@
     <br>
     <p>Ningún cuestionario ha sido registrado</p>
   <% else %>
-    <div style="position:relative;">
-      <div style="width: 49.5%; display:inline-block; vertical-align:top;">
+    <div class="pdf-block-position">
+      <div class="pdf-block-style">
         <%= render 'entity_questions', entity_id: 1 %>
         <%= render 'entity_questions', entity_id: 2 %>
       </div>
-      <div style="width: 49.5%; display:inline-block; vertical-align:top;">
+      <div class="pdf-block-style">
         <%= render 'entity_questions', entity_id: 3 %>
         <%= render 'entity_questions', entity_id: 4 %>
       </div>
     </div>
     <div class="page-break"></div>
     <%= render 'pdf_header'%>
-    <div style="position:relative;">
-      <div style="width: 49.5%; display:inline-block; vertical-align:top;">
+    <div class="pdf-block-position">
+      <div class="pdf-block-style">
         <%= render 'entity_questions', entity_id: 5 %>
         <%= render 'entity_questions', entity_id: 6 %>
         <%= render 'entity_questions', entity_id: 7 %>
       </div>
-      <div style="width: 49.5%; display:inline-block; vertical-align:top;">
+      <div class="pdf-block-style">
         <%= render 'entity_questions', entity_id: 8 %>
       </div>
     </div>

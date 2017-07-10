@@ -11,7 +11,7 @@
     <% case question.question_type %>
     <% when "one_choice" %>
       <% question.answers.each do |answer| %>
-        <div style="width: 32.5%; display:inline-block;">
+        <div class="radiobutton-options">
           <p class="pdf-text-size">
             <%= radio_button_tag "question_#{question.id}", answer.id, r.answer_selected_id.include?(answer.id) %>
             <%= answer.name %>

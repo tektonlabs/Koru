@@ -6,6 +6,44 @@
   background-color: #fff;
 }
 
+.pdf-text-size {
+  font-size: 12px;
+}
+
+.pdf-block-style {
+  width: 49.5%;
+  display:inline-block;
+  vertical-align:top;
+}
+
+.pdf-block-position {
+  position:relative;
+}
+
+.pdf-header-block-style {
+  width: 35%; float:left;
+  & b {
+    margin-left: 15%;
+  }
+}
+
+.pdf-header-image {
+  width: 25%;
+  display:inline-block;
+  vertical-align:top;
+}
+
+.pdf-header-data-container {
+  width: 74%;
+  display:inline-block;
+  vertical-align:top;
+  padding: 3.5% 0;
+  .pdf-header-data {
+    background-color: #f3f5f8;
+    padding: 5% 0px;
+  }
+}
+
 .entity-header {
   background-color: #f3f5f8;
   text-align: center;
@@ -19,9 +57,9 @@
 }
 
 .page-break { 
-  display:block;
-  clear:both;
-  page-break-after:always;
+  display: block;
+  clear: both;
+  page-break-after: always;
 }
 
 .question {
@@ -32,11 +70,12 @@
   margin: 2px 0px;
 }
 
-.checkbox-options {
-  margin: 0px 0px 12px 0px;
-  height:8px
+.radiobutton-options {
+  width: 32.5%;
+  display:inline-block;
 }
 
-.pdf-text-size {
-  font-size: 12px;
+.checkbox-options {
+  margin: 0px 0px 12px 0px;
+  height: 8px;
 }
