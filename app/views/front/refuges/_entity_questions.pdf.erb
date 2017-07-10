@@ -1,32 +1,34 @@
 <div class="content">
-  <% entity = Entity.find(entity_id)%>
+  <% entity = Entity.find(entity_id) %>
   <% entity_questions = @rhash[entity] %>
   <br>
   <div class="entity-header">
     <p><%= entity.name %></p>
   </div>
-  <% entity_questions.each do |r| %>
-    <% question = r.question %>
-    <p class="question pdf-text-size"><%= question.text %></p>
-    <% case question.question_type %>
-    <% when "one_choice" %>
-      <% question.answers.each do |answer| %>
-        <div class="radiobutton-options">
-          <p class="pdf-text-size">
-            <%= radio_button_tag "question_#{question.id}", answer.id, r.answer_selected_id.include?(answer.id) %>
+  <% if !entity_questions.nil? %>
+    <% entity_questions.each do |r| %>
+      <% question = r.question %>
+      <p class="question pdf-text-size"><%= question.text %></p>
+      <% case question.question_type %>
+      <% when "one_choice" %>
+        <% question.answers.each do |answer| %>
+          <div class="radiobutton-options">
+            <p class="pdf-text-size">
+              <%= radio_button_tag "question_#{question.id}", answer.id, r.answer_selected_id ? r.answer_selected_id.include?(answer.id) : false %>
+              <%= answer.name %>
+            </p>
+          </div>
+        <% end %>
+      <% when "multiple_choice" %>
+        <% question.answers.each do |answer| %>
+          <p class="checkbox-options pdf-text-size">
+            <%= check_box_tag :answer, answer.id, r.answer_selected_id ? r.answer_selected_id.include?(answer.id) : false %>
             <%= answer.name %>
           </p>
-        </div>
+        <% end %>
+      <% else %>
+        <p class="answer pdf-text-size"><%= r.answer_selected_id ? Answer.text_answers_selected(r.answer_selected_id, r.answer_responsed_text) : '-' %></p>
       <% end %>
-    <% when "multiple_choice" %>
-      <% question.answers.each do |answer| %>
-        <p class="checkbox-options pdf-text-size">
-          <%= check_box_tag :answer, answer.id, r.answer_selected_id.include?(answer.id) %>
-          <%= answer.name %>
-        </p>
-      <% end %>
-    <% else %>
-      <p class="answer pdf-text-size"><%= Answer.text_answers_selected(r.answer_selected_id, r.answer_responsed_text) %></p>
     <% end %>
   <% end %>
 </div>

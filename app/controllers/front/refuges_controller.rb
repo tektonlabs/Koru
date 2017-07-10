@@ -8,7 +8,12 @@ class Front::RefugesController < FrontController
   end
 
   def show
-    @rhash = @refuge.last_questionnaire.responses.includes(question: :entity).group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}
+    questionnaire = @refuge.last_questionnaire
+    question_ids = questionnaire.responses.map(&:question_id)
+    Question.all.each do |question|
+      questionnaire.responses.build question: question if !question_ids.include?(question.id)
+    end
+    @rhash = questionnaire.responses.group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}
     respond_to do |format|
       format.html do
         doughnut_graph_settings()
