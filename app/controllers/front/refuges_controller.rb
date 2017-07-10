@@ -13,7 +13,7 @@ class Front::RefugesController < FrontController
     Question.all.each do |question|
       questionnaire.responses.build question: question if !question_ids.include?(question.id)
     end
-    @rhash = questionnaire.responses.group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}
+    @rhash = questionnaire.responses.sort_by{|x| x.question_id}.group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}
     respond_to do |format|
       format.html do
         doughnut_graph_settings()
