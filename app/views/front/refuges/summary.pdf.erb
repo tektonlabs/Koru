@@ -1,6 +1,6 @@
 <div>
   <%= render 'pdf_header'%>
-  <% if @refuge.primary_contact.nil? %>
+  <% if @refuge.last_questionnaire.nil? %>
     <br>
     <p>Ningún cuestionario ha sido registrado</p>
   <% else %>
