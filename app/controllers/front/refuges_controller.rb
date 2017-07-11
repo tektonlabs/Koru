@@ -2,27 +2,24 @@ class Front::RefugesController < FrontController
 
   include FrontRefugesHelper
 
-  before_action :set_refuge, only: [:show, :detail, :doughnut_graph_settings, :line_graph_settings, :historical_issues_by_entity]
+  before_action :set_refuge, only: [:show, :detail, :doughnut_graph_settings, :line_graph_settings, :historical_issues_by_entity, :generate_summary]
 
   def index
   end
 
   def show
+    doughnut_graph_settings()
+    line_graph_settings @refuge.set_last_six_statuses
+  end
+
+  def generate_summary
     questionnaire = @refuge.last_questionnaire
     question_ids = questionnaire.responses.map(&:question_id)
     Question.all.each do |question|
       questionnaire.responses.build question: question if !question_ids.include?(question.id)
     end
     @rhash = questionnaire.responses.sort_by{|x| x.question_id}.group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}
-    respond_to do |format|
-      format.html do
-        doughnut_graph_settings()
-        line_graph_settings @refuge.set_last_six_statuses
-      end
-      format.pdf do
-        render pdf: 'summary', layout: 'pdf.html.erb', template: 'front/refuges/summary.pdf.erb'
-      end
-    end
+    render pdf: 'summary', layout: 'pdf.html.erb', template: 'front/refuges/summary.pdf.erb'
   end
 
   def detail

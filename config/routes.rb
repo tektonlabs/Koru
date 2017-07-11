@@ -33,6 +33,7 @@ Rails.application.routes.draw do
         member do
           get :detail
           get :historical_issues_by_entity
+          get :generate_summary
         end
         collection do
           get :filter_by

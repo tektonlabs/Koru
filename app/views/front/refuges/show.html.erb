@@ -4,7 +4,9 @@
   <h1 class="page-title">
     <b><%= @refuge.name %></b>
     <div class="pull-right">
-      <%= link_to "Descargar PDF", front_refuge_path(@refuge, format: :pdf), class: "btn btn-primary", target: :_blank %>
+      <% unless @refuge.last_questionnaire.nil? %>
+        <%= link_to "Descargar PDF", generate_summary_front_refuge_path(@refuge), class: "btn btn-primary", target: :_blank %>
+      <% end %>
     </div>
     <i class="refuge-status <%= refuge_class_status(@refuge) %>"></i>
     <div class="sub-title-refuge">
