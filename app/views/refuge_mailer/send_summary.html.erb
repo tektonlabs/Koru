@@ -1,33 +1,15 @@
 <div style="background-color: #f7f7f7; margin-left: 20px; margin-right: 20px; font-family: sans-serif; height: 100%; padding-top: 20px;">
   <% if @refuge.last_questionnaire.blank? %>
     <div style="text-align: center; margin-top: 10px;">
-      <h1>SEGUNDOS AUXILIOS</h1>
+      <%= image_tag image_url("logo-mailer.png", width: "200") %>
       <h5 style="color: #a0a1a3;">Ningún cuestionario ha sido registrado a la fecha.</h5>
     </div>
   <% else %>
     <div style="text-align: center; margin-top: 10px;">
-      <h1>SEGUNDOS AUXILIOS</h1>
+      <%= image_tag image_url("logo-mailer.png", width: "200") %>
       <h5 style="color: #a0a1a3;">Ultimo reporte del <%= @refuge.last_questionnaire.created_at.strftime("%d/%m/%Y") %></h5>
       <div style="margin-bottom: 25px;">
         <%= link_to "Ver resumen", front_refuge_url(@refuge, locale: "es"), style: "-webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2); box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2); padding: 6px 22px; background-color: #00AAFF; border-color: #00a0f0;color: #fff; font-weight: bold; text-decoration: none;" %>
-      </div>
-    </div>
-    <div style="-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); background-color: #fff; width: 70%; margin: 5px auto 30px auto;">
-      <div style="padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 15px;">
-        <% if @refuge.last_questionnaire.responses.blank? %>
-          No se han reportado incidencias
-        <% else %>
-          <% @refuge.last_questionnaire.responses.includes(question: :entity).group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}.each do |entity| %>
-            <div style="text-align: center; margin-top: 40px;">
-              <h2><%= entity.first.name%></h2>
-              <hr>
-            </div>
-            <% entity.second.each do |r| %>
-              <p><b><%= r.question.text %></b></p>
-              <p><%= Answer.text_answers_selected(r.answer_selected_id, r.answer_responsed_text) %></p>
-            <% end %>
-          <% end %>
-        <% end %>
       </div>
     </div>
   <% end %>
