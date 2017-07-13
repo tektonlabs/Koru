@@ -10,15 +10,17 @@
       <% if refuge.last_questionnaire.needs.blank? %>
         <%= t "refuges.no_needs_registered" %>
       <% else %>
-        <table>
+        <table width="100%">
           <% refuge.last_questionnaire.needs.each do |need| %>
             <tr>
               <td><i class="glyphicon glyphicon-remove-sign item-status <%= entity_color(need.entity) %>"></i></td>
               <td><b><%= need.title %></b></td>
+              <td><%= link_to t("refuges.needs_assign"), assign_front_refuge_need_path(refuge, need) %></td>
             </tr>
             <tr>
               <td></td>
               <td><p class="item-description"><%= need.description %></p></td>
+              <td></td>
             </tr>
           <% end %>
         </table>

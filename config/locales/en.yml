@@ -42,6 +42,7 @@ en:
     search_box_placeholder_refuges: "Search by refuges"
     refuge_detail_button: "Open Details"
   refuges:
+    needs_assign: "Assign"
     coordinator: "Coordinator"
     download_button: "Download"
     last_update: "Last update"
