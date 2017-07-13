@@ -37,6 +37,7 @@ Rails.application.routes.draw do
         end
         collection do
           get :filter_by
+          get :display
         end
       end
     end
