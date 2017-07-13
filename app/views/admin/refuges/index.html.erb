@@ -5,7 +5,7 @@
   </div>
 </h1>
 <%= form_tag admin_refuges_path, method: :get, class: "form-inline", remote: true do %>
-  <%= text_field_tag :query, params[:query], value: "", placeholder: "Ingrese nombre", class: "form-control" %>
+  <%= text_field_tag :query, params[:query], value: params[:query], placeholder: "Ingrese nombre", class: "form-control" %>
   <%= text_field_tag :dni, params[:dni], value: params[:dni], placeholder: "Ingrese dni", class: "form-control" %>
   <%= submit_tag "Filtrar", name: nil, class: "btn btn-primary margin-button-filter" %>
 <% end %>

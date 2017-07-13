@@ -5,8 +5,8 @@
   </div>
 </h1>
 <%= form_tag admin_census_takers_path, method: :get, class: "form-inline", remote: true do %>
-  <%= text_field_tag :dni, params[:dni], value: "", placeholder: "Ingrese dni", class: "form-control" %>
-  <%= text_field_tag :phone, params[:phone], value: "", placeholder: "Ingrese celular", class: "form-control" %>
+  <%= text_field_tag :dni, params[:dni], value: params[:dni], placeholder: "Ingrese dni", class: "form-control" %>
+  <%= text_field_tag :phone, params[:phone], value: params[:phone], placeholder: "Ingrese celular", class: "form-control" %>
   <%= submit_tag "Filtrar", name: nil, class: "btn btn-primary margin-button-filter" %>
 <% end %>
 <div class="panel info-panel-margin">

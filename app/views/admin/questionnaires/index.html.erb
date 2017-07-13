@@ -6,7 +6,7 @@
 </h1>
 <%= form_tag admin_questionnaires_path, method: :get, class: "form-inline", remote: true do %>
   <%= select_tag :refuge_id, options_from_collection_for_select(refuges_all, 'id', 'name', params[:refuge_id]), prompt: "-- Todos --", id: "refuge-selector", class: 'form-control ui search dropdown' %>
-  <%= text_field_tag :date, params[:date], value: "", placeholder: "Ingrese fecha", class: "form-control datepicker" %>
+  <%= text_field_tag :date, params[:date], value: params[:date], placeholder: "Ingrese fecha", class: "form-control datepicker" %>
   <%= text_field_tag :dni, params[:dni], value: params[:dni], placeholder: "Ingrese dni", class: "form-control" %>
   <%= submit_tag "Filtrar", name: nil, class: "btn btn-primary margin-button-filter" %>
 <% end %>
