@@ -32,10 +32,6 @@ class Front::RefugesController < FrontController
     end
   end
 
-  def display
-    ap 'hola me llamo Jorgito'
-  end
-
   private
 
   def set_refuge
