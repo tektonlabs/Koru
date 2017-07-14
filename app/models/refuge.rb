@@ -203,4 +203,13 @@ class Refuge < ApplicationRecord
     self.send("#{entity.class.name.underscore.pluralize}").include?(entity) ? "circle-green" : "circle-red"
   end
 
+  def data_for_questionaire_pdf
+    questionnaire = self.last_questionnaire
+    question_ids = questionnaire.responses.map(&:question_id)
+    Question.all.each do |question|
+      questionnaire.responses.build question: question if !question_ids.include?(question.id)
+    end
+    return questionnaire.responses.sort_by{|x| x.question_id}.group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}
+  end
+
 end

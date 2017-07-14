@@ -1,29 +1,29 @@
 <div>
-  <%= render 'pdf_header'%>
+  <%= render 'front/refuges/pdf/pdf_header'%>
   <% if @refuge.last_questionnaire.nil? %>
     <br>
     <p>Ningún cuestionario ha sido registrado</p>
   <% else %>
     <div class="pdf-block-position">
       <div class="pdf-block-style">
-        <%= render 'entity_questions', entity_id: 1 %>
-        <%= render 'entity_questions', entity_id: 2 %>
+        <%= render 'front/refuges/pdf/entity_questions', entity_id: 1 %>
+        <%= render 'front/refuges/pdf/entity_questions', entity_id: 2 %>
       </div>
       <div class="pdf-block-style">
-        <%= render 'entity_questions', entity_id: 3 %>
-        <%= render 'entity_questions', entity_id: 4 %>
+        <%= render 'front/refuges/pdf/entity_questions', entity_id: 3 %>
+        <%= render 'front/refuges/pdf/entity_questions', entity_id: 4 %>
       </div>
     </div>
     <div class="page-break"></div>
-    <%= render 'pdf_header'%>
+    <%= render 'front/refuges/pdf/pdf_header'%>
     <div class="pdf-block-position">
       <div class="pdf-block-style">
-        <%= render 'entity_questions', entity_id: 5 %>
-        <%= render 'entity_questions', entity_id: 6 %>
-        <%= render 'entity_questions', entity_id: 7 %>
+        <%= render 'front/refuges/pdf/entity_questions', entity_id: 5 %>
+        <%= render 'front/refuges/pdf/entity_questions', entity_id: 6 %>
+        <%= render 'front/refuges/pdf/entity_questions', entity_id: 7 %>
       </div>
       <div class="pdf-block-style">
-        <%= render 'entity_questions', entity_id: 8 %>
+        <%= render 'front/refuges/pdf/entity_questions', entity_id: 8 %>
       </div>
     </div>
   <% end %>

@@ -13,12 +13,7 @@ class Front::RefugesController < FrontController
   end
 
   def generate_summary
-    questionnaire = @refuge.last_questionnaire
-    question_ids = questionnaire.responses.map(&:question_id)
-    Question.all.each do |question|
-      questionnaire.responses.build question: question if !question_ids.include?(question.id)
-    end
-    @rhash = questionnaire.responses.sort_by{|x| x.question_id}.group_by{|x| (x.question.entity.second_level? ? x.question.entity.parent : x.question.entity)}
+    @rhash = @refuge.data_for_questionaire_pdf
     render pdf: 'summary', layout: 'pdf.html.erb', template: 'front/refuges/summary.pdf.erb'
   end
 
