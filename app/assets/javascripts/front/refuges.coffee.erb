@@ -8,8 +8,15 @@ markers = []
   map = new (google.maps.Map)(document.getElementById('refuges-map'),
     zoom: 12
     center: lima)
+
+  checkbox_container = document.createElement('div')
+  centerControl = new map_checkbox(checkbox_container, map)
+  checkbox_container.index = 1
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push checkbox_container
+
   locations = locations
   infowindow = new google.maps.InfoWindow
+  bounds = new (google.maps.LatLngBounds)
   for location in locations
     marker = new (google.maps.Marker)(
       position: new (google.maps.LatLng)(parseFloat(location[1]), parseFloat(location[2]))
@@ -24,32 +31,60 @@ markers = []
       map: map)
     markers.push marker
     info_marker_event infowindow, marker, locale
-  bounds = new (google.maps.LatLngBounds)
 
-  if sessionStorage["new_locations"] != undefined && sessionStorage["new_locations"] != ""
-    new_markers = sessionStorage["new_locations"].split("),(")
-    last = new_markers.pop().slice(0, -1)
-    new_markers.push(last)
-    first = new_markers.shift().substring(1);
-    new_markers.unshift(first)
-    if new_markers != undefined
-      j = 0
-      while j < new_markers.length
-        new_marker = new_markers[j]
-        lat = parseFloat(new_marker.split(", ")[0])
-        long = parseFloat(new_marker.split(", ")[1])
-        new_marker = new google.maps.LatLng(lat, long)
-        bounds.extend new_marker
-        j++
-      map.fitBounds bounds
+  map.addListener 'bounds_changed', ->
+    sessionStorage['last_lat'] = map.center.lat()
+    sessionStorage['last_lng'] = map.center.lng()
+    sessionStorage['last_zoom'] = map.zoom
+
+  map.setCenter new google.maps.LatLng(parseFloat(sessionStorage['last_lat']), parseFloat(sessionStorage['last_lng']))
+  map.setZoom(parseInt(sessionStorage['last_zoom']))
+
+  if JSON.parse(sessionStorage["map_checkbox_status"])
+    populate_sidebar_with_map(locale)
   else
-    for location in locations
-      lat = parseFloat(location[1])
-      lng = parseFloat(location[2])
-      marker = new google.maps.LatLng(lat, lng)
-      bounds.extend marker
-    map.fitBounds bounds
+    populate_sidebar_without_map(locations, locale)
 
+  # Search for google maps
+  input = document.getElementById('input-search-by-location')
+  searchBox = new (google.maps.places.SearchBox)(input)
+  map.addListener 'bounds_changed', ->
+    searchBox.setBounds map.getBounds()
+    return
+  new_markers = []
+  searchBox.addListener 'places_changed', ->
+    places = searchBox.getPlaces()
+    if places.length == 0
+      return
+    new_markers.forEach (marker) ->
+      marker.setMap null
+      return
+    new_markers = []
+    new_bounds = new (google.maps.LatLngBounds)
+    places.forEach (place) ->
+      if !place.geometry
+        console.log 'Returned place contains no geometry'
+        return
+      icon =
+        url: place.icon
+        size: new (google.maps.Size)(71, 71)
+        origin: new (google.maps.Point)(0, 0)
+        anchor: new (google.maps.Point)(17, 34)
+        scaledSize: new (google.maps.Size)(25, 25)
+      new_markers.push new (google.maps.Marker)(
+        map: map
+        icon: icon
+        title: place.name
+        position: place.geometry.location)
+      if place.geometry.viewport
+        new_bounds.union place.geometry.viewport
+      else
+        new_bounds.extend place.geometry.location
+      return
+    map.fitBounds new_bounds
+    return
+
+@populate_sidebar_with_map = (locale) ->
   sidebar = document.getElementById("list-refuges")
   google.maps.event.addListener map, 'bounds_changed', ->
     google.maps.event.trigger(map, "resize")
@@ -102,53 +137,62 @@ markers = []
         table.appendChild(tr_name)
         table.appendChild(tr_address)
         link_to.appendChild(table)
-        link_to.setAttribute("href", "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + result.id)# + "/detail")
+        link_to.setAttribute("href", "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + result.id)
         link_to.setAttribute("data-method", "get")
-        # link_to.setAttribute("data-remote", "true")
         li.appendChild(link_to)
         sidebar.appendChild(li)
-      sessionStorage["refuges_list"] = sidebar.innerHTML
-    sessionStorage["new_locations"] = new_locations
+      sessionStorage['refuges_list'] = sidebar.innerHTML
+    sessionStorage['new_locations'] = new_locations
     return
+  return
 
-  # Search for google maps
-  input = document.getElementById('input-search-by-location')
-  searchBox = new (google.maps.places.SearchBox)(input)
+@populate_sidebar_without_map = (locations, locale) ->
+  google.maps.event.clearListeners(map, 'bounds_changed');
   map.addListener 'bounds_changed', ->
-    searchBox.setBounds map.getBounds()
-    return
-  new_markers = []
-  searchBox.addListener 'places_changed', ->
-    places = searchBox.getPlaces()
-    if places.length == 0
-      return
-    new_markers.forEach (marker) ->
-      marker.setMap null
-      return
-    new_markers = []
-    new_bounds = new (google.maps.LatLngBounds)
-    places.forEach (place) ->
-      if !place.geometry
-        console.log 'Returned place contains no geometry'
-        return
-      icon =
-        url: place.icon
-        size: new (google.maps.Size)(71, 71)
-        origin: new (google.maps.Point)(0, 0)
-        anchor: new (google.maps.Point)(17, 34)
-        scaledSize: new (google.maps.Size)(25, 25)
-      new_markers.push new (google.maps.Marker)(
-        map: map
-        icon: icon
-        title: place.name
-        position: place.geometry.location)
-      if place.geometry.viewport
-        new_bounds.union place.geometry.viewport
-      else
-        new_bounds.extend place.geometry.location
-      return
-    map.fitBounds new_bounds
-    return
+    sessionStorage['last_lat'] = map.center.lat()
+    sessionStorage['last_lng'] = map.center.lng()
+    sessionStorage['last_zoom'] = map.zoom
+  sidebar = document.getElementById("list-refuges")
+  sidebar.innerHTML = ""
+  for location in locations
+    refuge_status = ""
+    if location[6] == "good"
+      refuge_status = "refuge-good"
+    else
+      refuge_status = "refuge-bad"
+    li = document.createElement('li')
+    li.setAttribute("onclick", "ga('send','event','refuges','" + location[0] + "','-',null);")
+    link_to = document.createElement('a')
+    table = document.createElement('table')
+    tr_name = document.createElement('tr')
+    td_status_icon = document.createElement('td')
+    td_status_icon.setAttribute("rowspan", "2")
+    i = document.createElement('i')
+    i.setAttribute("class", refuge_status)
+    td_status_icon.appendChild(i)
+    td_name = document.createElement('td')
+    td_name.appendChild(document.createTextNode(location[0]))
+    tr_name.appendChild(td_status_icon)
+    tr_name.appendChild(td_name)
+    tr_address = document.createElement('tr')
+    td_address = document.createElement('td')
+    h6_address = document.createElement('h6')
+    if location[4] == ''
+      refuge_description = location[5]
+    else
+      refuge_description = location[4] + ", " + location[5]
+    h6_address.appendChild(document.createTextNode(refuge_description))
+    td_address.appendChild(h6_address)
+    tr_address.appendChild(td_address)
+    table.appendChild(tr_name)
+    table.appendChild(tr_address)
+    link_to.appendChild(table)
+    link_to.setAttribute("href", "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + location[3])
+    link_to.setAttribute("data-method", "get")
+    li.appendChild(link_to)
+    sidebar.appendChild(li)
+  sessionStorage['refuges_list'] = sidebar.innerHTML
+  return
 
 @initialize_refuges = ->
   $('#refuges-map').css('height', $('#sidebar-nav').height())
@@ -288,6 +332,32 @@ initialize_values = (new_value, locale) ->
   else
     result = new_value
   return result
+
+map_checkbox = (controlDiv, map) ->
+  controlUI = document.createElement('div')
+  controlUI.style.backgroundColor = '#fff'
+  controlUI.style.borderRadius = '1px'
+  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)'
+  controlUI.style.marginTop = '10px'
+  controlUI.style.textAlign = 'center'
+  controlUI.style.padding = '0px 10px 0px 10px'
+  controlDiv.appendChild controlUI
+  controlText = document.createElement('div')
+  controlText.setAttribute("class", "checkbox-container ui checkbox")
+  controlText.setAttribute("onclick", "search_map_if_moving_listener()")
+  checkbox = document.createElement('input')
+  checkbox.setAttribute("type", "checkbox")
+  checkbox.setAttribute("id", "search_mode")
+  if JSON.parse(sessionStorage["map_checkbox_status"])
+    checkbox.checked = true
+  else
+    checkbox.checked = false
+  label = document.createElement('label')
+  label.appendChild(document.createTextNode("Buscar mientras me desplazo en el mapa"))
+  controlText.appendChild checkbox
+  controlText.appendChild label
+  controlUI.appendChild controlText
+  return
 
 document.addEventListener "turbolinks:load", ->
   initialize_refuges()

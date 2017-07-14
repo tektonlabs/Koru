@@ -6,8 +6,20 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYZQCwE8B-r7ORDi49Hzum8vXKyoLl4k&callback=initMap&libraries=places" async defer>
   </script>
   <script type="text/javascript">
-    function initMap(){
+    function initMap() {
       loadMapWithLocations(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
-    }
+    };
+    $('.ui.checkbox').checkbox();
+    function search_map_if_moving_listener() {
+      if (document.getElementById('search_mode').checked) {
+        sessionStorage["map_checkbox_status"] = false;
+        document.getElementById('search_mode').checked = false;
+        populate_sidebar_without_map(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
+      } else {
+        sessionStorage["map_checkbox_status"] = true;
+        document.getElementById('search_mode').checked = true;
+        populate_sidebar_with_map("<%= params[:locale] %>");
+      }
+    };
   </script>
 <% end %>
