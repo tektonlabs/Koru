@@ -10,7 +10,7 @@ markers = []
     center: lima)
 
   checkbox_container = document.createElement('div')
-  centerControl = new map_checkbox(checkbox_container, map)
+  centerControl = new map_checkbox(checkbox_container, map, locale)
   checkbox_container.index = 1
   map.controls[google.maps.ControlPosition.TOP_LEFT].push checkbox_container
 
@@ -32,15 +32,20 @@ markers = []
     markers.push marker
     info_marker_event infowindow, marker, locale
 
+  if sessionStorage['last_lat'] == undefined && sessionStorage['last_lng'] == undefined && sessionStorage['last_zoom'] == undefined
+    sessionStorage['last_lat'] = map.center.lat()
+    sessionStorage['last_lng'] = map.center.lng()
+    sessionStorage['last_zoom'] = map.zoom
+
   map.addListener 'bounds_changed', ->
     sessionStorage['last_lat'] = map.center.lat()
     sessionStorage['last_lng'] = map.center.lng()
     sessionStorage['last_zoom'] = map.zoom
 
-  map.setCenter new google.maps.LatLng(parseFloat(sessionStorage['last_lat']), parseFloat(sessionStorage['last_lng']))
+  map.setCenter new (google.maps.LatLng)(parseFloat(sessionStorage['last_lat']), parseFloat(sessionStorage['last_lng']))
   map.setZoom(parseInt(sessionStorage['last_zoom']))
 
-  if JSON.parse(sessionStorage["map_checkbox_status"])
+  if sessionStorage["map_checkbox_status"] == 'true'
     populate_sidebar_with_map(locale)
   else
     populate_sidebar_without_map(locations, locale)
@@ -333,7 +338,7 @@ initialize_values = (new_value, locale) ->
     result = new_value
   return result
 
-map_checkbox = (controlDiv, map) ->
+map_checkbox = (controlDiv, map, locale) ->
   controlUI = document.createElement('div')
   controlUI.style.backgroundColor = '#fff'
   controlUI.style.borderRadius = '1px'
@@ -348,12 +353,17 @@ map_checkbox = (controlDiv, map) ->
   checkbox = document.createElement('input')
   checkbox.setAttribute("type", "checkbox")
   checkbox.setAttribute("id", "search_mode")
-  if JSON.parse(sessionStorage["map_checkbox_status"])
+  if sessionStorage["map_checkbox_status"] == 'true'
     checkbox.checked = true
   else
     checkbox.checked = false
   label = document.createElement('label')
-  label.appendChild(document.createTextNode("Buscar mientras me desplazo en el mapa"))
+  label_text = ""
+  if locale == 'es'
+    label_text = "Buscar mientras me desplazo en el mapa"
+  else
+    label_text = "Search as I move the map"
+  label.appendChild(document.createTextNode(label_text))
   controlText.appendChild checkbox
   controlText.appendChild label
   controlUI.appendChild controlText
