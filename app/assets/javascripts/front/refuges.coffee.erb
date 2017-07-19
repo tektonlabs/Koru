@@ -50,44 +50,46 @@ markers = []
   else
     populate_sidebar_without_map(locations, locale)
 
-  # Search for google maps
-  input = document.getElementById('input-search-by-location')
-  searchBox = new (google.maps.places.SearchBox)(input)
-  map.addListener 'bounds_changed', ->
-    searchBox.setBounds map.getBounds()
+  # Search with typeahead
+  no_refuges_found = ''
+  if locale == 'es'
+    no_refuges_found = 'Ningún refugio encontrado.'
+  else
+    no_refuges_found = 'No refuges found.'
+
+  refugesSource = new Bloodhound(
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value')
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    remote:
+      url: "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/filter_by.json?query=%QUERY"
+      wildcard: '%QUERY')
+
+  $('#input-search-by-location .typeahead').typeahead null,
+    limit: 1000
+    name: 'refuges'
+    display: 'name'
+    source: refugesSource
+    templates:
+      empty: [
+        '<h4 style="padding: 0 15px 0 15px;">'
+        no_refuges_found
+        '</h4>'
+      ].join '\n'
+      suggestion: (data) ->
+        [
+          '<div>'
+          '<h4>' + data.name + '</h4>'
+          '<h5>' + data.full_address + '</h5>'
+          '</div>'
+        ].join '\n'
+
+geocodeAddress = (geocoder, resultsMap) ->
+  address = document.getElementById('input-search').value
+  geocoder.geocode { 'address': address }, (results, status) ->
+    if status == 'OK'
+      resultsMap.setCenter results[0].geometry.location
     return
-  new_markers = []
-  searchBox.addListener 'places_changed', ->
-    places = searchBox.getPlaces()
-    if places.length == 0
-      return
-    new_markers.forEach (marker) ->
-      marker.setMap null
-      return
-    new_markers = []
-    new_bounds = new (google.maps.LatLngBounds)
-    places.forEach (place) ->
-      if !place.geometry
-        console.log 'Returned place contains no geometry'
-        return
-      icon =
-        url: place.icon
-        size: new (google.maps.Size)(71, 71)
-        origin: new (google.maps.Point)(0, 0)
-        anchor: new (google.maps.Point)(17, 34)
-        scaledSize: new (google.maps.Size)(25, 25)
-      new_markers.push new (google.maps.Marker)(
-        map: map
-        icon: icon
-        title: place.name
-        position: place.geometry.location)
-      if place.geometry.viewport
-        new_bounds.union place.geometry.viewport
-      else
-        new_bounds.extend place.geometry.location
-      return
-    map.fitBounds new_bounds
-    return
+  return
 
 @populate_sidebar_with_map = (locale) ->
   sidebar = document.getElementById("list-refuges")
@@ -152,7 +154,7 @@ markers = []
   return
 
 @populate_sidebar_without_map = (locations, locale) ->
-  google.maps.event.clearListeners(map, 'bounds_changed');
+  google.maps.event.clearListeners(map, 'bounds_changed')
   map.addListener 'bounds_changed', ->
     sessionStorage['last_lat'] = map.center.lat()
     sessionStorage['last_lng'] = map.center.lng()
@@ -372,28 +374,15 @@ map_checkbox = (controlDiv, map, locale) ->
 document.addEventListener "turbolinks:load", ->
   initialize_refuges()
   $("#search-button").on 'click', ->
-    input = document.getElementById('input-search-by-location')
+    input = document.getElementById('input-search')
     google.maps.event.trigger input, 'focus'
     google.maps.event.trigger input, 'keydown', keyCode: 13
     return
-  $('#select-search-mode').on 'change', ->
-    if $('#select-search-mode option:selected').val() == 'locations'
-      $('#input-search-by-location').removeClass 'hide'
-      $('#input-search-by-refuge').addClass 'hide'
-    else
-      $('.results').addClass 'hide'
-      $('#input-search-by-location').addClass 'hide'
-      $('#input-search-by-refuge').removeClass 'hide'
+  $("#input-search").keypress (e) ->
+    if e.which == 13
+      geocoder = new (google.maps.Geocoder)
+      geocodeAddress geocoder, map
     return
-
-  jQuery ($) ->
-  $('#list-refuges-bar').on 'scroll', ->
-    if $(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight
-      $("#sidebar-arrow-down").hide()
-    else
-      $("#sidebar-arrow-down").show()
-    return
-  return
 
 @loadMapWithRefuge = (refuge, locale) ->
   refuge_marker =
