@@ -226,7 +226,6 @@ geocodeAddress = (geocoder, resultsMap) ->
 
 @show_on_map = (location, locale) ->
   geocoder = new google.maps.Geocoder
-  # infowindow = new google.maps.InfoWindow
   latlng = {lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)}
   geocoder.geocode { 'location': latlng }, (results, status) ->
     if status == 'OK'
@@ -271,7 +270,6 @@ geocodeAddress = (geocoder, resultsMap) ->
   clear_overlays()
   markers = []
   bounds = new (google.maps.LatLngBounds)
-  # infowindow = new google.maps.InfoWindow
   for location in new_locations
     marker = new (google.maps.Marker)(
       position: new (google.maps.LatLng)(parseFloat(location[1]), parseFloat(location[2]))
