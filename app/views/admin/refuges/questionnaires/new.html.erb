@@ -5,6 +5,14 @@
       <%= submit_tag "Guardar", class: "btn btn-primary" %>
     </div>
   </h1>
+  <% unless @questionnaire.errors.empty? %>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <% @questionnaire.errors.full_messages.each do |message| %>
+        <i class="fa fa-times-circle"></i> <%= message %>
+      <% end %>
+    </div>
+  <% end %>
   <% @questionnaire.responses.group_by{|x| (x.question.entity.parent.nil? ? x.question.entity : x.question.entity.parent) }.each do |response| %>
     <div class="panel">
       <div class="panel-heading">

@@ -11,15 +11,8 @@
     <% unless @controller == "front/refuges" and @action == "show" %>
       <div class="navbar-form navbar-left">
         <div class="input-group">
-          <div class="input-group-btn">
-            <select id="select-search-mode" class="form-control" onclick="<%= analytics_track_event 'search', 'mode_selector', '-' %>">
-              <option value="locations" selected=""><%= t "nav.search_mode_location" %></option>
-              <option value="refuges"><%= t "nav.search_mode_refuges" %></option>
-            </select>
-          </div>
-          <input type="text" id="input-search-by-location" class="form-control" placeholder="<%= t 'nav.search_box_placeholder_locations' %>">
-          <div id="input-search-by-refuge" class="hide">
-            <input class="typeahead form-control" type="text" placeholder="<%= t 'nav.search_box_placeholder_refuges' %>">
+          <div id="input-search-by-location">
+            <input id="input-search" class="typeahead form-control" type="text" placeholder="<%= t 'nav.search_box_placeholder_locations' %>">
           </div>
           <span class="input-group-btn" onclick="<%= analytics_track_event 'search', 'search_button', '-' %>"><button type="button" id="search-button" class="btn btn-primary"><%= image_tag "search-icon.png", width: "15" %></button></span>
         </div>
@@ -43,51 +36,3 @@
     <% end %>
   </div>
 </nav>
-
-<script type="text/javascript">
-  var locale = "<%= params[:locale] %>";
-  var no_refuges_found = "";
-  if (locale == "es") {
-    no_refuges_found = "Ningún refugio encontrado."
-  }
-  else {
-    no_refuges_found = "No refuges found."
-  }
-  var refugesSource = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    remote: {
-      url: "<%= filter_by_front_refuges_url %>.json?query=%QUERY",
-      wildcard: '%QUERY'
-    }
-  });
-  $('#input-search-by-refuge .typeahead').typeahead(null, {
-    limit: 1000,
-    name: 'refuges',
-    display: 'name',
-    source: refugesSource,
-    templates: {
-      empty: ['<h4 style="padding: 0 15px 0 15px;">', no_refuges_found, '</h4>'].join('\n'),
-      suggestion: function(data) {
-        return ['<div>', '<h4>' + data.name + '</h4>', '<h5>' + data.full_address + '</h5>', '</div>'].join('\n');
-      },
-    }
-  });
-  get_filters_selected = function(){
-    var selectedValues = '';
-    $("#filter-select :selected").each(function(){
-      selectedValues += "&filters[]=" + $(this).val();
-    });
-    return selectedValues;
-  }
-  $('#filter-select').dropdown({
-    useLabels: false,
-    onChange: function() {
-      refugesSource.remote.url = "<%= filter_by_front_refuges_url %>.json?query=%QUERY" + get_filters_selected();
-      $("#form-filter-refuges").submit();
-    }
-  });
-  $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
-    show_on_map(suggestion, "<%= params[:locale] %>");
-  });
-</script>
