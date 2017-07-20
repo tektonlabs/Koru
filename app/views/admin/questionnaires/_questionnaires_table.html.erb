@@ -29,5 +29,5 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @questionnaires, class: "custom-pagination" %>
+  <%= will_paginate @questionnaires, class: "custom-pagination", previous_label: "Previous", next_label: "Next", gap: "..." %>
 <% end %>

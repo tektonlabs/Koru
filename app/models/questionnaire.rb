@@ -55,7 +55,7 @@ class Questionnaire < ApplicationRecord
     if self.responses.size > 0
       return self.save
     else
-      self.errors.add :base, "No responses has been registered"
+      self.errors.add :base, I18n.t("questionnaires.no_responses")
       return false
     end
   end

@@ -19,7 +19,6 @@
           <td><%= census_taker.institution.humanize %></td>
           <td><%= link_to census_taker.refuges.count, admin_refuges_path(dni: census_taker.dni) %></td>
           <td>
-            <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='remove icon'></i>".html_safe, "#" %>
           </td>
@@ -27,5 +26,5 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @census_takers, class: "custom-pagination" %>
+  <%= will_paginate @census_takers, class: "custom-pagination", previous_label: "Previous", next_label: "Next", gap: "..." %>
 <% end %>

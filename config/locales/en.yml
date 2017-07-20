@@ -1,4 +1,8 @@
 en:
+  will_paginate:
+    previous_label: "Previous"
+    next_label: "Next"
+    page_gap: "..."
   activerecord:
     errors:
       models:
@@ -37,7 +41,10 @@ en:
     search_box_placeholder_locations: "Search by locations"
     search_box_placeholder_refuges: "Search by refuges"
     refuge_detail_button: "Open Details"
+  questionnaires:
+    no_responses: "No responses has been registered"
   refuges:
+    needs_assign: "Assign"
     coordinator: "Coordinator"
     download_button: "Download"
     last_update: "Last update"

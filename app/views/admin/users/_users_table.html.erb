@@ -15,7 +15,6 @@
           <td><%= user.dni %></td>
           <td><%= link_to user.questionnaires.count, admin_questionnaires_path(dni: user.dni) %></td>
           <td>
-            <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='remove icon'></i>".html_safe, "#" %>
           </td>
@@ -23,5 +22,5 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @users, class: "custom-pagination" %>
+  <%= will_paginate @users, class: "custom-pagination", previous_label: "Previous", next_label: "Next", gap: "..." %>
 <% end %>

@@ -30,5 +30,5 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @refuges, class: "custom-pagination" %>
+  <%= will_paginate @refuges, class: "custom-pagination", previous_label: "Previous", next_label: "Next", gap: "..." %>
 <% end %>

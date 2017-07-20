@@ -1,5 +1,6 @@
 map = null
 markers = []
+infowindow = null
 @loadMapWithLocations = (locations, locale) ->
   markers = []
   lima =
@@ -14,8 +15,9 @@ markers = []
   checkbox_container.index = 1
   map.controls[google.maps.ControlPosition.TOP_LEFT].push checkbox_container
 
+  general_infowindow = new google.maps.InfoWindow
+  infowindow = general_infowindow
   locations = locations
-  infowindow = new google.maps.InfoWindow
   bounds = new (google.maps.LatLngBounds)
   for location in locations
     marker = new (google.maps.Marker)(
@@ -30,7 +32,7 @@ markers = []
       contact_phone: location[9]
       map: map)
     markers.push marker
-    info_marker_event infowindow, marker, locale
+    info_marker_event general_infowindow, marker, locale
 
   if sessionStorage['last_lat'] == undefined && sessionStorage['last_lng'] == undefined && sessionStorage['last_zoom'] == undefined
     sessionStorage['last_lat'] = map.center.lat()
@@ -82,6 +84,24 @@ markers = []
           '<h5>' + data.full_address + '</h5>'
           '</div>'
         ].join '\n'
+
+  $('#filter-select').dropdown
+    useLabels: false
+    onChange: ->
+      refugesSource.remote.url = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/filter_by.json?query=%QUERY" + get_filters_selected()
+      $('#form-filter-refuges').submit()
+      return
+
+  $('.typeahead').bind 'typeahead:select', (ev, suggestion) ->
+    show_on_map suggestion, locale
+    return
+
+get_filters_selected = ->
+  selectedValues = ''
+  $('#filter-select :selected').each ->
+    selectedValues += '&filters[]=' + $(this).val()
+    return
+  selectedValues
 
 geocodeAddress = (geocoder, resultsMap) ->
   address = document.getElementById('input-search').value
@@ -206,7 +226,6 @@ geocodeAddress = (geocoder, resultsMap) ->
 
 @show_on_map = (location, locale) ->
   geocoder = new google.maps.Geocoder
-  infowindow = new google.maps.InfoWindow
   latlng = {lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)}
   geocoder.geocode { 'location': latlng }, (results, status) ->
     if status == 'OK'
@@ -251,7 +270,6 @@ geocodeAddress = (geocoder, resultsMap) ->
   clear_overlays()
   markers = []
   bounds = new (google.maps.LatLngBounds)
-  infowindow = new google.maps.InfoWindow
   for location in new_locations
     marker = new (google.maps.Marker)(
       position: new (google.maps.LatLng)(parseFloat(location[1]), parseFloat(location[2]))
@@ -321,7 +339,7 @@ info_marker_event = (infowindow, marker, locale) ->
     '</div>' +
     '</div>' +
     '</div>'
-  google.maps.event.addListener marker, 'mouseover', do (marker) ->
+  google.maps.event.addListener marker, 'click', do (marker) ->
     ->
       infowindow.setContent contentString
       infowindow.open map, marker

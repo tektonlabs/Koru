@@ -36,23 +36,3 @@
     <% end %>
   </div>
 </nav>
-
-<script type="text/javascript">
-  get_filters_selected = function(){
-    var selectedValues = '';
-    $("#filter-select :selected").each(function(){
-      selectedValues += "&filters[]=" + $(this).val();
-    });
-    return selectedValues;
-  }
-  $('#filter-select').dropdown({
-    useLabels: false,
-    onChange: function() {
-      refugesSource.remote.url = "<%= filter_by_front_refuges_url %>.json?query=%QUERY" + get_filters_selected();
-      $("#form-filter-refuges").submit();
-    }
-  });
-  $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
-    show_on_map(suggestion, "<%= params[:locale] %>");
-  });
-</script>
