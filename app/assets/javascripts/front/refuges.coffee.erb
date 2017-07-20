@@ -377,6 +377,8 @@ document.addEventListener "turbolinks:load", ->
     input = document.getElementById('input-search')
     google.maps.event.trigger input, 'focus'
     google.maps.event.trigger input, 'keydown', keyCode: 13
+    geocoder = new (google.maps.Geocoder)
+    geocodeAddress geocoder, map
     return
   $("#input-search").keypress (e) ->
     if e.which == 13
