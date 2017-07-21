@@ -8,7 +8,7 @@
         <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", width: "220", class: "img-responsive logo" %>
       <% end %>
     </div>
-    <% unless @controller == "front/refuges" and @action == "show" %>
+    <% unless hide_sidebar_content_if @controller, @action %>
       <div class="navbar-form navbar-left">
         <div class="input-group">
           <div id="input-search-by-location">

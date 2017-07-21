@@ -1,92 +1,113 @@
 <div class="ui centered grid container">
   <div class="row"></div>
   <div id="steps-container" class="ui text container">
-    <div class="three ui buttons center aligned grid container" style="margin:20px;">
-      <div class="ui big basic violet button" id="accountS">
-        <div class="content" style="font-size:12px;color:black;">DATOS DE LA ORGANIZACIÓN</div>
+    <div class="ui ordered steps">
+      <div class="active step" id="step-organization">
+        <div class="content">
+          <div class="title">DATOS DE LA ORGANIZACIÓN</div>
+          <div class="description"></div>
+        </div>
       </div>
-      <button class="ui big disabled blue basic button" id="socialP">
-      <div class="content" style="font-size:12px;color:black;">TIEMPO DE COMPROMISO</div>
-      </button>
-      <button class="disabled ui big orange basic button" id="details">
-      <div class="content" style="font-size:12px;color:black;">DETALLES DE PERSONA</div>
-      </button>
+      <div class="disabled step" id="step-engagement">
+        <div class="content">
+          <div class="title">TIEMPO DE COMPROMISO</div>
+          <div class="description"></div>
+        </div>
+      </div>
+      <div class="disabled step" id="step-person">
+        <div class="content">
+          <div class="title">DETALLES DE PERSONA</div>
+          <div class="description"></div>
+        </div>
+      </div>
     </div>
     <div class="row"></div>
     <div class="row"></div>
-    <div id="account">
-      <div class="ui center aligned segment container" id="signUpBox" style="background-color: white;border-radius:5px;">
+    <div id="organization-container">
+      <div class="ui center aligned segment container panel-margin">
         <%= render "assign_header", need: @need %>
         <hr><br>
         <form class="ui form">
-          <div class="field">
-            <label class="pull-left">Organización responsable</label>
-            <div class="ui input">
-              <input type="text">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <div class="field">
+              <label class="pull-left">Organización responsable</label>
+              <div class="ui input">
+                <input type="text">
+              </div>
+            </div>
+            <div class="field">
+              <label class="pull-left">Responsabilidades</label>
+              <textarea rows="3"></textarea>
             </div>
           </div>
-          <div class="field">
-            <label class="pull-left">Responsabilidades</label>
-            <textarea rows="3"></textarea>
-          </div>
-          <div class="actions">
-            <button class="btn btn-primary pull-right next1">Next</button>
-          </div>
+          <div class="col-md-1"></div>
         </form>
       </div>
-    </div>
-    <div id="social">
-      <div class="ui center aligned segment container" id="signUpBox" style="background-color: white;border-radius:5px;">
-        <%= render "assign_header", need: @need %>
-        <hr><br>
-        <form class="ui form">
-          <label class="header-text">Tiempo del compromiso</label>
-          <div class="fields">
-            <div class="three wide field">
-              <input type="text" name="start_date" placeholder="Fecha inicial">
-            </div>
-            <div class="three wide field">
-              <input type="text" name="end_date" placeholder="Fecha final">
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui checkbox pull-left">
-              <input type="checkbox" tabindex="0" class="hidden">
-              <label>Solo una vez</label>
-            </div>
-            <div class="three wide field">
-              <input type="text" name="lonely_date" placeholder="Fecha única">
-            </div>
-          </div>
-          <div class="actions">
-            <button class="btn btn-secondary pull-left prev1">Previous</button>
-            <button class="btn btn-primary pull-right next2">Next</button>
-          </div>
-        </form>
+      <div class="actions">
+        <button class="btn btn-primary pull-center next1">Next</button>
       </div>
     </div>
-    <div id="personal">
-      <div class="ui center aligned segment container" id="signUpBox" style="background-color: white;border-radius:5px;">
+    <div id="engagement-container">
+      <div class="ui center aligned segment container panel-margin">
         <%= render "assign_header", need: @need %>
         <hr><br>
         <form class="ui form">
-          <div class="field">
-            <label class="pull-left">Persona responsable</label>
-            <input type="text" placeholder="Ingrese nombres y apellidos">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <label class="header-text">Tiempo del compromiso</label>
+            <div class="fields">
+              <div class="three wide field">
+                <input type="text" name="start_date" placeholder="Fecha inicial">
+              </div>
+              <div class="three wide field">
+                <input type="text" name="end_date" placeholder="Fecha final">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui checkbox pull-left">
+                <input type="checkbox" tabindex="0" class="hidden">
+                <label>Solo una vez</label>
+              </div>
+              <div class="three wide field">
+                <input type="text" name="lonely_date" placeholder="Fecha única">
+              </div>
+            </div>
           </div>
-          <div class="field">
-            <label class="pull-left">Celular</label>
-            <input type="text" placeholder="Celular">
-          </div>
-          <div class="field">
-            <label class="pull-left">Correo electrónico</label>
-            <input type="text" placeholder="Ingrese correo electrónico">
-          </div>
-          <div class="actions">
-            <button class="btn btn-secondary pull-left prev2">Previous</button>
-            <button class="btn btn-primary pull-right submit">Submit</button>
-          </div>
+          <div class="col-md-1"></div>
         </form>
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary prev1">Previous</button>
+        <button class="btn btn-primary next2">Next</button>
+      </div>
+    </div>
+    <div id="person-container">
+      <div class="ui center aligned segment container panel-margin">
+        <%= render "assign_header", need: @need %>
+        <hr><br>
+        <form class="ui form">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <div class="field">
+              <label class="pull-left">Persona responsable</label>
+              <input type="text" placeholder="Ingrese nombres y apellidos">
+            </div>
+            <div class="field">
+              <label class="pull-left">Celular</label>
+              <input type="text" placeholder="Celular">
+            </div>
+            <div class="field">
+              <label class="pull-left">Correo electrónico</label>
+              <input type="text" placeholder="Ingrese correo electrónico">
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </form>
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary prev2">Previous</button>
+        <button class="btn btn-primary submit">Submit</button>
       </div>
     </div>
   </div>
@@ -98,56 +119,60 @@
     var ct = 0;
     $('.next1').on('click', function(e) {
       e.preventDefault();
-      $('#account').animate('slow', function() {
+      $('#organization-container').animate('slow', function() {
         if (ct > 0) {
-          $('#account').removeClass('transition visible');
-          $('#account').addClass('transition hidden');
+          $('#organization-container').removeClass('transition visible');
+          $('#organization-container').addClass('transition hidden');
         }
-        $('#account').css('display', 'none');
-        $('#accountS').addClass('disabled');
-        $('#socialP').removeClass('disabled');
-        $("#social").transition('fly right');
-        $('#social button').removeClass('inverted violet');
-        $('#social button').addClass('inverted blue');
-        ct++;
+        $('#organization-container').css('display', 'none');
+        $('#step-organization').removeClass('active');
+        $('#step-organization').addClass('completed');
+        $('#step-engagement').removeClass('disabled');
+        $('#step-engagement').addClass('active');
+        $("#engagement-container").transition('fly right');
+         ct++;
       });
     });
 
     $('.prev1').on('click', function(e) {
       e.preventDefault();
-      $('#accountS').removeClass('disabled');
-      $('#socialP').addClass('disabled');
-      $('#social').animate('slow', function() {
-        $('#social').transition('hide');
-        $("#account").transition('fly right');
+      $('#step-organization').removeClass('completed');
+      $('#step-organization').addClass('active');
+      $('#step-engagement').removeClass('active');
+      $('#step-engagement').addClass('disabled');
+      $('#engagement-container').animate('slow', function() {
+        $('#engagement-container').transition('hide');
+        $("#organization-container").transition('fly right');
       });
     });
 
     $('.next2').on('click', function(m) {
       m.preventDefault();
-      $('#socialP').addClass('disabled');
-      $('#details').removeClass('disabled');
-      $('#social').animate('slow', function() {
-        $('#personal button').removeClass("inverted violet");
-        $('#personal button').addClass("inverted orange");
-        $('#social').transition('hide');
-        $('#personal').transition('fly right');
+      $('#step-engagement').removeClass('active');
+      $('#step-engagement').addClass('completed');
+      $('#step-person').removeClass('disabled');
+      $('#step-person').addClass('active');
+      $('#engagement-container').animate('slow', function() {
+        $('#engagement-container').transition('hide');
+        $('#person-container').transition('fly right');
       });
     });
 
     $('.prev2').on('click', function(m) {
       m.preventDefault();
-      $('#details').addClass('disabled');
-      $('#socialP').removeClass('disabled');
-      $('#personal').animate('slow', function() {
-        $('#personal').transition('hide');
-        $('#social').transition('fly right');
+      $('#step-engagement').removeClass('completed');
+      $('#step-engagement').addClass('active');
+      $('#step-person').removeClass('active');
+      $('#step-person').addClass('disabled');
+      $('#person-container').animate('slow', function() {
+        $('#person-container').transition('hide');
+        $('#engagement-container').transition('fly right');
       });
     });
 
     $('.submit').on('click', function(p) {
       p.preventDefault();
-      $('#personal').stop();
+      $('#person-container').stop();
     });
   });
 </script>
