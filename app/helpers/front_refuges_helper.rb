@@ -113,4 +113,14 @@ module FrontRefugesHelper
     forbidden_controllers.include?(controller) and forbidden_actions.include?(action)
   end
 
+  def date_for_needs_assign start_date, end_date, lonely_date
+    full_date = ''
+    unless lonely_date.nil?
+      full_date = "para el #{lonely_date}."
+    else
+      full_date = "entre el #{start_date} y el #{end_date}."
+    end
+    full_date
+  end
+
 end

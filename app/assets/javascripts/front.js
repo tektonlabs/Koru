@@ -3,6 +3,7 @@
 //= require turbolinks
 //= require main
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
 //= require semantic-ui
 //= require underscore
 //= require gmaps/google
