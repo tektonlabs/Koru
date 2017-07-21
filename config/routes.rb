@@ -41,6 +41,7 @@ Rails.application.routes.draw do
         resources :needs, only: [], controller: "refuges/needs" do
           member do
             get :assign
+            post :create
           end
         end
       end
