@@ -104,12 +104,8 @@ module FrontRefugesHelper
   end
 
   def hide_sidebar_content_if controller, action
-    forbidden_controllers = []
-    forbidden_actions = []
-    forbidden_controllers << "front/refuges"
-    forbidden_controllers << "front/refuges/needs"
-    forbidden_actions << "assign"
-    forbidden_actions << "show"
+    forbidden_controllers = ["front/refuges/needs","front/refuges"]
+    forbidden_actions = ["show","assign"]
     forbidden_controllers.include?(controller) and forbidden_actions.include?(action)
   end
 
