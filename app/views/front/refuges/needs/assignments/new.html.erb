@@ -1,0 +1,124 @@
+<div class="ui centered grid container">
+  <div class="row"></div>
+  <div id="steps-container" class="ui text container">
+    <%= form_for @person_in_charge, url: front_refuge_need_assignments_path do |f| %>
+      <div class="ui ordered steps">
+        <div class="active step" id="step-organization">
+          <div class="content">
+            <div class="title">DATOS DE LA ORGANIZACIÓN</div>
+            <div class="description"></div>
+          </div>
+        </div>
+        <div class="disabled step" id="step-engagement">
+          <div class="content">
+            <div class="title">TIEMPO DE COMPROMISO</div>
+            <div class="description"></div>
+          </div>
+        </div>
+        <div class="disabled step" id="step-person">
+          <div class="content">
+            <div class="title">DATOS PERSONALES</div>
+            <div class="description"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row"></div>
+      <div class="row"></div>
+      <div id="organization-container">
+        <div class="ui center aligned segment container panel-margin">
+          <%= render "assign_header", need: @need %>
+          <hr><br>
+          <div id="form-organization" class="ui form">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="field">
+                <label class="pull-left">Organización responsable</label>
+                <div class="ui input">
+                  <%= f.text_field :organization %>
+                </div>
+              </div>
+              <div class="field">
+                <label class="pull-left">Responsabilidades</label>
+                <%= f.text_area :responsabilities, rows: 3 %>
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary" href="<%= front_refuge_path(@refuge) %>"><%= t 'refuges.assign.previous' %></button>
+          <button class="btn btn-primary next1"><%= t 'refuges.assign.next' %></button>
+        </div>
+      </div>
+      <div id="engagement-container">
+        <div class="ui center aligned segment container panel-margin">
+          <%= render "assign_header", need: @need %>
+          <hr><br>
+          <div id="form-engagement" class="ui form">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <%= f.fields_for :engagements do |engagement| %>
+                <%= engagement.hidden_field :need_id, value: params[:need_id] %>
+                <label class="header-text">Tiempo del compromiso</label>
+                <div class="fields">
+                  <div class="three wide field">
+                    <%= engagement.text_field :start_date, placeholder: "Fecha inicial", class:"datepicker", id: "engagement-start-date" %>
+                  </div>
+                  <div class="three wide field">
+                    <%= engagement.text_field :end_date, placeholder: "Fecha final", class:"datepicker", id: "engagement-end-date" %>
+                  </div>
+                  <div id="error-description" class="four wide field error hide">
+                    <label></label>
+                  </div>
+                </div>
+                <div class="ui checkbox pull-left">
+                  <%= engagement.check_box :unique_date, class: "hidden", id: "checkbox-unique-date" %>
+                  <label>Solo una vez</label>
+                </div>
+                <div class="field">
+                  <div class="three wide field">
+                    <%= engagement.text_field :start_date, placeholder: "Fecha única", id: "engagement-unique-date" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary prev1"><%= t 'refuges.assign.previous' %></button>
+          <button class="btn btn-primary next2"><%= t 'refuges.assign.next' %></button>
+        </div>
+      </div>
+      <div id="person-container">
+        <div class="ui center aligned segment container panel-margin">
+          <%= render "assign_header", need: @need %>
+          <hr><br>
+          <div id="form-person" class="ui form">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="field">
+                <label class="pull-left">Persona responsable</label>
+                <%= f.text_field :name %>
+              </div>
+              <div class="field">
+                <label class="pull-left">Celular</label>
+                <%= f.text_field :phone %>
+              </div>
+              <div class="field">
+                <label class="pull-left">Correo electrónico</label>
+                <%= f.text_field :email %>
+              </div>
+              <p>Recibirás un correo de Segundos Auxilios con la información necesaria para cumplir con la necesidad que te has asignado.</p>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary prev2"><%= t 'refuges.assign.previous' %></button>
+          <button class="btn btn-primary submit"><%= t 'refuges.assign.send' %></button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

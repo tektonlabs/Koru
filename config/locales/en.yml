@@ -38,12 +38,15 @@ en:
     search_mode_location: "Locations"
     search_mode_refuges: "Refuges"
     language_translate: "Language"
-    search_box_placeholder_locations: "Search by locations"
-    search_box_placeholder_refuges: "Search by refuges"
+    search_box_placeholder_locations: "Search shelter or location"
     refuge_detail_button: "Open Details"
   questionnaires:
     no_responses: "No responses has been registered"
   refuges:
+    assign:
+      previous: "Previous"
+      next: "Next"
+      send: "Submit"
     needs_assign: "Assign"
     coordinator: "Coordinator"
     download_button: "Download"

@@ -9,6 +9,10 @@
 //= require gmaps/google
 //= require Chart
 //= require twitter/typeahead.min
+//= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.numeric.extensions
+//= require jquery.inputmask.date.extensions
 //= require_tree ./front
 
 window.onresize = function(event) {

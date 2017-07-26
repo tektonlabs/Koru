@@ -104,18 +104,13 @@ module FrontRefugesHelper
   end
 
   def hide_sidebar_content_if controller, action
-    forbidden_controllers = ["front/refuges/needs","front/refuges"]
-    forbidden_actions = ["show","assign"]
+    forbidden_controllers = ["front/refuges/needs/assignments","front/refuges"]
+    forbidden_actions = ["show","new"]
     forbidden_controllers.include?(controller) and forbidden_actions.include?(action)
   end
 
-  def date_for_needs_assign start_date, end_date, lonely_date
-    full_date = ''
-    unless lonely_date.nil?
-      full_date = "para el #{lonely_date}."
-    else
-      full_date = "entre el #{start_date} y el #{end_date}."
-    end
+  def date_for_needs_assign start_date, end_date, unique_date
+    full_date = unique_date ? "para el #{start_date.strftime("%d/%m/%Y")}." : "entre el #{start_date.strftime("%d/%m/%Y")} y el #{end_date.strftime("%d/%m/%Y")}."
     full_date
   end
 

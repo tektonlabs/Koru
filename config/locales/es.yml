@@ -38,12 +38,15 @@ es:
     search_mode_location: "Ubicación"
     search_mode_refuges: "Refugios"
     language_translate: "Lenguaje"
-    search_box_placeholder_locations: "Buscar por ubicación"
-    search_box_placeholder_refuges: "Buscar por refugios"
+    search_box_placeholder_locations: "Buscar refugio o ubicación"
     refuge_detail_button: "Ver Detalles"
   questionnaires:
     no_responses: "Niguna respuesta ha sido registrada"
   refuges:
+    assign:
+      previous: "Anterior"
+      next: "Siguiente"
+      send: "Enviar"
     needs_assign: "Asignar"
     coordinator: "Coordinador(a)"
     download_button: "Descargar"

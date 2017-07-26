@@ -38,11 +38,8 @@ Rails.application.routes.draw do
         collection do
           get :filter_by
         end
-        resources :needs, only: [], controller: "refuges/needs" do
-          member do
-            get :assign
-            post :create
-          end
+        resources :needs, only: [] do
+          resources :assignments, only: [:new, :create], controller: "refuges/needs/assignments"
         end
       end
     end

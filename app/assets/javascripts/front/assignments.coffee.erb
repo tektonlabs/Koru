@@ -1,0 +1,156 @@
+document.addEventListener "turbolinks:load", ->
+  process = (date) ->
+    parts = date.split('/')
+    new Date(parts[2], parts[1] - 1, parts[0])
+  $('#form-organization').form
+    on: 'blur'
+    fields:
+      'person_in_charge[organization]': 'empty'
+      'person_in_charge[responsabilities]': 'empty'
+  $('#form-engagement').form
+    on: 'blur'
+    fields:
+      'person_in_charge[engagements_attributes][0][start_date]': 'empty'
+      'person_in_charge[engagements_attributes][0][end_date]': 'empty'
+  $('#form-person').form
+    on: 'blur'
+    fields:
+      'person_in_charge[name]': 'empty'
+      'person_in_charge[phone]': 'empty'
+      'person_in_charge[email]': [
+        'email'
+        'empty'
+      ]
+  $('.ui.checkbox').checkbox()
+  $('#person_in_charge_phone').inputmask '999 999 999'
+  $('#engagement-unique-date').prop 'disabled', true
+  ct = 0
+  $('.datepicker').datepicker
+    format: 'dd/mm/yyyy'
+    orientation: 'bottom auto'
+  $('#engagement-unique-date').datepicker format: 'dd/mm/yyyy'
+  $('#engagement-start-date').on 'focus', ->
+    $('#error-description').addClass 'hide'
+    return
+  $('#engagement-end-date').on 'focus', ->
+    $('#error-description').addClass 'hide'
+    return
+  $('#checkbox-unique-date').change ->
+    if $('#checkbox-unique-date').is(':checked')
+      $('#engagement-start-date').parents('.field').removeClass 'error'
+      $('#engagement-end-date').parents('.field').removeClass 'error'
+      $('#engagement-start-date').prop 'disabled', true
+      $('#engagement-end-date').prop 'disabled', true
+      $('#engagement-unique-date').prop 'disabled', false
+      $('#engagement-start-date').val ''
+      $('#engagement-end-date').val ''
+    else
+      $('#engagement-unique-date').parents('.field').removeClass 'error'
+      $('#engagement-start-date').prop 'disabled', false
+      $('#engagement-end-date').prop 'disabled', false
+      $('#engagement-unique-date').val ''
+      $('#engagement-unique-date').prop 'disabled', true
+    return
+  $('.next1').on 'click', (e) ->
+    e.preventDefault()
+    if $('#form-organization').form('is valid')
+      $('#organization-container').animate 'slow', ->
+        if ct > 0
+          $('#organization-container').removeClass 'transition visible'
+          $('#organization-container').addClass 'transition hidden'
+        $('#organization-container').css 'display', 'none'
+        $('#step-organization').removeClass 'active'
+        $('#step-organization').addClass 'completed'
+        $('#step-engagement').removeClass 'disabled'
+        $('#step-engagement').addClass 'active'
+        $('#engagement-container').transition 'fly right'
+        ct++
+        return
+    else
+      if $('#person_in_charge_organization').val() == ''
+        $('#person_in_charge_organization').parents('.field').addClass 'error'
+      if $('#person_in_charge_responsabilities').val() == ''
+        $('#person_in_charge_responsabilities').parents('.field').addClass 'error'
+    return
+  $('.prev1').on 'click', (e) ->
+    e.preventDefault()
+    $('#step-organization').removeClass 'completed'
+    $('#step-organization').addClass 'active'
+    $('#step-engagement').removeClass 'active'
+    $('#step-engagement').addClass 'disabled'
+    $('#engagement-container').animate 'slow', ->
+      $('#engagement-container').transition 'hide'
+      $('#organization-container').transition 'fly right'
+      return
+    return
+  $('.next2').on 'click', (m) ->
+    m.preventDefault()
+    if $('#checkbox-unique-date').is(':checked')
+      if $('#engagement-unique-date').val() == ''
+        $('#engagement-unique-date').parents('.field').addClass 'error'
+      else
+        $('#step-engagement').removeClass 'active'
+        $('#step-engagement').addClass 'completed'
+        $('#step-person').removeClass 'disabled'
+        $('#step-person').addClass 'active'
+        $('#engagement-container').animate 'slow', ->
+          $('#engagement-container').transition 'hide'
+          $('#person-container').transition 'fly right'
+          return
+    else
+      if $('#engagement-start-date').val() == '' or $('#engagement-end-date').val() == ''
+        if $('#engagement-start-date').val() == ''
+          $('#engagement-start-date').parents('.field').addClass 'error'
+        if $('#engagement-end-date').val() == ''
+          $('#engagement-end-date').parents('.field').addClass 'error'
+      else if $('#engagement-start-date').val() != '' and $('#engagement-end-date').val() != ''
+        input_start_date = $('#engagement-start-date').val()
+        input_end_date = $('#engagement-end-date').val()
+        if process(input_end_date) < process(input_start_date)
+          $('#engagement-start-date').parents('.field').addClass 'error'
+          $('#engagement-end-date').parents('.field').addClass 'error'
+          $('#error-description').removeClass 'hide'
+          $('#error-description label').html 'End date must be greater than start date!'
+        else
+          $('#step-engagement').removeClass 'active'
+          $('#step-engagement').addClass 'completed'
+          $('#step-person').removeClass 'disabled'
+          $('#step-person').addClass 'active'
+          $('#engagement-container').animate 'slow', ->
+            $('#engagement-container').transition 'hide'
+            $('#person-container').transition 'fly right'
+            return
+      else
+        $('#step-engagement').removeClass 'active'
+        $('#step-engagement').addClass 'completed'
+        $('#step-person').removeClass 'disabled'
+        $('#step-person').addClass 'active'
+        $('#engagement-container').animate 'slow', ->
+          $('#engagement-container').transition 'hide'
+          $('#person-container').transition 'fly right'
+          return
+    return
+  $('.prev2').on 'click', (m) ->
+    m.preventDefault()
+    $('#step-engagement').removeClass 'completed'
+    $('#step-engagement').addClass 'active'
+    $('#step-person').removeClass 'active'
+    $('#step-person').addClass 'disabled'
+    $('#person-container').animate 'slow', ->
+      $('#person-container').transition 'hide'
+      $('#engagement-container').transition 'fly right'
+      return
+    return
+  $('.submit').on 'click', (p) ->
+    p.preventDefault()
+    if $('#form-person').form('is valid')
+      $('#new_person_in_charge').submit()
+    else
+      if $('#person_in_charge_name').val() == ''
+        $('#person_in_charge_name').parents('.field').addClass 'error'
+      if $('#person_in_charge_phone').val() == ''
+        $('#person_in_charge_phone').parents('.field').addClass 'error'
+      if $('#person_in_charge_email').val() == ''
+        $('#person_in_charge_email').parents('.field').addClass 'error'
+    return
+  return
