@@ -1,0 +1,329 @@
+<div class="ui centered grid container">
+  <div class="row"></div>
+  <div id="steps-container" class="ui text container">
+    <%= form_for @person_in_charge, url: front_refuge_need_assignments_path do |f| %>
+      <div class="ui ordered steps">
+        <div class="active step" id="step-organization">
+          <div class="content">
+            <div class="title">DATOS DE LA ORGANIZACIÓN</div>
+            <div class="description"></div>
+          </div>
+        </div>
+        <div class="disabled step" id="step-engagement">
+          <div class="content">
+            <div class="title">TIEMPO DE COMPROMISO</div>
+            <div class="description"></div>
+          </div>
+        </div>
+        <div class="disabled step" id="step-person">
+          <div class="content">
+            <div class="title">DATOS PERSONALES</div>
+            <div class="description"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row"></div>
+      <div class="row"></div>
+      <div id="organization-container">
+        <div class="ui center aligned segment container panel-margin">
+          <%= render "assign_header", need: @need %>
+          <hr><br>
+          <div id="form-organization" class="ui form">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="field">
+                <label class="pull-left">Organización responsable</label>
+                <div class="ui input">
+                  <%= f.text_field :organization %>
+                </div>
+              </div>
+              <div class="field">
+                <label class="pull-left">Responsabilidades</label>
+                <%= f.text_area :responsabilities, rows: 3 %>
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary" href="<%= front_refuge_path(@refuge) %>"><%= t 'refuges.assign.previous' %></button>
+          <button class="btn btn-primary next1"><%= t 'refuges.assign.next' %></button>
+        </div>
+      </div>
+      <div id="engagement-container">
+        <div class="ui center aligned segment container panel-margin">
+          <%= render "assign_header", need: @need %>
+          <hr><br>
+          <div id="form-engagement" class="ui form">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <%= f.fields_for :engagements do |engagement| %>
+                <%= engagement.hidden_field :need_id, value: params[:need_id] %>
+                <label class="header-text">Tiempo del compromiso</label>
+                <div class="fields">
+                  <div class="three wide field">
+                    <%= engagement.text_field :start_date, placeholder: "Fecha inicial", class:"datepicker", id: "engagement-start-date" %>
+                  </div>
+                  <div class="three wide field">
+                    <%= engagement.text_field :end_date, placeholder: "Fecha final", class:"datepicker", id: "engagement-end-date" %>
+                  </div>
+                  <div id="error-description" class="four wide field error hide">
+                    <label></label>
+                  </div>
+                </div>
+                <div class="ui checkbox pull-left">
+                  <%= engagement.check_box :unique_date, class: "hidden", id: "checkbox-unique-date" %>
+                  <label>Solo una vez</label>
+                </div>
+                <div class="field">
+                  <div class="three wide field">
+                    <%= engagement.text_field :start_date, placeholder: "Fecha única", id: "engagement-unique-date" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary prev1"><%= t 'refuges.assign.previous' %></button>
+          <button class="btn btn-primary next2"><%= t 'refuges.assign.next' %></button>
+        </div>
+      </div>
+      <div id="person-container">
+        <div class="ui center aligned segment container panel-margin">
+          <%= render "assign_header", need: @need %>
+          <hr><br>
+          <div id="form-person" class="ui form">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="field">
+                <label class="pull-left">Persona responsable</label>
+                <%= f.text_field :name %>
+              </div>
+              <div class="field">
+                <label class="pull-left">Celular</label>
+                <%= f.text_field :phone %>
+              </div>
+              <div class="field">
+                <label class="pull-left">Correo electrónico</label>
+                <%= f.text_field :email %>
+              </div>
+              <p>Recibirás un correo de Segundos Auxilios con la información necesaria para cumplir con la necesidad que te has asignado.</p>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary prev2"><%= t 'refuges.assign.previous' %></button>
+          <button class="btn btn-primary submit"><%= t 'refuges.assign.send' %></button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  function process(date) {
+    var parts = date.split("/");
+    return new Date(parts[2], parts[1] - 1, parts[0]);
+  }
+
+  $('#form-organization').form({
+    on: 'blur',
+    fields: {
+      'person_in_charge[organization]': 'empty',
+      'person_in_charge[responsabilities]': 'empty',
+    }
+  });
+
+  $('#form-engagement').form({
+    on: 'blur',
+    fields: {
+      'person_in_charge[engagements_attributes][0][start_date]': 'empty',
+      'person_in_charge[engagements_attributes][0][end_date]': 'empty',
+    }
+  });
+
+  $('#form-person').form({
+    on: 'blur',
+    fields: {
+      'person_in_charge[name]': 'empty',
+      'person_in_charge[phone]': 'empty',
+      'person_in_charge[email]': ['email', 'empty'],
+    }
+  });
+
+  $('.ui.checkbox').checkbox();
+  $(document).ready(function() {
+    $("#person_in_charge_phone").inputmask("999 999 999");
+    $("#engagement-unique-date").prop('disabled', true);
+    var ct = 0;
+    
+    $('.datepicker').datepicker({
+      format: 'dd/mm/yyyy',
+      orientation: "bottom auto",
+    });
+    
+    $('#engagement-unique-date').datepicker({
+      format: 'dd/mm/yyyy',
+    });
+
+    $("#engagement-start-date").on('focus', function(){
+      $("#error-description").addClass("hide");
+    });
+
+    $("#engagement-end-date").on('focus', function(){
+      $("#error-description").addClass("hide");
+    });
+
+    $("#checkbox-unique-date").change(function() {
+      if ($("#checkbox-unique-date").is(":checked")) {
+        $("#engagement-start-date").parents(".field").removeClass("error");
+        $("#engagement-end-date").parents(".field").removeClass("error");
+        $("#engagement-start-date").prop('disabled', true);
+        $("#engagement-end-date").prop('disabled', true);
+        $("#engagement-unique-date").prop('disabled', false);
+        $("#engagement-start-date").val("")
+        $("#engagement-end-date").val("")
+      }
+      else {
+        $("#engagement-unique-date").parents(".field").removeClass("error");
+        $("#engagement-start-date").prop('disabled', false);
+        $("#engagement-end-date").prop('disabled', false);
+        $("#engagement-unique-date").val("")
+        $("#engagement-unique-date").prop('disabled', true);
+      }
+    });
+
+    $('.next1').on('click', function(e) {
+      e.preventDefault();
+      if ($('#form-organization').form('is valid')) {
+        $('#organization-container').animate('slow', function() {
+          if (ct > 0) {
+            $('#organization-container').removeClass('transition visible');
+            $('#organization-container').addClass('transition hidden');
+          }
+          $('#organization-container').css('display', 'none');
+          $('#step-organization').removeClass('active');
+          $('#step-organization').addClass('completed');
+          $('#step-engagement').removeClass('disabled');
+          $('#step-engagement').addClass('active');
+          $("#engagement-container").transition('fly right');
+           ct++;
+        });
+      }
+      else {
+        if ($("#person_in_charge_organization").val() == ""){
+          $("#person_in_charge_organization").parents(".field").addClass('error');
+        }
+        if ($("#person_in_charge_responsabilities").val() == ""){
+          $("#person_in_charge_responsabilities").parents(".field").addClass('error');
+        }
+      }
+    });
+
+    $('.prev1').on('click', function(e) {
+      e.preventDefault();
+      $('#step-organization').removeClass('completed');
+      $('#step-organization').addClass('active');
+      $('#step-engagement').removeClass('active');
+      $('#step-engagement').addClass('disabled');
+      $('#engagement-container').animate('slow', function() {
+        $('#engagement-container').transition('hide');
+        $("#organization-container").transition('fly right');
+      });
+    });
+
+    $('.next2').on('click', function(m) {
+      m.preventDefault();
+      if ($("#checkbox-unique-date").is(":checked")) {
+        if ($("#engagement-unique-date").val() == "") {
+          $("#engagement-unique-date").parents(".field").addClass("error");
+        }
+        else {
+          $('#step-engagement').removeClass('active');
+          $('#step-engagement').addClass('completed');
+          $('#step-person').removeClass('disabled');
+          $('#step-person').addClass('active');
+          $('#engagement-container').animate('slow', function() {
+            $('#engagement-container').transition('hide');
+            $('#person-container').transition('fly right');
+          });
+        }
+      }
+      else {
+        if ($("#engagement-start-date").val() == "" || $("#engagement-end-date").val() == "") {
+          if ($("#engagement-start-date").val() == "") {
+            $("#engagement-start-date").parents(".field").addClass("error");
+          }
+          if ($("#engagement-end-date").val() == "") {
+            $("#engagement-end-date").parents(".field").addClass("error");
+          }
+        }
+        else if ($("#engagement-start-date").val() != "" && $("#engagement-end-date").val() != "") {
+          var input_start_date = $("#engagement-start-date").val();
+          var input_end_date = $("#engagement-end-date").val();
+          if (process(input_end_date) < process(input_start_date)) {
+            $("#engagement-start-date").parents(".field").addClass("error");
+            $("#engagement-end-date").parents(".field").addClass("error");
+            $("#error-description").removeClass("hide");
+            $("#error-description label").html("End date must be greater than start date!");
+          }
+          else {
+            $('#step-engagement').removeClass('active');
+            $('#step-engagement').addClass('completed');
+            $('#step-person').removeClass('disabled');
+            $('#step-person').addClass('active');
+            $('#engagement-container').animate('slow', function() {
+              $('#engagement-container').transition('hide');
+              $('#person-container').transition('fly right');
+            });
+          }
+        }
+        else {
+          $('#step-engagement').removeClass('active');
+          $('#step-engagement').addClass('completed');
+          $('#step-person').removeClass('disabled');
+          $('#step-person').addClass('active');
+          $('#engagement-container').animate('slow', function() {
+            $('#engagement-container').transition('hide');
+            $('#person-container').transition('fly right');
+          });
+        }
+      }
+    });
+
+    $('.prev2').on('click', function(m) {
+      m.preventDefault();
+      $('#step-engagement').removeClass('completed');
+      $('#step-engagement').addClass('active');
+      $('#step-person').removeClass('active');
+      $('#step-person').addClass('disabled');
+      $('#person-container').animate('slow', function() {
+        $('#person-container').transition('hide');
+        $('#engagement-container').transition('fly right');
+      });
+    });
+
+    $('.submit').on('click', function(p) {
+      p.preventDefault();
+      if ($('#form-person').form('is valid')) {
+        $('#new_person_in_charge').submit();
+      }
+      else {
+        if ($("#person_in_charge_name").val() == ""){
+          $("#person_in_charge_name").parents(".field").addClass('error');
+        }
+        if ($("#person_in_charge_phone").val() == ""){
+          $("#person_in_charge_phone").parents(".field").addClass('error');
+        }
+        if ($("#person_in_charge_email").val() == ""){
+          $("#person_in_charge_email").parents(".field").addClass('error');
+        }
+      }
+    });
+  });
+
+</script>

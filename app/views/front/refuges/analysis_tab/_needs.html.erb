@@ -11,17 +11,27 @@
         <%= t "refuges.no_needs_registered" %>
       <% else %>
         <table width="100%">
-          <% refuge.last_questionnaire.needs.each do |need| %>
-            <tr>
-              <td><i class="glyphicon glyphicon-remove-sign item-status <%= entity_color(need.entity) %>"></i></td>
-              <td><b><%= need.title %></b></td>
-              <td><%= link_to t("refuges.needs_assign"), assign_front_refuge_need_path(refuge, need) %></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><p class="item-description"><%= need.description %></p></td>
-              <td></td>
-            </tr>
+          <% refuge.last_questionnaire.needs.group_by{|x| x.entity}.each do |entity| %>
+            <th colspan="2" class="th-header-styles"><%= entity.first.name %></th>
+            <% entity.second.each do |need| %>
+              <tr>
+                <td><i class="glyphicon glyphicon-remove-sign item-status <%= entity_color(need.entity) %>"></i></td>
+                <td><b><%= need.title %></b></td>
+                <td>
+                  <% current_engagement = need.has_current_engagement %>
+                  <% if current_engagement.nil? %>
+                    <%= link_to t("refuges.needs_assign"), new_front_refuge_need_assignment_path(refuge, need) %>
+                  <% else %>
+                    <a class="ui blue tag label"><%= current_engagement.person_in_charge.name %></a>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><p class="item-description"><%= need.description %></p></td>
+                <td></td>
+              </tr>
+            <% end %>
           <% end %>
         </table>
       <% end %>

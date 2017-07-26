@@ -59,10 +59,10 @@ gem 'city-state', '~> 0.0.13'
 # RailsAdmin is a Rails engine that provides an easy-to-use interface for managing your data.
 gem 'rails_admin', '~> 1.1', '>= 1.1.1'
 
-# Chart.js for use in Rails asset pipeline
+# Chart.js for use in Rails asset pipeline.
 gem 'chart-js-rails', '~> 0.1.2'
 
-# Twitter typeahead packages the typeahead.js jquery plugin for rails
+# Twitter typeahead packages the typeahead.js jquery plugin for rails.
 gem 'twitter-typeahead-rails', '~> 0.11.1'
 
 # Mailgun's Official Ruby SDK for interacting with the Mailgun API.
@@ -71,7 +71,7 @@ gem 'mailgun-ruby', '~> 1.1', '>= 1.1.6'
 # Clean ruby syntax for writing and deploying cron jobs.
 gem 'whenever', '~> 0.9.7'
 
-# Flexible authentication solution for Rails with Warden
+# Flexible authentication solution for Rails with Warden.
 gem 'devise', '~> 4.3'
 
 # WillPaginate provides a simple API for performing paginated queries with Active Record, DataMapper and Sequel, and includes helpers for rendering pagination links in Rails, Sinatra and Merb web apps.
@@ -89,8 +89,11 @@ gem 'google-analytics-rails', '1.1.0'
 # Wicked PDF uses the shell utility wkhtmltopdf to serve a PDF file to a user from HTML.
 gem 'wicked_pdf', '~> 1.1'
 
-# A necessary gem for wicked_pdf good perform
+# A necessary gem for wicked_pdf good perform.
 gem 'wkhtmltopdf-binary'
+
+# An inputmask helps the user with the input by ensuring a predefined format.
+gem 'jquery-inputmask-rails', '~> 2.5', '>= 2.5.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
