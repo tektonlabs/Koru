@@ -275,16 +275,15 @@ class Questionnaire < ApplicationRecord
 
   def needs_with_engagements_persistence
     if self.refuge.last_2_questionnaires.count == 2
-      q1 = self.refuge.last_2_questionnaires.first
-      q2 = self
-      needs_with_engagements = q1.needs.includes(:engagements).select{ |x| !x.engagements.empty? }
-      n = needs_with_engagements.map(&:title) & q2.needs.map(&:title)
-      off = q2.needs.where title: n
+      pre_last_questionnaire = self.refuge.last_2_questionnaires.first
+      last_questionnaire = self
+      needs_with_engagements = pre_last_questionnaire.needs.includes(:engagements).select{ |x| !x.engagements.empty? }
+      n = needs_with_engagements.map(&:title) & last_questionnaire.needs.map(&:title)
+      needs_offset = last_questionnaire.needs.where title: n
       needs_with_engagements = Need.where id: needs_with_engagements.map(&:id)
-      off2 = needs_with_engagements.where title: n
-      off.each_with_index do |need, index|
-        ap 'oli'
-        need.engagements = off2[index].engagements
+      engagements_offset = needs_with_engagements.where title: n
+      needs_offset.each_with_index do |need, index|
+        need.engagements = engagements_offset[index].engagements
       end
     end
   end
