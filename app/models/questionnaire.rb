@@ -278,10 +278,10 @@ class Questionnaire < ApplicationRecord
       pre_last_questionnaire = self.refuge.last_2_questionnaires.first
       last_questionnaire = self
       needs_with_engagements = pre_last_questionnaire.needs.includes(:engagements).select{ |x| !x.engagements.empty? }
-      n = needs_with_engagements.map(&:title) & last_questionnaire.needs.map(&:title)
-      needs_offset = last_questionnaire.needs.where title: n
+      needs_intersection = needs_with_engagements.map(&:title) & last_questionnaire.needs.map(&:title)
+      needs_offset = last_questionnaire.needs.where title: needs_intersection
       needs_with_engagements = Need.where id: needs_with_engagements.map(&:id)
-      engagements_offset = needs_with_engagements.where title: n
+      engagements_offset = needs_with_engagements.where title: needs_intersection
       needs_offset.each_with_index do |need, index|
         need.engagements = engagements_offset[index].engagements
       end
