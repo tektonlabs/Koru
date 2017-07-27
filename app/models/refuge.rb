@@ -99,6 +99,10 @@ class Refuge < ApplicationRecord
     self.questionnaires.empty? ? nil : self.questionnaires.order(:state_date).last
   end
 
+  def last_2_questionnaires
+    self.questionnaires.empty? ? nil : self.questionnaires.order(:state_date).last(2)
+  end
+
   def observation_responses
     self.last_questionnaire.nil? ? nil : self.last_questionnaire.responses.joins(:question).where('questions.question_type = 2 AND questions.text != ? AND questions.text != ?', '¿Por qué?', '¿Quién es el encargado del recojo de basura?')
   end

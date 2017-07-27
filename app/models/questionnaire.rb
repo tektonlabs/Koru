@@ -5,6 +5,8 @@ class Questionnaire < ApplicationRecord
   has_many :responses, dependent: :destroy
   has_many :needs, dependent: :destroy
 
+  after_save :needs_with_engagements_persistence
+
   accepts_nested_attributes_for :responses, reject_if: proc { |attributes| (attributes['answer_selected_id'].to_a.reject(&:empty?)).blank? and attributes['answer_responsed_text'].blank? }
 
   QUESTIONS = YAML::load(File.open(File.join(Rails.root, 'config', "questions.yml")))
@@ -269,6 +271,22 @@ class Questionnaire < ApplicationRecord
       end
     end
 
+  end
+
+  def needs_with_engagements_persistence
+    if self.refuge.last_2_questionnaires.count == 2
+      q1 = self.refuge.last_2_questionnaires.first
+      q2 = self
+      needs_with_engagements = q1.needs.includes(:engagements).select{ |x| !x.engagements.empty? }
+      n = needs_with_engagements.map(&:title) & q2.needs.map(&:title)
+      off = q2.needs.where title: n
+      needs_with_engagements = Need.where id: needs_with_engagements.map(&:id)
+      off2 = needs_with_engagements.where title: n
+      off.each_with_index do |need, index|
+        ap 'oli'
+        need.engagements = off2[index].engagements
+      end
+    end
   end
 
 end
