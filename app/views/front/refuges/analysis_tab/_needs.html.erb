@@ -18,11 +18,11 @@
                 <td><i class="glyphicon glyphicon-remove-sign item-status <%= entity_color(need.entity) %>"></i></td>
                 <td><b><%= need.title %></b></td>
                 <td>
-                  <% current_engagement = need.has_current_engagement %>
-                  <% if current_engagement.nil? %>
+                  <% any_engagement = need.first_in_engagement_list %>
+                  <% if any_engagement.nil? %>
                     <%= link_to t("refuges.needs_assign"), new_front_refuge_need_assignment_path(refuge, need) %>
                   <% else %>
-                    <a class="ui blue tag label"><%= current_engagement.person_in_charge.name %></a>
+                    <a class="ui blue tag label"><%= any_engagement.person_in_charge.name %></a>
                   <% end %>
                 </td>
               </tr>

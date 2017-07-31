@@ -13,4 +13,8 @@ class Need < ApplicationRecord
     engagement
   end
 
+  def first_in_engagement_list
+    self.engagements.includes(:person_in_charge).where("end_date >= '#{Time.now}'").first
+  end
+
 end

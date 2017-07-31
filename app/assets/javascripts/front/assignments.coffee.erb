@@ -1,4 +1,22 @@
 document.addEventListener "turbolinks:load", ->
+  if $("#locale").val() == "es"
+    organization_message_error = 'El campo organización responsable es requerido'
+    responsabilities_message_error = 'El campo responsabilidades es requerido'
+    name_message_error = 'El campo persona responsable es requerido'
+    phone_message_error = 'El campo celular es requerido'
+    email_message_error = 'El campo correo electrónico es requerido'
+    range_dates = "La fecha final debe ser mayor a la fecha inicial!"
+    dates_must_exists = "Los campos fecha inicial y fecha final son requeridos"
+    unique_date_must_exists = "El campo fecha única es requerido"
+  else
+    organization_message_error = 'Responsabilities is required'
+    responsabilities_message_error = 'Organization responsable is required'
+    name_message_error = 'Person responsable is required'
+    phone_message_error = 'Phone is required'
+    email_message_error = 'Email is required'
+    range_dates = "End date must be greater than start date!"
+    dates_must_exists = "Start date and end date is required"
+    unique_date_must_exists = "Unique date is required"
   process = (date) ->
     parts = date.split('/')
     new Date(parts[2], parts[1] - 1, parts[0])
@@ -22,13 +40,60 @@ document.addEventListener "turbolinks:load", ->
         'empty'
       ]
   $('.ui.checkbox').checkbox()
-  $('#person_in_charge_phone').inputmask '999 999 999'
+  $('#person_in_charge_phone').inputmask '999 999 999', 'placeholder': ''
   $('#engagement-unique-date').prop 'disabled', true
   ct = 0
   $('.datepicker').datepicker
     format: 'dd/mm/yyyy'
     orientation: 'bottom auto'
-  $('#engagement-unique-date').datepicker format: 'dd/mm/yyyy'
+    startDate: 'dateToday'
+  $('#engagement-unique-date').datepicker
+    format: 'dd/mm/yyyy'
+    startDate: 'dateToday'
+  $('#person_in_charge_organization').on 'focusout', ->
+    if $('#person_in_charge_organization').val() == ''
+      $('.organization-alert-error').html organization_message_error
+      $('.organization-alert-error').removeClass('hide')
+      return
+  $('#person_in_charge_responsabilities').on 'focusout', ->
+    if $('#person_in_charge_responsabilities').val() == ''
+      $('.responsabilities-alert-error').html responsabilities_message_error
+      $('.responsabilities-alert-error').removeClass('hide')
+      return
+  $('#person_in_charge_name').on 'focusout', ->
+    if $('#person_in_charge_name').val() == ''
+      $('.name-alert-error').html name_message_error
+      $('.name-alert-error').removeClass('hide')
+      return
+  $('#person_in_charge_phone').on 'focusout', ->
+    if $('#person_in_charge_phone').val() == ''
+      $('.phone-alert-error').html phone_message_error
+      $('.phone-alert-error').removeClass('hide')
+      return
+  $('#person_in_charge_email').on 'focusout', ->
+    if $('#person_in_charge_email').val() == ''
+      $('.email-alert-error').html email_message_error
+      $('.email-alert-error').removeClass('hide')
+      return
+  $('#person_in_charge_organization').on 'focus', ->
+    $('.organization-alert-error').addClass 'hide'
+    return
+  $('#person_in_charge_responsabilities').on 'focus', ->
+    $('.responsabilities-alert-error').addClass 'hide'
+    return
+  $('#person_in_charge_name').on 'focus', ->
+    $('.name-alert-error').addClass 'hide'
+    return
+  $('#person_in_charge_phone').on 'focus', ->
+    $('.phone-alert-error').addClass 'hide'
+    return
+  $('#person_in_charge_email').on 'focus', ->
+    $('.email-alert-error').addClass 'hide'
+    return
+  $('#engagement-unique-date').on 'focus', ->
+    $('#engagement-unique-date').parents('.field').removeClass 'error'
+    $('#unique-date-error').addClass('hide')
+    return
   $('#engagement-start-date').on 'focus', ->
     $('#error-description').addClass 'hide'
     return
@@ -69,8 +134,12 @@ document.addEventListener "turbolinks:load", ->
     else
       if $('#person_in_charge_organization').val() == ''
         $('#person_in_charge_organization').parents('.field').addClass 'error'
+        $('.organization-alert-error').html organization_message_error
+        $('.organization-alert-error').removeClass('hide')
       if $('#person_in_charge_responsabilities').val() == ''
         $('#person_in_charge_responsabilities').parents('.field').addClass 'error'
+        $('.responsabilities-alert-error').html responsabilities_message_error
+        $('.responsabilities-alert-error').removeClass('hide')
     return
   $('.prev1').on 'click', (e) ->
     e.preventDefault()
@@ -88,6 +157,8 @@ document.addEventListener "turbolinks:load", ->
     if $('#checkbox-unique-date').is(':checked')
       if $('#engagement-unique-date').val() == ''
         $('#engagement-unique-date').parents('.field').addClass 'error'
+        $('#unique-date-error label').html unique_date_must_exists
+        $('#unique-date-error').removeClass('hide')
       else
         $('#step-engagement').removeClass 'active'
         $('#step-engagement').addClass 'completed'
@@ -99,6 +170,8 @@ document.addEventListener "turbolinks:load", ->
           return
     else
       if $('#engagement-start-date').val() == '' or $('#engagement-end-date').val() == ''
+        $('#error-description').removeClass 'hide'
+        $('#error-description label').html dates_must_exists
         if $('#engagement-start-date').val() == ''
           $('#engagement-start-date').parents('.field').addClass 'error'
         if $('#engagement-end-date').val() == ''
@@ -110,7 +183,7 @@ document.addEventListener "turbolinks:load", ->
           $('#engagement-start-date').parents('.field').addClass 'error'
           $('#engagement-end-date').parents('.field').addClass 'error'
           $('#error-description').removeClass 'hide'
-          $('#error-description label').html 'End date must be greater than start date!'
+          $('#error-description label').html range_dates
         else
           $('#step-engagement').removeClass 'active'
           $('#step-engagement').addClass 'completed'
@@ -148,9 +221,15 @@ document.addEventListener "turbolinks:load", ->
     else
       if $('#person_in_charge_name').val() == ''
         $('#person_in_charge_name').parents('.field').addClass 'error'
+        $('.name-alert-error').html name_message_error
+        $('.name-alert-error').removeClass('hide')
       if $('#person_in_charge_phone').val() == ''
         $('#person_in_charge_phone').parents('.field').addClass 'error'
+        $('.phone-alert-error').html phone_message_error
+        $('.phone-alert-error').removeClass('hide')
       if $('#person_in_charge_email').val() == ''
         $('#person_in_charge_email').parents('.field').addClass 'error'
+        $('.email-alert-error').html email_message_error
+        $('.email-alert-error').removeClass('hide')
     return
   return

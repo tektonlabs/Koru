@@ -1,4 +1,5 @@
 <div class="ui centered grid container">
+  <input id="locale" type="hidden" value="<%= params[:locale] %>">
   <div class="row"></div>
   <div id="steps-container" class="ui text container">
     <%= form_for @person_in_charge, url: front_refuge_need_assignments_path do |f| %>
@@ -36,17 +37,19 @@
                 <div class="ui input">
                   <%= f.text_field :organization %>
                 </div>
+                <label class="organization-alert-error hide"></label>
               </div>
               <div class="field">
                 <label class="pull-left">Responsabilidades</label>
                 <%= f.text_area :responsabilities, rows: 3 %>
+                <label class="responsabilities-alert-error hide"></label>
               </div>
             </div>
             <div class="col-md-1"></div>
           </div>
         </div>
         <div class="actions">
-          <button class="btn btn-secondary" href="<%= front_refuge_path(@refuge) %>"><%= t 'refuges.assign.previous' %></button>
+          <button class="btn btn-secondary button-margin-between" href="<%= front_refuge_path(@refuge) %>"><%= t 'refuges.assign.previous' %></button>
           <button class="btn btn-primary next1"><%= t 'refuges.assign.next' %></button>
         </div>
       </div>
@@ -79,6 +82,9 @@
                   <div class="three wide field">
                     <%= engagement.text_field :start_date, placeholder: "Fecha única", id: "engagement-unique-date" %>
                   </div>
+                  <div id="unique-date-error" class="five wide field error hide">
+                    <label></label>
+                  </div>
                 </div>
               <% end %>
             </div>
@@ -86,7 +92,7 @@
           </div>
         </div>
         <div class="actions">
-          <button class="btn btn-secondary prev1"><%= t 'refuges.assign.previous' %></button>
+          <button class="btn btn-secondary prev1 button-margin-between"><%= t 'refuges.assign.previous' %></button>
           <button class="btn btn-primary next2"><%= t 'refuges.assign.next' %></button>
         </div>
       </div>
@@ -100,14 +106,17 @@
               <div class="field">
                 <label class="pull-left">Persona responsable</label>
                 <%= f.text_field :name %>
+                <label class="name-alert-error hide"></label>
               </div>
               <div class="field">
                 <label class="pull-left">Celular</label>
                 <%= f.text_field :phone %>
+                <label class="phone-alert-error hide"></label>
               </div>
               <div class="field">
                 <label class="pull-left">Correo electrónico</label>
                 <%= f.text_field :email %>
+                <label class="email-alert-error hide"></label>
               </div>
               <p>Recibirás un correo de Segundos Auxilios con la información necesaria para cumplir con la necesidad que te has asignado.</p>
             </div>
@@ -115,7 +124,7 @@
           </div>
         </div>
         <div class="actions">
-          <button class="btn btn-secondary prev2"><%= t 'refuges.assign.previous' %></button>
+          <button class="btn btn-secondary prev2 button-margin-between"><%= t 'refuges.assign.previous' %></button>
           <button class="btn btn-primary submit"><%= t 'refuges.assign.send' %></button>
         </div>
       </div>
