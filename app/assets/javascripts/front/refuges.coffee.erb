@@ -81,7 +81,7 @@ infowindow = null
         [
           '<div>'
           '<h4>' + data.name + '</h4>'
-          '<h5>' + data.full_address + '</h5>'
+          '<h5 class="no-margin-top">' + data.full_address + '</h5>'
           '</div>'
         ].join '\n'
 
@@ -90,6 +90,13 @@ infowindow = null
     onChange: ->
       refugesSource.remote.url = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/filter_by.json?query=%QUERY" + get_filters_selected()
       $('#form-filter-refuges').submit()
+      return
+
+  $('#responsive-filter-select').dropdown
+    useLabels: false
+    onChange: ->
+      refugesSource.remote.url = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/filter_by.json?query=%QUERY" + get_filters_selected()
+      $('#responsive-form-filter-refuges').submit()
       return
 
   $('.typeahead').bind 'typeahead:select', (ev, suggestion) ->
@@ -223,6 +230,7 @@ geocodeAddress = (geocoder, resultsMap) ->
 
 @initialize_refuges = ->
   $('#refuges-map').css('height', $('#sidebar-nav').height())
+  $('#refuges-list').css('height', $('#sidebar-nav').height())
 
 @show_on_map = (location, locale) ->
   geocoder = new google.maps.Geocoder
@@ -330,11 +338,11 @@ info_marker_event = (infowindow, marker, locale) ->
     '<div id="bodyContent">' +
     '<p style="padding: 0 30px;">' + t_coordinator + ': ' + contact_name + '</p>' +
     '<p style="padding: 0 30px;">' + t_phone + ': ' + contact_phone + '</p>' +
-    '<div class="col-md-12">' +
-    '<div class="col-md-6"><table>' + issues_by_entities_1 + '</table></div>' +
-    '<div class="col-md-6"><table>' + issues_by_entities_2 + '</table></div>' +
+    '<div class="col-xs-12">' +
+    '<div class="col-xs-6"><table>' + issues_by_entities_1 + '</table></div>' +
+    '<div class="col-xs-6"><table>' + issues_by_entities_2 + '</table></div>' +
     '</div>' +
-    '<div class="col-md-12">' +
+    '<div class="col-xs-12">' +
     "<a href=" + link_to + ' class="pull-right" onclick="' + analytics_track_event + '" style="padding: 11px 0;">' + t_more_details + '></a>' +
     '</div>' +
     '</div>' +
@@ -350,10 +358,7 @@ tr_content = (entity, status)->
 
 initialize_values = (new_value, locale) ->
   if new_value == ''
-    if locale == "es"
-      result = "No registrado"
-    else
-      result = "Not registered"
+    result = "-"
   else
     result = new_value
   return result
@@ -390,6 +395,7 @@ map_checkbox = (controlDiv, map, locale) ->
   return
 
 document.addEventListener "turbolinks:load", ->
+  $('.ui.accordion').accordion();
   initialize_refuges()
   $("#search-button").on 'click', ->
     input = document.getElementById('input-search')

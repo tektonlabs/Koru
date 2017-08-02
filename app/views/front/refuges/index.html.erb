@@ -2,6 +2,55 @@
   <div id="multi_markers"></div>
 </div>
 
+<div id='refuges-list' class='hide'>
+  <% refuges_all.each do |refuge| %>
+    <div class="panel panels-info-margin">
+      <div class="panel-heading">
+        <h3 class="panel-title"><b><%= refuge.name %></b></h3>
+        <p></p>
+        <p><%= set_refuge_address refuge %></p>
+        <p><%= "#{t 'refuges.coordinator'}: #{set_refuge_coordinator_name refuge}" %></p>
+        <p><%= "#{t 'refuges.phone'}: #{set_refuge_coordinator_phone refuge}" %></p>
+      </div>
+      <div class="panel-body">
+        <div class="col-xs-6">
+          <table>
+            <% i = 0 %>
+            <% refuge.status_by_entity.each do |status| %>
+              <% if i % 2 == 0 %>
+                <tr>
+                  <td style="padding-right: 10px;"><span class="circle-<%= status.second == 0 ? 'green' : 'red' %>"></span></td>
+                  <td><%= status.first %></td>
+                </tr>
+              <% end %>
+              <% i = i + 1 %>
+            <% end %>
+          </table>
+        </div>
+        <div class="col-xs-6">
+          <table>
+            <% i = 0 %>
+            <% refuge.status_by_entity.each do |status| %>
+              <% if i % 2 != 0 %>
+                <tr>
+                  <td style="padding-right: 10px;"><span class="circle-<%= status.second == 0 ? 'green' : 'red' %>"></span></td>
+                  <td><%= status.first %></td>
+                </tr>
+              <% end %>
+              <% i = i + 1 %>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<button id="view-mode" class="button-view-mode">
+  <i class="list icon"></i>
+  Lista
+</button>
+
 <% content_for :javascript_tags do %>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYZQCwE8B-r7ORDi49Hzum8vXKyoLl4k&callback=initMap&libraries=places" async defer>
   </script>
@@ -15,11 +64,25 @@
         sessionStorage["map_checkbox_status"] = false;
         document.getElementById('search_mode').checked = false;
         populate_sidebar_without_map(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
-      } else {
+      }
+      else {
         sessionStorage["map_checkbox_status"] = true;
         document.getElementById('search_mode').checked = true;
         populate_sidebar_with_map("<%= params[:locale] %>");
       }
     };
+    $("#view-mode").on('click', function(){
+      if ($('#refuges-list').hasClass('hide')) {
+        button_content = '<i class="map icon"></i>' + 'Mapa'
+        $('#refuges-list').removeClass('hide');
+        $('#refuges-map').addClass('hide');
+      }
+      else {
+        button_content = '<i class="list icon"></i>' + 'Lista'
+        $('#refuges-list').addClass('hide');
+        $('#refuges-map').removeClass('hide');
+      }
+      $("#view-mode").html(button_content);
+    });
   </script>
 <% end %>

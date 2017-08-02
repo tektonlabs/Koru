@@ -72,7 +72,7 @@ es:
     state: "Provincia"
     refuge_type: "Tipo de albergue"
     institution_in_charge: "Institución a cargo"
-    phone: "Telefono"
+    phone: "Teléfono"
     dni: "DNI"
     capacity: "Capacidad"
     abilities: "Habilidades"
