@@ -1,7 +1,7 @@
 map = null
 markers = []
 infowindow = null
-@loadMapWithLocations = (locations, locale) ->
+@loadMapWithLocations = (locations, locale, view_mode_updated = true) ->
   markers = []
   lima =
     lat: -12.0431800
@@ -9,6 +9,9 @@ infowindow = null
   map = new (google.maps.Map)(document.getElementById('refuges-map'),
     zoom: 12
     center: lima)
+  map.setOptions
+    minZoom: 3
+    maxZoom: 20
 
   checkbox_container = document.createElement('div')
   centerControl = new map_checkbox(checkbox_container, map, locale)
@@ -53,6 +56,28 @@ infowindow = null
     populate_sidebar_without_map(locations, locale)
 
   # Search with typeahead
+  if view_mode_updated
+    search_with_typeahead(locale)
+
+  $('#filter-select').dropdown
+    useLabels: false
+    onChange: ->
+      refugesSource.remote.url = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/filter_by.json?query=%QUERY" + get_filters_selected()
+      $('#form-filter-refuges').submit()
+      return
+
+  $('#responsive-filter-select').dropdown
+    useLabels: false
+    onChange: ->
+      refugesSource.remote.url = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/filter_by.json?query=%QUERY" + get_filters_selected()
+      $('#responsive-form-filter-refuges').submit()
+      return
+
+  $('.typeahead').bind 'typeahead:select', (ev, suggestion) ->
+    show_on_map suggestion, locale
+    return
+
+search_with_typeahead = (locale) ->
   no_refuges_found = ''
   if locale == 'es'
     no_refuges_found = 'Ningún refugio encontrado.'
@@ -85,22 +110,29 @@ infowindow = null
           '</div>'
         ].join '\n'
 
-  $('#filter-select').dropdown
-    useLabels: false
-    onChange: ->
-      refugesSource.remote.url = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/filter_by.json?query=%QUERY" + get_filters_selected()
-      $('#form-filter-refuges').submit()
-      return
-
-  $('#responsive-filter-select').dropdown
-    useLabels: false
-    onChange: ->
-      refugesSource.remote.url = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/filter_by.json?query=%QUERY" + get_filters_selected()
-      $('#responsive-form-filter-refuges').submit()
-      return
-
-  $('.typeahead').bind 'typeahead:select', (ev, suggestion) ->
-    show_on_map suggestion, locale
+  $('#responsive-input-search-by-location .typeahead').typeahead(null,
+    limit: 999
+    name: 'refuges'
+    display: 'name'
+    source: refugesSource
+    templates:
+      empty: [
+        '<h4 style="padding: 0 15px 0 15px;">'
+        no_refuges_found
+        '</h4>'
+      ].join('\n')
+      suggestion: (data) ->
+        [
+          '<div>'
+          '<h4>' + data.name + '</h4>'
+          '<h5 class="no-margin-top">' + data.full_address + '</h5>'
+          '</div>'
+        ].join '\n'
+  ).on 'typeahead:selected', (event, selection) ->
+    $.ajax
+      type: 'GET'
+      url: "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/search_by?query=" + selection.name
+      dataType: 'script'
     return
 
 get_filters_selected = ->
@@ -331,7 +363,7 @@ info_marker_event = (infowindow, marker, locale) ->
     i++
   link_to = "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/" + marker.id
   analytics_track_event = "ga('send','event','refuges','" + marker.content + "','-',null);"
-  contentString = '<div id="content">' +
+  contentString = '<div class="infowindow-content">' +
     '<div id="siteNotice">' +
     '</div>' +
     '<h3 id="firstHeading" class="firstHeading" style="padding: 0 28px;">' + marker.content + '</h3>' +
@@ -423,4 +455,32 @@ document.addEventListener "turbolinks:load", ->
   google.maps.event.addListenerOnce map, 'idle', ->
     google.maps.event.trigger map, 'resize'
     map.setCenter(refuge_marker);
+    return
+
+@view_mode = (refuges_map_data, locale) ->
+  $('#view-mode').on 'click', ->
+    list_label = ''
+    map_label = ''
+    if locale == 'es'
+      list_label = 'Lista'
+      map_label = 'Mapa'
+    else
+      list_label = 'List'
+      map_label = 'Map'
+    if $('#refuges-list').hasClass('hide')
+      button_content = '<i class="map icon"></i>' + map_label
+      $('#refuges-list').removeClass 'hide'
+      $('#refuges-map').addClass 'hide'
+    else
+      button_content = '<i class="list icon"></i>' + list_label
+      old_map = document.getElementById('refuges-map')
+      old_map.parentNode.removeChild old_map
+      new_map = document.createElement('div')
+      new_map.id = 'refuges-map'
+      $('.main-content')[0].prepend new_map
+      $('#refuges-map').css 'height', $('#sidebar-nav').height()
+      loadMapWithLocations refuges_map_data, locale, false
+      $('#refuges-list').addClass 'hide'
+      $('#refuges-map').removeClass 'hide'
+    $('#view-mode').html button_content
     return

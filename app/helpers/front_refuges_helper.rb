@@ -115,7 +115,7 @@ module FrontRefugesHelper
     @waste_management ||= WasteManagement.all
   end
 
-  def hide_sidebar_content_if controller, action
+  def hide_navbar_content_if controller, action
     forbidden_controllers = ["front/refuges/needs/assignments","front/refuges"]
     forbidden_actions = ["show","new"]
     forbidden_controllers.include?(controller) and forbidden_actions.include?(action)

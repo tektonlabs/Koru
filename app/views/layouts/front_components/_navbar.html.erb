@@ -6,7 +6,7 @@
         <%= image_tag "logo-responsive.png", alt: "RefugiosApp Logo", width: "48", class: "img-responsive logo", id: "logo-mobile-version" %>
       <% end %>
     </div>
-    <% unless hide_sidebar_content_if @controller, @action %>
+    <% unless hide_navbar_content_if @controller, @action %>
       <div id="search-box-container" class="navbar-form navbar-left">
         <div class="input-group">
           <div id="input-search-by-location">
@@ -27,25 +27,27 @@
         <div id="responsive-box-container" class="ui accordion field">
           <div class="title">
             <i class="icon dropdown"></i>
-            Buscar o filtrar por ...
+            <%= t "nav.search_or_filter_by" %>
           </div>
           <div class="content field">
             <div class="col-xs-12 transition hidden">
-              <div id="input-search-by-location" class="">
-                <input id="input-search" class="typeahead form-control full-width-style" type="text" placeholder="<%= t 'nav.search_box_placeholder_locations' %>">
+              <div id="responsive-input-search-by-location">
+                <%= form_tag search_by_front_refuges_path, id: "responsive-form-search-refuges", method: :get, remote: true do %>
+                  <%= text_field_tag :query, nil, id: "responsive-input-search", class: "typeahead form-control full-width-style", placeholder: "#{t 'nav.search_box_placeholder_locations'}" %>
+                <% end %>
               </div>
             </div>
             <br><br>
             <div class="col-xs-12 transition hidden">
               <%= form_tag filter_by_front_refuges_path, id: "responsive-form-filter-refuges", onclick: "#{analytics_track_event 'filter_selector', 'filter_by_needs', '-'}", method: :get, remote: true do %>
-                <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "#{t 'filter_select_all'}", id: "responsive-filter-select", class: 'form-control ui selection dropdown full-width-style', multiple: "" %>
+                <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "#{t 'filter_select_all'}", id: "responsive-filter-select", class: 'form-control ui selection dropdown full-width-style no-min-width', multiple: "" %>
               <% end %>
             </div>
           </div>
         </div>
       </div>
       <div class="navbar-btn navbar-btn-right translate-buttons-styles">
-        <%= link_to_unless_current "<i class='es flag'></i>".html_safe, { locale: "es" }, { onclick: "#{analytics_track_event 'traductor_button', 'spanish', '-'}" } %>|
+        <%= link_to_unless_current "<i class='es flag'></i>".html_safe, { locale: "es" }, { onclick: "#{analytics_track_event 'traductor_button', 'spanish', '-'}" } %>
         <%= link_to_unless_current "<i class='us flag'></i>".html_safe, { locale: "en" }, { onclick: "#{analytics_track_event 'traductor_button', 'english', '-'}" } %>
       </div>
       <!-- <div class="navbar-btn navbar-btn-right admin-button-margin"> -->

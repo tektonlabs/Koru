@@ -1,0 +1,44 @@
+<% refuges.each do |refuge| %>
+  <div class="panel panels-info-margin">
+    <div class="panel-heading">
+      <h3 class="panel-title"><b><%= refuge.name %></b></h3>
+      <p></p>
+      <p><%= set_refuge_address refuge %></p>
+      <p><%= "#{t 'refuges.coordinator'}: #{set_refuge_coordinator_name refuge}" %></p>
+      <p><%= "#{t 'refuges.phone'}: #{set_refuge_coordinator_phone refuge}" %></p>
+    </div>
+    <div class="panel-body">
+      <div class="col-xs-6">
+        <table>
+          <% i = 0 %>
+          <% refuge.status_by_entity.each do |status| %>
+            <% if i % 2 == 0 %>
+              <tr>
+                <td style="padding-right: 10px;"><span class="circle-<%= status.second == 0 ? 'green' : 'red' %>"></span></td>
+                <td><%= status.first %></td>
+              </tr>
+            <% end %>
+            <% i = i + 1 %>
+          <% end %>
+        </table>
+      </div>
+      <div class="col-xs-6">
+        <table>
+          <% i = 0 %>
+          <% refuge.status_by_entity.each do |status| %>
+            <% if i % 2 != 0 %>
+              <tr>
+                <td style="padding-right: 10px;"><span class="circle-<%= status.second == 0 ? 'green' : 'red' %>"></span></td>
+                <td><%= status.first %></td>
+              </tr>
+            <% end %>
+            <% i = i + 1 %>
+          <% end %>
+        </table>
+      </div>
+      <div class="col-xs-12 text-right">
+        <%= link_to "#{t 'refuges.show_more'}", front_refuge_path(refuge) %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -46,7 +46,6 @@ th {
   }
 }
 
-
 /********************
  * LAYOUT
  ********************/
@@ -234,7 +233,13 @@ html.fullscreen-bg #wrapper {
 
 @media screen and (max-width: 1024px) {
   .navbar-default .brand {
-    padding-right: 15px;
+    padding-right: 2px;
+  }
+  .navbar-form {
+    float: left;
+    width: 65%;
+    margin-left: 5px;
+    margin-right: 5px;
   }
   .navbar-btn-right {
     margin: 0 0 10px 0 !important;
@@ -378,24 +383,19 @@ html.fullscreen-bg #wrapper {
   border: 0;
 }
 
-.navbar-form input[type="text"] {
-  min-width: 200px;
+.no-min-width {
+  min-width: 0 !important;
 }
 
 @media screen and (max-width: 767px) {
   .navbar-form {
     float: left;
     width: 65%;
-    margin-left: 5px;
+    margin-left: -2px;
     margin-right: 5px;
-    padding-left: 0;
-    padding-right: 0;
   }
   .navbar-form .input-group {
     width: 65%;
-  }
-  .navbar-form input[type="text"] {
-    min-width: 150px;
   }
   .content-container {
     margin: 26px 5px 26px 5px;

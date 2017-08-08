@@ -37,6 +37,7 @@ Rails.application.routes.draw do
         end
         collection do
           get :filter_by
+          get :search_by
         end
         resources :needs, only: [] do
           resources :assignments, only: [:new, :create], controller: "refuges/needs/assignments"

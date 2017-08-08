@@ -34,6 +34,7 @@ en:
   December: "December"
   filter_select_all: "-- All --"
   nav:
+    search_or_filter_by: "Search or filter by"
     filter_by_needs: "Filter by needs"
     search_mode_location: "Locations"
     search_mode_refuges: "Refuges"
@@ -43,6 +44,8 @@ en:
   questionnaires:
     no_responses: "No responses has been registered"
   refuges:
+    show_more: "Show more >"
+    list_view: "List"
     assign:
       previous: "Previous"
       next: "Next"
