@@ -1,3 +1,4 @@
 <% if !@refuges.empty? %>
   filter_map(<%= raw filtered_refuges_map_data(@refuges) %>, "<%= params[:locale] %>");
 <% end %>
+$('#refuges-list').html('<%= escape_javascript render "refuges_list_content", refuges: @refuges %>');

@@ -25,6 +25,18 @@ module FrontRefugesHelper
     Entity.first_level
   end
 
+  def set_refuge_address refuge
+    refuge.city == '' ? refuge.country : "#{refuge.city}, #{refuge.country.name}"
+  end
+
+  def set_refuge_coordinator_name refuge
+    refuge.primary_contact.nil? ? "-" : refuge.primary_contact.first_name
+  end
+
+  def set_refuge_coordinator_phone refuge
+    refuge.primary_contact.nil? ? "-" : refuge.primary_contact.phone
+  end
+
   def set_primary_contact primary_contact
     primary_contact.nil? ? t("refuges.no_primary_contact") : "#{primary_contact.first_name} / Telef: #{primary_contact.phone}"
   end
@@ -103,7 +115,7 @@ module FrontRefugesHelper
     @waste_management ||= WasteManagement.all
   end
 
-  def hide_sidebar_content_if controller, action
+  def hide_navbar_content_if controller, action
     forbidden_controllers = ["front/refuges/needs/assignments","front/refuges"]
     forbidden_actions = ["show","new"]
     forbidden_controllers.include?(controller) and forbidden_actions.include?(action)

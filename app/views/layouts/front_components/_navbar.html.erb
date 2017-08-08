@@ -1,15 +1,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
-    <div class="hamburger-icon navbar-btn">
-      <button type="button" class="btn-toggle-fullwidth"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
-    </div>
     <div class="brand">
       <%= link_to front_root_path, onclick: "#{analytics_track_event 'logo', '-', '-'}" do %>
-        <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", width: "220", class: "img-responsive logo" %>
+        <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", width: "220", class: "img-responsive logo", id: "logo-web-version" %>
+        <%= image_tag "logo-responsive.png", alt: "RefugiosApp Logo", width: "48", class: "img-responsive logo", id: "logo-mobile-version" %>
       <% end %>
     </div>
-    <% unless hide_sidebar_content_if @controller, @action %>
-      <div class="navbar-form navbar-left">
+    <% unless hide_navbar_content_if @controller, @action %>
+      <div id="search-box-container" class="navbar-form navbar-left">
         <div class="input-group">
           <div id="input-search-by-location">
             <input id="input-search" class="typeahead form-control" type="text" placeholder="<%= t 'nav.search_box_placeholder_locations' %>">
@@ -17,7 +15,7 @@
           <span class="input-group-btn" onclick="<%= analytics_track_event 'search', 'search_button', '-' %>"><button type="button" id="search-button" class="btn btn-primary"><%= image_tag "search-icon.png", width: "15" %></button></span>
         </div>
       </div>
-      <div class="navbar-form navbar-left">
+      <div id="filter-box-container" class="navbar-form navbar-left">
         <div class="filter-styles">
           <%= t "nav.filter_by_needs" %>
           <%= form_tag filter_by_front_refuges_path, id: "form-filter-refuges", onclick: "#{analytics_track_event 'filter_selector', 'filter_by_needs', '-'}", method: :get, remote: true do %>
@@ -25,10 +23,32 @@
           <% end %>
         </div>
       </div>
+      <div class="navbar-form navbar-left">
+        <div id="responsive-box-container" class="ui accordion field">
+          <div class="title">
+            <i class="icon dropdown"></i>
+            <%= t "nav.search_or_filter_by" %>
+          </div>
+          <div class="content field">
+            <div class="col-xs-12 transition hidden">
+              <div id="responsive-input-search-by-location">
+                <%= form_tag search_by_front_refuges_path, id: "responsive-form-search-refuges", method: :get, remote: true do %>
+                  <%= text_field_tag :query, nil, id: "responsive-input-search", class: "typeahead form-control full-width-style", placeholder: "#{t 'nav.search_box_placeholder_locations'}" %>
+                <% end %>
+              </div>
+            </div>
+            <br><br>
+            <div class="col-xs-12 transition hidden">
+              <%= form_tag filter_by_front_refuges_path, id: "responsive-form-filter-refuges", onclick: "#{analytics_track_event 'filter_selector', 'filter_by_needs', '-'}", method: :get, remote: true do %>
+                <%= select_tag "filters[]", options_from_collection_for_select(entities_all, 'id', 'name'), prompt: "#{t 'filter_select_all'}", id: "responsive-filter-select", class: 'form-control ui selection dropdown full-width-style no-min-width', multiple: "" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="navbar-btn navbar-btn-right translate-buttons-styles">
-        <%#= t "nav.language_translate" %>
-        <%= link_to_unless_current "Español", { locale: "es" }, { onclick: "#{analytics_track_event 'traductor_button', 'spanish', '-'}" } %> |
-        <%= link_to_unless_current "English", { locale: "en" }, { onclick: "#{analytics_track_event 'traductor_button', 'english', '-'}" } %>
+        <%= link_to_unless_current "<i class='es flag'></i>".html_safe, { locale: "es" }, { onclick: "#{analytics_track_event 'traductor_button', 'spanish', '-'}" } %>
+        <%= link_to_unless_current "<i class='us flag'></i>".html_safe, { locale: "en" }, { onclick: "#{analytics_track_event 'traductor_button', 'english', '-'}" } %>
       </div>
       <!-- <div class="navbar-btn navbar-btn-right admin-button-margin"> -->
         <%#= link_to "Admin Portal", admin_root_path %>

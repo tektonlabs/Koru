@@ -32,6 +32,10 @@ class Front::RefugesController < FrontController
     end
   end
 
+  def search_by
+    @refuges = Refuge.search_by_query params[:query]
+  end
+
   private
 
   def set_refuge
@@ -43,7 +47,6 @@ class Front::RefugesController < FrontController
       height: 250,
       width: 250
     }
-
     @pie_data = {
       labels: Entity.first_level.order(:created_at).pluck(:name),
       datasets: [

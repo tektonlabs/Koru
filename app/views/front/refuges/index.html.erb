@@ -1,6 +1,14 @@
 <div id='refuges-map'>
-  <div id="multi_markers"></div>
 </div>
+
+<div id='refuges-list' class='hide'>
+  <%= render "refuges_list_content", refuges: refuges_all %>
+</div>
+
+<button id="view-mode" class="button-view-mode">
+  <i class="list icon"></i>
+  <%= t "refuges.list_view" %>
+</button>
 
 <% content_for :javascript_tags do %>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYZQCwE8B-r7ORDi49Hzum8vXKyoLl4k&callback=initMap&libraries=places" async defer>
@@ -15,11 +23,13 @@
         sessionStorage["map_checkbox_status"] = false;
         document.getElementById('search_mode').checked = false;
         populate_sidebar_without_map(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
-      } else {
+      }
+      else {
         sessionStorage["map_checkbox_status"] = true;
         document.getElementById('search_mode').checked = true;
         populate_sidebar_with_map("<%= params[:locale] %>");
       }
     };
+    view_mode(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
   </script>
 <% end %>
