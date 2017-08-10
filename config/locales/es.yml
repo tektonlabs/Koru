@@ -54,6 +54,7 @@ es:
     coordinator: "Coordinador(a)"
     download_button: "Descargar"
     last_update: "Última actualización"
+    needs_tab: "NECESIDADES"
     analysis_tab: "ANÁLISIS"
     information_tab: "INFORMACIÓN"
     contact_tab: "CONTACTO"

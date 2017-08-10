@@ -30,6 +30,8 @@
         populate_sidebar_with_map("<%= params[:locale] %>");
       }
     };
-    view_mode(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
+    $(document).ready(function() {
+      view_mode(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
+    });
   </script>
 <% end %>

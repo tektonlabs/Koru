@@ -17,7 +17,7 @@ class Engagement < ApplicationRecord
   def dates_consistencies
     unless self.start_date.blank?
       unless self.unique_date
-        errors.add(:base, "end date must be greater than start date") if self.start_date >= self.end_date
+        errors.add(:base, "end date must be greater than start date") if self.start_date.beginning_of_day >= self.end_date.end_of_day
       end
     else
       errors.add(:start_date, "must exists")

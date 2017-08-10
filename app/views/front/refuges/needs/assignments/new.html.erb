@@ -48,7 +48,7 @@
             <div class="col-md-1"></div>
           </div>
         </div>
-        <div class="actions">
+        <div class="actions margin-bottom-steps">
           <button class="btn btn-secondary button-margin-between" href="<%= front_refuge_path(@refuge) %>"><%= t 'refuges.assign.previous' %></button>
           <button class="btn btn-primary next1"><%= t 'refuges.assign.next' %></button>
         </div>
@@ -63,35 +63,35 @@
               <%= f.fields_for :engagements do |engagement| %>
                 <%= engagement.hidden_field :need_id, value: params[:need_id] %>
                 <label class="header-text">Tiempo del compromiso</label>
-                <div class="fields">
-                  <div class="three wide field">
-                    <%= engagement.text_field :start_date, placeholder: "Fecha inicial", class:"datepicker", id: "engagement-start-date" %>
+                <div class="form-inline pull-left field">
+                  <div class="form-group">
+                    <%= engagement.text_field :start_date, placeholder: "Fecha inicial", class: "datepicker form-control", id: "engagement-start-date", readonly: true %>
                   </div>
-                  <div class="three wide field">
-                    <%= engagement.text_field :end_date, placeholder: "Fecha final", class:"datepicker", id: "engagement-end-date" %>
+                  <div class="form-group">
+                    <%= engagement.text_field :end_date, placeholder: "Fecha final", class: "datepicker form-control", id: "engagement-end-date", readonly: true %>
                   </div>
-                  <div id="error-description" class="four wide field error hide">
-                    <label></label>
+                  <div id="error-description" class="field error hide"><label></label></div>
+                </div>
+                <br><br><br>
+                <div class="form-inline pull-left field">
+                  <div class="ui checkbox">
+                    <%= engagement.check_box :unique_date, class: "hidden", id: "checkbox-unique-date" %>
+                    <label>Solo una vez</label>
                   </div>
                 </div>
-                <div class="ui checkbox pull-left">
-                  <%= engagement.check_box :unique_date, class: "hidden", id: "checkbox-unique-date" %>
-                  <label>Solo una vez</label>
-                </div>
-                <div class="field">
-                  <div class="three wide field">
-                    <%= engagement.text_field :start_date, placeholder: "Fecha única", id: "engagement-unique-date" %>
+                <br>
+                <div class="form-inline pull-left field left-alignment">
+                  <div class="form-group">
+                    <%= engagement.text_field :start_date, placeholder: "Fecha única", id: "engagement-unique-date", readonly: true %>
                   </div>
-                  <div id="unique-date-error" class="five wide field error hide">
-                    <label></label>
-                  </div>
+                  <div id="unique-date-error" class="field error hide"><label></label></div>
                 </div>
               <% end %>
             </div>
             <div class="col-md-1"></div>
           </div>
         </div>
-        <div class="actions">
+        <div class="actions margin-bottom-steps">
           <button class="btn btn-secondary prev1 button-margin-between"><%= t 'refuges.assign.previous' %></button>
           <button class="btn btn-primary next2"><%= t 'refuges.assign.next' %></button>
         </div>
@@ -123,7 +123,7 @@
             <div class="col-md-1"></div>
           </div>
         </div>
-        <div class="actions">
+        <div class="actions margin-bottom-steps">
           <button class="btn btn-secondary prev2 button-margin-between"><%= t 'refuges.assign.previous' %></button>
           <button class="btn btn-primary submit"><%= t 'refuges.assign.send' %></button>
         </div>

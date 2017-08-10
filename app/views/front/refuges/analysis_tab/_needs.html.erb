@@ -10,19 +10,19 @@
       <% if refuge.last_questionnaire.needs.blank? %>
         <%= t "refuges.no_needs_registered" %>
       <% else %>
-        <table width="100%">
+        <table id="needs-table" width="100%">
           <% refuge.last_questionnaire.needs.group_by{|x| x.entity}.each do |entity| %>
             <th colspan="2" class="th-header-styles"><%= entity.first.name %></th>
             <% entity.second.each do |need| %>
               <tr>
-                <td><i class="glyphicon glyphicon-remove-sign item-status <%= entity_color(need.entity) %>"></i></td>
+                <td class="td-vertical-align"><i class="glyphicon glyphicon-remove-sign item-status <%= entity_color(need.entity) %>"></i></td>
                 <td><b><%= need.title %></b></td>
-                <td>
+                <td class="td-vertical-align td-text-align">
                   <% any_engagement = need.first_in_engagement_list %>
                   <% if any_engagement.nil? %>
                     <%= link_to t("refuges.needs_assign"), new_front_refuge_need_assignment_path(refuge, need) %>
                   <% else %>
-                    <a class="ui blue tag label"><%= any_engagement.person_in_charge.name %></a>
+                    <a class="ui blue tag label"><%= any_engagement.person_in_charge.name.truncate(20) %></a>
                   <% end %>
                 </td>
               </tr>

@@ -86,6 +86,27 @@ th {
   #wrapper .main {
     padding-top: 80px;
   }
+  #step-organization {
+    .content{
+      display: none;
+    }
+  }
+  #step-engagement {
+    .content{
+      display: none;
+    }
+  }
+  #step-person {
+    .content{
+      display: none;
+    }
+  }
+  .ui.steps {
+    flex-direction: row;
+  }
+  .ui.steps .step {
+    width: 0 !important;
+  }
 }
 
 .layout-fullwidth #wrapper .sidebar {
@@ -269,6 +290,9 @@ html.fullscreen-bg #wrapper {
   }
   #filter-box-container {
     display: none;
+  }
+  .ui.steps .step .title {
+    font-size: 10px;
   }
 }
 
