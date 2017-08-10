@@ -8,18 +8,25 @@ document.addEventListener "turbolinks:load", ->
     range_dates = "La fecha final debe ser mayor a la fecha inicial!"
     dates_must_exists = "Los campos fecha inicial y fecha final son requeridos"
     unique_date_must_exists = "El campo fecha única es requerido"
+    phone_length_message_error = "El celular debe tener 9 números"
+    email_valid_message_error = "El email debe ser válido"
   else
-    organization_message_error = 'Responsabilities is required'
-    responsabilities_message_error = 'Organization responsable is required'
-    name_message_error = 'Person responsable is required'
+    organization_message_error = 'Organization responsible is required'
+    responsabilities_message_error = 'Responsibilities is required'
+    name_message_error = 'Person responsible is required'
     phone_message_error = 'Phone is required'
     email_message_error = 'Email is required'
     range_dates = "End date must be greater than start date!"
-    dates_must_exists = "Start date and end date is required"
+    dates_must_exists = "Start date and end date are required"
     unique_date_must_exists = "Unique date is required"
+    phone_length_message_error = "The phone must have 9 digits"
+    email_valid_message_error = "the email must be valid"
   process = (date) ->
     parts = date.split('/')
     new Date(parts[2], parts[1] - 1, parts[0])
+  validateEmail = (email) ->
+    re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    re.test email
   $('#form-organization').form
     on: 'blur'
     fields:
@@ -34,11 +41,6 @@ document.addEventListener "turbolinks:load", ->
     on: 'blur'
     fields:
       'person_in_charge[name]': 'empty'
-      'person_in_charge[phone]': 'empty'
-      'person_in_charge[email]': [
-        'email'
-        'empty'
-      ]
   $('.ui.checkbox').checkbox()
   $('#person_in_charge_phone').inputmask '999 999 999', 'placeholder': ''
   $('#engagement-unique-date').prop 'disabled', true
@@ -53,28 +55,43 @@ document.addEventListener "turbolinks:load", ->
   $('#person_in_charge_organization').on 'focusout', ->
     if $('#person_in_charge_organization').val() == ''
       $('.organization-alert-error').html organization_message_error
-      $('.organization-alert-error').removeClass('hide')
+      $('.organization-alert-error').removeClass 'hide'
       return
   $('#person_in_charge_responsabilities').on 'focusout', ->
     if $('#person_in_charge_responsabilities').val() == ''
       $('.responsabilities-alert-error').html responsabilities_message_error
-      $('.responsabilities-alert-error').removeClass('hide')
+      $('.responsabilities-alert-error').removeClass 'hide'
       return
   $('#person_in_charge_name').on 'focusout', ->
     if $('#person_in_charge_name').val() == ''
       $('.name-alert-error').html name_message_error
-      $('.name-alert-error').removeClass('hide')
+      $('.name-alert-error').removeClass 'hide'
       return
   $('#person_in_charge_phone').on 'focusout', ->
     if $('#person_in_charge_phone').val() == ''
+      $('#person_in_charge_phone').parents('.field').addClass 'error'
       $('.phone-alert-error').html phone_message_error
-      $('.phone-alert-error').removeClass('hide')
+      $('.phone-alert-error').removeClass 'hide'
+    else
+      if $("#person_in_charge_phone").val().replace(/\s/g,'').length != 9
+        $('.phone-alert-error').html phone_length_message_error
+        $('.phone-alert-error').removeClass 'hide'
+        $('#person_in_charge_phone').parents('.field').addClass 'error'
       return
+    return
   $('#person_in_charge_email').on 'focusout', ->
     if $('#person_in_charge_email').val() == ''
+      $('#person_in_charge_email').parents('.field').addClass 'error'
       $('.email-alert-error').html email_message_error
-      $('.email-alert-error').removeClass('hide')
+      $('.email-alert-error').removeClass 'hide'
+    else
+      console.log validateEmail($("#person_in_charge_email").val())
+      if !validateEmail $("#person_in_charge_email").val()
+        $('.email-alert-error').html email_valid_message_error
+        $('.email-alert-error').removeClass 'hide'
+        $('#person_in_charge_email').parents('.field').addClass 'error'
       return
+    return
   $('#person_in_charge_organization').on 'focus', ->
     $('.organization-alert-error').addClass 'hide'
     return
@@ -87,12 +104,18 @@ document.addEventListener "turbolinks:load", ->
   $('#person_in_charge_phone').on 'focus', ->
     $('.phone-alert-error').addClass 'hide'
     return
+  $('#person_in_charge_phone').on 'keyup', ->
+    $('#person_in_charge_phone').parents('.field').removeClass 'error'
+    return
   $('#person_in_charge_email').on 'focus', ->
     $('.email-alert-error').addClass 'hide'
     return
+  $('#person_in_charge_email').on 'keyup', ->
+    $('#person_in_charge_email').parents('.field').removeClass 'error'
+    return
   $('#engagement-unique-date').on 'focus', ->
     $('#engagement-unique-date').parents('.field').removeClass 'error'
-    $('#unique-date-error').addClass('hide')
+    $('#unique-date-error').addClass 'hide'
     return
   $('#engagement-start-date').on 'focus', ->
     $('#error-description').addClass 'hide'
@@ -101,6 +124,8 @@ document.addEventListener "turbolinks:load", ->
     $('#error-description').addClass 'hide'
     return
   $('#checkbox-unique-date').change ->
+    $("#error-description").addClass "hide"
+    $("#unique-date-error").addClass "hide"
     if $('#checkbox-unique-date').is(':checked')
       $('#engagement-start-date').parents('.field').removeClass 'error'
       $('#engagement-end-date').parents('.field').removeClass 'error'
@@ -135,11 +160,11 @@ document.addEventListener "turbolinks:load", ->
       if $('#person_in_charge_organization').val() == ''
         $('#person_in_charge_organization').parents('.field').addClass 'error'
         $('.organization-alert-error').html organization_message_error
-        $('.organization-alert-error').removeClass('hide')
+        $('.organization-alert-error').removeClass 'hide'
       if $('#person_in_charge_responsabilities').val() == ''
         $('#person_in_charge_responsabilities').parents('.field').addClass 'error'
         $('.responsabilities-alert-error').html responsabilities_message_error
-        $('.responsabilities-alert-error').removeClass('hide')
+        $('.responsabilities-alert-error').removeClass 'hide'
     return
   $('.prev1').on 'click', (e) ->
     e.preventDefault()
@@ -158,7 +183,7 @@ document.addEventListener "turbolinks:load", ->
       if $('#engagement-unique-date').val() == ''
         $('#engagement-unique-date').parents('.field').addClass 'error'
         $('#unique-date-error label').html unique_date_must_exists
-        $('#unique-date-error').removeClass('hide')
+        $('#unique-date-error').removeClass 'hide'
       else
         $('#step-engagement').removeClass 'active'
         $('#step-engagement').addClass 'completed'
@@ -222,14 +247,14 @@ document.addEventListener "turbolinks:load", ->
       if $('#person_in_charge_name').val() == ''
         $('#person_in_charge_name').parents('.field').addClass 'error'
         $('.name-alert-error').html name_message_error
-        $('.name-alert-error').removeClass('hide')
+        $('.name-alert-error').removeClass 'hide'
       if $('#person_in_charge_phone').val() == ''
         $('#person_in_charge_phone').parents('.field').addClass 'error'
         $('.phone-alert-error').html phone_message_error
-        $('.phone-alert-error').removeClass('hide')
+        $('.phone-alert-error').removeClass 'hide'
       if $('#person_in_charge_email').val() == ''
         $('#person_in_charge_email').parents('.field').addClass 'error'
         $('.email-alert-error').html email_message_error
-        $('.email-alert-error').removeClass('hide')
+        $('.email-alert-error').removeClass 'hide'
     return
   return

@@ -59,6 +59,13 @@ infowindow = null
   if view_mode_updated
     search_with_typeahead(locale)
 
+  refugesSource = new Bloodhound(
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace 'value'
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    remote:
+      url: "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/filter_by.json?query=%QUERY"
+      wildcard: '%QUERY')
+
   $('#filter-select').dropdown
     useLabels: false
     onChange: ->
@@ -131,7 +138,7 @@ search_with_typeahead = (locale) ->
   ).on 'typeahead:selected', (event, selection) ->
     $.ajax
       type: 'GET'
-      url: "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/search_by?query=" + selection.name
+      url: "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/search_by?id=" + selection.id
       dataType: 'script'
     return
 

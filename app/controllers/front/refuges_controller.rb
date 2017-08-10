@@ -33,7 +33,7 @@ class Front::RefugesController < FrontController
   end
 
   def search_by
-    @refuges = Refuge.search_by_query params[:query]
+    @refuges = Refuge.where id: params[:id]
   end
 
   private
