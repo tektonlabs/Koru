@@ -60,7 +60,7 @@ infowindow = null
     search_with_typeahead(locale)
 
   refugesSource = new Bloodhound(
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value')
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace 'value'
     queryTokenizer: Bloodhound.tokenizers.whitespace
     remote:
       url: "<%= ENV['HOST'] %>" + "<%= ENV['RELATIVE_URL_ROOT'] %>" + locale + "/refuges/filter_by.json?query=%QUERY"

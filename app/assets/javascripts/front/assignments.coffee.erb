@@ -115,7 +115,7 @@ document.addEventListener "turbolinks:load", ->
     return
   $('#engagement-unique-date').on 'focus', ->
     $('#engagement-unique-date').parents('.field').removeClass 'error'
-    $('#unique-date-error').addClass('hide')
+    $('#unique-date-error').addClass 'hide'
     return
   $('#engagement-start-date').on 'focus', ->
     $('#error-description').addClass 'hide'
@@ -124,8 +124,8 @@ document.addEventListener "turbolinks:load", ->
     $('#error-description').addClass 'hide'
     return
   $('#checkbox-unique-date').change ->
-    $("#error-description").addClass("hide")
-    $("#unique-date-error").addClass("hide")
+    $("#error-description").addClass "hide"
+    $("#unique-date-error").addClass "hide"
     if $('#checkbox-unique-date').is(':checked')
       $('#engagement-start-date').parents('.field').removeClass 'error'
       $('#engagement-end-date').parents('.field').removeClass 'error'

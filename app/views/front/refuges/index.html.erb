@@ -14,6 +14,9 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYZQCwE8B-r7ORDi49Hzum8vXKyoLl4k&callback=initMap&libraries=places" async defer>
   </script>
   <script type="text/javascript">
+    $(document).ready(function() {
+      view_mode(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
+    });
     function initMap() {
       loadMapWithLocations(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
     };
@@ -30,8 +33,5 @@
         populate_sidebar_with_map("<%= params[:locale] %>");
       }
     };
-    $(document).ready(function() {
-      view_mode(<%= raw refuges_map_data %>, "<%= params[:locale] %>");
-    });
   </script>
 <% end %>
