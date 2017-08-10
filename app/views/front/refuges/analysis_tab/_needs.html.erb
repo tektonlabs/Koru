@@ -22,7 +22,7 @@
                   <% if any_engagement.nil? %>
                     <%= link_to t("refuges.needs_assign"), new_front_refuge_need_assignment_path(refuge, need) %>
                   <% else %>
-                    <a class="ui blue tag label"><%= any_engagement.person_in_charge.name.truncate(20) %></a>
+                    <a class="ui blue tag label"><%= any_engagement.person_in_charge.organization.truncate(20) %></a>
                   <% end %>
                 </td>
               </tr>
