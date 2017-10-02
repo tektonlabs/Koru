@@ -2,33 +2,21 @@
 # Alimentos y agua bebible
 
 question = Question.create text: "¿Hubo suficiente agua para beber y cocinar para todo el refugio?", entity: Entity.find_by(name: "Alimentos y agua bebible")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No"), class_type: :negative
 
 question = Question.create text: "¿Faltaron raciones de comida?", entity: Entity.find_by(name: "Alimentos y agua bebible")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí"), class_type: :negative
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No")
 
 question = Question.create text: "¿Algún comentario extra sobre la alimentación y el agua bebible en el refugio?", entity: Entity.find_by(name: "Alimentos y agua bebible"), question_type: :input_value
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
 
 # Salud
 
 question = Question.create text: "¿Se considera que algunas de estas personas deba ser evacuada por motivos de salud?", entity: Entity.find_by(name: "Salud"), question_type: :multiple_choice
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Mujeres embarazadas")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Niños menores a 3 años")
@@ -37,14 +25,8 @@ question = Question.create text: "¿Se considera que algunas de estas personas d
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Otros")
 
 question = Question.create text: "¿Por qué?", entity: Entity.find_by(name: "Salud"), question_type: :input_value
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
 question = Question.create text: "Hubo presencia de:", entity: Entity.find_by(name: "Salud")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
     sub_question = Question.create text: "Médicos", entity: Entity.find_by(name: "Médicos"), parent_id: question.id
       QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "Suficiente")
@@ -67,9 +49,6 @@ question = Question.create text: "Hubo presencia de:", entity: Entity.find_by(na
       QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "No hubo"), class_type: :negative
 
 question = Question.create text: "¿Se necesita alguna de estas medicinas? (marca todas las que sean necesarias)", entity: Entity.find_by(name: "Salud"), question_type: :multiple_choice
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Para las heridas")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Para la diarrea")
@@ -83,9 +62,6 @@ question = Question.create text: "¿Se necesita alguna de estas medicinas? (marc
 # Higiene
 
 question = Question.create text: "¿Se necesita alguno de estos artículos? (marca todas las que sean necesarias)", entity: Entity.find_by(name: "Higiene personal"), question_type: :multiple_choice
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Papel higiénico")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Pañales niños")
@@ -102,9 +78,6 @@ question = Question.create text: "¿Se necesita alguno de estos artículos? (mar
 # Limpieza
 
 question = Question.create text: "¿Están limpios los siguientes lugares?", entity: Entity.find_by(name: "Limpieza")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   sub_question = Question.create text: "Baños", entity: Entity.find_by(name: "Baños"), parent_id: question.id
     QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "Sí")
@@ -123,9 +96,6 @@ question = Question.create text: "¿Están limpios los siguientes lugares?", ent
     QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "No"), class_type: :negative
 
 question = Question.create text: "¿Qué productos de limpieza se necesita con urgencia? (marca todos los que falten)", entity: Entity.find_by(name: "Limpieza"), question_type: :multiple_choice
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Bolsas de basura")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Cloro")
@@ -140,25 +110,16 @@ question = Question.create text: "¿Qué productos de limpieza se necesita con u
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Desinfectantes")
 
 question = Question.create text: "¿Algún comentario extra sobre la limpieza del refugio?", entity: Entity.find_by(name: "Limpieza"), question_type: :input_value
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
 
 #Electricidad
 
 question = Question.create text: "¿Tienen electricidad?", entity: Entity.find_by(name: "Electricidad")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No"), class_type: :negative
 
 question = Question.create text: "¿Se están usando alguno de estos mecanismos de iluminación o alguna fuente de energía? (marca todos los que se estén usando)", entity: Entity.find_by(name: "Electricidad"), question_type: :multiple_choice
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Linternas"), class_type: :negative
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Lamparines"), class_type: :negative
@@ -167,83 +128,53 @@ question = Question.create text: "¿Se están usando alguno de estos mecanismos 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Otros"), class_type: :negative
 
 question = Question.create text: "¿Algún comentario extra sobre la electricidad del refugio?", entity: Entity.find_by(name: "Electricidad"), question_type: :input_value
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
 
 # Agua
 
 question = Question.create text: "¿Tienen agua para los baños, duchas y lavanderías?", entity: Entity.find_by(name: "Agua")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Queda poca"), class_type: :middle
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No"), class_type: :negative
 
 question = Question.create text: "¿Tienen como almacenar el agua?", entity: Entity.find_by(name: "Agua")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No"), class_type: :negative
 
 question = Question.create text: "¿Está yendo el camión cisterna a dejar agua?", entity: Entity.find_by(name: "Agua")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No"), class_type: :negative
 
 question = Question.create text: "¿Algún comentario extra sobre el agua del refugio?", entity: Entity.find_by(name: "Agua"), question_type: :input_value
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
 
 # Gestión de residuos sólidos
 
 question = Question.create text: "¿Cuentan con basureros y puntos de acopio de basura?", entity: Entity.find_by(name: "Gestión de residuos sólidos")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No"), class_type: :negative
 
 question = Question.create text: "¿Se está recogiendo la basura que el albergue acumula?", entity: Entity.find_by(name: "Gestión de residuos sólidos")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Sí")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No"), class_type: :negative
 
 question = Question.create text: "¿Quién es el encargado del recojo de basura?", entity: Entity.find_by(name: "Gestión de residuos sólidos")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Municipalidad")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No hay nadie encargado del recojo de basura"), class_type: :negative
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Otros")
 
 question = Question.create text: "¿Algún comentario extra sobre la gestión de residuos sólidos del refugio?", entity: Entity.find_by(name: "Gestión de residuos sólidos"), question_type: :input_value
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
 
 # Seguridad
 
 question = Question.create text: "¿Se han reportado algunas de las siguientes incidencias?", entity: Entity.find_by(name: "Seguridad"), question_type: :multiple_choice
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Robos")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Agresiones verbales")
@@ -253,9 +184,6 @@ question = Question.create text: "¿Se han reportado algunas de las siguientes i
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Otros")
 
 question = Question.create text: "¿Cómo se resolvió el incidente?", entity: Entity.find_by(name: "Seguridad")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "No se resolvió"), class_type: :negative
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Se expulsó al agresor")
@@ -263,9 +191,6 @@ question = Question.create text: "¿Cómo se resolvió el incidente?", entity: E
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Otros")
 
 question = Question.create text: "Hubo presencia de:", entity: Entity.find_by(name: "Seguridad")
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   sub_question = Question.create text: "Policías", entity: Entity.find_by(name: "Policías"), parent_id: question.id
     QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "Suficiente")
@@ -288,9 +213,6 @@ question = Question.create text: "Hubo presencia de:", entity: Entity.find_by(na
     QuestionAnswer.create question: sub_question, answer: Answer.find_by(name: "No hubo"), class_type: :negative
 
 question = Question.create text: "¿Se han observado alguna de las siguientes situaciones de riesgo?", entity: Entity.find_by(name: "Seguridad"), question_type: :multiple_choice
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
 
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Malversación de donaciones/recursos")
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Velas dentro de carpas")
@@ -301,6 +223,3 @@ question = Question.create text: "¿Se han observado alguna de las siguientes si
   QuestionAnswer.create question: question, answer: Answer.find_by(name: "Otros")
 
 question = Question.create text: "¿Algún comentario extra sobre la seguridad en el refugio?", entity: Entity.find_by(name: "Seguridad"), question_type: :input_value
-  Refuge.all.each do |refuge|
-    RefugeQuestion.create refuge: refuge, question: question
-  end
