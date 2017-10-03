@@ -2,9 +2,7 @@
 
 document.addEventListener("turbolinks:load", function() {
 
-  /*-----------------------------------/
-  /*  TOP NAVIGATION AND LAYOUT
-  /*----------------------------------*/
+  /*  TOP NAVIGATION AND LAYOUT  */
 
   $('.btn-toggle-fullwidth').on('click', function() {
     if(!$('body').hasClass('layout-fullwidth')) {
@@ -47,9 +45,7 @@ document.addEventListener("turbolinks:load", function() {
     }
   });
 
-  /*-----------------------------------/
-  /*  SIDEBAR NAVIGATION
-  /*----------------------------------*/
+  /*  SIDEBAR NAVIGATION  */
 
   $('.sidebar a[data-toggle="collapse"]').on('click', function() {
     if($(this).hasClass('collapsed')) {
@@ -66,9 +62,7 @@ document.addEventListener("turbolinks:load", function() {
     });
   }
 
-  /*-----------------------------------/
-  /*  PANEL FUNCTIONS
-  /*----------------------------------*/
+  /*  PANEL FUNCTIONS  */
 
   // panel remove
   $('.panel .btn-remove').click(function(e){
@@ -107,9 +101,7 @@ document.addEventListener("turbolinks:load", function() {
     }
   );
 
-  /*-----------------------------------/
-  /*  PANEL SCROLLING
-  /*----------------------------------*/
+  /*  PANEL SCROLLING  */
 
   if( $('.panel-scrolling').length > 0) {
     $('.panel-scrolling .panel-body').slimScroll({
@@ -125,9 +117,7 @@ document.addEventListener("turbolinks:load", function() {
     });
   }
 
-  /*-----------------------------------/
-  /*  TODO LIST
-  /*----------------------------------*/
+  /*  TODO LIST  */
 
   $('.todo-list input').change( function() {
     if( $(this).prop('checked') ) {
@@ -137,9 +127,7 @@ document.addEventListener("turbolinks:load", function() {
     }
   });
 
-  /*-----------------------------------/
-  /* TOASTR NOTIFICATION
-  /*----------------------------------*/
+  /* TOASTR NOTIFICATION  */
 
   if($('#toastr-demo').length > 0) {
     toastr.options.timeOut = "false";

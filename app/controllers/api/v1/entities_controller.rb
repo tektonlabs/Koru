@@ -7,7 +7,7 @@ class Api::V1::EntitiesController < Api::ApiV1Controller
       entities = @refuge.entities.order(:created_at).includes(questions: [:sub_questions])
       render json: entities, each_serializer: EntitySerializer
     else
-      render json: { message: "Refuge is not registered" }
+      render json: { message: "Shelter is not registered" }
     end
   end
 

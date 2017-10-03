@@ -24,7 +24,7 @@
             <%= link_to "<i class='plus icon'></i>".html_safe, new_admin_refuge_questionnaire_path(refuge) %>
             <%= link_to "<i class='info icon'></i>".html_safe, "#" %>
             <%= link_to "<i class='write icon'></i>".html_safe, "#" %>
-            <%= link_to "<i class='remove icon'></i>".html_safe, admin_refuge_path(refuge), method: :delete, class: "delete-refuge", data: { confirm: "¿Está seguro que desea eliminar el refugio #{refuge.name}?" } %>
+            <%= link_to "<i class='remove icon'></i>".html_safe, admin_refuge_path(refuge), method: :delete, class: "delete-refuge", data: { confirm: "¿Está seguro que desea eliminar el albergue #{refuge.name}?" } %>
           </td>
         </tr>
       <% end %>
