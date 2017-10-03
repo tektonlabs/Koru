@@ -37,9 +37,9 @@ es:
     search_or_filter_by: "Buscar o filtrar por"
     filter_by_needs: "Filtro por necesidades"
     search_mode_location: "Ubicación"
-    search_mode_refuges: "Refugios"
+    search_mode_refuges: "Albergues"
     language_translate: "Lenguaje"
-    search_box_placeholder_locations: "Buscar refugio o ubicación"
+    search_box_placeholder_locations: "Buscar albergue o ubicación"
     refuge_detail_button: "Ver Detalles"
   questionnaires:
     no_responses: "Niguna respuesta ha sido registrada"

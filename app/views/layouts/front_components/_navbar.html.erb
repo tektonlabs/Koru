@@ -2,8 +2,8 @@
   <div class="container-fluid">
     <div class="brand">
       <%= link_to front_root_path, onclick: "#{analytics_track_event 'logo', '-', '-'}" do %>
-        <%= image_tag "logo-dark.png", alt: "RefugiosApp Logo", width: "220", class: "img-responsive logo", id: "logo-web-version" %>
-        <%= image_tag "logo-responsive.png", alt: "RefugiosApp Logo", width: "48", class: "img-responsive logo", id: "logo-mobile-version" %>
+        <%= image_tag "logo-dark.png", alt: "Koru Logo", width: "220", class: "img-responsive logo", id: "logo-web-version" %>
+        <%= image_tag "logo-responsive.png", alt: "Koru Logo", width: "48", class: "img-responsive logo", id: "logo-mobile-version" %>
       <% end %>
     </div>
     <% unless hide_navbar_content_if @controller, @action %>
