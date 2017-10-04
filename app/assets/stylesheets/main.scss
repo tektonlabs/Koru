@@ -33,14 +33,15 @@ th {
   font-weight: 300;
 }
 
-.copyright {
+.footer-label {
   margin-bottom: 0;
   text-align: right;
   font-size: 13px;
+  color: white;
 }
 
 @media screen and (max-width: 767px) {
-  .copyright {
+  .footer-label {
     text-align: center;
     position: relative !important;
   }
