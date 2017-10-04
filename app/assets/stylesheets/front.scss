@@ -10,14 +10,14 @@
 @import "semantic-ui";
 @import "main";
 
-.footer {
-  height: 10%;
-  text-align: center;
+footer {
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding: 10px 0 10px 0;
+  justify-content: center;
+  background-color: #2B333E;
 }
 
 .slimScrollDiv {
-  height: 90% !important;
+  height: 93% !important;
 }

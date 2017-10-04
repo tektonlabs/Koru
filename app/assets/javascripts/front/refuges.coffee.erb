@@ -268,8 +268,8 @@ geocodeAddress = (geocoder, resultsMap) ->
   return
 
 @initialize_refuges = ->
-  $('#refuges-map').css('height', $('#sidebar-nav').height())
-  $('#refuges-list').css('height', $('#sidebar-nav').height())
+  $('#refuges-map').css('height', $('#sidebar-nav').height() - 38)
+  $('#refuges-list').css('height', $('#sidebar-nav').height() - 38)
 
 @show_on_map = (location, locale) ->
   geocoder = new google.maps.Geocoder
