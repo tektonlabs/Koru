@@ -11,11 +11,12 @@
 @import "main";
 
 footer {
-  display: flex;
-  align-items: center;
-  padding: 10px 0 10px 0;
-  justify-content: center;
   background-color: #2B333E;
+  position: fixed;
+  bottom: 0;
+  padding: 10px;
+  width: 100%;
+  display: flex;
 }
 
 .slimScrollDiv {
