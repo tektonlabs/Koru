@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@android:color/white"
+    tools:context="com.tektonlabs.android.refugeapp.presentation.questions.QuestionsActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dimen_x5_9"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/pb_quetions_progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="@dimen/question_progressbar_witdh"
+            android:layout_height="@dimen/dimen_x1_5"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dimen_x2_5"
+            android:layout_marginTop="@dimen/dimen_x4_5"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/progress_bar_question_background" />
+
+        <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
+            android:id="@+id/rv_question_page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            app:rvp_singlePageFling="true" />
+
+    </LinearLayout>
+
+
+    <include layout="@layout/questions_navigator" />
+
+    <ProgressBar
+        android:id="@+id/v_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

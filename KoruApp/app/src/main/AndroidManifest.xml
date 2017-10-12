@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tektonlabs.android.refugeapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name=".RefugeApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="<PUT YOUR API KEY>" />
+
+        <activity
+            android:name=".presentation.questions.QuestionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.shelters.SheltersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.categories.CategoriesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.MainScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".presentation.create_shelters.CreateShelterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.create_shelters.PlaceAutocompleteActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.create_contact.CreateContactActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.MonitorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="<PUT YOUR API KEY>" />
+    </application>
+
+</manifest>

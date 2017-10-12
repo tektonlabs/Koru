@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item android:state_selected="true">
+    <bitmap android:gravity="center" android:src="@drawable/ico_star5_on_near"/>
+</item>
+
+<item>
+    <bitmap android:gravity="center" android:src="@drawable/ico_star5_off_near"/>
+</item>
+</selector>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_x4_5"
+        android:background="@android:color/white">
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/form_step_2_tv_title_1"
+            />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_property_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_x4_5">
+
+            <com.tektonlabs.android.refugeapp.utils.ClickToSelectEditText
+                android:id="@+id/sp_property_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_drop_down"
+                android:hint="@string/hint_property_type" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_accessibility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_x2_4">
+
+            <com.tektonlabs.android.refugeapp.utils.ClickToSelectEditText
+                android:id="@+id/sp_accessibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_drop_down"
+                android:hint="@string/hint_accessibility" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_victims"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_x2_4">
+
+            <com.tektonlabs.android.refugeapp.utils.ClickToSelectEditText
+                android:id="@+id/sp_victims"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_drop_down"
+                android:hint="@string/hint_victims" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dimen_x4_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/form_step_2_tv_title"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="@dimen/dimen_x4_5"
+            android:id="@+id/rv_service_types"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

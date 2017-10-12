@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_create_shelter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.tektonlabs.android.refugeapp.presentation.create_shelters.CreateShelterActivity">
+
+    <com.badoualy.stepperindicator.StepperIndicator
+        app:stpi_circleStrokeWidth="@dimen/dimen_x2_1"
+        app:stpi_circleRadius="@dimen/dimen_x2_4"
+        app:stpi_indicatorRadius="@dimen/dimen_x1_4"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/indicator"
+        android:layout_marginTop="@dimen/dimen_x4_5"
+        android:layout_marginBottom="@dimen/dimen_x4_5"
+        android:layout_marginStart="@dimen/dimen_x10_9"
+        android:layout_marginEnd="@dimen/dimen_x10_9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:stpi_stepCount="6"/>
+
+    <com.tektonlabs.android.refugeapp.utils.NonSwipeableViewPager
+        android:layout_below="@id/indicator"
+        android:layout_marginBottom="@dimen/dimen_x5_9"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <include
+        layout="@layout/create_shelter_navigator" />
+
+    <ProgressBar
+        android:visibility="visible"
+        android:id="@+id/v_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_empty_container"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/questions_empty_state"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/questions_empty_state_2"
+            android:textColor="@color/gray_text"
+            android:textSize="@dimen/text_size_15sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

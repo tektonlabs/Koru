@@ -1,0 +1,64 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="dimen_x1_2_negative">-2dp</dimen>
+    <dimen name="dimen_x1_5_negative">-5dp</dimen>
+    <dimen name="dimen_x1_8_negative">-8dp</dimen>
+    <dimen name="dimen_x2_5_negative">-10dp</dimen>
+    <dimen name="dimen_x3_4_negative">-12dp</dimen>
+    <dimen name="dimen_x4_5_negative">-20dp</dimen>
+    <dimen name="dimen_x1_0.5">0.5dp</dimen>
+    <dimen name="dimen_x1_1">1dp</dimen>
+    <dimen name="dimen_x2_1">2dp</dimen>
+    <dimen name="dimen_x3_1">3dp</dimen>
+    <dimen name="dimen_x1_4">4dp</dimen>
+    <dimen name="dimen_x2_3">6dp</dimen>
+    <dimen name="dimen_x2_4">8dp</dimen>
+    <dimen name="dimen_x3_4">12dp</dimen>
+    <dimen name="dimen_x4_4">16dp</dimen>
+    <dimen name="dimen_x6_4">24dp</dimen>
+    <dimen name="dimen_x7_4">28dp</dimen>
+    <dimen name="dimen_x1_5">5dp</dimen>
+    <dimen name="dimen_x2_5">10dp</dimen>
+    <dimen name="dimen_x3_5">15dp</dimen>
+    <dimen name="dimen_x4_5">20dp</dimen>
+    <dimen name="dimen_x5_5">25dp</dimen>
+    <dimen name="dimen_x6_5">30dp</dimen>
+    <dimen name="dimen_x5_9">45dp</dimen>
+    <dimen name="dimen_x10_5">50dp</dimen>
+    <dimen name="dimen_x10_6">60dp</dimen>
+    <dimen name="dimen_x10_7">70dp</dimen>
+    <dimen name="dimen_x10_8">80dp</dimen>
+    <dimen name="dimen_x10_9">90dp</dimen>
+    <dimen name="dimen_x10_10">100dp</dimen>
+    <dimen name="dimen_x10_11">110dp</dimen>
+    <dimen name="dimen_x10_13">130dp</dimen>
+    <dimen name="dimen_x10_15">150dp</dimen>
+    <dimen name="dimen_x15_30">450dp</dimen>
+
+
+    <!-- Generic sp dimens -->
+    <dimen name="text_size_8sp">8sp</dimen>
+    <dimen name="text_size_10sp">10sp</dimen>
+    <dimen name="text_size_11sp">11sp</dimen>
+    <dimen name="text_size_12sp">12sp</dimen>
+    <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_15sp">15sp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="text_size_17sp">17sp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="text_size_22sp">22sp</dimen>
+    <dimen name="text_size_24sp">24sp</dimen>
+    <dimen name="text_size_26sp">26sp</dimen>
+    <dimen name="text_size_28sp">28sp</dimen>
+    <dimen name="text_size_30sp">30sp</dimen>
+    <dimen name="button_radius">5dp</dimen>
+
+
+    <dimen name="shelder_cicle_status_size">18dp</dimen>
+    <dimen name="question_progressbar_witdh">100dp</dimen>
+
+</resources>

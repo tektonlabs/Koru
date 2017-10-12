@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            card_view:cardBackgroundColor="@color/indigo_light"
+            card_view:cardCornerRadius="@dimen/dimen_x1_5"
+            android:layout_marginTop="@dimen/dimen_x2_5"
+            android:layout_marginBottom="@dimen/dimen_x4_5"
+            android:layout_marginEnd="@dimen/dimen_x4_5"
+            android:layout_marginStart="@dimen/dimen_x4_5">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_questions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dimen_x4_5"
+                android:paddingTop="@dimen/dimen_x2_5"
+                android:scrollbars="vertical" />
+
+        </android.support.v7.widget.CardView>
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/dimen_x6_5"
+            android:paddingStart="@dimen/dimen_x6_5"
+            android:text="@string/btn_send"
+            android:visibility="visible"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_primary_background"
+            android:layout_marginBottom="@dimen/dimen_x4_5"
+            android:elevation="@dimen/dimen_x4_5"
+            android:textSize="@dimen/text_size_18sp"/>
+
+    </LinearLayout>
+
+</ScrollView>

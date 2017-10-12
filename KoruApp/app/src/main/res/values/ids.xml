@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item
+        name="et_family"
+        type="id"/>
+    <item name="et_people"
+        type="id"/>
+    <item name="et_pregnant"
+        type="id"/>
+    <item name="et_children"
+        type="id"/>
+    <item name="et_adults"
+        type="id"/>
+    <item name="et_handicapped"
+        type="id"/>
+    <item name="et_pets"
+        type="id"/>
+    <item name="et_farm_animals"
+        type="id"/>
+
+    <item name="et_tents"
+        type="id"/>
+    <item name="et_toilet"
+        type="id"/>
+    <item name="et_lavatory"
+        type="id"/>
+    <item name="et_showers"
+        type="id"/>
+    <item name="et_water_tank"
+        type="id"/>
+    <item name="et_trash"
+        type="id"/>
+    <item name="et_dumpsters"
+        type="id"/>
+
+    <item name="et_male_children"
+        type="id"/>
+    <item name="et_female_children"
+        type="id"/>
+
+    <item name="et_under_18_male"
+        type="id"/>
+    <item name="et_under_18_female"
+        type="id"/>
+
+    <item name="et_above_18_male"
+        type="id"/>
+    <item name="et_above_18_female"
+        type="id"/>
+
+    <item name="et_elderly_male"
+        type="id"/>
+    <item name="et_elderly_female"
+        type="id"/>
+</resources>

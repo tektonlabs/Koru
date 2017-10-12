@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Segundos Auxilios</string>
+
+    <string name="hint_enter_value">Enter a comment</string>
+    <string name="btn_send">Send</string>
+
+    <string name="alert_back_dialog_message">Discard form?</string>
+    <string name="alert_back_dialog_yes_button">DISCARD</string>
+    <string name="alert_back_dialog_no_button">CANCEL</string>
+
+    <string name="connection_error">Internet connection error. Please try again</string>
+    <string name="server_error">Server error</string>
+    <string name="internal_error">Internal Error ocurred. Please try again</string>
+    <string name="form_sent_successfully">Form sent successfully</string>
+    <string name="form_not_sent_successfully">Could not send form. The app will try again when an internet connection is established</string>
+    <string name="shelter_created_successfully">Shelter created successfully</string>
+    <string name="shelter_created_canceled">The creation of the shelter has been canceled.</string>
+    <string name="location_not_granted">Location permission wasn\'t granted</string>
+    <string name="search">Search</string>
+    <string name="sync">Synchronize</string>
+    <string name="no_results_found">No Results Found</string>
+    <string name="no_items_matched_your_search">No items matched your search.</string>
+    <string name="back">BACK</string>
+    <string name="skip">SKIP</string>
+    <string name="next">NEXT</string>
+    <string name="no_refugees_found">No refugees found</string>
+    <string name="pull_to_refresh_to_try_again">Pull to refresh to try again.</string>
+    <string name="location_permission">This app can use your current location in order to show shelters near you.</string>
+    <string name="answer_at_least_one_question">To send the form, answer at least one question.</string>
+    <string name="form_pending">form(s) pending</string>
+    <string name="questions_empty_state">No connection found</string>
+    <string name="questions_empty_state_2">Please go back and try again.</string>
+    <string name="categories">Categories</string>
+    <string name="continue_button">continue</string>
+    <string name="select_all">Select all</string>
+    <string name="deselect_all">Deselect all</string>
+    <string name="select_the_categories_you_want_to_complete">Select the categories you want to complete.</string>
+    <string name="register">REGISTER</string>
+    <string name="register_title">Register</string>
+    <string name="monitor">MONITOR</string>
+    <string name="second_help">SEGUNDOS AUXILIOS</string>
+    <string name="dni">DNI</string>
+    <string name="phone">Phone</string>
+    <string name="login">Monitor</string>
+    <string name="required_field">This is a required field</string>
+    <string name="valid_digits_dni">Enter a 8-digit number</string>
+    <string name="valid_digits_phone">Enter a 9-digit number</string>
+    <string name="institution">Institution</string>
+    <string name="error_txt">This is a required field</string>
+    <string name="error_email">Invalid email</string>
+    <string name="error_phone">Invalid phone</string>
+    <string name="primary_contact_title">Primary Contact</string>
+    <string name="secondary_contact_title">Secondary Contact</string>
+
+    <!--Create Shelter Form step 1-->
+    <string name="form_step_1_tv_title">General Data</string>
+    <string name="form_step_1_et_shelter_name">Shelter name</string>
+    <string name="form_step_1_et_direction">Address</string>
+    <string name="hint_shelter_type">Tipo de albergue</string>
+    <string-array name="sp_shelter_type">
+        <item>Carpas en campo abierto</item>
+        <item>Colegio</item>
+        <item>Iglesia</item>
+        <item>Otro</item>
+    </string-array>
+    <string name="hint_institution">Institución a cargo</string>
+    <string-array name="sp_institution">
+        <item>Gobierno Central</item>
+        <item>Gobierno Regional</item>
+        <item>Iglesia</item>
+        <item>Municipalidad</item>
+        <item>Organización Comunal</item>
+        <item>Organización no Gubernamental</item>
+        <item>Otro</item>
+    </string-array>
+    <string name="hint_emergency">Tipo de emergencia</string>
+    <string-array name="sp_emergency">
+        <item>Terremoto</item>
+        <item>Friaje/helada</item>
+        <item>Huayco/desborde de río</item>
+        <item>Emergencia sanitaria</item>
+        <item>Incendio</item>
+    </string-array>
+    <string name="general_error">An error occurred. Please try entering again.</string>
+    <string name="error_address_empty">Invalid Address, Please Try Again</string>
+
+    <!--Create Shelter Form step 2-->
+    <string name="form_step_2_tv_title_1">Aditional Data</string>
+    <string name="form_step_2_tv_title">Presence of committees</string>
+    <string name="hint_property_type">Tipo de propiedad</string>
+    <string-array name="sp_property">
+        <item>Propiedad Privada</item>
+        <item>Propiedad Pública</item>
+        <item>Vía Pública</item>
+    </string-array>
+    <string name="hint_accessibility">Accesibilidad</string>
+    <string-array name="sp_accessibility">
+        <item>A pie</item>
+        <item>Solo 4x4</item>
+        <item>Vehicular</item>
+    </string-array>
+    <string name="hint_victims">Procedencia de damnificados</string>
+    <string-array name="sp_victims">
+        <item>De una misma comunidad</item>
+        <item>De diferentes comunidades</item>
+    </string-array>
+
+    <!--Create Shelter Form step 5-->
+    <string name="hint_floor_type">Tipo de piso</string>
+    <string-array name="sp_floor">
+        <item>Asfaltado</item>
+        <item>No asfaltado</item>
+    </string-array>
+    <string name="hint_roof_type">Techo</string>
+    <string-array name="sp_roof">
+        <item>Al aire libre</item>
+        <item>Techado</item>
+    </string-array>
+    <string name="add_contact_name_hint">Name</string>
+    <string name="add_contact_bt">Add</string>
+    <string name="edit_contact_bt">Edit</string>
+    <string name="create_shelter_dialog_title">The information filled in will be deleted.</string>
+    <string name="dialog_exit">EXIT</string>
+    <string name="dialog_cancel">CANCEL</string>
+    <string name="snakcbar_no_primary_contact">Please add at least one main contact to continue</string>
+    <string name="primary_contact_tv">Primary contact</string>
+    <string name="add_primary_contact">ADD PRIMARY CONTACT</string>
+    <string name="secondary_contact_tv">Secondary contacts (Optional)</string>
+    <string name="add_secondary_contact">ADD SECONDARY CONTACT</string>
+    <string name="censo">Censo</string>
+    <string name="family_number_hint"># families</string>
+    <string name="people_number_hint"># people</string>
+    <string name="pregnant_number_hint"># pregnants</string>
+    <string name="children_number_hint"># children under 3</string>
+    <string name="elderly_number_hint"># older adults</string>
+    <string name="handicapped_number_hint"># handicapped</string>
+    <string name="pet_number_hint"># pets</string>
+    <string name="farm_number_hint"># farm animals</string>
+    <string name="infrastructure">Infrastructure</string>
+    <string name="tent_number_hint"># tents</string>
+    <string name="toilet_number_hint"># toilets</string>
+    <string name="sink_number_hint"># sinks</string>
+    <string name="shower_number_hint"># showers</string>
+    <string name="tank_number_hint"># water tanks</string>
+    <string name="trash_number_hint"># trash cans</string>
+    <string name="points_number_hint"># dumpsters</string>
+    <string name="light_tv">Light</string>
+    <string name="dreg_tv">Feces management</string>
+    <string name="water_tv">Water</string>
+    <string name="dreg_management_tv">Waste management</string>
+    <string name="food_tv">Food and drinks</string>
+    <string name="add_contact_mail_hint">Email</string>
+    <string name="new_refuge_title">New Shelter</string>
+    <string name="google_map_activity_title">Shelter Location</string>
+    <string name="exit_creation_form">Exit creation form?</string>
+    <string name="et_men_hint"># men</string>
+    <string name="et_women_hint"># women</string>
+    <string name="tv_children">Children under 3</string>
+    <string name="tv_under_18">People under 18</string>
+    <string name="tv_above_18">People above 18</string>
+    <string name="tv_elderly">Older adults</string>
+
+    <!--Map Autocomplete-->
+    <string name="address">Address</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="dialog_close_button">close</string>
+    <string name="shelter_no_internet">No connection found. Please go back and try again</string>
+</resources>

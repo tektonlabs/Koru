@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.tektonlabs.android.refugeapp.presentation.MainScreenActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/second_help"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_18sp" />
+
+    <LinearLayout
+        android:layout_marginBottom="@dimen/dimen_x2_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="@dimen/dimen_x1_5"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/dimen_x1_5"
+        android:orientation="vertical">
+
+        <Button
+
+            android:id="@+id/bt_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_x4_5"
+            android:layout_marginStart="@dimen/dimen_x4_5"
+            android:background="@drawable/button_dark_blue"
+            android:elevation="@dimen/dimen_x1_5"
+            android:text="@string/register"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_12sp" />
+
+        <Button
+            android:id="@+id/bt_monitor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_x4_5"
+            android:layout_marginStart="@dimen/dimen_x4_5"
+            android:layout_marginTop="@dimen/dimen_x3_5"
+            android:background="@drawable/button_dark_blue"
+            android:elevation="@dimen/dimen_x1_5"
+            android:text="@string/monitor"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_12sp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_container"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="@dimen/dimen_x4_5"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/dimen_x4_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/light_tv"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/dimen_x4_5"
+                android:layout_marginBottom="@dimen/dimen_x4_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/water_tv"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_water"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/dimen_x4_5"
+                android:layout_marginBottom="@dimen/dimen_x4_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dreg_tv"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_dreg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/dimen_x4_5"
+                android:layout_marginBottom="@dimen/dimen_x4_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dreg_management_tv"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_trash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/dimen_x4_5"
+                android:layout_marginBottom="@dimen/dimen_x4_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/food_tv"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/btn_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_x10_5"
+                android:background="@drawable/button_primary_background"
+                android:text="@string/btn_send"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_12sp" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/pb"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

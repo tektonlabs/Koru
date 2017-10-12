@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/dimen_x4_5">
+
+    <LinearLayout
+        android:id="@+id/cv_shelter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_marginTop="@dimen/dimen_x3_5"
+        android:layout_marginStart="@dimen/dimen_x1_5">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dimen_x2_5"
+            android:paddingEnd="@dimen/dimen_x2_5">
+
+            <ImageView
+                android:id="@+id/iv_shelter_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_x1_4"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.9"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/dimen_x1_5">
+
+            <TextView
+                android:textColor="@android:color/black"
+                android:id="@+id/tv_shelter_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_18sp"/>
+
+            <TextView
+                android:textColor="@color/gray_text"
+                android:id="@+id/tv_shelter_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16sp"
+                />
+
+            <TextView
+                android:visibility="gone"
+                android:textColor="@color/red"
+                android:id="@+id/tv_pending_forms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

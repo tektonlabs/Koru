@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Segundos Auxilios</string>
+
+    <string name="hint_enter_value">Ingresa un comentario</string>
+    <string name="btn_send">Enviar</string>
+
+    <string name="alert_back_dialog_message">¿Desechar formulario?</string>
+    <string name="alert_back_dialog_yes_button">DESECHAR</string>
+    <string name="alert_back_dialog_no_button">CANCELAR</string>
+
+    <string name="connection_error">Error de conexi\u00F3n. Intenta de nuevo</string>
+    <string name="server_error">Error de servidor</string>
+    <string name="internal_error">Ha ocurrido un error interno. Intenta de nuevo</string>
+    <string name="form_sent_successfully">El formulario fue enviado exitosamente</string>
+    <string name="form_not_sent_successfully">No se pudo enviar el formulario. La aplicaci\u00F3n lo intentara de nuevo una vez que se establezca una conexi\u00F3n a internet</string>
+    <string name="shelter_created_successfully">El albergue fue creado exitosamente</string>
+    <string name="location_not_granted">El permiso de ubicación no fue otorgado.</string>
+    <string name="shelter_created_canceled">La creación del albergue ha sido cancelada.</string>
+    <string name="search">Buscar</string>
+    <string name="no_results_found">No se encontraron resultados</string>
+    <string name="no_items_matched_your_search">No hay elementos que coincidan con su b\u00FAsqueda.</string>
+    <string name="no_refugees_found">No se encontraron albergues</string>
+    <string name="back">ATR\u00C1S</string>
+    <string name="skip">SALTAR</string>
+    <string name="next">SIGUIENTE</string>
+    <string name="pull_to_refresh_to_try_again">Haz pull para refrescar.</string>
+    <string name="answer_at_least_one_question">Para enviar el formulario, responde a una pregunta.</string>
+    <string name="form_pending">formulario(s) pendiente(s)</string>
+    <string name="location_permission">Esta aplicaci\u00F3n puede utilizar tu ubicaci\u00F3n actual para mostrar los albergues cercanos a ti.</string>
+    <string name="sync">Sincroniza</string>
+    <string name="questions_empty_state">Sin conexi\u00F3n a internet</string>
+    <string name="questions_empty_state_2">Por favor ingresa de nuevo y vuelve a intentar.</string>
+    <string name="categories">Categor\u00EDas</string>
+    <string name="continue_button">continuar</string>
+    <string name="select_all">Seleccionar todo</string>
+    <string name="deselect_all">Deseleccionar todo</string>
+    <string name="select_the_categories_you_want_to_complete">Selecciona las categor\u00EDas que quieras completar.</string>
+    <string name="register">EMPADRONAR</string>
+    <string name="monitor">MONITOREAR</string>
+    <string name="second_help">SEGUNDOS AUXILIOS</string>
+    <string name="dni">DNI</string>
+    <string name="phone">Celular</string>
+    <string name="login">Monitorear</string>
+    <string name="register_title">Empadronar</string>
+    <string name="required_field">Este es un campo requerido</string>
+    <string name="valid_digits_dni">Ingresa un n\u00FAmero de 8 d\u00EDgitos</string>
+    <string name="valid_digits_phone">Ingresa un n\u00FAmero de 9 d\u00EDgitos</string>
+    <string name="institution">Instituci\u00F3n</string>
+    <string name="error_txt">Este es un campo requerido</string>
+    <string name="error_email">Correo inválido</string>
+    <string name="error_phone">Teléfono inválido</string>
+    <string name="primary_contact_title">Contacto Principal</string>
+    <string name="secondary_contact_title">Contacto Secundario</string>
+
+    <!--Create Shelter Form step 1-->
+    <string name="form_step_1_tv_title">Datos Generales</string>
+    <string name="form_step_1_et_shelter_name">Nombre del albergue</string>
+    <string name="form_step_1_et_direction">Dirección</string>
+    <string name="hint_shelter_type">Tipo de albergue</string>
+    <string-array name="sp_shelter_type">
+        <item>Carpas en campo abierto</item>
+        <item>Colegio</item>
+        <item>Iglesia</item>
+        <item>Otro</item>
+    </string-array>
+    <string name="hint_institution">Institución a cargo</string>
+    <string-array name="sp_institution">
+        <item>Gobierno Central</item>
+        <item>Gobierno Regional</item>
+        <item>Iglesia</item>
+        <item>Municipalidad</item>
+        <item>Organización Comunal</item>
+        <item>Organización no Gubernamental</item>
+        <item>Otro</item>
+    </string-array>
+    <string name="hint_emergency">Tipo de emergencia</string>
+    <string-array name="sp_emergency">
+        <item>Terremoto</item>
+        <item>Friaje/helada</item>
+        <item>Huayco/desborde de río</item>
+        <item>Emergencia sanitaria</item>
+        <item>Incendio</item>
+    </string-array>
+    <string name="general_error">An error occurred. Please try entering again.</string>
+    <string name="error_address_empty">Invalid Address, Please Try Again</string>
+
+    <!--Create Shelter Form step 2-->
+    <string name="form_step_2_tv_title_1">Datos Adicionales</string>
+    <string name="form_step_2_tv_title">Presencia de Comités</string>
+    <string name="hint_property_type">Tipo de propiedad</string>
+    <string-array name="sp_property">
+        <item>Propiedad Privada</item>
+        <item>Propiedad Pública</item>
+        <item>Vía Pública</item>
+    </string-array>
+    <string name="hint_accessibility">Accesibilidad</string>
+    <string-array name="sp_accessibility">
+        <item>A pie</item>
+        <item>Solo 4x4</item>
+        <item>Vehicular</item>
+    </string-array>
+    <string name="hint_victims">Procedencia de damnificados</string>
+    <string-array name="sp_victims">
+        <item>De una misma comunidad</item>
+        <item>De diferentes comunidades</item>
+    </string-array>
+
+    <!--Create Shelter Form step 5-->
+    <string name="hint_floor_type">Tipo de piso</string>
+    <string-array name="sp_floor">
+        <item>Asfaltado</item>
+        <item>No asfaltado</item>
+    </string-array>
+    <string name="hint_roof_type">Techo</string>
+    <string-array name="sp_roof">
+        <item>Al aire libre</item>
+        <item>Techado</item>
+    </string-array>
+    <string name="add_contact_name_hint">Nombre</string>
+    <string name="add_contact_bt">Agregar</string>
+    <string name="edit_contact_bt">Editar</string>
+    <string name="create_shelter_dialog_title">La informac\u00F3n ingresada va a ser eliminada.</string>
+    <string name="dialog_exit">SALIR</string>
+    <string name="dialog_cancel">CANCELAR</string>
+    <string name="snakcbar_no_primary_contact">Por favor agrega al menos un contacto principal para continuar</string>
+    <string name="primary_contact_tv">Contacto Principal</string>
+    <string name="add_primary_contact">AGREGAR CONTACTO PRINCIPAL</string>
+    <string name="secondary_contact_tv">Contactos Secundarios (Opcional)</string>
+    <string name="add_secondary_contact">AGREGAR CONTACTO SECUNDARIO</string>
+    <string name="censo">Censo</string>
+    <string name="family_number_hint"># familias</string>
+    <string name="people_number_hint"># personas</string>
+    <string name="pregnant_number_hint"># embarazadas</string>
+    <string name="children_number_hint"># niños menores a 3</string>
+    <string name="elderly_number_hint"># adultos mayores</string>
+    <string name="handicapped_number_hint"># discapacitados</string>
+    <string name="pet_number_hint"># mascotas</string>
+    <string name="farm_number_hint"># animales de granja</string>
+    <string name="infrastructure">Infraestructura</string>
+    <string name="tent_number_hint"># carpas</string>
+    <string name="toilet_number_hint"># inodoros</string>
+    <string name="sink_number_hint"># lavatorios</string>
+    <string name="shower_number_hint"># duchas</string>
+    <string name="tank_number_hint"># tanques</string>
+    <string name="trash_number_hint"># basureros</string>
+    <string name="points_number_hint"># puntos de acopio de basura</string>
+    <string name="light_tv">Luz</string>
+    <string name="dreg_tv">Manejo de heces</string>
+    <string name="water_tv">Agua</string>
+    <string name="dreg_management_tv">Gesti\u00F3n de residuos</string>
+    <string name="food_tv">Alimentos y bebidas</string>
+    <string name="add_contact_mail_hint">Email</string>
+    <string name="new_refuge_title">Nuevo Albergue</string>
+    <string name="google_map_activity_title">Ubicación del Albergue</string>
+    <string name="exit_creation_form">¿Salir del formulario de creaci\u00F3n?</string>
+    <string name="et_men_hint"># hombres</string>
+    <string name="et_women_hint"># mujeres</string>
+    <string name="tv_children">Niños menores a 3</string>
+    <string name="tv_under_18">Jóvenes menores a 18</string>
+    <string name="tv_above_18">Mayores a 18</string>
+    <string name="tv_elderly">Adultos mayores</string>
+
+    <!--Map Autocomplete-->
+    <string name="address">Dirección</string>
+    <string name="cancel">Cancelar</string>
+    <string name="done">Aceptar</string>
+    <string name="dialog_close_button">Cerrar</string>
+    <string name="shelter_no_internet">Sin conexión a internet. Por favor ingresa de nuevo y vuelve a intentar</string>
+</resources>

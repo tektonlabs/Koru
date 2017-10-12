@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true">
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_x4_5"
+        android:background="@android:color/white"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/dimen_x4_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/censo"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:weightSum="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:nextFocusRight="@id/et_pregnant"
+                        android:imeOptions="actionNext"
+                        android:maxLength="4"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:inputType="number"
+                        android:hint="@string/family_number_hint"
+                        android:id="@id/et_family"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:imeOptions="actionNext"
+                        android:nextFocusDown="@id/et_pets"
+                        android:maxLength="4"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:inputType="number"
+                        android:hint="@string/pregnant_number_hint"
+                        android:id="@id/et_pregnant"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:weightSum="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dimen_x2_4">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:imeOptions="actionNext"
+                        android:nextFocusRight="@id/et_handicapped"
+                        android:maxLength="4"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:inputType="number"
+                        android:hint="@string/pet_number_hint"
+                        android:id="@id/et_pets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:nextFocusDown="@id/et_farm_animals"
+                        android:maxLength="4"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:inputType="number"
+                        android:hint="@string/handicapped_number_hint"
+                        android:id="@id/et_handicapped"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_x2_4">
+                <EditText
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/et_male_children"
+                    android:maxLength="4"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:inputType="number"
+                    android:hint="@string/farm_number_hint"
+                    android:id="@id/et_farm_animals"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/dimen_x4_5"
+            android:layout_marginTop="@dimen/dimen_x4_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_children"
+            android:id="@+id/textView" />
+
+        <LinearLayout
+            android:id="@+id/ll_children_container"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_x4_5">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:imeOptions="actionNext"
+                    android:nextFocusRight="@id/et_female_children"
+                    android:maxLength="4"
+                    android:id="@id/et_male_children"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:inputType="number"
+                    android:hint="@string/et_men_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/et_under_18_male"
+                    android:maxLength="4"
+                    android:id="@id/et_female_children"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:inputType="number"
+                    android:hint="@string/et_women_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/dimen_x4_5"
+            android:layout_marginTop="@dimen/dimen_x4_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_under_18"/>
+
+        <LinearLayout
+            android:id="@+id/ll_under_18_container"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_x4_5">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:imeOptions="actionNext"
+                    android:nextFocusRight="@id/et_under_18_female"
+                    android:maxLength="4"
+                    android:id="@id/et_under_18_male"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:inputType="number"
+                    android:hint="@string/et_men_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/et_above_18_male"
+                    android:maxLength="4"
+                    android:id="@id/et_under_18_female"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:inputType="number"
+                    android:hint="@string/et_women_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/dimen_x4_5"
+            android:layout_marginTop="@dimen/dimen_x4_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_above_18"/>
+
+        <LinearLayout
+            android:id="@+id/ll_above_18_container"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_x4_5">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:imeOptions="actionNext"
+                    android:nextFocusRight="@id/et_under_18_female"
+                    android:maxLength="4"
+                    android:id="@id/et_above_18_male"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:inputType="number"
+                    android:hint="@string/et_men_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/et_elderly_male"
+                    android:maxLength="4"
+                    android:id="@id/et_above_18_female"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:inputType="number"
+                    android:hint="@string/et_women_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />s
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/dimen_x4_5"
+            android:layout_marginTop="@dimen/dimen_x4_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_elderly"/>
+
+        <LinearLayout
+            android:id="@+id/ll_elderly_container"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_x4_5">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:imeOptions="actionNext"
+                    android:nextFocusRight="@id/et_elderly_female"
+                    android:maxLength="4"
+                    android:id="@id/et_elderly_male"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:inputType="number"
+                    android:hint="@string/et_men_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:imeOptions="actionDone"
+                    android:maxLength="4"
+                    android:id="@id/et_elderly_female"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:inputType="number"
+                    android:hint="@string/et_women_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dimen_x4_5"
+            android:layout_marginBottom="@dimen/dimen_x4_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Servicios"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_service_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dimen_x4_5"
+            android:layout_marginBottom="@dimen/dimen_x4_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado de Viviendas"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

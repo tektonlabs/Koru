@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sheltersApp=".presentation.shelters.SheltersActivity">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/search_icon"
+        android:orderInCategory="1"
+        android:title="@string/search"
+        app:actionLayout="@layout/search_view_layout"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="collapseActionView|always" />
+    <item
+        android:id="@+id/action_sync"
+        android:icon="@drawable/sync"
+        android:orderInCategory="2"
+        android:title="@string/sync"
+        app:showAsAction="always"
+        sheltersApp:actionViewClass="android.widget.ImageView" />
+</menu>
