@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="KGk-i7-Jjw" customClass="DoubleTextFieldCell" customModule="Refugeappios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2u-jQ-o6y" customClass="SATextField" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="8" y="0.0" width="134" height="41"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FD2-Yb-ZmL" customClass="SATextField" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="178" y="0.0" width="134" height="41"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="FD2-Yb-ZmL" secondAttribute="trailing" constant="8" id="2lx-yR-WzI"/>
+                    <constraint firstItem="t2u-jQ-o6y" firstAttribute="width" secondItem="FD2-Yb-ZmL" secondAttribute="width" id="9Nb-oH-rBZ"/>
+                    <constraint firstItem="t2u-jQ-o6y" firstAttribute="height" secondItem="FD2-Yb-ZmL" secondAttribute="height" id="O7P-K9-urc"/>
+                    <constraint firstItem="FD2-Yb-ZmL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cNI-rv-M9g"/>
+                    <constraint firstItem="t2u-jQ-o6y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ek9-Vu-Y1J"/>
+                    <constraint firstAttribute="bottom" secondItem="t2u-jQ-o6y" secondAttribute="bottom" constant="8" id="hyH-DO-uZp"/>
+                    <constraint firstItem="FD2-Yb-ZmL" firstAttribute="leading" secondItem="t2u-jQ-o6y" secondAttribute="trailing" constant="36" id="jsF-Ya-oFP"/>
+                    <constraint firstItem="t2u-jQ-o6y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="oWE-kY-2Dd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="firstTextField" destination="t2u-jQ-o6y" id="5NV-kZ-3Wm"/>
+                <outlet property="secondTextField" destination="FD2-Yb-ZmL" id="DYO-h8-eTm"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="84"/>
+        </tableViewCell>
+    </objects>
+</document>

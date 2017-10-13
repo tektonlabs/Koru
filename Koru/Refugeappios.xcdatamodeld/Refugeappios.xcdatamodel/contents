@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Answer" representedClassName=".AnswerMO" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="selected" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="updatedUp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="withValue" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="sortedAns" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SortedQuestion" inverseName="answer" inverseEntity="SortedQuestion" syncable="YES"/>
+    </entity>
+    <entity name="Category" representedClassName=".CategoryMO" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="ref" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Refuge" inverseName="catego" inverseEntity="Refuge" syncable="YES"/>
+        <relationship name="sortedques" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SortedQuestion" inverseName="categor" inverseEntity="SortedQuestion" syncable="YES"/>
+    </entity>
+    <entity name="Country" representedClassName=".CountryMO" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="iso" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="ref" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Refuge" inverseName="count" inverseEntity="Refuge" syncable="YES"/>
+    </entity>
+    <entity name="Pending" representedClassName=".PendingMO" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dni" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="refug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Refuge" inverseName="pending" inverseEntity="Refuge" syncable="YES"/>
+        <relationship name="sortedQues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SortedQuestion" inverseName="pending" inverseEntity="SortedQuestion" syncable="YES"/>
+    </entity>
+    <entity name="Refuge" representedClassName=".RefugeMO" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="catego" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="ref" inverseEntity="Category" syncable="YES"/>
+        <relationship name="count" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Country" inverseName="ref" inverseEntity="Country" syncable="YES"/>
+        <relationship name="pending" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pending" inverseName="refug" inverseEntity="Pending" syncable="YES"/>
+    </entity>
+    <entity name="SortedQuestion" representedClassName=".SortedQuestionMO" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="maxValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="minValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questionType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="answer" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="sortedAns" inverseEntity="Answer" syncable="YES"/>
+        <relationship name="categor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="sortedques" inverseEntity="Category" syncable="YES"/>
+        <relationship name="pending" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pending" inverseName="sortedQues" inverseEntity="Pending" syncable="YES"/>
+        <relationship name="subquest" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SortedQuestion" inverseName="subquest" inverseEntity="SortedQuestion" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Answer" positionX="-9" positionY="297" width="128" height="165"/>
+        <element name="Category" positionX="61" positionY="-180" width="128" height="120"/>
+        <element name="Country" positionX="-63" positionY="59" width="128" height="103"/>
+        <element name="Pending" positionX="-81" positionY="-18" width="128" height="105"/>
+        <element name="Refuge" positionX="-297" positionY="-126" width="128" height="195"/>
+        <element name="SortedQuestion" positionX="367" positionY="-66" width="128" height="180"/>
+    </elements>
+</model>

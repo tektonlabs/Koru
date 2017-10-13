@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="inr-Tt-cig" customClass="DeselectAllCell" customModule="Refugeappios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="358" height="149"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="358" height="149"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ay4-5R-g9e">
+                        <rect key="frame" x="40" y="32" width="278" height="16"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zro-Ob-rkF">
+                        <rect key="frame" x="154" y="78" width="50" height="30"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ay4-5R-g9e" secondAttribute="trailing" constant="40" id="5Hf-ld-QMr"/>
+                <constraint firstItem="ay4-5R-g9e" firstAttribute="centerX" secondItem="inr-Tt-cig" secondAttribute="centerX" id="6g5-af-nva"/>
+                <constraint firstItem="Zro-Ob-rkF" firstAttribute="centerX" secondItem="inr-Tt-cig" secondAttribute="centerX" id="Auc-4O-bIZ"/>
+                <constraint firstItem="Zro-Ob-rkF" firstAttribute="top" secondItem="ay4-5R-g9e" secondAttribute="bottom" constant="30" id="IBI-GT-g5a"/>
+                <constraint firstItem="ay4-5R-g9e" firstAttribute="leading" secondItem="inr-Tt-cig" secondAttribute="leading" constant="40" id="a91-08-q1F"/>
+                <constraint firstItem="ay4-5R-g9e" firstAttribute="top" secondItem="inr-Tt-cig" secondAttribute="top" constant="32" id="rlj-dd-DT1"/>
+            </constraints>
+            <size key="customSize" width="358" height="149"/>
+            <connections>
+                <outlet property="deselectAllButton" destination="Zro-Ob-rkF" id="JbM-VW-DQe"/>
+                <outlet property="messageLabel" destination="ay4-5R-g9e" id="rcU-o1-LBS"/>
+            </connections>
+            <point key="canvasLocation" x="46" y="-21.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

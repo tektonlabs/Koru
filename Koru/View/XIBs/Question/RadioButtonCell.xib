@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="61" id="2h5-cr-k4U" customClass="RadioButtonCell" customModule="Refugeappios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2h5-cr-k4U" id="ErA-Qv-ZSE">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xej-g2-fQn" customClass="RadioButtonControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="18" width="25" height="25"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="B20-QA-Brq"/>
+                            <constraint firstAttribute="width" constant="25" id="lla-yv-e3E"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emO-I0-nc7">
+                        <rect key="frame" x="53" y="18" width="302" height="28"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="emO-I0-nc7" firstAttribute="leading" secondItem="xej-g2-fQn" secondAttribute="trailing" constant="8" id="1QO-UM-3Kb"/>
+                    <constraint firstAttribute="trailing" secondItem="emO-I0-nc7" secondAttribute="trailing" constant="20" id="CD6-wV-li5"/>
+                    <constraint firstAttribute="bottom" secondItem="emO-I0-nc7" secondAttribute="bottom" constant="14.5" id="ElF-qG-L4H"/>
+                    <constraint firstItem="xej-g2-fQn" firstAttribute="top" secondItem="ErA-Qv-ZSE" secondAttribute="topMargin" constant="10" id="Fj8-6K-nRM"/>
+                    <constraint firstItem="xej-g2-fQn" firstAttribute="leading" secondItem="ErA-Qv-ZSE" secondAttribute="leading" constant="20" id="fEt-o9-ONX"/>
+                    <constraint firstItem="emO-I0-nc7" firstAttribute="top" secondItem="ErA-Qv-ZSE" secondAttribute="topMargin" constant="10" id="lQd-EV-Dfc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="radioButtonView" destination="xej-g2-fQn" id="Ryh-LK-8b8"/>
+                <outlet property="titleLabel" destination="emO-I0-nc7" id="SQy-U3-puf"/>
+            </connections>
+            <point key="canvasLocation" x="5.5" y="69.5"/>
+        </tableViewCell>
+    </objects>
+</document>

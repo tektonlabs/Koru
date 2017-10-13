@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="242" id="Umi-Un-abw" customClass="OneChoiseFourOptionCell" customModule="Refugeappios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="326" height="242"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Umi-Un-abw" id="eh7-dM-EIz">
+                <rect key="frame" x="0.0" y="0.0" width="326" height="241.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3E-XX-0Bp">
+                        <rect key="frame" x="20" y="15" width="286" height="57.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8Y-3w-pRP" customClass="RadioButtonControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="92.5" width="21" height="21"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="21" id="Fn4-sj-exu"/>
+                            <constraint firstAttribute="height" constant="21" id="LMh-Nm-5wv"/>
+                        </constraints>
+                        <connections>
+                            <action selector="didTouchOptionOneRadioButton:" destination="Umi-Un-abw" eventType="touchUpInside" id="h37-Tv-7zy"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8B-nV-gbu" customClass="RadioButtonControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="128.5" width="21" height="21"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="HaU-UE-LDb"/>
+                            <constraint firstAttribute="width" constant="21" id="v2e-pN-eg3"/>
+                        </constraints>
+                        <connections>
+                            <action selector="didTouchOptionTwoRadioButton:" destination="Umi-Un-abw" eventType="touchUpInside" id="pAU-rV-sfG"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ruD-Gb-kQx" customClass="RadioButtonControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="164.5" width="21" height="21"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="21" id="36k-if-BaN"/>
+                            <constraint firstAttribute="height" constant="21" id="HEB-BX-uDE"/>
+                        </constraints>
+                        <connections>
+                            <action selector="didTouchOptionThreeRadioButton:" destination="Umi-Un-abw" eventType="touchUpInside" id="fhq-JW-Fox"/>
+                        </connections>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUU-0v-tMr">
+                        <rect key="frame" x="50" y="128.5" width="256" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdc-t1-ZFW">
+                        <rect key="frame" x="50" y="164.5" width="256" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrS-4k-6EJ">
+                        <rect key="frame" x="50" y="92.5" width="256" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wIb-st-j6y" customClass="RadioButtonControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="200.5" width="21" height="21"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="vvK-bc-OVv"/>
+                            <constraint firstAttribute="width" constant="21" id="xQW-ya-Jy6"/>
+                        </constraints>
+                        <connections>
+                            <action selector="didTouchOptionFourRadioButton:" destination="Umi-Un-abw" eventType="touchUpInside" id="4PU-Jj-PHW"/>
+                        </connections>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eak-oc-Hsh">
+                        <rect key="frame" x="50" y="200.5" width="256" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vrS-4k-6EJ" firstAttribute="leading" secondItem="l8Y-3w-pRP" secondAttribute="trailing" constant="9" id="0GD-yt-XUF"/>
+                    <constraint firstItem="gdc-t1-ZFW" firstAttribute="leading" secondItem="ruD-Gb-kQx" secondAttribute="trailing" constant="9" id="0SL-Se-Yju"/>
+                    <constraint firstItem="l8Y-3w-pRP" firstAttribute="top" secondItem="r3E-XX-0Bp" secondAttribute="bottom" constant="20" id="2KL-Jy-BRD"/>
+                    <constraint firstAttribute="trailing" secondItem="vrS-4k-6EJ" secondAttribute="trailing" constant="20" id="2dW-j0-llR"/>
+                    <constraint firstItem="vrS-4k-6EJ" firstAttribute="centerY" secondItem="l8Y-3w-pRP" secondAttribute="centerY" id="3bT-55-23e"/>
+                    <constraint firstAttribute="trailing" secondItem="bUU-0v-tMr" secondAttribute="trailing" constant="20" id="981-WL-jBX"/>
+                    <constraint firstItem="r3E-XX-0Bp" firstAttribute="leading" secondItem="eh7-dM-EIz" secondAttribute="leading" constant="20" id="9nh-Ue-aeQ"/>
+                    <constraint firstItem="wIb-st-j6y" firstAttribute="leading" secondItem="eh7-dM-EIz" secondAttribute="leading" constant="20" id="D2k-Zl-e9A"/>
+                    <constraint firstAttribute="trailing" secondItem="Eak-oc-Hsh" secondAttribute="trailing" constant="20" id="Mpl-xE-QSs"/>
+                    <constraint firstItem="Eak-oc-Hsh" firstAttribute="centerY" secondItem="wIb-st-j6y" secondAttribute="centerY" id="NHs-iQ-Kb8"/>
+                    <constraint firstItem="u8B-nV-gbu" firstAttribute="leading" secondItem="eh7-dM-EIz" secondAttribute="leading" constant="20" id="XtF-oE-xFw"/>
+                    <constraint firstItem="ruD-Gb-kQx" firstAttribute="top" secondItem="u8B-nV-gbu" secondAttribute="bottom" constant="15" id="Y6h-t6-ydR"/>
+                    <constraint firstItem="r3E-XX-0Bp" firstAttribute="top" secondItem="eh7-dM-EIz" secondAttribute="top" constant="15" id="eir-hk-xI1"/>
+                    <constraint firstAttribute="trailing" secondItem="gdc-t1-ZFW" secondAttribute="trailing" constant="20" id="hXQ-pM-VB1"/>
+                    <constraint firstItem="gdc-t1-ZFW" firstAttribute="centerY" secondItem="ruD-Gb-kQx" secondAttribute="centerY" id="iAu-pp-sbr"/>
+                    <constraint firstAttribute="trailing" secondItem="r3E-XX-0Bp" secondAttribute="trailing" constant="20" id="jDS-AV-RXC"/>
+                    <constraint firstAttribute="bottom" secondItem="wIb-st-j6y" secondAttribute="bottom" constant="20" id="je8-Qg-9O9"/>
+                    <constraint firstItem="u8B-nV-gbu" firstAttribute="top" secondItem="l8Y-3w-pRP" secondAttribute="bottom" constant="15" id="pWC-V7-Ayx"/>
+                    <constraint firstItem="l8Y-3w-pRP" firstAttribute="leading" secondItem="eh7-dM-EIz" secondAttribute="leading" constant="20" id="qWe-l8-yLm"/>
+                    <constraint firstItem="Eak-oc-Hsh" firstAttribute="leading" secondItem="wIb-st-j6y" secondAttribute="trailing" constant="9" id="s6S-8q-suG"/>
+                    <constraint firstItem="bUU-0v-tMr" firstAttribute="leading" secondItem="u8B-nV-gbu" secondAttribute="trailing" constant="9" id="txX-bV-h88"/>
+                    <constraint firstItem="bUU-0v-tMr" firstAttribute="centerY" secondItem="u8B-nV-gbu" secondAttribute="centerY" id="unI-B3-770"/>
+                    <constraint firstAttribute="bottom" secondItem="Eak-oc-Hsh" secondAttribute="bottom" constant="20" id="ypT-1w-DS3"/>
+                    <constraint firstItem="wIb-st-j6y" firstAttribute="top" secondItem="ruD-Gb-kQx" secondAttribute="bottom" constant="15" id="zX5-d3-Lq4"/>
+                    <constraint firstItem="ruD-Gb-kQx" firstAttribute="leading" secondItem="eh7-dM-EIz" secondAttribute="leading" constant="20" id="zuF-RI-8uy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="fourOptionLabel" destination="Eak-oc-Hsh" id="K4S-dw-Pd5"/>
+                <outlet property="fourOptionRadioButton" destination="wIb-st-j6y" id="7ze-8i-K5p"/>
+                <outlet property="oneOptionLabel" destination="vrS-4k-6EJ" id="gvw-RG-JFC"/>
+                <outlet property="oneOptionRadioButton" destination="l8Y-3w-pRP" id="U9S-Pd-nD0"/>
+                <outlet property="questionLabel" destination="r3E-XX-0Bp" id="haw-PV-zN5"/>
+                <outlet property="threeOptionLabel" destination="gdc-t1-ZFW" id="T4Z-y1-6TT"/>
+                <outlet property="threeOptionRadioButton" destination="ruD-Gb-kQx" id="PFY-Ak-1YO"/>
+                <outlet property="twoOptionLabel" destination="bUU-0v-tMr" id="TQO-in-h6N"/>
+                <outlet property="twoOptionRadioButton" destination="u8B-nV-gbu" id="KaZ-Ge-xUP"/>
+            </connections>
+            <point key="canvasLocation" x="219" y="240"/>
+        </tableViewCell>
+    </objects>
+</document>

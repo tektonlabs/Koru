@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="52" id="Whb-sQ-Lbr" customClass="MultipleChoiseCell" customModule="Refugeappios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Whb-sQ-Lbr" id="FZf-4c-aOE">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmK-YO-ZR8" customClass="CheckboxControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="5" width="335" height="41.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="didTouchCheckBox:" destination="Whb-sQ-Lbr" eventType="touchUpInside" id="dZo-Mp-MS2"/>
+                        </connections>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="gmK-YO-ZR8" secondAttribute="bottom" constant="5" id="9pK-M1-90u"/>
+                    <constraint firstItem="gmK-YO-ZR8" firstAttribute="top" secondItem="FZf-4c-aOE" secondAttribute="top" constant="5" id="DDX-Bi-Q37"/>
+                    <constraint firstAttribute="trailing" secondItem="gmK-YO-ZR8" secondAttribute="trailing" constant="20" id="U04-a7-Cz6"/>
+                    <constraint firstItem="gmK-YO-ZR8" firstAttribute="leading" secondItem="FZf-4c-aOE" secondAttribute="leading" constant="20" id="ZRz-TX-a1q"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bottomContraintLayout" destination="9pK-M1-90u" id="BYa-UL-RBd"/>
+                <outlet property="checkBoxView" destination="gmK-YO-ZR8" id="dZ2-hf-HLL"/>
+            </connections>
+            <point key="canvasLocation" x="36.5" y="188"/>
+        </tableViewCell>
+    </objects>
+</document>

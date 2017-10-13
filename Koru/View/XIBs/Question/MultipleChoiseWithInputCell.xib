@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="30" id="RfY-dM-o9G" customClass="MultipleChoiseWithInputCell" customModule="Refugeappios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RfY-dM-o9G" id="Pdw-q7-gBh">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="6Dg-id-Vzi" customClass="CheckboxControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="3" width="80" height="23"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="bhq-Zv-wXk"/>
+                            <constraint firstAttribute="width" constant="80" id="xq0-Dj-I3b"/>
+                        </constraints>
+                        <connections>
+                            <action selector="didTouchCheckBox:" destination="RfY-dM-o9G" eventType="touchUpInside" id="ZM1-ci-5go"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5yC-o3-INo">
+                        <rect key="frame" x="104" y="26" width="251" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="UqH-Uh-oIj"/>
+                        </constraints>
+                    </view>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dKa-Q6-ZNq">
+                        <rect key="frame" x="104" y="0.0" width="251" height="26"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="hkH-WF-eq9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5yC-o3-INo" firstAttribute="trailing" secondItem="dKa-Q6-ZNq" secondAttribute="trailing" id="35z-Hu-glY"/>
+                    <constraint firstAttribute="bottom" secondItem="5yC-o3-INo" secondAttribute="bottom" constant="20.5" id="3u8-he-SPD"/>
+                    <constraint firstItem="6Dg-id-Vzi" firstAttribute="leading" secondItem="Pdw-q7-gBh" secondAttribute="leading" constant="20" id="7Gs-Jk-7Qe"/>
+                    <constraint firstItem="6Dg-id-Vzi" firstAttribute="top" secondItem="Pdw-q7-gBh" secondAttribute="top" constant="3" id="Sdf-9Q-Qar"/>
+                    <constraint firstItem="dKa-Q6-ZNq" firstAttribute="leading" secondItem="6Dg-id-Vzi" secondAttribute="trailing" constant="4" id="XD9-gC-UPC"/>
+                    <constraint firstItem="5yC-o3-INo" firstAttribute="leading" secondItem="dKa-Q6-ZNq" secondAttribute="leading" id="h2F-iQ-SzH"/>
+                    <constraint firstItem="5yC-o3-INo" firstAttribute="top" secondItem="dKa-Q6-ZNq" secondAttribute="bottom" id="iiT-ch-RW2"/>
+                    <constraint firstItem="dKa-Q6-ZNq" firstAttribute="top" secondItem="Pdw-q7-gBh" secondAttribute="top" id="qmC-ED-oRc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="dKa-Q6-ZNq" secondAttribute="trailing" constant="12" id="rq0-cf-Vdi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="checkBoxView" destination="6Dg-id-Vzi" id="YEw-40-j6a"/>
+                <outlet property="heightContraint" destination="hkH-WF-eq9" id="7Qj-D0-gyB"/>
+                <outlet property="inputTextView" destination="dKa-Q6-ZNq" id="CHc-KU-A7r"/>
+                <outlet property="separatorLine" destination="5yC-o3-INo" id="G9h-Lm-7XK"/>
+            </connections>
+            <point key="canvasLocation" x="95.5" y="156"/>
+        </tableViewCell>
+    </objects>
+</document>

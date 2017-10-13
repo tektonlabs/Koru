@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="189" id="CYC-TL-i1L" customClass="OneChoiseThreeOptionCell" customModule="Refugeappios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="327" height="189"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CYC-TL-i1L" id="zXf-id-KYE">
+                <rect key="frame" x="0.0" y="0.0" width="327" height="188.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhf-eq-PJj">
+                        <rect key="frame" x="23" y="15" width="284" height="41"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFK-EZ-NeC" customClass="RadioButtonControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="76" width="21" height="21"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="21" id="633-vf-ko5"/>
+                            <constraint firstAttribute="height" constant="21" id="aJL-eR-Mba"/>
+                        </constraints>
+                        <connections>
+                            <action selector="didTouchOneOptionRadioButton:" destination="CYC-TL-i1L" eventType="touchUpInside" id="SxH-X2-Rif"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FcH-ph-ioQ" customClass="RadioButtonControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="112" width="21" height="21"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="K6l-Hg-mco"/>
+                            <constraint firstAttribute="width" constant="21" id="qop-gJ-eZp"/>
+                        </constraints>
+                        <connections>
+                            <action selector="didTouchTwoOptionRadioButton:" destination="CYC-TL-i1L" eventType="touchUpInside" id="5vv-HP-cXb"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1v-av-VAS" customClass="RadioButtonControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="148" width="21" height="21"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="N1T-ph-cqu"/>
+                            <constraint firstAttribute="width" constant="21" id="xf5-16-Rhd"/>
+                        </constraints>
+                        <connections>
+                            <action selector="didTouchThreeOptionRadioButton:" destination="CYC-TL-i1L" eventType="touchUpInside" id="0Vh-my-jj8"/>
+                        </connections>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YrS-QK-b4t">
+                        <rect key="frame" x="50" y="112" width="257" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuI-Fb-wnJ">
+                        <rect key="frame" x="50" y="148" width="257" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3E-Tt-gNe">
+                        <rect key="frame" x="50" y="76" width="257" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="EuI-Fb-wnJ" firstAttribute="leading" secondItem="w1v-av-VAS" secondAttribute="trailing" constant="9" id="3gw-ul-BeL"/>
+                    <constraint firstItem="YrS-QK-b4t" firstAttribute="centerY" secondItem="FcH-ph-ioQ" secondAttribute="centerY" id="65G-SH-SSO"/>
+                    <constraint firstItem="w1v-av-VAS" firstAttribute="top" secondItem="FcH-ph-ioQ" secondAttribute="bottom" constant="15" id="9Y6-rB-OMA"/>
+                    <constraint firstItem="QFK-EZ-NeC" firstAttribute="top" secondItem="Lhf-eq-PJj" secondAttribute="bottom" constant="20" id="BFC-xx-2dJ"/>
+                    <constraint firstItem="w1v-av-VAS" firstAttribute="leading" secondItem="zXf-id-KYE" secondAttribute="leading" constant="20" id="E9i-fr-7oU"/>
+                    <constraint firstItem="b3E-Tt-gNe" firstAttribute="centerY" secondItem="QFK-EZ-NeC" secondAttribute="centerY" id="EnR-X0-EkV"/>
+                    <constraint firstAttribute="trailing" secondItem="Lhf-eq-PJj" secondAttribute="trailing" constant="20" id="IeB-aq-HHz"/>
+                    <constraint firstItem="FcH-ph-ioQ" firstAttribute="leading" secondItem="zXf-id-KYE" secondAttribute="leading" constant="20" id="LRf-Im-T7s"/>
+                    <constraint firstItem="Lhf-eq-PJj" firstAttribute="leading" secondItem="zXf-id-KYE" secondAttribute="leading" constant="23" id="WS4-Hw-52q"/>
+                    <constraint firstAttribute="bottom" secondItem="w1v-av-VAS" secondAttribute="bottom" constant="20" id="WsR-PN-NFj"/>
+                    <constraint firstItem="FcH-ph-ioQ" firstAttribute="top" secondItem="QFK-EZ-NeC" secondAttribute="bottom" constant="15" id="eEH-f0-pfB"/>
+                    <constraint firstItem="YrS-QK-b4t" firstAttribute="leading" secondItem="FcH-ph-ioQ" secondAttribute="trailing" constant="9" id="eh3-FV-PxM"/>
+                    <constraint firstAttribute="trailing" secondItem="YrS-QK-b4t" secondAttribute="trailing" constant="20" id="fHH-Gu-Cg6"/>
+                    <constraint firstItem="QFK-EZ-NeC" firstAttribute="leading" secondItem="zXf-id-KYE" secondAttribute="leading" constant="20" id="hbU-J7-zUA"/>
+                    <constraint firstAttribute="trailing" secondItem="EuI-Fb-wnJ" secondAttribute="trailing" constant="20" id="lUh-df-gZk"/>
+                    <constraint firstAttribute="bottom" secondItem="EuI-Fb-wnJ" secondAttribute="bottom" constant="20" id="o4K-1W-E2v"/>
+                    <constraint firstItem="Lhf-eq-PJj" firstAttribute="top" secondItem="zXf-id-KYE" secondAttribute="top" constant="15" id="pWw-EG-QVF"/>
+                    <constraint firstItem="b3E-Tt-gNe" firstAttribute="leading" secondItem="QFK-EZ-NeC" secondAttribute="trailing" constant="9" id="qLa-q8-ez0"/>
+                    <constraint firstItem="EuI-Fb-wnJ" firstAttribute="centerY" secondItem="w1v-av-VAS" secondAttribute="centerY" id="qLt-XM-MQm"/>
+                    <constraint firstAttribute="trailing" secondItem="b3E-Tt-gNe" secondAttribute="trailing" constant="20" id="xMg-mw-AII"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="oneOptionLabel" destination="b3E-Tt-gNe" id="PMl-ED-8t6"/>
+                <outlet property="oneOptionRadioButton" destination="QFK-EZ-NeC" id="adS-27-0Aq"/>
+                <outlet property="questionLabel" destination="Lhf-eq-PJj" id="dr8-7J-Qqp"/>
+                <outlet property="threeOptionLabel" destination="EuI-Fb-wnJ" id="Ifz-BA-9Qz"/>
+                <outlet property="threeOptionRadioButton" destination="w1v-av-VAS" id="P6p-N3-DqO"/>
+                <outlet property="twoOptionLabel" destination="YrS-QK-b4t" id="nLK-9L-Jgr"/>
+                <outlet property="twoOptionRadioButton" destination="FcH-ph-ioQ" id="BS5-kr-6yi"/>
+            </connections>
+            <point key="canvasLocation" x="272.5" y="-54.5"/>
+        </tableViewCell>
+    </objects>
+</document>

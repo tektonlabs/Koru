@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="128" id="8EL-uF-r15" customClass="InputValueQuestionCell" customModule="Refugeappios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="394" height="128"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8EL-uF-r15" id="uhk-BA-2fW">
+                <rect key="frame" x="0.0" y="0.0" width="394" height="127.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gv-gh-16p">
+                        <rect key="frame" x="20" y="15" width="354" height="16"/>view
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="en7-Fo-dsM">
+                        <rect key="frame" x="20" y="99" width="354" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="ONJ-8H-zVD"/>
+                        </constraints>
+                    </view>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="750" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Emo-35-x9z">
+                        <rect key="frame" x="20" y="56" width="354" height="42"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="BOE-S6-shI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="7Gv-gh-16p" firstAttribute="top" secondItem="uhk-BA-2fW" secondAttribute="top" constant="15" id="1aU-cY-jVE"/>
+                    <constraint firstAttribute="trailing" secondItem="7Gv-gh-16p" secondAttribute="trailing" constant="20" id="5Kh-WH-mEI"/>
+                    <constraint firstItem="en7-Fo-dsM" firstAttribute="leading" secondItem="uhk-BA-2fW" secondAttribute="leading" constant="20" id="Dxp-0C-Sb4"/>
+                    <constraint firstItem="en7-Fo-dsM" firstAttribute="top" secondItem="Emo-35-x9z" secondAttribute="bottom" constant="1" id="ImK-BV-xvs"/>
+                    <constraint firstAttribute="trailing" secondItem="en7-Fo-dsM" secondAttribute="trailing" constant="20" id="Ka2-Kq-Vga"/>
+                    <constraint firstAttribute="bottom" secondItem="en7-Fo-dsM" secondAttribute="bottom" constant="28" id="TMc-vA-6sD"/>
+                    <constraint firstAttribute="trailing" secondItem="Emo-35-x9z" secondAttribute="trailing" constant="20" id="ZN2-41-f8c"/>
+                    <constraint firstItem="Emo-35-x9z" firstAttribute="leading" secondItem="uhk-BA-2fW" secondAttribute="leading" constant="20" id="bIm-GU-cxu"/>
+                    <constraint firstItem="7Gv-gh-16p" firstAttribute="leading" secondItem="uhk-BA-2fW" secondAttribute="leading" constant="20" id="ftD-AX-ovn"/>
+                    <constraint firstItem="Emo-35-x9z" firstAttribute="top" secondItem="7Gv-gh-16p" secondAttribute="bottom" constant="25" id="y59-xG-AFa"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="answerTextView" destination="Emo-35-x9z" id="t6S-ay-HjN"/>
+                <outlet property="heightConstraint" destination="BOE-S6-shI" id="5KV-fW-RkX"/>
+                <outlet property="questionLabel" destination="7Gv-gh-16p" id="hzQ-HN-VSr"/>
+                <outlet property="separatorLineView" destination="en7-Fo-dsM" id="MJV-cF-VIk"/>
+            </connections>
+            <point key="canvasLocation" x="76" y="133"/>
+        </tableViewCell>
+    </objects>
+</document>

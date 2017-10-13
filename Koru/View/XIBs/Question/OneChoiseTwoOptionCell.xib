@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="137" id="gy4-Ro-hWW" customClass="OneChoiseTwoOptionCell" customModule="Refugeappios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="344" height="137"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gy4-Ro-hWW" id="719-kI-JQz">
+                <rect key="frame" x="0.0" y="0.0" width="344" height="136.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iL-rC-TfP">
+                        <rect key="frame" x="20" y="15" width="304" height="25"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZE2-DE-gsm" customClass="RadioButtonControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="57" width="21" height="21"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="21" id="t37-9n-7LT"/>
+                            <constraint firstAttribute="height" constant="21" id="zmf-q0-pbX"/>
+                        </constraints>
+                        <connections>
+                            <action selector="didTouchOptionYesRadioButton:" destination="gy4-Ro-hWW" eventType="touchUpInside" id="NHj-eW-LYD"/>
+                        </connections>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBf-vu-bJn" customClass="RadioButtonControl" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="20" y="93" width="21" height="21"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="8Ga-YF-Smw"/>
+                            <constraint firstAttribute="width" constant="21" id="PX0-fW-etA"/>
+                        </constraints>
+                        <connections>
+                            <action selector="didTouchOptionNoRadioButton:" destination="gy4-Ro-hWW" eventType="touchUpInside" id="fmg-8B-0d0"/>
+                        </connections>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBJ-xX-Hah">
+                        <rect key="frame" x="50" y="57" width="274" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmE-mq-pfl">
+                        <rect key="frame" x="50" y="95" width="274" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="bBJ-xX-Hah" secondAttribute="trailing" constant="20" id="4lx-pZ-pht"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="qBf-vu-bJn" secondAttribute="bottom" constant="14.5" id="FYG-eo-yB2"/>
+                    <constraint firstItem="ZE2-DE-gsm" firstAttribute="leading" secondItem="719-kI-JQz" secondAttribute="leading" constant="20" id="JSc-58-03N"/>
+                    <constraint firstItem="bBJ-xX-Hah" firstAttribute="centerY" secondItem="ZE2-DE-gsm" secondAttribute="centerY" id="LgL-BX-mtp"/>
+                    <constraint firstItem="HmE-mq-pfl" firstAttribute="leading" secondItem="qBf-vu-bJn" secondAttribute="trailing" constant="9" id="M06-4T-HzK"/>
+                    <constraint firstItem="4iL-rC-TfP" firstAttribute="leading" secondItem="719-kI-JQz" secondAttribute="leading" constant="20" id="Tgh-39-ZfJ"/>
+                    <constraint firstItem="bBJ-xX-Hah" firstAttribute="leading" secondItem="ZE2-DE-gsm" secondAttribute="trailing" constant="9" id="Usn-ke-w3a"/>
+                    <constraint firstItem="4iL-rC-TfP" firstAttribute="top" secondItem="719-kI-JQz" secondAttribute="top" constant="15" id="YL7-Zk-CX3"/>
+                    <constraint firstAttribute="trailing" secondItem="HmE-mq-pfl" secondAttribute="trailing" constant="20" id="bbE-vu-AAw"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="HmE-mq-pfl" secondAttribute="bottom" constant="16.5" id="eux-Ey-QAZ"/>
+                    <constraint firstAttribute="trailing" secondItem="4iL-rC-TfP" secondAttribute="trailing" constant="20" id="flY-yw-h7B"/>
+                    <constraint firstItem="HmE-mq-pfl" firstAttribute="centerY" secondItem="qBf-vu-bJn" secondAttribute="centerY" id="lvA-Z9-Pss"/>
+                    <constraint firstItem="ZE2-DE-gsm" firstAttribute="top" secondItem="4iL-rC-TfP" secondAttribute="bottom" constant="17" id="sk3-Tr-IVM"/>
+                    <constraint firstItem="qBf-vu-bJn" firstAttribute="top" secondItem="ZE2-DE-gsm" secondAttribute="bottom" constant="15" id="tzK-Hj-nhE"/>
+                    <constraint firstItem="qBf-vu-bJn" firstAttribute="leading" secondItem="719-kI-JQz" secondAttribute="leading" constant="20" id="vKf-Z2-ydP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="optionNoLabel" destination="HmE-mq-pfl" id="7tP-ao-HzF"/>
+                <outlet property="optionNoRadioButton" destination="qBf-vu-bJn" id="G65-uW-wlS"/>
+                <outlet property="optionYesLabel" destination="bBJ-xX-Hah" id="Epi-k6-bXK"/>
+                <outlet property="optionYesRadioButton" destination="ZE2-DE-gsm" id="XKg-0P-UTd"/>
+                <outlet property="questionLabel" destination="4iL-rC-TfP" id="E4Y-WP-osQ"/>
+            </connections>
+            <point key="canvasLocation" x="4" y="118"/>
+        </tableViewCell>
+    </objects>
+</document>

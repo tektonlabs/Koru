@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="92" id="f1M-uO-Zm9" customClass="SelectAddressCell" customModule="Refugeappios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f1M-uO-Zm9" id="ofr-oe-KHS">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="91.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="places" translatesAutoresizingMaskIntoConstraints="NO" id="cKt-ZE-U2f">
+                        <rect key="frame" x="321" y="37" width="46" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="46" id="SFH-XN-Sjo"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7e-vA-Nu4" customClass="SeparatorView" customModule="Refugeappios" customModuleProvider="target">
+                        <rect key="frame" x="8" y="73.5" width="359" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="tuw-PV-vc1"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="        " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74a-Hj-56b">
+                        <rect key="frame" x="8" y="74.5" width="359" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDv-Py-Pft">
+                        <rect key="frame" x="8" y="24" width="305" height="49.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="M77-A2-gY2"/>
+                        </constraints>
+                        <string key="text">Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="250" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJH-x1-TST">
+                        <rect key="frame" x="8" y="10.5" width="305" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cKt-ZE-U2f" firstAttribute="centerY" secondItem="lDv-Py-Pft" secondAttribute="centerY" id="68b-kV-mfL"/>
+                    <constraint firstItem="yJH-x1-TST" firstAttribute="leading" secondItem="ofr-oe-KHS" secondAttribute="leading" constant="8" id="G9t-DE-0mf"/>
+                    <constraint firstAttribute="trailing" secondItem="cKt-ZE-U2f" secondAttribute="trailing" constant="8" id="Ib3-VP-LBF"/>
+                    <constraint firstItem="yJH-x1-TST" firstAttribute="trailing" secondItem="lDv-Py-Pft" secondAttribute="trailing" id="K1i-Pu-Os3"/>
+                    <constraint firstItem="74a-Hj-56b" firstAttribute="leading" secondItem="ofr-oe-KHS" secondAttribute="leading" constant="8" id="PtW-sh-UZj"/>
+                    <constraint firstItem="cKt-ZE-U2f" firstAttribute="leading" secondItem="lDv-Py-Pft" secondAttribute="trailing" constant="8" id="WJj-Mi-DlH"/>
+                    <constraint firstItem="lDv-Py-Pft" firstAttribute="top" secondItem="ofr-oe-KHS" secondAttribute="topMargin" constant="16" id="Xt0-Zw-3dx"/>
+                    <constraint firstAttribute="bottom" secondItem="74a-Hj-56b" secondAttribute="bottom" id="cZB-rb-MTi"/>
+                    <constraint firstItem="74a-Hj-56b" firstAttribute="top" secondItem="N7e-vA-Nu4" secondAttribute="bottom" id="eMV-Hz-SKS"/>
+                    <constraint firstItem="N7e-vA-Nu4" firstAttribute="trailing" secondItem="cKt-ZE-U2f" secondAttribute="trailing" id="g5G-ag-cqC"/>
+                    <constraint firstItem="lDv-Py-Pft" firstAttribute="top" secondItem="yJH-x1-TST" secondAttribute="bottom" id="hcd-IT-t6h"/>
+                    <constraint firstItem="lDv-Py-Pft" firstAttribute="leading" secondItem="ofr-oe-KHS" secondAttribute="leading" constant="8" id="lgT-fi-OCl"/>
+                    <constraint firstItem="74a-Hj-56b" firstAttribute="trailing" secondItem="N7e-vA-Nu4" secondAttribute="trailing" id="oQk-Gp-aje"/>
+                    <constraint firstItem="N7e-vA-Nu4" firstAttribute="leading" secondItem="ofr-oe-KHS" secondAttribute="leading" constant="8" id="ynE-pe-pcZ"/>
+                    <constraint firstItem="N7e-vA-Nu4" firstAttribute="top" secondItem="lDv-Py-Pft" secondAttribute="bottom" id="zTX-IH-Lye"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="disclosureImageView" destination="cKt-ZE-U2f" id="cSU-lA-n78"/>
+                <outlet property="errorLabel" destination="74a-Hj-56b" id="dSE-7N-Ppc"/>
+                <outlet property="optionLabel" destination="lDv-Py-Pft" id="ZUD-70-MUg"/>
+                <outlet property="placeholderTitleLabel" destination="yJH-x1-TST" id="8Ru-Rg-ize"/>
+            </connections>
+            <point key="canvasLocation" x="13.5" y="52"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="places" width="24" height="24"/>
+    </resources>
+</document>
