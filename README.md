@@ -27,5 +27,22 @@ This branch host the Android app. For this project we follow the MVP + Clean Arc
 ### Implementing the app ### 
 
 After you clone the app to make your first build, you will have to replace yours Api Keys and Secret Key for Google Maps and Crashlytics.
+* Google maps Key
+<img src="./github/image-3.png" width="425"> 
 
-<img src="./github/image-3.png" width="500"> <img src="./github/image-4.png" width="500">
+* Fabric Api Key
+<img src="./github/image-4.png" width="425">
+
+* Fabric Secret Key
+<img src="./github/image-5.png" >
+
+With these changes done, build your project again. So you can run it and explore it.
+
+Following the MVP Architecture we separated the project in 2 packages, <b>data</b> and <b>presentation</b>. 
+
+<img src="./github/image-1.png" width="425">
+
+Also with Clean Code standards the <b>data</b> layer is disaggregated in differents layers.
+
+<img src="./github/image-2.png" width="425">
+
