@@ -5,6 +5,9 @@ Koru is an open source project that connects needs of people affected after a di
 Koru assists during the humanitarian aid and reconstruction stage after a disaster, with the objective to accelerate and organize the recovery of affected areas by quickly gathering and processing the needs of affected communities.
 
 
+## Applications
+
+
 | App | Description |
 | ------------- | ------------- |
 | [dev_mobile_android](https://github.com/tektonlabs/Koru/tree/dev_mobile_android/) | Android App |
@@ -16,4 +19,7 @@ Koru assists during the humanitarian aid and reconstruction stage after a disast
 
 ### External contributors
 
+
 ### Tekton contributors
+[Christian Cieza](https://github.com/mrciezas) - iOS developer (Create a new refuge Form)
+[Adriel Pinzas](https://github.com/Apinzas) - iOS developer (Search and list of refuges, refuge's questionarie )
