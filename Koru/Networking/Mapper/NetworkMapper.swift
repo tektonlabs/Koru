@@ -24,7 +24,7 @@ import Foundation
 
 class NetworkMapper {
     
-    func bodyRefungeForm(from refugeForm: RefugeForm) -> [String: Any] {
+    func bodyRefugeForm(from refugeForm: RefugeForm) -> [String: Any] {
         var body = [String: Any]()
         body["name"] = refugeForm.name
         body["latitude"] = refugeForm.latitude

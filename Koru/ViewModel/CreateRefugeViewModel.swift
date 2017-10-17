@@ -215,7 +215,7 @@ class CreateRefugeViewModel {
             refugeForm.refugeFoodManagements = foodManagements.filter { $0.selected}.map{ $0.multipleChoice}
         }
             
-        let mapRefugeForm = NetworkMapper().bodyRefungeForm(from: refugeForm)
+        let mapRefugeForm = NetworkMapper().bodyRefugeForm(from: refugeForm)
 
         return mapRefugeForm
 
