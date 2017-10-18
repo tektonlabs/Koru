@@ -25,7 +25,7 @@ Koru assists during the humanitarian aid and reconstruction stage after a disast
 
 [Adriel Pinzas](https://github.com/Apinzas) - iOS developer (Search and list of refuges, refuge's questionarie)
 
-[Eduardo Arenas] - Rails developer (Dashboard, webservices for mobile apps)
+Eduardo Arenas - Rails developer (Dashboard, webservices for mobile apps)
 
 [Jorge Calvo](https://github.com/jorgitotk) - Rails developer (Dashboard, webservices for mobile apps)
 
