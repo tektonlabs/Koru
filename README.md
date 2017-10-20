@@ -37,4 +37,4 @@ Koru assists during the humanitarian aid and reconstruction stage after a disast
 
 [Andrea Pastor](https://github.com/andreapastorp) - Project Manager (Project Management)
 
-
+Enrique Villarreal - Android Developer (Android Application)
