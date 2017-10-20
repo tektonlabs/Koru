@@ -137,11 +137,8 @@ extension RefugeRequestBuilder : TargetType {
 }
 
 struct RefugeRequestBuilderPaths {
-    
     static let refuge = ""
     static let quesition = "/responses"
-    
-
 }
 
 

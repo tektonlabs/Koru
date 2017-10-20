@@ -42,45 +42,36 @@ extension EntityRequestBuilder: TargetType {
         
     var path: String {
         switch self {
-            case.listEntity(let refuge):
-                return  "/\(refuge.id!)" + EntityRequestBuilderPaths.endEntity
-            }
+        case.listEntity(let refuge): return  "/\(refuge.id!)" + EntityRequestBuilderPaths.endEntity
         }
+    }
         
-        var method: Moya.Method {
-            switch self {
-            case .listEntity:
-                return .get
-            }
+    var method: Moya.Method {
+        switch self {
+        case .listEntity: return .get
         }
-        
-        var sampleData: Data {
-            return Data()
-        }
-        
-        var task: Task {
-            switch self {
-            case .listEntity(refuge: _):
-                return .requestParameters(parameters: ["limit" : ""], encoding: URLEncoding.queryString)
-            
-            }
-        }
-        
-        static let entitySeviceEndpointClosure = { (target: EntityRequestBuilder) -> Endpoint<EntityRequestBuilder> in
-            let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
-                
-            switch target {
-                case .listEntity:
-                    return NetworkingSetup.headers(for: target)
-            }
-        }
-        
+    }
     
+    var sampleData: Data {
+        return Data()
+    }
+    
+    var task: Task {
+        switch self {
+        case .listEntity(refuge: _): return .requestParameters(parameters: ["limit" : ""], encoding: URLEncoding.queryString)
+        }
+    }
+    
+    static let entitySeviceEndpointClosure = { (target: EntityRequestBuilder) -> Endpoint<EntityRequestBuilder> in
+        let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
+        
+        switch target {
+            case .listEntity: return NetworkingSetup.headers(for: target)
+        }
+    }
 }
 
 struct EntityRequestBuilderPaths {
-        
     static let endEntity = "/entities"
-
 }
 
