@@ -24,13 +24,15 @@ import Foundation
 
 extension Locale
 {
-    static func isoCountry(for countryName : String) -> String?
-    {
-        return Locale.isoRegionCodes.filter{self.countryNameFromLocaleCode(localeCode: $0) == countryName} .first
+    static var preferedLanguage: String {
+        return self.preferredLanguages.first!
     }
     
-    private static func countryNameFromLocaleCode(localeCode : String) -> String
-    {
-        return NSLocale(localeIdentifier: Locale.current.identifier).displayName(forKey: .countryCode, value: localeCode) ?? ""
+    static func isoCountry(for countryName : String) -> String? {
+        return Locale.isoRegionCodes.filter{self.countryName(forRegionCode: $0) == countryName}.first
+    }
+    
+    static func countryName(forRegionCode regionCode : String) -> String {
+        return Locale(identifier: self.preferedLanguage).localizedString(forRegionCode: regionCode) ?? ""
     }
 }
