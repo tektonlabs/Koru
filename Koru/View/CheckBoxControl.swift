@@ -80,10 +80,7 @@ class CheckboxControl: UIControl {
         let topConstraintRigth = NSLayoutConstraint(item: self, attribute: .right, relatedBy: .equal, toItem: titleLabel, attribute: .right, multiplier: 1.0, constant: 0.0)
         let topConstraintLeft = NSLayoutConstraint(item: self, attribute: .left, relatedBy: .equal, toItem: titleLabel, attribute: .left, multiplier: 1.0, constant: -30.0)
         
-        topConstraintTop.isActive = true
-        topConstraintBottom.isActive = true
-        topConstraintRigth.isActive = true
-        topConstraintLeft.isActive = true
+        NSLayoutConstraint.activate([topConstraintTop, topConstraintBottom, topConstraintRigth, topConstraintLeft])
         
         titleLabel.text = "title label"
         

@@ -150,14 +150,14 @@ class CreateRefugeViewModel {
 
     func createRefugeForm() -> [String: Any] {
         let name = basicDataViewModel.nameCellViewModel.text!
-        let address = basicDataViewModel.addressCellViewModel.selectedAddress?.name
-        let city = basicDataViewModel.addressCellViewModel.selectedAddress?.city
-        let countryISO = basicDataViewModel.addressCellViewModel.selectedAddress?.countryISO
-        let longitude = String(describing: basicDataViewModel.addressCellViewModel.selectedAddress!.longitude)
-        let latitude = String(describing: basicDataViewModel.addressCellViewModel.selectedAddress!.latitude)
+        let address = basicDataViewModel.addressCellViewModel.selectedAddress?.name ?? ""
+        let city = basicDataViewModel.addressCellViewModel.selectedAddress?.city ?? ""
+        let countryISO = basicDataViewModel.addressCellViewModel.selectedAddress?.countryISO ?? ""
+        let longitude = String(describing: basicDataViewModel.addressCellViewModel.selectedAddress?.longitude ?? 0)
+        let latitude = String(describing: basicDataViewModel.addressCellViewModel.selectedAddress?.longitude ?? 0)
         let emergencyType = basicDataViewModel.emergencyCellViewModel.selectedOption as! EmergencyType
         
-        let refugeForm = RefugeForm(name: name, latitude: latitude, longitude: longitude, address: address!, city: city!, countryISO: countryISO!, emergencyType: emergencyType)
+        let refugeForm = RefugeForm(name: name, latitude: latitude, longitude: longitude, address: address, city: city, countryISO: countryISO, emergencyType: emergencyType)
         
         refugeForm.refugeType = basicDataViewModel.refugeTypeCellViewModel.selectedOption as? RefugeType
         refugeForm.institutionInCharge = basicDataViewModel.institutionInChargeCellViewModel.selectedOption as? InstitutionInChargeType
