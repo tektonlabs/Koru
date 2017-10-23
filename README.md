@@ -39,4 +39,4 @@ Enrique Villareal - Android developer (Android Application)
 
 [Andrea Pastor](https://github.com/andreapastorp) - Project Manager (Project Management)
 
-
+Enrique Villarreal - Android Developer (Android Application)
