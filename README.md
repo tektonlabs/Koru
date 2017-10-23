@@ -35,6 +35,8 @@ Koru assists during the humanitarian aid and reconstruction stage after a disast
 
 [Willy Revilla](https://github.com/willyrh495) - Android developer (Android Application)
 
+Enrique Villareal - Android developer (Android Application)
+
 [Andrea Pastor](https://github.com/andreapastorp) - Project Manager (Project Management)
 
 
